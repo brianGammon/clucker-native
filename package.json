@@ -4,16 +4,29 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "flow-start": "flow start",
+    "flow-stop": "flow stop",
+    "flow-status": "flow status",
+    "flow-coverage": "flow coverage"
   },
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.56.0"
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.0.0-beta.52",
+    "babel-eslint": "^8.2.5",
     "babel-jest": "23.2.0",
     "babel-preset-react-native": "^5",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.9.1",
+    "flow-bin": "0.75.0",
     "jest": "23.3.0",
+    "prettier-eslint": "^8.8.2",
     "react-test-renderer": "16.4.1"
   },
   "jest": {

@@ -1,0 +1,12 @@
+/* eslint */
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // Disable react/jsx-one-expression-per-line per:
+    // https://github.com/yannickcr/eslint-plugin-react/issues/1775
+    "react/jsx-one-expression-per-line": 0
+  }
+}
