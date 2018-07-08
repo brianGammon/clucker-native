@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
-import TabNavigator from '../TabNavigator';
-import EggEditorModal from '../../containers/EggEditor';
+import TabNavigator from './TabNavigator';
+import EggEditorModal from '../containers/EggEditor';
 
 export default createStackNavigator(
   {

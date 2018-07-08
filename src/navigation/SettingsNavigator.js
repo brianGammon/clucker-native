@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
-import SettingsScreen from '../../containers/Settings';
-import FlockSettingsScreen from '../../containers/FlockSettings';
+import SettingsScreen from '../containers/Settings';
+import FlockSettingsScreen from '../containers/FlockSettings';
 
 export default createStackNavigator({
   Settings: {

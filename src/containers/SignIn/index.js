@@ -29,7 +29,6 @@ export default class SignIn extends React.Component<Props> {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Sign In Screen</Text>
         <Button onPress={this.handleSignIn} title="Be Signed In" />
-        <Button onPress={() => navigation.navigate('ResetPassword')} title="Reset Password" />
         <Button onPress={() => navigation.replace('SignUp')} title="Sign Up" />
         <Button onPress={() => navigation.navigate('ResetPassword')} title="Reset Password" />
       </View>

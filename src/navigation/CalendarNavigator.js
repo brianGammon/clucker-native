@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Button } from 'react-native';
-import Calendar from '../../containers/Calendar';
-import CalendarDay from '../../containers/CalendarDay';
+import Calendar from '../containers/Calendar';
+import CalendarDay from '../containers/CalendarDay';
 
 export default createStackNavigator({
   Month: {
