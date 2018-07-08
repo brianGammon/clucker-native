@@ -1,6 +1,6 @@
 import React from 'react';
 import { createDrawerNavigator } from 'react-navigation';
-import AppNavigator from './AppNavigator';
+import AppNavigator from './ModalStack';
 import Drawer from '../containers/Drawer';
 
 export default createDrawerNavigator(

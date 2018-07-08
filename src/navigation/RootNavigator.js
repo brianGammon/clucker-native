@@ -1,7 +1,7 @@
 import { createSwitchNavigator } from 'react-navigation';
 import AuthLoadingScreen from '../containers/AuthLoading';
-import DrawerNavigator from './DrawerNavigator';
-import AuthNavigator from './AuthNavigator';
+import DrawerNavigator from './AppDrawer';
+import AuthNavigator from './AuthStack';
 
 export default createSwitchNavigator(
   {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FlockNavigator from './FlockNavigator';
-import CalendarNavigator from './CalendarNavigator';
-import SettingsNavigator from './SettingsNavigator';
+import FlockNavigator from './FlockStack';
+import CalendarNavigator from './CalendarStack';
+import SettingsNavigator from './SettingsStack';
 
 export default createBottomTabNavigator(
   {
