@@ -1,13 +1,13 @@
 import { createSwitchNavigator } from 'react-navigation';
 import AuthLoadingScreen from '../containers/AuthLoading';
-import DrawerNavigator from './AppDrawer';
-import AuthNavigator from './AuthStack';
+import AppDrawer from './AppDrawer';
+import AuthStack from './AuthStack';
 
 export default createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
-    App: DrawerNavigator,
-    Auth: AuthNavigator,
+    App: AppDrawer,
+    Auth: AuthStack,
   },
   {
     initialRouteName: 'AuthLoading',

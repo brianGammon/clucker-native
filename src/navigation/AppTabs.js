@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FlockNavigator from './FlockStack';
-import CalendarNavigator from './CalendarStack';
-import SettingsNavigator from './SettingsStack';
+import FlockStack from './FlockStack';
+import CalendarStack from './CalendarStack';
+import SettingsStack from './SettingsStack';
 
 export default createBottomTabNavigator(
   {
-    Flock: FlockNavigator,
-    Calendar: CalendarNavigator,
-    Settings: SettingsNavigator,
+    Flock: FlockStack,
+    Calendar: CalendarStack,
+    Settings: SettingsStack,
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -27,8 +27,8 @@ export default createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      activeTintColor: 'grey',
+      inactiveTintColor: 'grey',
     },
   },
 );
