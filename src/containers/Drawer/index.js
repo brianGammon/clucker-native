@@ -8,7 +8,7 @@ export default class Drawer extends React.Component<Props> {
   signOutAsync = async () => {
     await AsyncStorage.clear();
     const { navigation } = this.props;
-    navigation.navigate('Auth');
+    navigation.navigate('SignedOut');
   };
 
   render() {

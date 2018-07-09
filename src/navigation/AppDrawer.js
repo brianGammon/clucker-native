@@ -5,7 +5,7 @@ import Drawer from '../containers/Drawer';
 
 export default createDrawerNavigator(
   {
-    Modals: ModalStack,
+    App: ModalStack,
   },
   {
     contentComponent: ({ navigation }) => <Drawer navigation={navigation} />,
