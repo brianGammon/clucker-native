@@ -17,6 +17,7 @@ export default createStackNavigator(
     },
     Chicken: {
       screen: ChickenScreen,
+      path: 'chicken/:chickenId',
       navigationOptions: {
         title: 'Chicken Profile',
       },

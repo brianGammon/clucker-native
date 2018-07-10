@@ -1,14 +1,22 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FlockStack from './FlockStack';
 import CalendarStack from './CalendarStack';
 import SettingsStack from './SettingsStack';
+import withLinking from './withLinking';
 
-export default createBottomTabNavigator(
+const Tabs = createBottomTabNavigator(
   {
-    Flock: FlockStack,
-    Calendar: CalendarStack,
+    Flock: {
+      screen: FlockStack,
+      path: 'flock',
+    },
+    Calendar: {
+      screen: CalendarStack,
+      path: 'calendar',
+    },
     Settings: SettingsStack,
   },
   {
@@ -32,3 +40,5 @@ export default createBottomTabNavigator(
     },
   },
 );
+
+export default withLinking(Tabs, Platform.OS === 'android' ? 'cluckr://cluckr/' : 'cluckr://');
