@@ -34,15 +34,10 @@
 }
 
 - (BOOL)application:(UIApplication *)application
-   openURL:(NSURL *)url
-   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-  if ([RCTLinkingManager application:application
-                             openURL:url
-                   sourceApplication:nil
-                          annotation:nil]) {
-    return YES;
-  }
+  return [RCTLinkingManager application:application openURL:url options:options];
 }
 
 @end

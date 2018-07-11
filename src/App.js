@@ -14,9 +14,7 @@ export default class App extends React.Component<Props> {
   componentDidMount() {
     Linking.addEventListener('url', handleOpenURL);
 
-    Linking.getInitialURL().then((url) => {
-      handleOpenURL({ url });
-    });
+    Linking.getInitialURL().then(url => url && handleOpenURL({ url }));
   }
 
   componentWillUnmount() {
