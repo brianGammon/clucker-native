@@ -19,6 +19,9 @@
 ; Ignore metro
 .*/node_modules/metro/.*
 
+; Ignore react-native-firebase
+.*/node_modules/react-native-firebase/.*
+
 [include]
 
 [libs]

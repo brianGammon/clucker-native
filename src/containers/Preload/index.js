@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  AsyncStorage, ActivityIndicator, StatusBar, View,
-} from 'react-native';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import styles from './styles';
 
@@ -12,19 +10,21 @@ export interface Props {
 export interface State {}
 
 export default class Preload extends React.Component<Props, State> {
+  authUnsubscriber = null;
+
   // Fetch the token from storage then navigate to our appropriate place
   async componentDidMount() {
     const { navigation } = this.props;
 
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
+    this.authUnsubscriber = firebase.auth().onAuthStateChanged((user) => {
+      navigation.navigate(user ? 'SignedIn' : 'SignedOut');
     });
+  }
 
-    const userToken = await AsyncStorage.getItem('userToken');
-
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    navigation.navigate(userToken ? 'SignedIn' : 'SignedOut');
+  componentWillUnmount() {
+    if (this.authUnsubscriber) {
+      this.authUnsubscriber();
+    }
   }
 
   // Render any loading content that you like here

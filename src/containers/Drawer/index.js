@@ -1,14 +1,18 @@
 import React from 'react';
 import { AsyncStorage, SafeAreaView, Text } from 'react-native';
+import firebase from 'react-native-firebase';
 
 export interface Props {
   navigate: any;
 }
 export default class Drawer extends React.Component<Props> {
   signOutAsync = async () => {
-    await AsyncStorage.clear();
     const { navigation } = this.props;
-    navigation.navigate('SignedOut');
+    await AsyncStorage.clear();
+    firebase
+      .auth()
+      .signOut()
+      .then(() => navigation.navigate('SignedOut'));
   };
 
   render() {
