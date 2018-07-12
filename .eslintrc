@@ -8,7 +8,8 @@
     // Disable react/jsx-one-expression-per-line per:
     // https://github.com/yannickcr/eslint-plugin-react/issues/1775
     "react/jsx-one-expression-per-line": 0,
-    "react/prop-types": ["error", { "ignore": ["navigation", "focused", "tintColor"] }],
+
+    // TODO: remove "react/prefer-stateless-function"
     "react/prefer-stateless-function": 0
   }
 }

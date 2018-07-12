@@ -7,6 +7,11 @@ import CalendarStack from './CalendarStack';
 import SettingsStack from './SettingsStack';
 import withLinking from './withLinking';
 
+type TabBarIconProps = {
+  isFocused: boolean,
+  tintColor: string,
+};
+
 const Tabs = createBottomTabNavigator(
   {
     Flock: {
@@ -21,7 +26,13 @@ const Tabs = createBottomTabNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({
+        focused,
+        tintColor,
+      }: {
+        focused: TabBarIconProps.focused,
+        tintColor: TabBarIconProps.tintColor,
+      }) => {
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Flock') {

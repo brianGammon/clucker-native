@@ -1,7 +1,11 @@
 import React from 'react';
 import { Text, Button, View } from 'react-native';
 
-export default class ChickenEditor extends React.Component {
+export interface Props {
+  navigation: any;
+}
+
+export default class ChickenEditor extends React.Component<Props> {
   render() {
     const { navigation } = this.props;
     return (

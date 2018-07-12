@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, View } from 'react-native';
 
-export default class ResetPassword extends React.Component {
+interface Props {
+  navigation: any;
+}
+
+export default class ResetPassword extends React.Component<Props> {
   static navigationOptions = {
     title: 'Reset Password',
   };

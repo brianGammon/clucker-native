@@ -14,9 +14,14 @@ const urlToPathAndParams = (uriPrefix, url) => {
   };
 };
 
+export interface Props {
+  navigation: any;
+}
+
 export default (Comp, uriPrefix) => {
   const { router } = Comp;
-  return class extends Component {
+
+  return class extends Component<Props> {
     static router = router;
 
     componentDidMount() {
