@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   ActivityIndicator, StatusBar, View, Text,
 } from 'react-native';

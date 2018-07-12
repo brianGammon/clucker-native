@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import HeaderProfile from '../components/HeaderProfile';
 import HeaderEgg from '../components/HeaderEgg';

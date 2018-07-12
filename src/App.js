@@ -1,13 +1,13 @@
 /* @flow */
-import React from 'react';
+import * as React from 'react';
 import { Linking, AsyncStorage } from 'react-native';
 import firebase from 'react-native-firebase';
 
 import Loading from './components/Loading';
 import RootNavigator from './navigation/RootNavigator';
 
-export interface Props {}
-export interface State {
+type Props = {}
+type State = {
   loading: boolean;
 }
 

@@ -14,7 +14,7 @@ const urlToPathAndParams = (uriPrefix, url) => {
   };
 };
 
-export interface Props {
+type Props = {
   navigation: any;
 }
 

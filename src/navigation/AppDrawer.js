@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createDrawerNavigator } from 'react-navigation';
 import ModalStack from './ModalStack';
 import Drawer from '../containers/Drawer';

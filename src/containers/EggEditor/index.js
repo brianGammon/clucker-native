@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { Text, View, Button } from 'react-native';
 
-export interface Props {
+type Props = {
   navigation: any;
 }
 

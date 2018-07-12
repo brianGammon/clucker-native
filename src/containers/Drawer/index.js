@@ -1,10 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { AsyncStorage, SafeAreaView, Text } from 'react-native';
 import firebase from 'react-native-firebase';
 
-export interface Props {
-  navigate: any;
+type Props = {
+  navigation: any;
 }
+
 export default class Drawer extends React.Component<Props> {
   signOutAsync = async () => {
     const { navigation } = this.props;

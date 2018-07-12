@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { Text, View, Button } from 'react-native';
 
-export interface Props {
-  navigation: any;
-}
+type Props = {
+  navigation: any,
+};
 
 export default class SignUp extends React.Component<Props> {
   static navigationOptions = {

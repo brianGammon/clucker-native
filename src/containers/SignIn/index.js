@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Text, View, Button, TextInput,
 } from 'react-native';
@@ -6,15 +6,15 @@ import firebase from 'react-native-firebase';
 
 import styles from './styles';
 
-export interface Props {
-  navigation: any;
-}
+type Props = {
+  navigation: any,
+};
 
-export interface State {
-  email: string;
-  password: string;
-  errorMessage: string;
-}
+type State = {
+  email: string,
+  password: string,
+  errorMessage: string,
+};
 
 export default class SignIn extends React.Component<Props, State> {
   static navigationOptions = {
