@@ -5,10 +5,11 @@ import { Linking } from 'react-native';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
 
-import Splash from './components/Splash';
-import RootNavigator from './navigation/RootNavigator';
-import * as actions from './redux/actions';
-import { metaTypes } from './redux/constants';
+import Splash from '../../components/Splash';
+import RootNavigator from '../../navigation/RootNavigator';
+import * as actions from '../../redux/actions';
+import { metaTypes } from '../../redux/constants';
+import type { UserSettings } from '../../types';
 
 type Props = {
   getFlock: (flockId: string) => void,
@@ -19,11 +20,7 @@ type Props = {
   userSettings: {
     inProgress: boolean,
     error: string,
-    items: {
-      name: string,
-      currentFlockId: string,
-      flocks: { [string]: boolean },
-    },
+    items: UserSettings,
   },
 };
 

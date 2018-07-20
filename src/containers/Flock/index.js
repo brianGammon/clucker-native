@@ -1,21 +1,13 @@
+/* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 import {
   Text, Button, View, FlatList, TouchableOpacity, Image,
 } from 'react-native';
-
-type Chicken = {
-  name: string,
-  breed: string,
-  hatched: string,
-  photoPath: string,
-  photoUrl: string,
-  thumbnailPath: string,
-  thumbnailUrl: string,
-};
+import { type Chicken, type Navigation } from '../../types';
 
 type Props = {
-  navigation: any,
+  navigation: Navigation,
   chickens: {
     [string]: Chicken,
   },

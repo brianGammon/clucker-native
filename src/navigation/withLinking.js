@@ -1,7 +1,10 @@
+/* @flow */
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
 import { connect } from 'react-redux';
+import { type NavigationContainer } from 'react-navigation';
 import { removeInitialUrl as removeInitialUrlAction } from '../redux/actions';
+import { type Navigation } from '../types';
 
 const urlToPathAndParams = (uriPrefix, url) => {
   const params = {};
@@ -17,12 +20,12 @@ const urlToPathAndParams = (uriPrefix, url) => {
 };
 
 type Props = {
-  navigation: any,
+  navigation: Navigation,
   initialUrl: string,
   removeInitialUrl: () => void,
 };
 
-export default (Comp, uriPrefix) => {
+export default (Comp: NavigationContainer<any, any, any>, uriPrefix: string) => {
   const { router } = Comp;
 
   class WrappedComponent extends Component<Props> {
