@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Linking, AsyncStorage } from 'react-native';
+import { Linking } from 'react-native';
+import { connect } from 'react-redux';
+import { removeInitialUrl as removeInitialUrlAction } from '../redux/actions';
 
 const urlToPathAndParams = (uriPrefix, url) => {
   const params = {};
@@ -15,24 +17,25 @@ const urlToPathAndParams = (uriPrefix, url) => {
 };
 
 type Props = {
-  navigation: any;
-}
+  navigation: any,
+  initialUrl: string,
+  removeInitialUrl: () => void,
+};
 
 export default (Comp, uriPrefix) => {
   const { router } = Comp;
 
-  return class extends Component<Props> {
+  class WrappedComponent extends Component<Props> {
     static router = router;
 
     componentDidMount() {
       // TODO: move to redux state instead of AsyncStorage
-      AsyncStorage.getItem('initialUrl').then((url) => {
-        if (url) {
-          this.handleOpenURL({ url });
-          AsyncStorage.removeItem('initialUrl');
-        }
-        Linking.addEventListener('url', this.handleOpenURL);
-      });
+      const { initialUrl, removeInitialUrl } = this.props;
+      if (initialUrl) {
+        this.handleOpenURL({ url: initialUrl });
+        removeInitialUrl();
+      }
+      Linking.addEventListener('url', this.handleOpenURL);
     }
 
     componentWillUnmount() {
@@ -63,5 +66,15 @@ export default (Comp, uriPrefix) => {
       const { navigation } = this.props;
       return <Comp navigation={navigation} />;
     }
-  };
+  }
+
+  const mapStateToProps = ({ initialUrl }) => ({ initialUrl });
+  const mapDispatchToProps = dispatch => ({
+    removeInitialUrl: () => dispatch(removeInitialUrlAction()),
+  });
+
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(WrappedComponent);
 };

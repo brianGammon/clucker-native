@@ -1,13 +1,14 @@
 /* @flow */
 import * as React from 'react';
+// $FlowFixMe
 import firebase from 'react-native-firebase';
 import Loading from '../../components/Loading';
 
 type Props = {
-  navigation: any;
-}
+  navigation: any,
+};
 
-type State = {}
+type State = {};
 
 export default class Preload extends React.Component<Props, State> {
   async componentDidMount() {

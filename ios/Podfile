@@ -8,6 +8,7 @@ target 'cluckrapp' do
   # Pods for cluckrapp
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   target 'cluckrappTests' do
     inherit! :search_paths
