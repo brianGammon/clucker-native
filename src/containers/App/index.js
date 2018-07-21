@@ -47,6 +47,7 @@ class App extends React.Component<Props, State> {
     Linking.getInitialURL().then(url => url && this.handleOpenURL({ url }));
 
     this.authUnsubscriber = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ initialized: true });
       if (user) {
         console.log('Logged in, start listening');
         listenToUserSettings(user.uid);
@@ -54,17 +55,16 @@ class App extends React.Component<Props, State> {
         console.log('Logged out, stop listening');
         // clear all listeners
       }
-      this.setState({ initialized: true });
     });
   }
 
-  shouldComponentUpdate() {
-    const { initialized } = this.state;
-    if (!initialized) {
-      return false;
-    }
-    return true;
-  }
+  // shouldComponentUpdate() {
+  //   const { initialized } = this.state;
+  //   if (!initialized) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   componentDidUpdate(prevProps) {
     const prevUserSettings = prevProps.userSettings;
