@@ -8,7 +8,8 @@
     "flow-start": "flow start",
     "flow-stop": "flow stop",
     "flow-status": "flow status",
-    "flow-coverage": "flow coverage"
+    "flow-coverage": "flow coverage",
+    "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
   },
   "dependencies": {
     "react": "16.4.1",
@@ -33,7 +34,9 @@
     "flow-bin": "0.75.0",
     "jest": "23.3.0",
     "prettier-eslint": "^8.8.2",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.4.1",
+    "remote-redux-devtools": "^0.5.12",
+    "remotedev-rn-debugger": "^0.8.3"
   },
   "jest": {
     "preset": "react-native"

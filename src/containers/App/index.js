@@ -9,7 +9,7 @@ import Splash from '../../components/Splash';
 import RootNavigator from '../../navigation/RootNavigator';
 import * as actions from '../../redux/actions';
 import { metaTypes } from '../../redux/constants';
-import type { UserSettings } from '../../types';
+import { type UserSettings } from '../../types';
 
 type Props = {
   getFlock: (flockId: string) => void,
