@@ -1,16 +1,12 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import Loading from '..';
 
-import renderer from 'react-test-renderer';
-
-describe('Loading tests', () => {
-  test('renders correctly', () => {
-    const tree = renderer.create(<Loading />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('renders correctly with message', () => {
-    const tree = renderer.create(<Loading message="with message" />).toJSON();
-    expect(tree).toMatchSnapshot();
+describe('Testing ReassignLocationMenu component', () => {
+  it('renders as expected', () => {
+    const wrapper = shallow(<Loading />);
+    expect(wrapper).toMatchSnapshot();
+    wrapper.setProps({ message: 'with a message' });
+    expect(wrapper).toMatchSnapshot();
   });
 });

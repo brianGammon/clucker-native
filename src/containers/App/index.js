@@ -24,11 +24,15 @@ type Props = {
   },
 };
 
+type Event = {
+  url: string,
+};
+
 type State = {
   initialized: boolean,
 };
 
-class App extends React.Component<Props, State> {
+export class App extends React.Component<Props, State> {
   authUnsubscriber = null;
 
   constructor() {
@@ -66,7 +70,7 @@ class App extends React.Component<Props, State> {
   //   return true;
   // }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     const prevUserSettings = prevProps.userSettings;
     const {
       userSettings, getFlock, listenToChickens, listenToEggs,
@@ -99,9 +103,9 @@ class App extends React.Component<Props, State> {
     }
   }
 
-  handleOpenURL = ({ url }) => {
+  handleOpenURL = (event: Event) => {
     const { setInitialUrl } = this.props;
-    setInitialUrl(url);
+    setInitialUrl(event.url);
   };
 
   render() {

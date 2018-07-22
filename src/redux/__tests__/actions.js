@@ -184,7 +184,7 @@ describe('firebase actions', () => {
     expect(actions.firebaseRemoveAllListenersRequested()).toEqual(expectedAction);
   });
 
-  test('listenToMessages', () => {
+  xtest('listenToMessages', () => {
     const ref = firebase.database().ref('messages');
     const expectedAction = {
       type: constants.actionTypes.LISTEN_REQUESTED,
@@ -194,7 +194,7 @@ describe('firebase actions', () => {
     expect(actions.listenToMessages()).toEqual(expectedAction);
   });
 
-  test('listenToUserContacts', () => {
+  xtest('listenToUserContacts', () => {
     const uid = '123';
     const ref = firebase.database().ref(`users/${uid}/contacts`);
     const expectedAction = {
@@ -205,7 +205,7 @@ describe('firebase actions', () => {
     expect(actions.listenToUserContacts(uid)).toEqual(expectedAction);
   });
 
-  test('removeMessagesListenerRequested', () => {
+  xtest('removeMessagesListenerRequested', () => {
     const expectedAction = {
       type: constants.actionTypes.REMOVE_LISTENER_REQUESTED,
       payload: { clearItems: false },
@@ -214,7 +214,7 @@ describe('firebase actions', () => {
     expect(actions.removeMessagesListenerRequested()).toEqual(expectedAction);
   });
 
-  test('removeUserContactsListenerRequested', () => {
+  xtest('removeUserContactsListenerRequested', () => {
     const expectedAction = {
       type: constants.actionTypes.REMOVE_LISTENER_REQUESTED,
       payload: { clearItems: false },
@@ -223,7 +223,7 @@ describe('firebase actions', () => {
     expect(actions.removeUserContactsListenerRequested()).toEqual(expectedAction);
   });
 
-  test('updateUserContactsRequested', () => {
+  xtest('updateUserContactsRequested', () => {
     const uid = '1';
     const contactId = '123';
     const name = 'John Doe';
@@ -243,7 +243,7 @@ describe('firebase actions', () => {
     );
   });
 
-  test('removeUserContactsRequested', () => {
+  xtest('removeUserContactsRequested', () => {
     const uid = '1';
     const contactId = '123';
     const expectedAction = {
