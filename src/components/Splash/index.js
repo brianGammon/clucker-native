@@ -1,18 +1,11 @@
 import * as React from 'react';
-import {
-  ActivityIndicator, StatusBar, View, Text,
-} from 'react-native';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
 
 import styles from './styles';
 
-type Props = {
-  message: string,
-};
-
-export default ({ message }: { message: Props.message }) => (
+export default () => (
   <View style={styles.container}>
     <ActivityIndicator size="large" />
     <StatusBar barStyle="default" />
-    {message && <Text>{message}</Text>}
   </View>
 );

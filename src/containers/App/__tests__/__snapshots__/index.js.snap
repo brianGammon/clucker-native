@@ -2,4 +2,6 @@
 
 exports[`App component shallow Logged in 1`] = `<Test />`;
 
+exports[`App component shallow Not initialized 1`] = `<_default />`;
+
 exports[`App component shallow Not logged in 1`] = `<Test />`;

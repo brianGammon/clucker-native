@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flock container renders 1`] = `
+<FlockRenderer
+  chickens={Object {}}
+  navigation={[MockFunction]}
+/>
+`;
+
+exports[`FlockRenderer renders 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <FlatList
+    data={Array []}
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+  <Button
+    onPress={[Function]}
+    title="Add a Chicken"
+  />
+  <Button
+    onPress={[Function]}
+    title="Chicken Profile"
+  />
+</Component>
+`;

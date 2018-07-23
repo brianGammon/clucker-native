@@ -81,7 +81,7 @@ export class App extends React.Component<Props, State> {
     const oldCUrrentFlockId = prevUserSettings.items && prevUserSettings.items.currentFlockId;
     const flocksChanged = newFlocks !== oldFlocks;
     const currentFlockIdChanged = newCurrentFlockId !== oldCUrrentFlockId;
-
+    console.log('DidUpdate');
     if (flocksChanged) {
       console.log('Flocks changed');
       // Dispatch to clear current flocks

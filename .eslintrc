@@ -14,5 +14,9 @@
   },
   "env": {
     "jest": true
+  },
+  "globals": {
+    "shallow": false,
+    "mount": false
   }
 }
