@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withLinking wraps navigation component 1`] = `
+<mock
+  navigation={
+    Object {
+      "dispatch": [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "action3": "test3",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      },
+    }
+  }
+/>
+`;

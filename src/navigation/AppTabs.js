@@ -12,7 +12,7 @@ type TabBarIconProps = {
   tintColor: string,
 };
 
-const Tabs = createBottomTabNavigator(
+export const Tabs = createBottomTabNavigator(
   {
     Flock: {
       screen: FlockStack,

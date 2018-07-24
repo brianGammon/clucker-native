@@ -33,6 +33,7 @@ export default (Comp: NavigationContainer<any, any, any>, uriPrefix: string) => 
 
     componentDidMount() {
       // TODO: move to redux state instead of AsyncStorage
+      console.log('TEST');
       const { initialUrl, removeInitialUrl } = this.props;
       if (initialUrl) {
         this.handleOpenURL({ url: initialUrl });
@@ -48,19 +49,18 @@ export default (Comp: NavigationContainer<any, any, any>, uriPrefix: string) => 
     handleOpenURL = ({ url }) => {
       const parsedUrl = urlToPathAndParams(uriPrefix, url);
       const { navigation } = this.props;
-      if (parsedUrl) {
-        const { path, params } = parsedUrl;
-        const action = router.getActionForPathAndParams(path, params);
-        if (action) {
-          if (action.action) {
-            if (action.action.action) {
-              navigation.dispatch(action.action.action);
-            } else {
-              navigation.dispatch(action.action);
-            }
+      const { path, params } = parsedUrl;
+      const action = router.getActionForPathAndParams(path, params);
+      console.log(action);
+      if (action) {
+        if (action.action) {
+          if (action.action.action) {
+            navigation.dispatch(action.action.action);
           } else {
-            navigation.dispatch(action);
+            navigation.dispatch(action.action);
           }
+        } else {
+          navigation.dispatch(action);
         }
       }
     };

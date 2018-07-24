@@ -6,14 +6,6 @@ import { App } from '..';
 
 jest.mock('../../../navigation/RootNavigator', () => 'Test');
 
-jest.mock('Linking', () => ({
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-  openURL: jest.fn(),
-  canOpenURL: jest.fn(),
-  getInitialURL: jest.fn(() => Promise.resolve()),
-}));
-
 describe('App component shallow', () => {
   test('Not initialized', () => {
     // Don't return anything from onAuthStateChanged to simulate waiting on Firebase
