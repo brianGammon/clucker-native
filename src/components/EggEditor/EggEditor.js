@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Text, View, Button } from 'react-native';
 
 type Props = {
-  navigation: any;
-}
+  navigation: any,
+};
 
 export default class EggEditor extends React.Component<Props> {
   render() {

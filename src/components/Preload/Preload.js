@@ -2,7 +2,7 @@
 import * as React from 'react';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
-import Loading from '../../components/Loading';
+import Loading from '../Loading';
 
 type Props = {
   navigation: any,

@@ -1,19 +1,16 @@
 import * as React from 'react';
-import { Button, View } from 'react-native';
+import { Text, Button, View } from 'react-native';
 
 type Props = {
-  navigation: any;
-}
+  navigation: any,
+};
 
-export default class ResetPassword extends React.Component<Props> {
-  static navigationOptions = {
-    title: 'Reset Password',
-  };
-
+export default class ChickenEditor extends React.Component<Props> {
   render() {
     const { navigation } = this.props;
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 30 }}>Add or Edit Chicken</Text>
         <Button onPress={() => navigation.goBack()} title="Go Back" />
       </View>
     );

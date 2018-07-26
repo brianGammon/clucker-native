@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EggEditor component: Should render 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "fontSize": 30,
+      }
+    }
+  >
+    Add or Edit an Egg Here
+  </Component>
+  <Button
+    onPress={[Function]}
+    title="Dismiss"
+  />
+</Component>
+`;

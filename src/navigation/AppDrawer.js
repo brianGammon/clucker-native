@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createDrawerNavigator } from 'react-navigation';
 import ModalStack from './ModalStack';
-import Drawer from '../containers/Drawer';
+import Drawer from '../components/Drawer';
 
 type Props = {
   navigation: any,

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Drawer component: Should render 1`] = `
+<SafeAreaView>
+  <Component
+    onPress={[Function]}
+  >
+    Flock
+  </Component>
+  <Component
+    onPress={[Function]}
+  >
+    Sign Out
+  </Component>
+</SafeAreaView>
+`;

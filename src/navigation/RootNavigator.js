@@ -1,5 +1,5 @@
 import { createSwitchNavigator } from 'react-navigation';
-import PreloadScreen from '../containers/Preload';
+import PreloadScreen from '../components/Preload';
 import AppDrawer from './AppDrawer';
 import AuthStack from './AuthStack';
 

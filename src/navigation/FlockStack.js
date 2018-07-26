@@ -4,7 +4,7 @@ import HeaderProfile from '../components/HeaderProfile';
 import HeaderEgg from '../components/HeaderEgg';
 import FlockScreen from '../components/Flock';
 import ChickenScreen from '../components/Chicken';
-import ChickenEditorScreen from '../containers/ChickenEditor';
+import ChickenEditorScreen from '../components/ChickenEditor';
 
 export default createStackNavigator(
   {

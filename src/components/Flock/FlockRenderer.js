@@ -26,7 +26,7 @@ const FlockRenderer = ({ navigation, chickens }: Props) => (
             borderBottomColor: 'grey',
             padding: 10,
           }}
-          onPress={() => navigation.navigate('Chicken')}
+          onPress={() => navigation.navigate('Chicken', { chickenId: item })}
         >
           <View>
             <Image

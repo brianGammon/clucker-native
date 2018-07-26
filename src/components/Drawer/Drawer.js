@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { AsyncStorage, SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import firebase from 'react-native-firebase';
 
 type Props = {
-  navigation: any;
-}
+  navigation: any,
+};
 
 export default class Drawer extends React.Component<Props> {
   signOutAsync = async () => {
     const { navigation } = this.props;
-    await AsyncStorage.clear();
     firebase
       .auth()
       .signOut()
