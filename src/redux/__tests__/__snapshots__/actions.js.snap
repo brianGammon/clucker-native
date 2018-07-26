@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Redux actions: LISTEN_CHILD_ADDED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "id": "1",
+    "value": "a",
+  },
+  "type": "LISTEN_CHILD_ADDED",
+}
+`;
+
+exports[`Redux actions: LISTEN_CHILD_CHANGED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "id": "1",
+    "value": "a",
+  },
+  "type": "LISTEN_CHILD_CHANGED",
+}
+`;
+
+exports[`Redux actions: LISTEN_CHILD_REMOVED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "id": "1",
+  },
+  "type": "LISTEN_CHILD_REMOVED",
+}
+`;
+
+exports[`Redux actions: LISTEN_FULFILLED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "items": Object {
+      "item1": 1,
+      "item2": 2,
+    },
+  },
+  "type": "LISTEN_FULFILLED",
+}
+`;
+
+exports[`Redux actions: LISTEN_REJECTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "error": [Error: Error!],
+  },
+  "type": "LISTEN_REJECTED",
+}
+`;
+
+exports[`Redux actions: LISTEN_REMOVED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "clearItems": true,
+  },
+  "type": "LISTEN_REMOVED",
+}
+`;
+
+exports[`Redux actions: LISTEN_REQUESTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "ref": Reference {
+      "data": null,
+      "off": [MockFunction],
+      "on": [MockFunction],
+      "once": [MockFunction],
+      "path": "someRef",
+      "remove": [MockFunction],
+      "snap": Object {
+        "val": [Function],
+      },
+      "update": [MockFunction],
+      "val": [MockFunction],
+    },
+  },
+  "type": "LISTEN_REQUESTED",
+}
+`;
+
+exports[`Redux actions: REMOVE_ALL_LISTENERS_REQUESTED 1`] = `
+Object {
+  "payload": Object {
+    "clearItems": true,
+  },
+  "type": "REMOVE_ALL_LISTENERS_REQUESTED",
+}
+`;
+
+exports[`Redux actions: REMOVE_FULFILLED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {},
+  "type": "REMOVE_FULFILLED",
+}
+`;
+
+exports[`Redux actions: REMOVE_LISTENER_REQUESTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "clearItems": true,
+  },
+  "type": "REMOVE_LISTENER_REQUESTED",
+}
+`;
+
+exports[`Redux actions: REMOVE_REJECTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "error": [Error: Error!],
+  },
+  "type": "REMOVE_REJECTED",
+}
+`;
+
+exports[`Redux actions: REMOVE_REQUESTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": "1",
+  "type": "REMOVE_REQUESTED",
+}
+`;
+
+exports[`Redux actions: UPDATE_FULFILLED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {},
+  "type": "UPDATE_FULFILLED",
+}
+`;
+
+exports[`Redux actions: UPDATE_REJECTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": Object {
+    "error": [Error: Error!],
+  },
+  "type": "UPDATE_REJECTED",
+}
+`;
+
+exports[`Redux actions: UPDATE_REQUESTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "userContacts",
+  },
+  "payload": "1",
+  "type": "UPDATE_REQUESTED",
+}
+`;
