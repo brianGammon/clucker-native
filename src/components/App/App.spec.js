@@ -5,7 +5,7 @@ import { Linking } from 'react-native';
 import configureStore from 'redux-mock-store';
 // import moduleName from '../../navigation/RootNavigator';
 
-import ConnectedApp from './App';
+import ConnectedApp from '.';
 import * as actions from '../../redux/actions';
 
 // jest.mock('../../navigation/RootNavigator', () => 'Test');
