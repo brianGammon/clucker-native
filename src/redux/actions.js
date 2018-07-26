@@ -139,44 +139,44 @@ export function removeUserSettingsListenerRequested() {
   return firebaseRemoveListenerRequested(false, metaTypes.userSettings);
 }
 
-export function updateUserSettingsRequested(uid, contactId, name, phone) {
+export function updateUserSettingsRequested(uid, displayName, currentFlockId, flocks) {
   return firebaseUpdateRequested(
     {
       uid,
-      contactId,
-      name,
-      phone,
+      displayName,
+      currentFlockId,
+      flocks,
     },
     metaTypes.userSettings,
   );
 }
 
-export function removeUserSettingsRequested(uid, contactId) {
-  return firebaseRemoveRequested({ uid, contactId }, metaTypes.userSettings);
+export function removeUserSettingsRequested(uid) {
+  return firebaseRemoveRequested({ uid }, metaTypes.userSettings);
 }
 
-export function getFlock(flockId, metaType) {
+export function getFlock(flockId) {
   const ref = firebase.database().ref(`flocks/${flockId}`);
   return {
     type: a.GET_FLOCK_REQUESTED,
     payload: { ref },
-    meta: { type: metaType },
+    meta: { type: metaTypes.flocks },
   };
 }
 
-export function getFlockRejected(error, metaType) {
+export function getFlockRejected(error) {
   return {
     type: a.GET_FLOCK_REJECTED,
     payload: { error },
-    meta: { type: metaType },
+    meta: { type: metaTypes.flocks },
   };
 }
 
-export function getFlockFulfilled(flock, metaType) {
+export function getFlockFulfilled(flock) {
   return {
     type: a.GET_FLOCK_FULFILLED,
     payload: flock,
-    meta: { type: metaType },
+    meta: { type: metaTypes.flocks },
   };
 }
 

@@ -81,73 +81,49 @@ describe('Redux actions:', () => {
     expect(actions.firebaseRemoveAllListenersRequested()).toMatchSnapshot();
   });
 
-  xtest('listenToMessages', () => {
-    const ref = firebase.database().ref('messages');
-    const expectedAction = {
-      type: constants.actionTypes.LISTEN_REQUESTED,
-      payload: ref,
-      meta: { type: constants.metaTypes.messages },
-    };
-    expect(actions.listenToMessages()).toEqual(expectedAction);
+  test('listenToChickens', () => {
+    expect(actions.listenToChickens('flockId1')).toMatchSnapshot();
   });
 
-  xtest('listenToUserContacts', () => {
-    const uid = '123';
-    const ref = firebase.database().ref(`users/${uid}/contacts`);
-    const expectedAction = {
-      type: constants.actionTypes.LISTEN_REQUESTED,
-      payload: ref,
-      meta: { type: 'userContacts' },
-    };
-    expect(actions.listenToUserContacts(uid)).toEqual(expectedAction);
+  test('listenToEggs', () => {
+    expect(actions.listenToEggs('flockId1')).toMatchSnapshot();
   });
 
-  xtest('removeMessagesListenerRequested', () => {
-    const expectedAction = {
-      type: constants.actionTypes.REMOVE_LISTENER_REQUESTED,
-      payload: { clearItems: false },
-      meta: { type: constants.metaTypes.messages },
-    };
-    expect(actions.removeMessagesListenerRequested()).toEqual(expectedAction);
+  test('listenToUserSettings', () => {
+    expect(actions.listenToUserSettings('userId1')).toMatchSnapshot();
   });
 
-  xtest('removeUserContactsListenerRequested', () => {
-    const expectedAction = {
-      type: constants.actionTypes.REMOVE_LISTENER_REQUESTED,
-      payload: { clearItems: false },
-      meta: { type: 'userContacts' },
-    };
-    expect(actions.removeUserContactsListenerRequested()).toEqual(expectedAction);
+  test('removeUserSettingsListenerRequested', () => {
+    expect(actions.removeUserSettingsListenerRequested()).toMatchSnapshot();
   });
 
-  xtest('updateUserContactsRequested', () => {
-    const uid = '1';
-    const contactId = '123';
-    const name = 'John Doe';
-    const phone = '123456789';
-    const expectedAction = {
-      type: constants.actionTypes.UPDATE_REQUESTED,
-      payload: {
-        uid,
-        contactId,
-        name,
-        phone,
-      },
-      meta: { type: 'userContacts' },
-    };
-    expect(actions.updateUserContactsRequested(uid, contactId, name, phone)).toEqual(
-      expectedAction,
-    );
+  test('updateUserSettingsRequested', () => {
+    expect(
+      actions.updateUserSettingsRequested('userId1', 'some name', 'flockId1', { flockId1: true }),
+    ).toMatchSnapshot();
   });
 
-  xtest('removeUserContactsRequested', () => {
-    const uid = '1';
-    const contactId = '123';
-    const expectedAction = {
-      type: constants.actionTypes.REMOVE_REQUESTED,
-      payload: { uid, contactId },
-      meta: { type: 'userContacts' },
-    };
-    expect(actions.removeUserContactsRequested(uid, contactId)).toEqual(expectedAction);
+  test('removeUserSettingsRequested', () => {
+    expect(actions.removeUserSettingsRequested('userId1')).toMatchSnapshot();
+  });
+
+  test('getFlock', () => {
+    expect(actions.getFlock('flockId1')).toMatchSnapshot();
+  });
+
+  test('getFlockRejected', () => {
+    expect(actions.getFlockRejected(new Error('Error1'))).toMatchSnapshot();
+  });
+
+  test('getFlockFulfilled', () => {
+    expect(actions.getFlockFulfilled({ name: 'Test Flock', ownedBy: 'user1' })).toMatchSnapshot();
+  });
+
+  test('setInitialUrl', () => {
+    expect(actions.setInitialUrl('test://test')).toMatchSnapshot();
+  });
+
+  test('removeInitialUrl', () => {
+    expect(actions.removeInitialUrl()).toMatchSnapshot();
   });
 });

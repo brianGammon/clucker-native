@@ -185,3 +185,178 @@ Object {
   "type": "UPDATE_REQUESTED",
 }
 `;
+
+exports[`Redux actions: getFlock 1`] = `
+Object {
+  "meta": Object {
+    "type": "flocks",
+  },
+  "payload": Object {
+    "ref": Reference {
+      "data": null,
+      "off": [MockFunction],
+      "on": [MockFunction],
+      "once": [MockFunction],
+      "path": "flocks/flockId1",
+      "remove": [MockFunction],
+      "snap": Object {
+        "val": [Function],
+      },
+      "update": [MockFunction],
+      "val": [MockFunction],
+    },
+  },
+  "type": "GET_FLOCK_REQUESTED",
+}
+`;
+
+exports[`Redux actions: getFlockFulfilled 1`] = `
+Object {
+  "meta": Object {
+    "type": "flocks",
+  },
+  "payload": Object {
+    "name": "Test Flock",
+    "ownedBy": "user1",
+  },
+  "type": "GET_FLOCK_FULFILLED",
+}
+`;
+
+exports[`Redux actions: getFlockRejected 1`] = `
+Object {
+  "meta": Object {
+    "type": "flocks",
+  },
+  "payload": Object {
+    "error": [Error: Error1],
+  },
+  "type": "GET_FLOCK_REJECTED",
+}
+`;
+
+exports[`Redux actions: listenToChickens 1`] = `
+Object {
+  "meta": Object {
+    "type": "chickens",
+  },
+  "payload": Object {
+    "ref": Reference {
+      "data": null,
+      "off": [MockFunction],
+      "on": [MockFunction],
+      "once": [MockFunction],
+      "path": "chickens/flockId1",
+      "remove": [MockFunction],
+      "snap": Object {
+        "val": [Function],
+      },
+      "update": [MockFunction],
+      "val": [MockFunction],
+    },
+  },
+  "type": "LISTEN_REQUESTED",
+}
+`;
+
+exports[`Redux actions: listenToEggs 1`] = `
+Object {
+  "meta": Object {
+    "type": "eggs",
+  },
+  "payload": Object {
+    "ref": Reference {
+      "data": null,
+      "off": [MockFunction],
+      "on": [MockFunction],
+      "once": [MockFunction],
+      "path": "eggs/flockId1",
+      "remove": [MockFunction],
+      "snap": Object {
+        "val": [Function],
+      },
+      "update": [MockFunction],
+      "val": [MockFunction],
+    },
+  },
+  "type": "LISTEN_REQUESTED",
+}
+`;
+
+exports[`Redux actions: listenToUserSettings 1`] = `
+Object {
+  "meta": Object {
+    "type": "userSettings",
+  },
+  "payload": Object {
+    "ref": Reference {
+      "data": null,
+      "off": [MockFunction],
+      "on": [MockFunction],
+      "once": [MockFunction],
+      "path": "userSettings/userId1",
+      "remove": [MockFunction],
+      "snap": Object {
+        "val": [Function],
+      },
+      "update": [MockFunction],
+      "val": [MockFunction],
+    },
+  },
+  "type": "LISTEN_REQUESTED",
+}
+`;
+
+exports[`Redux actions: removeInitialUrl 1`] = `
+Object {
+  "type": "REMOVE_INITIAL_URL",
+}
+`;
+
+exports[`Redux actions: removeUserSettingsListenerRequested 1`] = `
+Object {
+  "meta": Object {
+    "type": "userSettings",
+  },
+  "payload": Object {
+    "clearItems": false,
+  },
+  "type": "REMOVE_LISTENER_REQUESTED",
+}
+`;
+
+exports[`Redux actions: removeUserSettingsRequested 1`] = `
+Object {
+  "meta": Object {
+    "type": "userSettings",
+  },
+  "payload": Object {
+    "uid": "userId1",
+  },
+  "type": "REMOVE_REQUESTED",
+}
+`;
+
+exports[`Redux actions: setInitialUrl 1`] = `
+Object {
+  "payload": "test://test",
+  "type": "SET_INITIAL_URL",
+}
+`;
+
+exports[`Redux actions: updateUserSettingsRequested 1`] = `
+Object {
+  "meta": Object {
+    "type": "userSettings",
+  },
+  "payload": Object {
+    "currentFlockId": "flockId1",
+    "displayName": "some name",
+    "flocks": Object {
+      "flockId1": true,
+    },
+    "uid": "userId1",
+  },
+  "type": "UPDATE_REQUESTED",
+}
+`;
