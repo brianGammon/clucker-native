@@ -5,7 +5,7 @@ import { Linking } from 'react-native';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
 
-import Splash from '../../components/Splash';
+import Splash from '../Splash';
 import RootNavigator from '../../navigation/RootNavigator';
 import * as actions from '../../redux/actions';
 import { metaTypes } from '../../redux/constants';

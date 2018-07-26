@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component: Should render Root Navigator when initialized 1`] = `<NavigationContainer />`;
+
+exports[`App component: Should render Splash when not initialized 1`] = `<_default />`;
