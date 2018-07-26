@@ -2,8 +2,8 @@ import * as React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import HeaderProfile from '../components/HeaderProfile';
 import HeaderEgg from '../components/HeaderEgg';
-import CalendarScreen from '../containers/Calendar';
-import CalendarDayScreen from '../containers/CalendarDay';
+import CalendarScreen from '../components/Calendar';
+import CalendarDayScreen from '../components/CalendarDay';
 
 export default createStackNavigator(
   {

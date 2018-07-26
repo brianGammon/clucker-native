@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Text, Button, View } from 'react-native';
 
 type Props = {
-  navigation: any;
-}
+  navigation: any,
+};
 
 export default class Chicken extends React.Component<Props> {
   render() {

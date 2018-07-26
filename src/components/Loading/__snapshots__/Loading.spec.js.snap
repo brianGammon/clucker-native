@@ -1,27 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing ReassignLocationMenu component renders as expected 1`] = `
-<Component
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
->
-  <Component
-    size="large"
-  />
-  <StatusBar
-    animated={false}
-    barStyle="default"
-    showHideTransition="fade"
-  />
-</Component>
-`;
-
-exports[`Testing ReassignLocationMenu component renders as expected 2`] = `
+exports[`HeaderProfile component: Should render with message 1`] = `
 <Component
   style={
     Object {
@@ -40,7 +19,28 @@ exports[`Testing ReassignLocationMenu component renders as expected 2`] = `
     showHideTransition="fade"
   />
   <Component>
-    with a message
+    Test message
   </Component>
+</Component>
+`;
+
+exports[`HeaderProfile component: Should render without message 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Component
+    size="large"
+  />
+  <StatusBar
+    animated={false}
+    barStyle="default"
+    showHideTransition="fade"
+  />
 </Component>
 `;

@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import HeaderProfile from '../components/HeaderProfile';
 import HeaderEgg from '../components/HeaderEgg';
 import FlockScreen from '../components/Flock';
-import ChickenScreen from '../containers/Chicken';
+import ChickenScreen from '../components/Chicken';
 import ChickenEditorScreen from '../containers/ChickenEditor';
 
 export default createStackNavigator(

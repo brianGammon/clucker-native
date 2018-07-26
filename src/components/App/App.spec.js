@@ -24,10 +24,16 @@ describe('App component:', () => {
     },
   });
   const getWrapper = () => shallow(<ConnectedApp store={store} />).dive();
+  let onAuthStateChangedVal = null;
   let onAuthStateChangedMock = jest.fn();
+  const onAuthStateChangedUnsub = jest.fn();
 
   beforeEach(() => {
-    onAuthStateChangedMock = jest.fn();
+    onAuthStateChangedMock = jest.fn((cb) => {
+      cb(onAuthStateChangedVal);
+      return onAuthStateChangedUnsub;
+    });
+
     firebase.auth = jest.fn(() => ({
       onAuthStateChanged: onAuthStateChangedMock,
     }));
@@ -39,18 +45,28 @@ describe('App component:', () => {
     onAuthStateChangedMock = jest.fn();
     const wrapper = getWrapper();
     expect(wrapper).toMatchSnapshot();
+    wrapper.instance().componentWillUnmount();
+    expect(onAuthStateChangedUnsub).not.toBeCalled();
   });
 
   test('Should render Root Navigator when initialized', () => {
-    onAuthStateChangedMock = jest.fn(cb => cb(null));
+    onAuthStateChangedVal = null;
     const wrapper = getWrapper();
     expect(wrapper).toMatchSnapshot();
+  });
+
+  test('Should unsubscribe auth listener', () => {
+    onAuthStateChangedVal = null;
+    const wrapper = getWrapper();
+    wrapper.instance().componentWillUnmount();
+    expect(Linking.removeEventListener).toBeCalled();
+    expect(onAuthStateChangedUnsub).toBeCalled();
   });
 
   test('Should dispatch listenToUserSettings action when logged in', (done) => {
     const uid = 'test123';
     const expectedAction = actions.listenToUserSettings(uid);
-    onAuthStateChangedMock = jest.fn(cb => cb({ uid }));
+    onAuthStateChangedVal = { uid };
 
     const promise = new Promise((resolve) => {
       store.dispatch = jest.fn(() => resolve());
@@ -62,7 +78,7 @@ describe('App component:', () => {
     });
   });
 
-  test('should dispatch setInitialUrl when initialUrl is set', (done) => {
+  test('Should dispatch setInitialUrl when initialUrl is set', (done) => {
     const initialUrl = 'test://url';
     const expectedAction = actions.setInitialUrl(initialUrl);
     Linking.getInitialURL = jest.fn(() => Promise.resolve(initialUrl));
@@ -78,8 +94,9 @@ describe('App component:', () => {
     });
   });
 
-  test('should not dispatch when no initialUrl is set', (done) => {
+  test('Should not dispatch when no initialUrl is set', (done) => {
     Linking.getInitialURL = jest.fn(() => Promise.resolve(null));
+    onAuthStateChangedVal = null;
     const promise = new Promise((resolve) => {
       store.dispatch = jest.fn(() => Promise.resolve());
 
