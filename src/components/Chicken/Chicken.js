@@ -1,20 +1,44 @@
 import * as React from 'react';
-import { Text, Button, View } from 'react-native';
+import { connect } from 'react-redux';
+import { Text } from 'react-native';
+import ChickenRenderer from './ChickenRenderer';
 
 type Props = {
   navigation: any,
+  chickens: any,
 };
 
-export default class Chicken extends React.Component<Props> {
+class Chicken extends React.Component<Props> {
   render() {
-    const { navigation } = this.props;
-    const id = navigation.getParam('chickenId', 'NO-ID');
+    const { navigation, chickens } = this.props;
+    const currentChickenId = navigation.getParam('chickenId', 'NO-ID');
+    const chickenIds = Object.keys(chickens || {});
+    const currentChickenIndex = chickenIds.indexOf(currentChickenId);
+    const nextChickenId = currentChickenIndex === chickenIds.length - 1
+      ? null
+      : chickenIds[currentChickenIndex + 1];
+    const prevChickenId = currentChickenIndex === 0 ? null : chickenIds[currentChickenIndex - 1];
+    const chicken = chickens[currentChickenId];
+
+    if (currentChickenId === 'NO-ID') {
+      return <Text>No Chicken ID passed in!</Text>;
+    }
+
+    if (!chicken) {
+      return <Text>{`Chicken with ID ${currentChickenId} not found`}</Text>;
+    }
+
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 30 }}>{`Chicken Profile for chicken ID: ${id}`}</Text>
-        <Button onPress={() => navigation.navigate('ChickenEditor')} title="Edit Chicken" />
-        <Button onPress={() => navigation.goBack()} title="Go Back" />
-      </View>
+      <ChickenRenderer
+        navigation={navigation}
+        chicken={chicken}
+        prevChickenId={prevChickenId}
+        nextChickenId={nextChickenId}
+      />
     );
   }
 }
+
+const mapStateToProps = ({ chickens }) => ({ chickens: chickens.items });
+
+export default connect(mapStateToProps)(Chicken);

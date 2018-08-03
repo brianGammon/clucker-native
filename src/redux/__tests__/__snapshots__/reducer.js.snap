@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
+Object {
+  "flocks": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {
+      "flock1": Object {
+        "name": "Flock 1",
+        "ownedBy": "userId1",
+      },
+    },
+  },
+  "userSettings": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {
+      "a": 1,
+      "b": 2,
+    },
+  },
+}
+`;
+
+exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
+Object {
+  "flocks": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {
+      "flock1": Object {
+        "name": "Flock 1",
+        "ownedBy": "userId1",
+      },
+      "flock2": Object {
+        "name": "Flock 2",
+        "ownedBy": "userId2",
+      },
+    },
+  },
+  "userSettings": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {
+      "a": 1,
+      "b": 2,
+    },
+  },
+}
+`;
+
+exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
+Object {
+  "flocks": Object {
+    "error": "Error Message",
+    "inProgress": false,
+    "items": Object {
+      "flock1": Object {
+        "name": "Flock 1",
+        "owneBy": "UserId1",
+      },
+    },
+  },
+  "userSettings": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {
+      "a": 1,
+      "b": 2,
+    },
+  },
+}
+`;
+
+exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
+Object {
+  "flocks": Object {
+    "error": "",
+    "inProgress": true,
+    "items": Object {},
+  },
+  "userSettings": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {
+      "a": 1,
+      "b": 2,
+    },
+  },
+}
+`;
+
+exports[`firebaseReducer reducer missing initial state 1`] = `
+Object {
+  "chickens": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+  "eggs": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+  "flocks": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+  "initialUrl": null,
+  "userSettings": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+}
+`;
+
+exports[`firebaseReducer reducer undefined initial state 1`] = `
+Object {
+  "chickens": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+  "eggs": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+  "flocks": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+  "initialUrl": null,
+  "userSettings": Object {
+    "error": "",
+    "inProgress": false,
+    "items": Object {},
+  },
+}
+`;

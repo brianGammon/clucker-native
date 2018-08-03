@@ -10,7 +10,8 @@
     "react/jsx-one-expression-per-line": 0,
 
     // TODO: remove "react/prefer-stateless-function"
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "max-len": "off"
   },
   "env": {
     "jest": true

@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`saga tests getFlock 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "value",
+    ],
+    "context": Reference {
+      "data": null,
+      "off": [MockFunction],
+      "on": [MockFunction],
+      "once": [MockFunction],
+      "path": "flocks/flockId1",
+      "remove": [MockFunction],
+      "snap": Object {
+        "val": [Function],
+      },
+      "update": [MockFunction],
+      "val": [MockFunction],
+    },
+    "fn": [MockFunction],
+  },
+}
+`;
+
+exports[`saga tests getFlock 2`] = `
+Object {
+  "done": false,
+  "value": Object {
+    "@@redux-saga/IO": true,
+    "PUT": Object {
+      "action": Object {
+        "meta": Object {
+          "type": "flocks",
+        },
+        "payload": Object {
+          "flockId1": Object {
+            "name": "Flock Stars",
+            "ownedBy": "userId1",
+          },
+        },
+        "type": "GET_FLOCK_FULFILLED",
+      },
+      "channel": null,
+    },
+  },
+}
+`;
+
+exports[`saga tests getFlock with Error 1`] = `
+Object {
+  "done": false,
+  "value": Object {
+    "@@redux-saga/IO": true,
+    "PUT": Object {
+      "action": Object {
+        "meta": Object {
+          "type": "flocks",
+        },
+        "payload": Object {
+          "error": [TypeError: snap.val is not a function],
+        },
+        "type": "GET_FLOCK_REJECTED",
+      },
+      "channel": null,
+    },
+  },
+}
+`;
+
+exports[`saga tests getUserSettingsUpdates 1`] = `
+Object {
+  "userSettings/userId1/currentFlockId": "flockId1",
+  "userSettings/userId1/displayName": "Test User",
+  "userSettings/userId1/flocks": Object {
+    "flockId1": true,
+  },
+}
+`;
+
+exports[`saga tests root Saga 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "ALL": Array [
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
+  ],
+}
+`;
+
+exports[`saga tests watchGetFlock 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "FORK": Object {
+    "args": Array [
+      "GET_FLOCK_REQUESTED",
+      [Function],
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

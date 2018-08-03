@@ -174,7 +174,6 @@ const handlers = {
     return newState;
   },
   [a.GET_FLOCK_FULFILLED](state, action) {
-    // const flock = action.payload;
     const property = action.meta.type;
     const propertyState = state[property];
     const propertyItems = propertyState.items;
@@ -204,10 +203,9 @@ const handlers = {
   },
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
   if (Object.prototype.hasOwnProperty.call(handlers, action.type)) {
     const newState = handlers[action.type](state, action);
-    // console.log(newState);
     return newState;
   }
   return state;
