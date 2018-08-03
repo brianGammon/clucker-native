@@ -1,14 +1,26 @@
-// import { createSelector } from 'reselect';
+import { createSelector } from 'reselect';
 
-const chickens = state => state;
-const chickenId = (state, { navigation }) => navigation.getParam('chickenId', 'NO-ID');
+const getChickens = state => state;
+const getChickenId = (state, { navigation }) => navigation.getParam('chickenId', 'NO-ID');
 
 const eggsByChickenSelector = createSelector(
-  [chickens, chickenId],
-  (allChickens, id) => ({
-    chickens: allChickens,
-    chickenId: id,
-  }),
+  [getChickens, getChickenId],
+  (chickens, chickenId) => {
+    const chickenIds = Object.keys(chickens || {});
+    const currentChickenIndex = chickenIds.indexOf(chickenId);
+    const nextChickenId = currentChickenIndex === chickenIds.length - 1
+      ? null
+      : chickenIds[currentChickenIndex + 1];
+    const prevChickenId = currentChickenIndex === 0 ? null : chickenIds[currentChickenIndex - 1];
+    const result = {
+      chicken: chickens[chickenId],
+      chickenId,
+      prevChickenId,
+      nextChickenId,
+    };
+    console.log(result);
+    return result;
+  },
 );
 
 export default eggsByChickenSelector;

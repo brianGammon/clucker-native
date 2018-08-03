@@ -2,30 +2,33 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
 import ChickenRenderer from './ChickenRenderer';
+import chickenSelector from '../../selectors/chickenSelector';
+import { Chicken as ChickenType, Navigation } from '../../types';
 
 type Props = {
-  navigation: any,
-  chickens: any,
+  navigation: Navigation,
+  chicken: ChickenType,
+  chickenId: string,
+  prevChickenId: string,
+  nextChickenId: string,
 };
 
 class Chicken extends React.Component<Props> {
   render() {
-    const { navigation, chickens } = this.props;
-    const currentChickenId = navigation.getParam('chickenId', 'NO-ID');
-    const chickenIds = Object.keys(chickens || {});
-    const currentChickenIndex = chickenIds.indexOf(currentChickenId);
-    const nextChickenId = currentChickenIndex === chickenIds.length - 1
-      ? null
-      : chickenIds[currentChickenIndex + 1];
-    const prevChickenId = currentChickenIndex === 0 ? null : chickenIds[currentChickenIndex - 1];
-    const chicken = chickens[currentChickenId];
+    const {
+      chicken,
+      chickenId,
+      prevChickenId,
+      nextChickenId,
+      navigation,
+    } = this.props;
 
-    if (currentChickenId === 'NO-ID') {
+    if (chickenId === 'NO-ID') {
       return <Text>No Chicken ID passed in!</Text>;
     }
 
     if (!chicken) {
-      return <Text>{`Chicken with ID ${currentChickenId} not found`}</Text>;
+      return <Text>{`Chicken with ID ${chickenId} not found`}</Text>;
     }
 
     return (
@@ -39,6 +42,8 @@ class Chicken extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ chickens }) => ({ chickens: chickens.items });
+const mapStateToProps = ({ chickens }, props) => ({
+  ...chickenSelector(chickens.items, props),
+});
 
 export default connect(mapStateToProps)(Chicken);
