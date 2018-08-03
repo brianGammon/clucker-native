@@ -13,6 +13,7 @@
     "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
   },
   "dependencies": {
+    "re-reselect": "^2.1.0",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-native-firebase": "^4.3.4",

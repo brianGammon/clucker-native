@@ -1,9 +1,9 @@
-import { createSelector } from 'reselect';
+import createCachedSelector from 're-reselect';
 
 const getChickens = state => state;
-const getChickenId = (state, { navigation }) => navigation.getParam('chickenId', 'NO-ID');
+const getChickenId = (state, chickenId) => chickenId;
 
-const eggsByChickenSelector = createSelector(
+const eggsByChickenSelector = createCachedSelector(
   [getChickens, getChickenId],
   (chickens, chickenId) => {
     const chickenIds = Object.keys(chickens || {});
@@ -21,6 +21,6 @@ const eggsByChickenSelector = createSelector(
     console.log(result);
     return result;
   },
-);
+)(getChickenId);
 
 export default eggsByChickenSelector;

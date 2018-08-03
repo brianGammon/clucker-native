@@ -42,8 +42,8 @@ class Chicken extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ chickens }, props) => ({
-  ...chickenSelector(chickens.items, props),
+const mapStateToProps = ({ chickens }, { navigation }) => ({
+  ...chickenSelector(chickens.items, navigation.getParam('chickenId', 'NO-ID')),
 });
 
 export default connect(mapStateToProps)(Chicken);
