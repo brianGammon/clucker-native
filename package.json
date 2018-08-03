@@ -13,6 +13,8 @@
     "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver"
   },
   "dependencies": {
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "re-reselect": "^2.1.0",
     "react": "16.4.1",
     "react-native": "0.56.0",

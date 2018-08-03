@@ -1,5 +1,8 @@
 /* @flow */
-import { type NavigationScreenProp, type NavigationStateRoute } from 'react-navigation';
+import {
+  type NavigationScreenProp,
+  type NavigationStateRoute,
+} from 'react-navigation';
 
 export type Chicken = {
   name: string,
@@ -9,6 +12,26 @@ export type Chicken = {
   photoUrl: string,
   thumbnailPath: string,
   thumbnailUrl: string,
+};
+
+export type Egg = {
+  chickenId: string,
+  chickenName: string,
+  damaged: boolean,
+  date: string,
+  modified: string,
+  notes: string,
+  userId: string,
+  weight: number,
+};
+
+export type ChickenStats = {
+  total: number,
+  heaviest: Egg,
+  longestStreak: number,
+  lastSevenDays: {
+    [string]: number,
+  },
 };
 
 export type UserSettings = {

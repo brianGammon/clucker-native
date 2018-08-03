@@ -27,6 +27,31 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
   }
   nextChickenId="chicken2"
   prevChickenId={null}
+  stats={
+    Object {
+      "heaviest": Object {
+        "chickenId": "chicken1",
+        "chickenName": "Bossie",
+        "damaged": false,
+        "date": "2018-08-01",
+        "modified": "2018-01-12T18:05:54.806Z",
+        "notes": "This was the record setting egg from May 2017, real egg was 66.1g on this day",
+        "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
+        "weight": 88.1,
+      },
+      "lastSevenDays": Object {
+        "2018-07-28": 0,
+        "2018-07-29": 0,
+        "2018-07-30": 0,
+        "2018-07-31": 0,
+        "2018-08-01": 1,
+        "2018-08-02": 1,
+        "2018-08-03": 0,
+      },
+      "longestStreak": 2,
+      "total": 2,
+    }
+  }
 />
 `;
 

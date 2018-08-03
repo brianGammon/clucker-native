@@ -1,9 +1,9 @@
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
-  Text, Button, View, Image,
+  Text, Button, View, Image, ScrollView,
 } from 'react-native';
-import { type Chicken, type Navigation } from '../../types';
+import { type Chicken, type Navigation, ChickenStats } from '../../types';
 import styles from './styles';
 
 type Props = {
@@ -12,16 +12,18 @@ type Props = {
   prevChickenId: string,
   nextChickenId: string,
   chicken: Chicken,
+  stats: ChickenStats,
 };
 
 const ChickenRenderer = ({
   navigation,
   chicken,
+  stats,
   // chickenId,
   prevChickenId,
   nextChickenId,
 }: Props) => (
-  <View style={{ flex: 1 }}>
+  <ScrollView>
     <View
       style={{
         marginTop: 20,
@@ -71,11 +73,24 @@ const ChickenRenderer = ({
         <Text style={styles.text}>{chicken.breed}</Text>
       </View>
     </View>
+    <View>
+      <Text style={styles.label}>Total Eggs:</Text>
+      <Text style={styles.text}>{stats.total}</Text>
+      <Text style={[styles.label, { paddingTop: 10 }]}>Heaviest Egg:</Text>
+      <Text style={styles.text}>{stats.heaviest.weight}</Text>
+      <Text style={styles.text}>{stats.heaviest.date}</Text>
+      <Text style={[styles.label, { paddingTop: 10 }]}>Longest Streak:</Text>
+      <Text style={styles.text}>{stats.longestStreak}</Text>
+      <Text style={[styles.label, { paddingTop: 10 }]}>Last 7 Days:</Text>
+      <Text style={styles.text}>
+        {JSON.stringify(stats.lastSevenDays, null, 2)}
+      </Text>
+    </View>
     <Button
       onPress={() => navigation.navigate('ChickenEditor')}
       title="Edit Chicken"
     />
-  </View>
+  </ScrollView>
 );
 
 export default ChickenRenderer;
