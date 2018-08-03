@@ -17,10 +17,10 @@ export function firebaseListenRejected(error, metaType) {
   };
 }
 
-export function firebaseListenFulfilled(items, metaType) {
+export function firebaseListenFulfilled({ key, value }, metaType) {
   return {
     type: a.LISTEN_FULFILLED,
-    payload: { items },
+    payload: { key, items: value },
     meta: { type: metaType },
   };
 }

@@ -5,7 +5,12 @@ const getInitialState = () => {
     initialUrl: null,
   };
   Object.keys(metaTypes).forEach((key) => {
-    const subState = { inProgress: false, error: '', items: {} };
+    const subState = {
+      inProgress: false,
+      error: '',
+      key: '',
+      items: {},
+    };
     state[key] = subState;
   });
   return state;
@@ -65,7 +70,7 @@ const handlers = {
     return newState;
   },
   [a.LISTEN_FULFILLED](state, action) {
-    const { items } = action.payload;
+    const { key, items } = action.payload;
     const property = action.meta.type;
     const propertyState = state[property];
 
@@ -75,6 +80,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
+        key,
         items,
       },
     };
@@ -150,6 +156,7 @@ const handlers = {
   [a.LISTEN_REMOVED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
+    const key = action.payload.clearItems ? '' : propertyState.key;
     const items = action.payload.clearItems ? {} : propertyState.items;
 
     const newState = {
@@ -158,6 +165,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
+        key,
         items,
       },
     };

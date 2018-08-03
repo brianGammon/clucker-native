@@ -44,7 +44,10 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.updateMessage]: { inProgress: true, error: '' },
     };
     const error = 'error';
-    const action = actions.firebaseUpdateRejected(error, metaTypes.updateMessage);
+    const action = actions.firebaseUpdateRejected(
+      error,
+      metaTypes.updateMessage,
+    );
     const expectedState = {
       [metaTypes.updateMessage]: { inProgress: false, error },
     };
@@ -78,7 +81,10 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.removeMessage]: { inProgress: true, error: '' },
     };
     const error = 'error';
-    const action = actions.firebaseRemoveRejected(error, metaTypes.removeMessage);
+    const action = actions.firebaseRemoveRejected(
+      error,
+      metaTypes.removeMessage,
+    );
     const expectedState = {
       [metaTypes.removeMessage]: { inProgress: false, error },
     };
@@ -130,12 +136,26 @@ describe('firebaseReducer reducer', () => {
 
   test(actionTypes.LISTEN_FULFILLED, () => {
     const initialState = {
-      [metaTypes.messages]: { inProgress: true, error: '', items: {} },
+      [metaTypes.userSettings]: {
+        inProgress: true,
+        error: '',
+        key: '',
+        items: {},
+      },
     };
+    const key = 'someKey';
     const items = { 1: { text: 'hello' }, 2: { text: 'world' } };
-    const action = actions.firebaseListenFulfilled(items, metaTypes.messages);
+    const action = actions.firebaseListenFulfilled(
+      { key, value: items },
+      metaTypes.userSettings,
+    );
     const expectedState = {
-      [metaTypes.messages]: { inProgress: false, error: '', items },
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: '',
+        key,
+        items,
+      },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
@@ -150,7 +170,11 @@ describe('firebaseReducer reducer', () => {
     };
     const childId = '3';
     const child = { text: 'goodbye' };
-    const action = actions.firebaseListenChildAdded(childId, child, metaTypes.messages);
+    const action = actions.firebaseListenChildAdded(
+      childId,
+      child,
+      metaTypes.messages,
+    );
     const expectedState = {
       [metaTypes.messages]: {
         inProgress: false,
@@ -179,7 +203,11 @@ describe('firebaseReducer reducer', () => {
     };
     const childId = '3';
     const child = { text: 'ciao' };
-    const action = actions.firebaseListenChildChanged(childId, child, metaTypes.messages);
+    const action = actions.firebaseListenChildChanged(
+      childId,
+      child,
+      metaTypes.messages,
+    );
     const expectedState = {
       [metaTypes.messages]: {
         inProgress: false,
@@ -203,7 +231,10 @@ describe('firebaseReducer reducer', () => {
       },
     };
     const childId = '2';
-    const action = actions.firebaseListenChildRemoved(childId, metaTypes.messages);
+    const action = actions.firebaseListenChildRemoved(
+      childId,
+      metaTypes.messages,
+    );
     const expectedState = {
       [metaTypes.messages]: {
         inProgress: false,
@@ -219,6 +250,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
+        key: 'someKey',
         items: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
@@ -227,6 +259,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
+        key: 'someKey',
         items: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
@@ -246,6 +279,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
+        key: '',
         items: {},
       },
     };

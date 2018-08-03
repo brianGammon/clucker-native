@@ -1,18 +1,25 @@
 import React from 'react';
 import {
-  Text, Button, View, FlatList, TouchableOpacity, Image,
+  Text,
+  Button,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
-import { type Chicken, type Navigation } from '../../types';
+import { type Chicken, type Navigation, type Flock } from '../../types';
 
 type Props = {
   navigation: Navigation,
   chickens: {
     [string]: Chicken,
   },
+  flock: Flock,
 };
 
-const FlockRenderer = ({ navigation, chickens }: Props) => (
+const FlockRenderer = ({ navigation, chickens, flock }: Props) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Flock Name: {flock && flock.name}</Text>
     <FlatList
       style={{ width: '100%' }}
       data={Object.keys(chickens || {})}
@@ -42,8 +49,14 @@ const FlockRenderer = ({ navigation, chickens }: Props) => (
         </TouchableOpacity>
       )}
     />
-    <Button onPress={() => navigation.navigate('ChickenEditor')} title="Add a Chicken" />
-    <Button onPress={() => navigation.navigate('Chicken')} title="Chicken Profile" />
+    <Button
+      onPress={() => navigation.navigate('ChickenEditor')}
+      title="Add a Chicken"
+    />
+    <Button
+      onPress={() => navigation.navigate('Chicken')}
+      title="Chicken Profile"
+    />
   </View>
 );
 

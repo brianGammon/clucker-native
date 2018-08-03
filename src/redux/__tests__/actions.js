@@ -5,42 +5,57 @@ import * as constants from '../constants';
 describe('Redux actions:', () => {
   test(`${constants.actionTypes.LISTEN_REQUESTED}`, () => {
     const ref = firebase.database().ref('someRef');
-    expect(actions.firebaseListenRequested(ref, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenRequested(ref, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.LISTEN_REJECTED}`, () => {
     const error = new Error('Error!');
-    expect(actions.firebaseListenRejected(error, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenRejected(error, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.LISTEN_FULFILLED}`, () => {
+    const key = 'someKey';
     const items = { item1: 1, item2: 2 };
-    expect(actions.firebaseListenFulfilled(items, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenFulfilled({ key, value: items }, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.LISTEN_CHILD_ADDED}`, () => {
     const id = '1';
     const value = 'a';
 
-    expect(actions.firebaseListenChildAdded(id, value, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenChildAdded(id, value, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.LISTEN_CHILD_CHANGED}`, () => {
     const id = '1';
     const value = 'a';
 
-    expect(actions.firebaseListenChildChanged(id, value, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenChildChanged(id, value, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.LISTEN_CHILD_REMOVED}`, () => {
     const id = '1';
-    expect(actions.firebaseListenChildRemoved(id, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenChildRemoved(id, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.UPDATE_REQUESTED}`, () => {
     const uid = '1';
 
-    expect(actions.firebaseUpdateRequested(uid, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseUpdateRequested(uid, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.UPDATE_FULFILLED}`, () => {
@@ -50,13 +65,17 @@ describe('Redux actions:', () => {
   test(`${constants.actionTypes.UPDATE_REJECTED}`, () => {
     const error = new Error('Error!');
 
-    expect(actions.firebaseUpdateRejected(error, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseUpdateRejected(error, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.REMOVE_REQUESTED}`, () => {
     const uid = '1';
 
-    expect(actions.firebaseRemoveRequested(uid, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseRemoveRequested(uid, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.REMOVE_FULFILLED}`, () => {
@@ -66,15 +85,21 @@ describe('Redux actions:', () => {
   test(`${constants.actionTypes.REMOVE_REJECTED}`, () => {
     const error = new Error('Error!');
 
-    expect(actions.firebaseRemoveRejected(error, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseRemoveRejected(error, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.LISTEN_REMOVED}`, () => {
-    expect(actions.firebaseListenRemoved(true, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseListenRemoved(true, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.REMOVE_LISTENER_REQUESTED}`, () => {
-    expect(actions.firebaseRemoveListenerRequested(true, 'userContacts')).toMatchSnapshot();
+    expect(
+      actions.firebaseRemoveListenerRequested(true, 'userContacts'),
+    ).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.REMOVE_ALL_LISTENERS_REQUESTED}`, () => {
@@ -99,7 +124,9 @@ describe('Redux actions:', () => {
 
   test('updateUserSettingsRequested', () => {
     expect(
-      actions.updateUserSettingsRequested('userId1', 'some name', 'flockId1', { flockId1: true }),
+      actions.updateUserSettingsRequested('userId1', 'some name', 'flockId1', {
+        flockId1: true,
+      }),
     ).toMatchSnapshot();
   });
 
@@ -116,7 +143,9 @@ describe('Redux actions:', () => {
   });
 
   test('getFlockFulfilled', () => {
-    expect(actions.getFlockFulfilled({ name: 'Test Flock', ownedBy: 'user1' })).toMatchSnapshot();
+    expect(
+      actions.getFlockFulfilled({ name: 'Test Flock', ownedBy: 'user1' }),
+    ).toMatchSnapshot();
   });
 
   test('setInitialUrl', () => {

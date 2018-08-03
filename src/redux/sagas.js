@@ -1,6 +1,13 @@
 import { eventChannel, buffers } from 'redux-saga';
 import {
-  put, take, call, fork, cancel, flush, all, takeEvery,
+  put,
+  take,
+  call,
+  fork,
+  cancel,
+  flush,
+  all,
+  takeEvery,
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
@@ -22,7 +29,10 @@ export function getUserSettingsPath({ uid }) {
 }
 
 export function getUserSettingsUpdates({
-  uid, displayName, currentFlockId, flocks,
+  uid,
+  displayName,
+  currentFlockId,
+  flocks,
 }) {
   return {
     [`userSettings/${uid}/displayName`]: displayName,
@@ -127,7 +137,8 @@ export function* getDataAndListenToChannel(ref, metaType) {
       const snap = yield call([ref, ref.once], 'value');
       yield flush(chan);
       const value = snap.val() || {};
-      yield put(actions.firebaseListenFulfilled(value, metaType));
+      const { key } = snap;
+      yield put(actions.firebaseListenFulfilled({ key, value }, metaType));
     } catch (error) {
       yield put(actions.firebaseListenRejected(error, metaType));
     }
@@ -144,7 +155,11 @@ export function* watchListener(metaType) {
   while (true) {
     const listenRequestAction = yield take(a.LISTEN_REQUESTED);
     if (listenRequestAction.meta.type === metaType) {
-      let task = yield fork(getDataAndListenToChannel, listenRequestAction.payload.ref, metaType);
+      let task = yield fork(
+        getDataAndListenToChannel,
+        listenRequestAction.payload.ref,
+        metaType,
+      );
       while (true) {
         const action = yield take([
           a.REMOVE_LISTENER_REQUESTED,
@@ -152,12 +167,24 @@ export function* watchListener(metaType) {
           a.REMOVE_ALL_LISTENERS_REQUESTED,
         ]);
 
-        if (action.type === a.REMOVE_ALL_LISTENERS_REQUESTED || action.meta.type === metaType) {
+        if (
+          action.type === a.REMOVE_ALL_LISTENERS_REQUESTED
+          || action.meta.type === metaType
+        ) {
           yield cancel(task);
-          yield put(actions.firebaseListenRemoved(!!action.payload.clearItems, metaType));
+          yield put(
+            actions.firebaseListenRemoved(
+              !!action.payload.clearItems,
+              metaType,
+            ),
+          );
 
           if (action.type === a.LISTEN_REQUESTED) {
-            task = yield fork(getDataAndListenToChannel, action.payload.ref, metaType);
+            task = yield fork(
+              getDataAndListenToChannel,
+              action.payload.ref,
+              metaType,
+            );
           } else {
             break;
           }

@@ -97,22 +97,26 @@ Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
   "eggs": Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
   "flocks": Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
   "initialUrl": null,
   "userSettings": Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
 }
 `;
@@ -123,22 +127,26 @@ Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
   "eggs": Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
   "flocks": Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
   "initialUrl": null,
   "userSettings": Object {
     "error": "",
     "inProgress": false,
     "items": Object {},
+    "key": "",
   },
 }
 `;

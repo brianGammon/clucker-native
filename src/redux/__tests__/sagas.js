@@ -167,7 +167,8 @@ describe('saga tests', () => {
     const chan = sagas.createEventChannel(ref);
     const metaType = metaTypes.offeringsCategories;
     const value = 'Data from database';
-    const snap = { val: () => value };
+    const key = 'someKey';
+    const snap = { key, val: () => value };
 
     const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(ref, metaType);
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
@@ -177,7 +178,7 @@ describe('saga tests', () => {
 
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
-    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled(value, metaType)));
+    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, value }, metaType)));
     expect(generator.next().value).toEqual(take(chan));
     const data = {
       eventType: eventTypes.CHILD_ADDED,
@@ -200,7 +201,8 @@ describe('saga tests', () => {
     const ref = firebase.database().ref();
     const chan = sagas.createEventChannel(ref);
     const metaType = metaTypes.offeringsCategories;
-    const snap = { val: () => null };
+    const key = 'someKey';
+    const snap = { key, val: () => null };
 
     const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(ref, metaType);
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
@@ -208,7 +210,7 @@ describe('saga tests', () => {
 
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
-    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({}, metaType)));
+    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, value: {} }, metaType)));
     expect(generator.next().value).toEqual(take(chan));
     const data = {
       eventType: eventTypes.CHILD_ADDED,
@@ -273,8 +275,6 @@ describe('saga tests', () => {
     ); // unwatned action - go to start
 
     // unwanted remove request while waiting to specifig cancel request
-    console.log(unwantedListenRemoveAction);
-
     expect(regularWithUnwantedRemoveMetaType.next(unwantedListenRemoveAction).value).toEqual(
       take([
         actionTypes.REMOVE_LISTENER_REQUESTED,

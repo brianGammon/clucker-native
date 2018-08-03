@@ -48,6 +48,7 @@ Object {
       "item1": 1,
       "item2": 2,
     },
+    "key": "someKey",
   },
   "type": "LISTEN_FULFILLED",
 }

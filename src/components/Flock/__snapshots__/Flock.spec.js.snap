@@ -10,8 +10,17 @@ exports[`Flock component: Should render FlockRenderer 1`] = `
     }
   }
 >
+  <Component>
+    Flock Name: 
+    Test Flock 2
+  </Component>
   <FlatList
-    data={Array []}
+    data={
+      Array [
+        "chicken1",
+        "chicken2",
+      ]
+    }
     disableVirtualization={false}
     horizontal={false}
     initialNumToRender={10}
@@ -42,7 +51,23 @@ exports[`Flock component: Should render FlockRenderer 1`] = `
 
 exports[`Flock component: Should render connected component 1`] = `
 <FlockRenderer
-  chickens={Object {}}
-  navigation={[MockFunction]}
+  chickens={
+    Object {
+      "chicken1": Object {
+        "breed": "Maran",
+        "name": "Bossie",
+      },
+      "chicken2": Object {
+        "breed": "Maran",
+        "name": "Bossie",
+      },
+    }
+  }
+  flock={
+    Object {
+      "name": "Test Flock",
+    }
+  }
+  navigation={Object {}}
 />
 `;

@@ -4,6 +4,11 @@ import {
   type NavigationStateRoute,
 } from 'react-navigation';
 
+export type Flock = {
+  name: string,
+  ownedBy: string,
+};
+
 export type Chicken = {
   name: string,
   breed: string,
