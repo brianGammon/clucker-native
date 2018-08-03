@@ -8,7 +8,7 @@ describe('Chicken component:', () => {
   const mockStore = configureStore(middlewares);
   const store = mockStore({
     chickens: {
-      items: {
+      data: {
         chicken1: {
           name: 'The First Chicken',
         },
@@ -18,7 +18,7 @@ describe('Chicken component:', () => {
       },
     },
     eggs: {
-      items: {
+      data: {
         egg1: {
           chickenId: 'chicken1',
           chickenName: 'Bossie',

@@ -3,22 +3,22 @@
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
 Object {
   "flocks": Object {
-    "error": "",
-    "inProgress": false,
-    "items": Object {
+    "data": Object {
       "flock1": Object {
         "name": "Flock 1",
         "ownedBy": "userId1",
       },
     },
-  },
-  "userSettings": Object {
     "error": "",
     "inProgress": false,
-    "items": Object {
+  },
+  "userSettings": Object {
+    "data": Object {
       "a": 1,
       "b": 2,
     },
+    "error": "",
+    "inProgress": false,
   },
 }
 `;
@@ -26,9 +26,7 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
 Object {
   "flocks": Object {
-    "error": "",
-    "inProgress": false,
-    "items": Object {
+    "data": Object {
       "flock1": Object {
         "name": "Flock 1",
         "ownedBy": "userId1",
@@ -38,14 +36,16 @@ Object {
         "ownedBy": "userId2",
       },
     },
-  },
-  "userSettings": Object {
     "error": "",
     "inProgress": false,
-    "items": Object {
+  },
+  "userSettings": Object {
+    "data": Object {
       "a": 1,
       "b": 2,
     },
+    "error": "",
+    "inProgress": false,
   },
 }
 `;
@@ -53,22 +53,22 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
 Object {
   "flocks": Object {
-    "error": "Error Message",
-    "inProgress": false,
-    "items": Object {
+    "data": Object {
       "flock1": Object {
         "name": "Flock 1",
         "owneBy": "UserId1",
       },
     },
+    "error": "Error Message",
+    "inProgress": false,
   },
   "userSettings": Object {
-    "error": "",
-    "inProgress": false,
-    "items": Object {
+    "data": Object {
       "a": 1,
       "b": 2,
     },
+    "error": "",
+    "inProgress": false,
   },
 }
 `;
@@ -76,17 +76,17 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
 Object {
   "flocks": Object {
+    "data": Object {},
     "error": "",
     "inProgress": true,
-    "items": Object {},
   },
   "userSettings": Object {
-    "error": "",
-    "inProgress": false,
-    "items": Object {
+    "data": Object {
       "a": 1,
       "b": 2,
     },
+    "error": "",
+    "inProgress": false,
   },
 }
 `;
@@ -94,28 +94,28 @@ Object {
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
   "chickens": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
   "eggs": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
   "flocks": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
   "initialUrl": null,
   "userSettings": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
 }
@@ -124,28 +124,28 @@ Object {
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
   "chickens": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
   "eggs": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
   "flocks": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
   "initialUrl": null,
   "userSettings": Object {
+    "data": Object {},
     "error": "",
     "inProgress": false,
-    "items": Object {},
     "key": "",
   },
 }

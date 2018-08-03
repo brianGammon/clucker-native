@@ -8,7 +8,7 @@ describe('Flock component:', () => {
   const mockStore = configureStore(middlewares);
   const sampleData = {
     chickens: {
-      items: {
+      data: {
         chicken1: {
           name: 'Bossie',
           breed: 'Maran',
@@ -20,7 +20,7 @@ describe('Flock component:', () => {
       },
     },
     flocks: {
-      items: {
+      data: {
         flock1: {
           name: 'Test Flock',
         },
@@ -30,7 +30,7 @@ describe('Flock component:', () => {
       },
     },
     userSettings: {
-      items: {
+      data: {
         currentFlockId: 'flock1',
       },
     },
@@ -47,8 +47,8 @@ describe('Flock component:', () => {
 
   test('Should render FlockRenderer', () => {
     const navigation = jest.fn();
-    const chickens = sampleData.chickens.items;
-    const flock = sampleData.flocks.items.flock2;
+    const chickens = sampleData.chickens.data;
+    const flock = sampleData.flocks.data.flock2;
     const wrapper = shallow(
       <FlockRenderer
         navigation={navigation}

@@ -117,14 +117,14 @@ export function createEventChannel(ref) {
   return listener;
 }
 
-export function getUpdateAction(data, metaType) {
-  switch (data.eventType) {
+export function getUpdateAction(event, metaType) {
+  switch (event.eventType) {
     case eventTypes.CHILD_ADDED:
-      return actions.firebaseListenChildAdded(data.key, data.value, metaType);
+      return actions.firebaseListenChildAdded(event.key, event.data, metaType);
     case eventTypes.CHILD_CHANGED:
-      return actions.firebaseListenChildChanged(data.key, data.value, metaType);
+      return actions.firebaseListenChildChanged(event.key, event.data, metaType);
     case eventTypes.CHILD_REMOVED:
-      return actions.firebaseListenChildRemoved(data.key, metaType);
+      return actions.firebaseListenChildRemoved(event.key, metaType);
     default:
       return {};
   }
@@ -136,15 +136,15 @@ export function* getDataAndListenToChannel(ref, metaType) {
     try {
       const snap = yield call([ref, ref.once], 'value');
       yield flush(chan);
-      const value = snap.val() || {};
+      const data = snap.val() || {};
       const { key } = snap;
-      yield put(actions.firebaseListenFulfilled({ key, value }, metaType));
+      yield put(actions.firebaseListenFulfilled({ key, data }, metaType));
     } catch (error) {
       yield put(actions.firebaseListenRejected(error, metaType));
     }
     while (true) {
-      const data = yield take(chan);
-      yield put(getUpdateAction(data, metaType));
+      const event = yield take(chan);
+      yield put(getUpdateAction(event, metaType));
     }
   } finally {
     chan.close();
@@ -174,7 +174,7 @@ export function* watchListener(metaType) {
           yield cancel(task);
           yield put(
             actions.firebaseListenRemoved(
-              !!action.payload.clearItems,
+              !!action.payload.clearData,
               metaType,
             ),
           );

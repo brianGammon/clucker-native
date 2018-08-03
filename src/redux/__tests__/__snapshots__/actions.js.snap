@@ -44,7 +44,7 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "items": Object {
+    "data": Object {
       "item1": 1,
       "item2": 2,
     },
@@ -72,7 +72,7 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "clearItems": true,
+    "clearData": true,
   },
   "type": "LISTEN_REMOVED",
 }
@@ -105,7 +105,7 @@ Object {
 exports[`Redux actions: REMOVE_ALL_LISTENERS_REQUESTED 1`] = `
 Object {
   "payload": Object {
-    "clearItems": true,
+    "clearData": true,
   },
   "type": "REMOVE_ALL_LISTENERS_REQUESTED",
 }
@@ -127,7 +127,7 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "clearItems": true,
+    "clearData": true,
   },
   "type": "REMOVE_LISTENER_REQUESTED",
 }
@@ -320,7 +320,7 @@ Object {
     "type": "userSettings",
   },
   "payload": Object {
-    "clearItems": false,
+    "clearData": false,
   },
   "type": "REMOVE_LISTENER_REQUESTED",
 }

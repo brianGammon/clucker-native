@@ -19,9 +19,9 @@ describe('Redux actions:', () => {
 
   test(`${constants.actionTypes.LISTEN_FULFILLED}`, () => {
     const key = 'someKey';
-    const items = { item1: 1, item2: 2 };
+    const data = { item1: 1, item2: 2 };
     expect(
-      actions.firebaseListenFulfilled({ key, value: items }, 'userContacts'),
+      actions.firebaseListenFulfilled({ key, data }, 'userContacts'),
     ).toMatchSnapshot();
   });
 

@@ -20,7 +20,7 @@ type Props = {
   userSettings: {
     inProgress: boolean,
     error: string,
-    items: UserSettings,
+    data: UserSettings,
   },
 };
 
@@ -75,17 +75,17 @@ export class App extends React.Component<Props, State> {
     const {
       userSettings, getFlock, listenToChickens, listenToEggs,
     } = this.props;
-    const newFlocks = userSettings.items && userSettings.items.flocks;
-    const newCurrentFlockId = userSettings.items && userSettings.items.currentFlockId;
-    const oldFlocks = prevUserSettings.items && prevUserSettings.items.flocks;
-    const oldCUrrentFlockId = prevUserSettings.items && prevUserSettings.items.currentFlockId;
+    const newFlocks = userSettings.data && userSettings.data.flocks;
+    const newCurrentFlockId = userSettings.data && userSettings.data.currentFlockId;
+    const oldFlocks = prevUserSettings.data && prevUserSettings.data.flocks;
+    const oldCUrrentFlockId = prevUserSettings.data && prevUserSettings.data.currentFlockId;
     const flocksChanged = newFlocks !== oldFlocks;
     const currentFlockIdChanged = newCurrentFlockId !== oldCUrrentFlockId;
     console.log('DidUpdate');
     if (flocksChanged) {
       console.log('Flocks changed');
       // Dispatch to clear current flocks
-      Object.keys(userSettings.items.flocks).forEach(key => getFlock(key));
+      Object.keys(userSettings.data.flocks).forEach(key => getFlock(key));
     }
 
     if (currentFlockIdChanged) {

@@ -9,7 +9,7 @@ const getInitialState = () => {
       inProgress: false,
       error: '',
       key: '',
-      items: {},
+      data: {},
     };
     state[key] = subState;
   });
@@ -70,7 +70,7 @@ const handlers = {
     return newState;
   },
   [a.LISTEN_FULFILLED](state, action) {
-    const { key, items } = action.payload;
+    const { key, data } = action.payload;
     const property = action.meta.type;
     const propertyState = state[property];
 
@@ -81,7 +81,7 @@ const handlers = {
         inProgress: false,
         error: '',
         key,
-        items,
+        data,
       },
     };
     return newState;
@@ -101,8 +101,8 @@ const handlers = {
   [a.LISTEN_CHILD_ADDED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
-    const items = {
-      ...propertyState.items,
+    const data = {
+      ...propertyState.data,
       [action.payload.id]: action.payload.value,
     };
 
@@ -112,7 +112,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-        items,
+        data,
       },
     };
     return newState;
@@ -120,8 +120,8 @@ const handlers = {
   [a.LISTEN_CHILD_CHANGED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
-    const items = {
-      ...propertyState.items,
+    const data = {
+      ...propertyState.data,
       [action.payload.id]: action.payload.value,
     };
 
@@ -131,7 +131,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-        items,
+        data,
       },
     };
     return newState;
@@ -139,8 +139,8 @@ const handlers = {
   [a.LISTEN_CHILD_REMOVED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
-    const items = { ...propertyState.items };
-    delete items[action.payload.id];
+    const data = { ...propertyState.data };
+    delete data[action.payload.id];
 
     const newState = {
       ...state,
@@ -148,7 +148,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-        items,
+        data,
       },
     };
     return newState;
@@ -156,8 +156,8 @@ const handlers = {
   [a.LISTEN_REMOVED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
-    const key = action.payload.clearItems ? '' : propertyState.key;
-    const items = action.payload.clearItems ? {} : propertyState.items;
+    const key = action.payload.clearData ? '' : propertyState.key;
+    const data = action.payload.clearData ? {} : propertyState.data;
 
     const newState = {
       ...state,
@@ -166,7 +166,7 @@ const handlers = {
         inProgress: false,
         error: '',
         key,
-        items,
+        data,
       },
     };
     return newState;
@@ -184,8 +184,8 @@ const handlers = {
   [a.GET_FLOCK_FULFILLED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
-    const propertyItems = propertyState.items;
-    const newItems = { ...propertyItems, ...action.payload };
+    const propertyData = propertyState.data;
+    const newData = { ...propertyData, ...action.payload };
 
     const newState = {
       ...state,
@@ -193,7 +193,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-        items: newItems,
+        data: newData,
       },
     };
     return newState;

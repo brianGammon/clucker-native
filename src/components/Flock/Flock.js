@@ -36,8 +36,8 @@ class Flock extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ chickens, flocks, userSettings }) => ({
-  chickens: chickens.items,
-  flock: currentFlockSelector(flocks.items, userSettings),
-  isFlockOwner: isFlockOwnerSelector(flocks.items, userSettings),
+  chickens: chickens.data,
+  flock: currentFlockSelector(flocks.data, userSettings),
+  isFlockOwner: isFlockOwnerSelector(flocks.data, userSettings),
 });
 export default connect(mapStateToProps)(Flock);

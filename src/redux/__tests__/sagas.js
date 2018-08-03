@@ -125,40 +125,37 @@ describe('saga tests', () => {
   });
 
   test('getUpdateAction CHILD_ADDED', () => {
-    const metaType = metaTypes.offeringsCategories;
-    const childAddedData = {
+    const childAddedEvent = {
       eventType: eventTypes.CHILD_ADDED,
       key: '1',
-      value: 'Data from channel',
+      data: 'Data from channel',
     };
 
-    expect(sagas.getUpdateAction(childAddedData, metaType)).toEqual(
-      actions.firebaseListenChildAdded(childAddedData.key, childAddedData.value, metaType),
+    expect(sagas.getUpdateAction(childAddedEvent, metaTypes.userSettings)).toEqual(
+      actions.firebaseListenChildAdded(childAddedEvent.key, childAddedEvent.data, metaTypes.userSettings),
     );
   });
 
   test('getUpdateAction CHILD_CHANGED', () => {
-    const metaType = metaTypes.offeringsCategories;
-    const childChangedData = {
+    const childChangedEvent = {
       eventType: eventTypes.CHILD_CHANGED,
       key: '1',
-      value: 'Data from channel',
+      data: 'Data from channel',
     };
 
-    expect(sagas.getUpdateAction(childChangedData, metaType)).toEqual(
-      actions.firebaseListenChildChanged(childChangedData.key, childChangedData.value, metaType),
+    expect(sagas.getUpdateAction(childChangedEvent, metaTypes.userSettings)).toEqual(
+      actions.firebaseListenChildChanged(childChangedEvent.key, childChangedEvent.data, metaTypes.userSettings),
     );
   });
 
   test('getUpdateAction CHILD_REMOVED', () => {
-    const metaType = metaTypes.offeringsCategories;
-    const childRemovedData = {
+    const childRemovedEvent = {
       eventType: eventTypes.CHILD_REMOVED,
       key: '1',
     };
 
-    expect(sagas.getUpdateAction(childRemovedData, metaType)).toEqual(
-      actions.firebaseListenChildRemoved(childRemovedData.key, metaType),
+    expect(sagas.getUpdateAction(childRemovedEvent, metaTypes.userSettings)).toEqual(
+      actions.firebaseListenChildRemoved(childRemovedEvent.key, metaTypes.userSettings),
     );
   });
 
@@ -166,9 +163,9 @@ describe('saga tests', () => {
     const ref = firebase.database().ref();
     const chan = sagas.createEventChannel(ref);
     const metaType = metaTypes.offeringsCategories;
-    const value = 'Data from database';
+    const data = 'Data from database';
     const key = 'someKey';
-    const snap = { key, val: () => value };
+    const snap = { key, val: () => data };
 
     const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(ref, metaType);
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
@@ -178,14 +175,14 @@ describe('saga tests', () => {
 
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
-    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, value }, metaType)));
+    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, data }, metaType)));
     expect(generator.next().value).toEqual(take(chan));
-    const data = {
+    const childAddedAction = {
       eventType: eventTypes.CHILD_ADDED,
       key: '1',
-      value: 'Data from channel',
+      data: 'Data from channel',
     };
-    expect(generator.next(data).value).toEqual(put(sagas.getUpdateAction(data, metaType)));
+    expect(generator.next(childAddedAction).value).toEqual(put(sagas.getUpdateAction(childAddedAction, metaType)));
     expect(generator.next().value).toEqual(take(chan)); // return to listen to the channel
     generator.return(); // simulate cancellation
 
@@ -210,14 +207,14 @@ describe('saga tests', () => {
 
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
-    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, value: {} }, metaType)));
+    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, data: {} }, metaType)));
     expect(generator.next().value).toEqual(take(chan));
-    const data = {
+    const childAddedAction = {
       eventType: eventTypes.CHILD_ADDED,
       key: '1',
-      value: 'Data from channel',
+      data: 'Data from channel',
     };
-    expect(generator.next(data).value).toEqual(put(sagas.getUpdateAction(data, metaType)));
+    expect(generator.next(childAddedAction).value).toEqual(put(sagas.getUpdateAction(childAddedAction, metaType)));
     expect(generator.next().value).toEqual(take(chan)); // return to listen to the channel
     generator.return(); // simulate cancellation
   });
@@ -260,7 +257,7 @@ describe('saga tests', () => {
     expect(regularGenerator.next().value).toEqual(
       put(
         actions.firebaseListenRemoved(
-          checkedListenRemoveAction.payload.clearItems,
+          checkedListenRemoveAction.payload.clearData,
           checkedMetaType,
         ),
       ),

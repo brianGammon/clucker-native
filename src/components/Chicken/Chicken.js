@@ -49,8 +49,8 @@ class Chicken extends React.Component<Props> {
 const mapStateToProps = ({ chickens, eggs }, { navigation }) => {
   const chickenId = navigation.getParam('chickenId', 'NO-ID');
   return {
-    ...chickenSelector(chickens.items, chickenId),
-    stats: chickenStatsSelector(eggs.items, chickenId),
+    ...chickenSelector(chickens.data, chickenId),
+    stats: chickenStatsSelector(eggs.data, chickenId),
   };
 };
 

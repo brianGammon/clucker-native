@@ -17,10 +17,10 @@ export function firebaseListenRejected(error, metaType) {
   };
 }
 
-export function firebaseListenFulfilled({ key, value }, metaType) {
+export function firebaseListenFulfilled({ key, data }, metaType) {
   return {
     type: a.LISTEN_FULFILLED,
-    payload: { key, items: value },
+    payload: { key, data },
     meta: { type: metaType },
   };
 }
@@ -97,18 +97,18 @@ export function firebaseRemoveFulfilled(metaType) {
   };
 }
 
-export function firebaseListenRemoved(clearItems, metaType) {
+export function firebaseListenRemoved(clearData, metaType) {
   return {
     type: a.LISTEN_REMOVED,
-    payload: { clearItems },
+    payload: { clearData },
     meta: { type: metaType },
   };
 }
 
-export function firebaseRemoveListenerRequested(clearItems, metaType) {
+export function firebaseRemoveListenerRequested(clearData, metaType) {
   return {
     type: a.REMOVE_LISTENER_REQUESTED,
-    payload: { clearItems },
+    payload: { clearData },
     meta: { type: metaType },
   };
 }
@@ -116,7 +116,7 @@ export function firebaseRemoveListenerRequested(clearItems, metaType) {
 export function firebaseRemoveAllListenersRequested() {
   return {
     type: a.REMOVE_ALL_LISTENERS_REQUESTED,
-    payload: { clearItems: true },
+    payload: { clearData: true },
   };
 }
 
@@ -139,7 +139,12 @@ export function removeUserSettingsListenerRequested() {
   return firebaseRemoveListenerRequested(false, metaTypes.userSettings);
 }
 
-export function updateUserSettingsRequested(uid, displayName, currentFlockId, flocks) {
+export function updateUserSettingsRequested(
+  uid,
+  displayName,
+  currentFlockId,
+  flocks,
+) {
   return firebaseUpdateRequested(
     {
       uid,

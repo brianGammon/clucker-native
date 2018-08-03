@@ -107,7 +107,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: {},
+        data: {},
       },
     };
     const ref = {};
@@ -116,7 +116,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: true,
         error: '',
-        items: {},
+        data: {},
       },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
@@ -124,12 +124,12 @@ describe('firebaseReducer reducer', () => {
 
   test(actionTypes.LISTEN_REJECTED, () => {
     const initialState = {
-      [metaTypes.messages]: { inProgress: true, error: '', items: {} },
+      [metaTypes.messages]: { inProgress: true, error: '', data: {} },
     };
     const error = 'error';
     const action = actions.firebaseListenRejected(error, metaTypes.messages);
     const expectedState = {
-      [metaTypes.messages]: { inProgress: false, error, items: {} },
+      [metaTypes.messages]: { inProgress: false, error, data: {} },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
@@ -140,13 +140,13 @@ describe('firebaseReducer reducer', () => {
         inProgress: true,
         error: '',
         key: '',
-        items: {},
+        data: {},
       },
     };
     const key = 'someKey';
-    const items = { 1: { text: 'hello' }, 2: { text: 'world' } };
+    const data = { 1: { text: 'hello' }, 2: { text: 'world' } };
     const action = actions.firebaseListenFulfilled(
-      { key, value: items },
+      { key, data },
       metaTypes.userSettings,
     );
     const expectedState = {
@@ -154,7 +154,7 @@ describe('firebaseReducer reducer', () => {
         inProgress: false,
         error: '',
         key,
-        items,
+        data,
       },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
@@ -165,7 +165,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
     const childId = '3';
@@ -179,7 +179,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: {
+        data: {
           1: { text: 'hello' },
           2: { text: 'world' },
           3: { text: 'goodbye' },
@@ -194,7 +194,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: {
+        data: {
           1: { text: 'hello' },
           2: { text: 'world' },
           3: { text: 'goodbye' },
@@ -212,7 +212,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: {
+        data: {
           1: { text: 'hello' },
           2: { text: 'world' },
           3: { text: 'ciao' },
@@ -227,7 +227,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
     const childId = '2';
@@ -239,19 +239,19 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: { 1: { text: 'hello' } },
+        data: { 1: { text: 'hello' } },
       },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
-  test(`${actionTypes.LISTEN_REMOVED} clear items false`, () => {
+  test(`${actionTypes.LISTEN_REMOVED} clear data false`, () => {
     const initialState = {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
         key: 'someKey',
-        items: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
     const action = actions.firebaseListenRemoved(false, metaTypes.messages);
@@ -260,18 +260,18 @@ describe('firebaseReducer reducer', () => {
         inProgress: false,
         error: '',
         key: 'someKey',
-        items: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
-  test(`${actionTypes.LISTEN_REMOVED} clear items true`, () => {
+  test(`${actionTypes.LISTEN_REMOVED} clear data true`, () => {
     const initialState = {
       [metaTypes.messages]: {
         inProgress: false,
         error: '',
-        items: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
     const action = actions.firebaseListenRemoved(true, metaTypes.messages);
@@ -280,7 +280,7 @@ describe('firebaseReducer reducer', () => {
         inProgress: false,
         error: '',
         key: '',
-        items: {},
+        data: {},
       },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
@@ -291,12 +291,12 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        items: { a: 1, b: 2 },
+        data: { a: 1, b: 2 },
       },
       [metaTypes.flocks]: {
         inProgress: false,
         error: '',
-        items: {},
+        data: {},
       },
     };
     const action = actions.getFlock('flockId1');
@@ -308,12 +308,12 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        items: { a: 1, b: 2 },
+        data: { a: 1, b: 2 },
       },
       [metaTypes.flocks]: {
         inProgress: true,
         error: '',
-        items: {},
+        data: {},
       },
     };
     const flock = {
@@ -342,12 +342,12 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        items: { a: 1, b: 2 },
+        data: { a: 1, b: 2 },
       },
       [metaTypes.flocks]: {
         inProgress: true,
         error: '',
-        items: {
+        data: {
           flock1: {
             name: 'Flock 1',
             owneBy: 'UserId1',
@@ -364,7 +364,7 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        items: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
       },
     };
     const action = {
