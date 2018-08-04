@@ -1,27 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChickenEditor component: Should render 1`] = `
-<Component
-  style={
+exports[`ChickenEditor component: Should render in add new mode 1`] = `
+<ChickenEditorRenderer
+  navigation={
     Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "chickenId",
+            "NO-ID",
+          ],
+          Array [
+            "chickenId",
+            "NO-ID",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "chicken1",
+          },
+          Object {
+            "isThrow": false,
+            "value": "NO-ID",
+          },
+        ],
+      },
     }
   }
->
-  <Component
-    style={
-      Object {
-        "fontSize": 30,
-      }
+/>
+`;
+
+exports[`ChickenEditor component: Should render in edit mode 1`] = `
+<ChickenEditorRenderer
+  chicken={
+    Object {
+      "name": "The First Chicken",
     }
-  >
-    Add or Edit Chicken
-  </Component>
-  <Button
-    onPress={[Function]}
-    title="Go Back"
-  />
-</Component>
+  }
+  chickenId="chicken1"
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "chickenId",
+            "NO-ID",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "chicken1",
+          },
+        ],
+      },
+    }
+  }
+/>
 `;

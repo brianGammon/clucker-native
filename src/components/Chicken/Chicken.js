@@ -38,6 +38,7 @@ class Chicken extends React.Component<Props> {
       <ChickenRenderer
         navigation={navigation}
         chicken={chicken}
+        chickenId={chickenId}
         stats={stats}
         prevChickenId={prevChickenId}
         nextChickenId={nextChickenId}

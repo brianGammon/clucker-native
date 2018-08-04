@@ -7,6 +7,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
       "name": "The First Chicken",
     }
   }
+  chickenId="chicken1"
   navigation={
     Object {
       "getParam": [MockFunction] {

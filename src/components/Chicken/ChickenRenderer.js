@@ -8,7 +8,7 @@ import styles from './styles';
 
 type Props = {
   navigation: Navigation,
-  // chickenId: string,
+  chickenId: string,
   prevChickenId: string,
   nextChickenId: string,
   chicken: Chicken,
@@ -19,7 +19,7 @@ const ChickenRenderer = ({
   navigation,
   chicken,
   stats,
-  // chickenId,
+  chickenId,
   prevChickenId,
   nextChickenId,
 }: Props) => (
@@ -87,7 +87,7 @@ const ChickenRenderer = ({
       </Text>
     </View>
     <Button
-      onPress={() => navigation.navigate('ChickenEditor')}
+      onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
       title="Edit Chicken"
     />
   </ScrollView>

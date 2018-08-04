@@ -1,18 +1,36 @@
 import * as React from 'react';
-import { Text, Button, View } from 'react-native';
+import { connect } from 'react-redux';
+import chickenSelector from '../../selectors/chickenSelector';
+import ChickenEditorRenderer from './ChickenEditorRenderer';
+import { type Chicken } from '../../types';
 
 type Props = {
   navigation: any,
+  chicken: Chicken,
+  chickenId: string,
 };
 
-export default class ChickenEditor extends React.Component<Props> {
+class ChickenEditor extends React.Component<Props> {
   render() {
-    const { navigation } = this.props;
+    const { navigation, chicken, chickenId } = this.props;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 30 }}>Add or Edit Chicken</Text>
-        <Button onPress={() => navigation.goBack()} title="Go Back" />
-      </View>
+      <ChickenEditorRenderer
+        navigation={navigation}
+        chicken={chicken}
+        chickenId={chickenId}
+      />
     );
   }
 }
+
+const mapStateToProps = ({ chickens }, { navigation }) => {
+  const chickenId = navigation.getParam('chickenId', 'NO-ID');
+  if (chickenId === 'NO-ID') {
+    return {};
+  }
+  return {
+    ...chickenSelector(chickens.data, chickenId),
+  };
+};
+
+export default connect(mapStateToProps)(ChickenEditor);
