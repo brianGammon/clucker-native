@@ -24,6 +24,10 @@ const ChickenRenderer = ({
   nextChickenId,
 }: Props) => (
   <ScrollView>
+    <Button
+      onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
+      title="Edit Chicken"
+    />
     <View
       style={{
         marginTop: 20,
@@ -86,10 +90,6 @@ const ChickenRenderer = ({
         {JSON.stringify(stats.lastSevenDays, null, 2)}
       </Text>
     </View>
-    <Button
-      onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
-      title="Edit Chicken"
-    />
   </ScrollView>
 );
 

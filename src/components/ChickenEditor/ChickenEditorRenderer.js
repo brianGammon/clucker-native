@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
+import styles from './styles';
 
 type Props = {
   name: string,
@@ -14,22 +15,32 @@ const ChickenEditorRenderer = ({
   hatched,
   onFieldChanged,
 }: Props) => (
-  <View style={{ flex: 1, alignItems: 'center' }}>
-    <Text>Name:</Text>
-    <TextInput
-      value={name}
-      onChangeText={text => onFieldChanged('name', text)}
-    />
-    <Text>Breed:</Text>
-    <TextInput
-      value={breed}
-      onChangeText={text => onFieldChanged('breed', text)}
-    />
-    <Text>Hatched On:</Text>
-    <TextInput
-      value={hatched}
-      onChangeText={text => onFieldChanged('hatched', text)}
-    />
+  <View style={styles.container}>
+    <View style={styles.formGroup}>
+      <Text style={styles.label}>Name:</Text>
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={text => onFieldChanged('name', text)}
+        autoFocus
+      />
+    </View>
+    <View style={styles.formGroup}>
+      <Text style={styles.label}>Breed:</Text>
+      <TextInput
+        style={styles.input}
+        value={breed}
+        onChangeText={text => onFieldChanged('breed', text)}
+      />
+    </View>
+    <View style={styles.formGroup}>
+      <Text style={styles.label}>Hatched On:</Text>
+      <TextInput
+        style={styles.input}
+        value={hatched}
+        onChangeText={text => onFieldChanged('hatched', text)}
+      />
+    </View>
   </View>
 );
 
