@@ -24,12 +24,12 @@ class Flock extends React.Component<Props> {
     const {
       navigation, chickens, flock, isFlockOwner,
     } = this.props;
-    console.log('IsFlockOwner: ', isFlockOwner);
     return (
       <FlockRenderer
         navigation={navigation}
         chickens={chickens}
         flock={flock}
+        isFlockOwner={isFlockOwner}
       />
     );
   }

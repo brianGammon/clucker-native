@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Flock component: Should render FlockRenderer 1`] = `
+exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
 <Component
   style={
     Object {
@@ -42,14 +42,51 @@ exports[`Flock component: Should render FlockRenderer 1`] = `
     onPress={[Function]}
     title="Add a Chicken"
   />
-  <Button
-    onPress={[Function]}
-    title="Chicken Profile"
+</Component>
+`;
+
+exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Component>
+    Flock Name: 
+    Test Flock 2
+  </Component>
+  <FlatList
+    data={
+      Array [
+        "chicken1",
+        "chicken2",
+      ]
+    }
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
   />
 </Component>
 `;
 
-exports[`Flock component: Should render connected component 1`] = `
+exports[`Flock component: Should render connected component as flock guest 1`] = `
 <FlockRenderer
   chickens={
     Object {
@@ -66,8 +103,35 @@ exports[`Flock component: Should render connected component 1`] = `
   flock={
     Object {
       "name": "Test Flock",
+      "ownedBy": "user1",
     }
   }
+  isFlockOwner={false}
+  navigation={Object {}}
+/>
+`;
+
+exports[`Flock component: Should render connected component as flock owner 1`] = `
+<FlockRenderer
+  chickens={
+    Object {
+      "chicken1": Object {
+        "breed": "Maran",
+        "name": "Bossie",
+      },
+      "chicken2": Object {
+        "breed": "Maran",
+        "name": "Bossie",
+      },
+    }
+  }
+  flock={
+    Object {
+      "name": "Test Flock",
+      "ownedBy": "user1",
+    }
+  }
+  isFlockOwner={true}
   navigation={Object {}}
 />
 `;

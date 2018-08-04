@@ -6,6 +6,7 @@ const getChickenId = (state, chickenId) => chickenId;
 const eggsByChickenSelector = createCachedSelector(
   [getChickens, getChickenId],
   (chickens, chickenId) => {
+    console.log('Running chicken Selector');
     const chickenIds = Object.keys(chickens || {});
     const currentChickenIndex = chickenIds.indexOf(chickenId);
     const nextChickenId = currentChickenIndex === chickenIds.length - 1
@@ -18,7 +19,6 @@ const eggsByChickenSelector = createCachedSelector(
       prevChickenId,
       nextChickenId,
     };
-    console.log(result);
     return result;
   },
 )(getChickenId);

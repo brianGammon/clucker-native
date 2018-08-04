@@ -6,7 +6,7 @@ const getCurrentFlockId = (flocks, { data: { currentFlockId } }) => currentFlock
 const currentFlockSelector = createCachedSelector(
   [getFlocks, getCurrentFlockId],
   (flocks, currentFlockId) => {
-    console.log('running currentFlockSelector');
+    console.log('running currentFlockSelector', currentFlockId);
     return flocks[currentFlockId];
   },
 )(getCurrentFlockId);

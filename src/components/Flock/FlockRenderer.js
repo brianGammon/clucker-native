@@ -15,9 +15,15 @@ type Props = {
     [string]: Chicken,
   },
   flock: Flock,
+  isFlockOwner: boolean,
 };
 
-const FlockRenderer = ({ navigation, chickens, flock }: Props) => (
+const FlockRenderer = ({
+  navigation,
+  chickens,
+  flock,
+  isFlockOwner,
+}: Props) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text>Flock Name: {flock && flock.name}</Text>
     <FlatList
@@ -43,20 +49,17 @@ const FlockRenderer = ({ navigation, chickens, flock }: Props) => (
           </View>
           <View style={{ flex: 1, paddingLeft: 10 }}>
             <Text>Name: {chickens[item].name}</Text>
-            <Text>Breed: {chickens[item].breed}</Text>
-            <Text>Hatched On: {chickens[item].hatched}</Text>
           </View>
+          {isFlockOwner && <Button onPress={() => {}} title="Delete" />}
         </TouchableOpacity>
       )}
     />
-    <Button
-      onPress={() => navigation.navigate('ChickenEditor')}
-      title="Add a Chicken"
-    />
-    <Button
-      onPress={() => navigation.navigate('Chicken')}
-      title="Chicken Profile"
-    />
+    {isFlockOwner && (
+      <Button
+        onPress={() => navigation.navigate('ChickenEditor')}
+        title="Add a Chicken"
+      />
+    )}
   </View>
 );
 
