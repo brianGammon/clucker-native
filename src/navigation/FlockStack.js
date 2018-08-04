@@ -25,7 +25,6 @@ export default createStackNavigator(
     ChickenEditor: {
       screen: ChickenEditorScreen,
       navigationOptions: {
-        title: 'Chicken Editor',
         headerRight: null,
       },
     },

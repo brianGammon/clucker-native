@@ -2,60 +2,13 @@
 
 exports[`ChickenEditor component: Should render in add new mode 1`] = `
 <ChickenEditorRenderer
-  navigation={
-    Object {
-      "getParam": [MockFunction] {
-        "calls": Array [
-          Array [
-            "chickenId",
-            "NO-ID",
-          ],
-          Array [
-            "chickenId",
-            "NO-ID",
-          ],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": "chicken1",
-          },
-          Object {
-            "isThrow": false,
-            "value": "NO-ID",
-          },
-        ],
-      },
-    }
-  }
+  onFieldChanged={[Function]}
 />
 `;
 
 exports[`ChickenEditor component: Should render in edit mode 1`] = `
 <ChickenEditorRenderer
-  chicken={
-    Object {
-      "name": "The First Chicken",
-    }
-  }
-  chickenId="chicken1"
-  navigation={
-    Object {
-      "getParam": [MockFunction] {
-        "calls": Array [
-          Array [
-            "chickenId",
-            "NO-ID",
-          ],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": "chicken1",
-          },
-        ],
-      },
-    }
-  }
+  name="The First Chicken"
+  onFieldChanged={[Function]}
 />
 `;

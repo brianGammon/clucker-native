@@ -13,11 +13,11 @@ exports[`EggEditor component: Should render 1`] = `
   <Component
     style={
       Object {
-        "fontSize": 30,
+        "fontSize": 18,
       }
     }
   >
-    Add or Edit an Egg Here
+    Edit Egg for chicken ID: chicken1 for date: chicken1
   </Component>
   <Button
     onPress={[Function]}

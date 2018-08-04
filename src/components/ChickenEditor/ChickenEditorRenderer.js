@@ -1,25 +1,36 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
-import { type Chicken } from '../../types';
 
 type Props = {
-  chicken: Chicken,
-  chickenId: string,
+  name: string,
+  breed: string,
+  hatched: string,
+  onFieldChanged: (fieldName: string, text: string) => void,
 };
 
-const ChickenEditorRenderer = ({ chicken, chickenId }: Props) => {
-  console.log(chicken, chickenId);
-  return (
-    <View style={{ flex: 1, alignItems: 'center' }}>
-      <Text style={{ fontSize: 24 }}>Add or Edit Chicken</Text>
-      <Text>Name:</Text>
-      <TextInput value={chicken.name} />
-      <Text>Breed:</Text>
-      <TextInput value={chicken.breed} />
-      <Text>Hatched On:</Text>
-      <TextInput value={chicken.hatched} />
-    </View>
-  );
-};
+const ChickenEditorRenderer = ({
+  name,
+  breed,
+  hatched,
+  onFieldChanged,
+}: Props) => (
+  <View style={{ flex: 1, alignItems: 'center' }}>
+    <Text>Name:</Text>
+    <TextInput
+      value={name}
+      onChangeText={text => onFieldChanged('name', text)}
+    />
+    <Text>Breed:</Text>
+    <TextInput
+      value={breed}
+      onChangeText={text => onFieldChanged('breed', text)}
+    />
+    <Text>Hatched On:</Text>
+    <TextInput
+      value={hatched}
+      onChangeText={text => onFieldChanged('hatched', text)}
+    />
+  </View>
+);
 
 export default ChickenEditorRenderer;
