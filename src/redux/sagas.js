@@ -11,8 +11,18 @@ import {
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
-import { actionTypes as a, metaTypes, eventTypes } from './constants';
+import { actionTypes as a, metaTypes, eventTypes as e } from './constants';
 import * as actions from './actions';
+
+export function* addItems(path, data, metaType) {
+  try {
+    const ref = firebase.database().ref(path);
+    yield call([ref, ref.push], data);
+    yield put(actions.firebaseUpdateFulfilled(metaType));
+  } catch (error) {
+    yield put(actions.firebaseUpdateRejected(error, metaType));
+  }
+}
 
 export function* updateItems(updates, metaType) {
   try {
@@ -29,7 +39,11 @@ export function getUserSettingsPath({ uid }) {
 }
 
 export function getChickensPath({ flockId, chickenId }) {
-  return `chickens/${flockId}/${chickenId}`;
+  let path = `chickens/${flockId}`;
+  if (chickenId) {
+    path += `/${chickenId}`;
+  }
+  return path;
 }
 
 export function getChickensUpdate({ flockId, chickenId, updatedChicken }) {
@@ -58,6 +72,24 @@ export function* removeItem(path, metaType) {
     yield put(actions.firebaseRemoveFulfilled(metaType));
   } catch (error) {
     yield put(actions.firebaseRemoveRejected(error, metaType));
+  }
+}
+
+export function* watchCreateRequested() {
+  while (true) {
+    const action = yield take(a.CREATE_REQUESTED);
+    let getPath = null;
+    switch (action.meta.type) {
+      case metaTypes.chickens:
+        getPath = getChickensPath;
+        break;
+      default:
+        break;
+    }
+    if (typeof getPath === 'function') {
+      const path = yield call(getPath, action.payload);
+      yield fork(addItems, path, action.payload.data, action.meta.type);
+    }
   }
 }
 
@@ -108,7 +140,7 @@ export function createEventChannel(ref) {
   const listener = eventChannel((emit) => {
     ref.on('child_added', (snap) => {
       emit({
-        eventType: eventTypes.CHILD_ADDED,
+        eventType: e.CHILD_ADDED_EVENT,
         key: snap.key,
         data: snap.val(),
       });
@@ -116,14 +148,14 @@ export function createEventChannel(ref) {
 
     ref.on('child_changed', (snap) => {
       emit({
-        eventType: eventTypes.CHILD_CHANGED,
+        eventType: e.CHILD_CHANGED_EVENT,
         key: snap.key,
         data: snap.val(),
       });
     });
 
     ref.on('child_removed', (snap) => {
-      emit({ eventType: eventTypes.CHILD_REMOVED, key: snap.key });
+      emit({ eventType: e.CHILD_REMOVED_EVENT, key: snap.key });
     });
     return () => {
       ref.off();
@@ -134,15 +166,15 @@ export function createEventChannel(ref) {
 
 export function getUpdateAction(event, metaType) {
   switch (event.eventType) {
-    case eventTypes.CHILD_ADDED:
+    case e.CHILD_ADDED_EVENT:
       return actions.firebaseListenChildAdded(event.key, event.data, metaType);
-    case eventTypes.CHILD_CHANGED:
+    case e.CHILD_CHANGED_EVENT:
       return actions.firebaseListenChildChanged(
         event.key,
         event.data,
         metaType,
       );
-    case eventTypes.CHILD_REMOVED:
+    case e.CHILD_REMOVED_EVENT:
       return actions.firebaseListenChildRemoved(event.key, metaType);
     default:
       return {};
@@ -231,7 +263,9 @@ export default function* rootSaga() {
     watchListener('userSettings'),
     watchListener('chickens'),
     watchListener('eggs'),
+    watchCreateRequested(),
     watchUpdateRequested(),
+    watchRemoveRequested(),
     watchGetFlock(),
   ]);
 }

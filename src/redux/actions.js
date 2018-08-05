@@ -27,7 +27,7 @@ export function firebaseListenFulfilled({ key, data }, metaType) {
 
 export function firebaseListenChildAdded(key, data, metaType) {
   return {
-    type: a.LISTEN_CHILD_ADDED,
+    type: a.CHILD_ADDED,
     payload: { key, data },
     meta: { type: metaType },
   };
@@ -35,7 +35,7 @@ export function firebaseListenChildAdded(key, data, metaType) {
 
 export function firebaseListenChildChanged(key, data, metaType) {
   return {
-    type: a.LISTEN_CHILD_CHANGED,
+    type: a.CHILD_CHANGED,
     payload: { key, data },
     meta: { type: metaType },
   };
@@ -43,8 +43,32 @@ export function firebaseListenChildChanged(key, data, metaType) {
 
 export function firebaseListenChildRemoved(key, metaType) {
   return {
-    type: a.LISTEN_CHILD_REMOVED,
+    type: a.CHILD_REMOVED,
     payload: { key },
+    meta: { type: metaType },
+  };
+}
+
+export function firebaseCreateRequested(payload, metaType) {
+  return {
+    type: a.CREATE_REQUESTED,
+    payload,
+    meta: { type: metaType },
+  };
+}
+
+export function firebaseCreateRejected(error, metaType) {
+  return {
+    type: a.CREATE_REJECTED,
+    payload: { error },
+    meta: { type: metaType },
+  };
+}
+
+export function firebaseCreateFulfilled(metaType) {
+  return {
+    type: a.CREATE_FULFILLED,
+    payload: {},
     meta: { type: metaType },
   };
 }

@@ -27,6 +27,34 @@ const handlers = {
     const newState = { ...state, initialUrl: null };
     return newState;
   },
+  [a.CREATE_REQUESTED](state, action) {
+    const property = action.meta.type;
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: true },
+    };
+    return newState;
+  },
+  [a.CREATE_FULFILLED](state, action) {
+    const property = action.meta.type;
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: false },
+    };
+    return newState;
+  },
+  [a.CREATE_REJECTED](state, action) {
+    const property = action.meta.type;
+    const propertyState = state[property];
+    const { error } = action.payload;
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: false, error },
+    };
+    return newState;
+  },
   [a.UPDATE_REQUESTED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
@@ -60,7 +88,7 @@ const handlers = {
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true, error: '' },
+      [property]: { ...propertyState, inProgress: true },
     };
     return newState;
   },
@@ -89,7 +117,7 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true, error: '' },
+      [property]: { ...propertyState, inProgress: true },
     };
     return newState;
   },
@@ -122,7 +150,7 @@ const handlers = {
     return newState;
   },
   // notice child added and changed are the same at the moment
-  [a.LISTEN_CHILD_ADDED](state, action) {
+  [a.CHILD_ADDED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
     const data = {
@@ -141,7 +169,7 @@ const handlers = {
     };
     return newState;
   },
-  [a.LISTEN_CHILD_CHANGED](state, action) {
+  [a.CHILD_CHANGED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
     const data = {
@@ -160,7 +188,7 @@ const handlers = {
     };
     return newState;
   },
-  [a.LISTEN_CHILD_REMOVED](state, action) {
+  [a.CHILD_REMOVED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
     const data = { ...propertyState.data };
@@ -201,7 +229,7 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true, error: '' },
+      [property]: { ...propertyState, inProgress: true },
     };
     return newState;
   },

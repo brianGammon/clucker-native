@@ -7,13 +7,34 @@ import {
   fork,
   cancel,
   flush,
-  select,
 } from 'redux-saga/effects';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
 import { metaTypes, eventTypes, actionTypes } from '../constants';
 
 describe('saga tests', () => {
+  test('addItems - regular stream - success and failure', () => {
+    const path = 'chickens/flock1';
+    const data = { x: true };
+    const metaType = 'chickens';
+    const ref = firebase.database().ref(path);
+    const generator = cloneableGenerator(sagas.addItems)(path, data, metaType);
+    expect(generator.next().value).toEqual(call([ref, ref.push], data));
+
+    const successGenerator = generator.clone();
+    expect(successGenerator.next().value).toEqual(
+      put(actions.firebaseUpdateFulfilled(metaType)),
+    );
+    expect(successGenerator.next().done).toEqual(true);
+
+    const failGenerator = generator.clone();
+    const error = new Error('An error occured');
+    expect(failGenerator.throw(error).value).toEqual(
+      put(actions.firebaseUpdateRejected(error, metaType)),
+    );
+    expect(failGenerator.next().done).toEqual(true);
+  });
+
   test('updateItems - regular stream - success and failure', () => {
     const updates = { x: true };
     const metaType = 'someType';
@@ -52,11 +73,19 @@ describe('saga tests', () => {
     expect(sagas.getUserSettingsUpdate(updates)).toMatchSnapshot();
   });
 
-  test('getChickensPath', () => {
+  test('getChickensPath for remove', () => {
     const flockId = 'flock1';
     const chickenId = 'chicken1';
     const path = `chickens/${flockId}/${chickenId}`;
     expect(sagas.getChickensPath({ flockId, chickenId })).toEqual(path);
+  });
+
+  test('getChickensPath for create', () => {
+    const flockId = 'flock1';
+    const path = `chickens/${flockId}`;
+    expect(
+      sagas.getChickensPath({ flockId, data: { key1: 'value1' } }),
+    ).toEqual(path);
   });
 
   test('getChickensUpdate', () => {
@@ -92,6 +121,40 @@ describe('saga tests', () => {
       put(actions.firebaseRemoveRejected(error, metaType)),
     );
     expect(failGenerator.next().done).toEqual(true);
+  });
+
+  test(`watchCreateRequested ${metaTypes.chickens}`, () => {
+    const generator = sagas.watchCreateRequested();
+    const payload = {
+      flockId: 'flock1',
+      data: {
+        name: 'Test Chicken',
+        breed: 'Some Breed',
+        hatched: '2018-10-06',
+      },
+    };
+    const expectedPath = 'chickens/flock1';
+
+    const action = actions.firebaseCreateRequested(payload, metaTypes.chickens);
+    const selector = sagas.getChickensPath;
+    const result = selector(payload);
+    expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
+    expect(generator.next(result).value).toEqual(
+      fork(sagas.addItems, expectedPath, payload.data, action.meta.type),
+    );
+  });
+
+  test('watchCreateRequested unknownType', () => {
+    const generator = sagas.watchCreateRequested();
+
+    // test non function case
+    expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
+    expect(generator.next({ meta: { type: 'unknownType' } }).value).toEqual(
+      take(actionTypes.CREATE_REQUESTED),
+    );
   });
 
   test(`watchUpdateRequested ${metaTypes.userSettings}`, () => {
@@ -140,7 +203,6 @@ describe('saga tests', () => {
       'chickens/flock1/chicken1': payload.updatedChicken,
     };
     const action = actions.firebaseUpdateRequested(payload, metaTypes.chickens);
-    console.log(action);
     const selector = sagas.getChickensUpdate;
     const result = selector(payload);
     expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
@@ -207,9 +269,9 @@ describe('saga tests', () => {
     );
   });
 
-  test('getUpdateAction CHILD_ADDED', () => {
+  test('getUpdateAction CHILD_ADDED_EVENT', () => {
     const childAddedEvent = {
-      eventType: eventTypes.CHILD_ADDED,
+      eventType: eventTypes.CHILD_ADDED_EVENT,
       key: '1',
       data: 'Data from channel',
     };
@@ -225,9 +287,9 @@ describe('saga tests', () => {
     );
   });
 
-  test('getUpdateAction CHILD_CHANGED', () => {
+  test('getUpdateAction CHILD_CHANGED_EVENT', () => {
     const childChangedEvent = {
-      eventType: eventTypes.CHILD_CHANGED,
+      eventType: eventTypes.CHILD_CHANGED_EVENT,
       key: '1',
       data: 'Data from channel',
     };
@@ -243,9 +305,9 @@ describe('saga tests', () => {
     );
   });
 
-  test('getUpdateAction CHILD_REMOVED', () => {
+  test('getUpdateAction CHILD_REMOVED_EVENT', () => {
     const childRemovedEvent = {
-      eventType: eventTypes.CHILD_REMOVED,
+      eventType: eventTypes.CHILD_REMOVED_EVENT,
       key: '1',
     };
 
@@ -283,7 +345,7 @@ describe('saga tests', () => {
     );
     expect(generator.next().value).toEqual(take(chan));
     const childAddedAction = {
-      eventType: eventTypes.CHILD_ADDED,
+      eventType: eventTypes.CHILD_ADDED_EVENT,
       key: '1',
       data: 'Data from channel',
     };
@@ -322,7 +384,7 @@ describe('saga tests', () => {
     );
     expect(generator.next().value).toEqual(take(chan));
     const childAddedAction = {
-      eventType: eventTypes.CHILD_ADDED,
+      eventType: eventTypes.CHILD_ADDED_EVENT,
       key: '1',
       data: 'Data from channel',
     };

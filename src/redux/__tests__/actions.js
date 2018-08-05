@@ -25,7 +25,7 @@ describe('Redux actions:', () => {
     ).toMatchSnapshot();
   });
 
-  test(`${constants.actionTypes.LISTEN_CHILD_ADDED}`, () => {
+  test(`${constants.actionTypes.CHILD_ADDED}`, () => {
     const id = '1';
     const value = 'a';
 
@@ -34,7 +34,7 @@ describe('Redux actions:', () => {
     ).toMatchSnapshot();
   });
 
-  test(`${constants.actionTypes.LISTEN_CHILD_CHANGED}`, () => {
+  test(`${constants.actionTypes.CHILD_CHANGED}`, () => {
     const id = '1';
     const value = 'a';
 
@@ -43,11 +43,33 @@ describe('Redux actions:', () => {
     ).toMatchSnapshot();
   });
 
-  test(`${constants.actionTypes.LISTEN_CHILD_REMOVED}`, () => {
+  test(`${constants.actionTypes.CHILD_REMOVED}`, () => {
     const id = '1';
     expect(
       actions.firebaseListenChildRemoved(id, 'userContacts'),
     ).toMatchSnapshot();
+  });
+
+  test(`${constants.actionTypes.CREATE_REQUESTED}`, () => {
+    const payload = {
+      flockId: 'flock1',
+      data: {
+        name: 'Test Chicken',
+      },
+    };
+    expect(
+      actions.firebaseCreateRequested(payload, 'chickens'),
+    ).toMatchSnapshot();
+  });
+
+  test(`${constants.actionTypes.CREATE_FULFILLED}`, () => {
+    expect(actions.firebaseCreateFulfilled('chickens')).toMatchSnapshot();
+  });
+
+  test(`${constants.actionTypes.CREATE_REJECTED}`, () => {
+    const error = new Error('Error!');
+
+    expect(actions.firebaseCreateRejected(error, 'chickens')).toMatchSnapshot();
   });
 
   test(`${constants.actionTypes.UPDATE_REQUESTED}`, () => {

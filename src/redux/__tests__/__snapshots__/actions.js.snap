@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Redux actions: LISTEN_CHILD_ADDED 1`] = `
+exports[`Redux actions: CHILD_ADDED 1`] = `
 Object {
   "meta": Object {
     "type": "userContacts",
@@ -9,11 +9,11 @@ Object {
     "data": "a",
     "key": "1",
   },
-  "type": "LISTEN_CHILD_ADDED",
+  "type": "CHILD_ADDED",
 }
 `;
 
-exports[`Redux actions: LISTEN_CHILD_CHANGED 1`] = `
+exports[`Redux actions: CHILD_CHANGED 1`] = `
 Object {
   "meta": Object {
     "type": "userContacts",
@@ -22,11 +22,11 @@ Object {
     "data": "a",
     "key": "1",
   },
-  "type": "LISTEN_CHILD_CHANGED",
+  "type": "CHILD_CHANGED",
 }
 `;
 
-exports[`Redux actions: LISTEN_CHILD_REMOVED 1`] = `
+exports[`Redux actions: CHILD_REMOVED 1`] = `
 Object {
   "meta": Object {
     "type": "userContacts",
@@ -34,7 +34,44 @@ Object {
   "payload": Object {
     "key": "1",
   },
-  "type": "LISTEN_CHILD_REMOVED",
+  "type": "CHILD_REMOVED",
+}
+`;
+
+exports[`Redux actions: CREATE_FULFILLED 1`] = `
+Object {
+  "meta": Object {
+    "type": "chickens",
+  },
+  "payload": Object {},
+  "type": "CREATE_FULFILLED",
+}
+`;
+
+exports[`Redux actions: CREATE_REJECTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "chickens",
+  },
+  "payload": Object {
+    "error": [Error: Error!],
+  },
+  "type": "CREATE_REJECTED",
+}
+`;
+
+exports[`Redux actions: CREATE_REQUESTED 1`] = `
+Object {
+  "meta": Object {
+    "type": "chickens",
+  },
+  "payload": Object {
+    "data": Object {
+      "name": "Test Chicken",
+    },
+    "flockId": "flock1",
+  },
+  "type": "CREATE_REQUESTED",
 }
 `;
 
@@ -90,6 +127,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "path": "someRef",
+      "push": [MockFunction],
       "remove": [MockFunction],
       "snap": Object {
         "val": [Function],
@@ -199,6 +237,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "path": "flocks/flockId1",
+      "push": [MockFunction],
       "remove": [MockFunction],
       "snap": Object {
         "val": [Function],
@@ -248,6 +287,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "path": "chickens/flockId1",
+      "push": [MockFunction],
       "remove": [MockFunction],
       "snap": Object {
         "val": [Function],
@@ -272,6 +312,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "path": "eggs/flockId1",
+      "push": [MockFunction],
       "remove": [MockFunction],
       "snap": Object {
         "val": [Function],
@@ -296,6 +337,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "path": "userSettings/userId1",
+      "push": [MockFunction],
       "remove": [MockFunction],
       "snap": Object {
         "val": [Function],

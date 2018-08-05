@@ -40,6 +40,12 @@ export class Reference {
     return promise;
   });
 
+  push = jest.fn(() => {
+    const promise = Promise.resolve();
+    RNFirebase.promises.push(promise);
+    return promise;
+  });
+
   update = jest.fn(() => {
     const promise = Promise.resolve();
     RNFirebase.promises.push(promise);

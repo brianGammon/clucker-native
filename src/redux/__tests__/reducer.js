@@ -194,7 +194,7 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.LISTEN_CHILD_ADDED, () => {
+  test(actionTypes.CHILD_ADDED, () => {
     const childKey = 'item3';
     const childData = 'item3value';
     const action = actions.firebaseListenChildAdded(
@@ -213,7 +213,7 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.LISTEN_CHILD_CHANGED, () => {
+  test(actionTypes.CHILD_CHANGED, () => {
     const childKey = 'item2';
     const childData = 'updatedItem2value';
     const action = actions.firebaseListenChildChanged(
@@ -232,7 +232,7 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.LISTEN_CHILD_REMOVED, () => {
+  test(actionTypes.CHILD_REMOVED, () => {
     const childKey = 'item1';
     const action = actions.firebaseListenChildRemoved(
       childKey,
