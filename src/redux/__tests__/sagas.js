@@ -1,7 +1,13 @@
 import firebase from 'react-native-firebase';
 import { cloneableGenerator, createMockTask } from 'redux-saga/utils';
 import {
-  put, take, call, fork, cancel, flush,
+  put,
+  take,
+  call,
+  fork,
+  cancel,
+  flush,
+  select,
 } from 'redux-saga/effects';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
@@ -16,7 +22,9 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(call([ref, ref.update], updates));
 
     const successGenerator = generator.clone();
-    expect(successGenerator.next().value).toEqual(put(actions.firebaseUpdateFulfilled(metaType)));
+    expect(successGenerator.next().value).toEqual(
+      put(actions.firebaseUpdateFulfilled(metaType)),
+    );
     expect(successGenerator.next().done).toEqual(true);
 
     const failGenerator = generator.clone();
@@ -33,7 +41,7 @@ describe('saga tests', () => {
     expect(sagas.getUserSettingsPath({ uid })).toEqual(path);
   });
 
-  test('getUserSettingsUpdates', () => {
+  test('getUserSettingsUpdate', () => {
     const updates = {
       uid: 'userId1',
       displayName: 'Test User',
@@ -41,7 +49,28 @@ describe('saga tests', () => {
       flocks: { flockId1: true },
     };
 
-    expect(sagas.getUserSettingsUpdates(updates)).toMatchSnapshot();
+    expect(sagas.getUserSettingsUpdate(updates)).toMatchSnapshot();
+  });
+
+  test('getChickensPath', () => {
+    const flockId = 'flock1';
+    const chickenId = 'chicken1';
+    const path = `chickens/${flockId}/${chickenId}`;
+    expect(sagas.getChickensPath({ flockId, chickenId })).toEqual(path);
+  });
+
+  test('getChickensUpdate', () => {
+    const updates = {
+      flockId: 'flock1',
+      chickenId: 'chicken1',
+      updatedChicken: {
+        name: 'Test Chicken',
+        breed: 'Some Breed',
+        hatched: '2018-10-06',
+      },
+    };
+
+    expect(sagas.getChickensUpdate(updates)).toMatchSnapshot();
   });
 
   test('removeItem - regular stream - success and failure', () => {
@@ -52,7 +81,9 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(call([ref, ref.remove]));
 
     const successGenerator = generator.clone();
-    expect(successGenerator.next().value).toEqual(put(actions.firebaseRemoveFulfilled(metaType)));
+    expect(successGenerator.next().value).toEqual(
+      put(actions.firebaseRemoveFulfilled(metaType)),
+    );
     expect(successGenerator.next().done).toEqual(true);
 
     const failGenerator = generator.clone();
@@ -82,11 +113,40 @@ describe('saga tests', () => {
       payload.currentFlockId,
       payload.flocks,
     );
-    const selector = sagas.getUserSettingsUpdates;
+    const selector = sagas.getUserSettingsUpdate;
 
     const result = selector(payload);
     expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
-    expect(generator.next(action).value).toEqual(call(selector, action.payload));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
+    expect(generator.next(result).value).toEqual(
+      fork(sagas.updateItems, expectedUpdates, action.meta.type),
+    );
+  });
+
+  test(`watchUpdateRequested ${metaTypes.chickens}`, () => {
+    const generator = sagas.watchUpdateRequested();
+    const payload = {
+      flockId: 'flock1',
+      chickenId: 'chicken1',
+      updatedChicken: {
+        name: 'Test Chicken',
+        breed: 'Some Breed',
+        hatched: '2018-10-06',
+      },
+    };
+    const expectedUpdates = {
+      'chickens/flock1/chicken1': payload.updatedChicken,
+    };
+    const action = actions.firebaseUpdateRequested(payload, metaTypes.chickens);
+    console.log(action);
+    const selector = sagas.getChickensUpdate;
+    const result = selector(payload);
+    expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
     expect(generator.next(result).value).toEqual(
       fork(sagas.updateItems, expectedUpdates, action.meta.type),
     );
@@ -102,16 +162,39 @@ describe('saga tests', () => {
     );
   });
 
-  test(`watchRemoveRequested ${metaTypes.userContacts}`, () => {
+  test(`watchRemoveRequested ${metaTypes.userSettings}`, () => {
     const generator = sagas.watchRemoveRequested();
-    const path = 'a/b/c';
+    const path = 'userSettings/user1';
 
-    const action = actions.removeUserSettingsRequested();
+    const action = actions.removeUserSettingsRequested('user1');
     const selector = sagas.getUserSettingsPath;
 
     expect(generator.next().value).toEqual(take(actionTypes.REMOVE_REQUESTED));
-    expect(generator.next(action).value).toEqual(call(selector, action.payload));
-    expect(generator.next(path).value).toEqual(fork(sagas.removeItem, path, action.meta.type));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
+    expect(generator.next(path).value).toEqual(
+      fork(sagas.removeItem, path, action.meta.type),
+    );
+  });
+
+  test(`watchRemoveRequested ${metaTypes.chickens}`, () => {
+    const generator = sagas.watchRemoveRequested();
+    const path = 'chickens/flock1/chicken1';
+
+    const action = actions.firebaseRemoveRequested(
+      { flockId: 'flock1', chickenId: 'chicken1' },
+      metaTypes.chickens,
+    );
+    const selector = sagas.getChickensPath;
+
+    expect(generator.next().value).toEqual(take(actionTypes.REMOVE_REQUESTED));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
+    expect(generator.next(path).value).toEqual(
+      fork(sagas.removeItem, path, action.meta.type),
+    );
   });
 
   test('watchRemoveRequested unknownType', () => {
@@ -131,8 +214,14 @@ describe('saga tests', () => {
       data: 'Data from channel',
     };
 
-    expect(sagas.getUpdateAction(childAddedEvent, metaTypes.userSettings)).toEqual(
-      actions.firebaseListenChildAdded(childAddedEvent.key, childAddedEvent.data, metaTypes.userSettings),
+    expect(
+      sagas.getUpdateAction(childAddedEvent, metaTypes.userSettings),
+    ).toEqual(
+      actions.firebaseListenChildAdded(
+        childAddedEvent.key,
+        childAddedEvent.data,
+        metaTypes.userSettings,
+      ),
     );
   });
 
@@ -143,8 +232,14 @@ describe('saga tests', () => {
       data: 'Data from channel',
     };
 
-    expect(sagas.getUpdateAction(childChangedEvent, metaTypes.userSettings)).toEqual(
-      actions.firebaseListenChildChanged(childChangedEvent.key, childChangedEvent.data, metaTypes.userSettings),
+    expect(
+      sagas.getUpdateAction(childChangedEvent, metaTypes.userSettings),
+    ).toEqual(
+      actions.firebaseListenChildChanged(
+        childChangedEvent.key,
+        childChangedEvent.data,
+        metaTypes.userSettings,
+      ),
     );
   });
 
@@ -154,8 +249,13 @@ describe('saga tests', () => {
       key: '1',
     };
 
-    expect(sagas.getUpdateAction(childRemovedEvent, metaTypes.userSettings)).toEqual(
-      actions.firebaseListenChildRemoved(childRemovedEvent.key, metaTypes.userSettings),
+    expect(
+      sagas.getUpdateAction(childRemovedEvent, metaTypes.userSettings),
+    ).toEqual(
+      actions.firebaseListenChildRemoved(
+        childRemovedEvent.key,
+        metaTypes.userSettings,
+      ),
     );
   });
 
@@ -167,7 +267,10 @@ describe('saga tests', () => {
     const key = 'someKey';
     const snap = { key, val: () => data };
 
-    const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(ref, metaType);
+    const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(
+      ref,
+      metaType,
+    );
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
     expect(generator.next(chan).value).toEqual(call([ref, ref.once], 'value'));
 
@@ -175,14 +278,18 @@ describe('saga tests', () => {
 
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
-    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, data }, metaType)));
+    expect(generator.next().value).toEqual(
+      put(actions.firebaseListenFulfilled({ key, data }, metaType)),
+    );
     expect(generator.next().value).toEqual(take(chan));
     const childAddedAction = {
       eventType: eventTypes.CHILD_ADDED,
       key: '1',
       data: 'Data from channel',
     };
-    expect(generator.next(childAddedAction).value).toEqual(put(sagas.getUpdateAction(childAddedAction, metaType)));
+    expect(generator.next(childAddedAction).value).toEqual(
+      put(sagas.getUpdateAction(childAddedAction, metaType)),
+    );
     expect(generator.next().value).toEqual(take(chan)); // return to listen to the channel
     generator.return(); // simulate cancellation
 
@@ -201,20 +308,27 @@ describe('saga tests', () => {
     const key = 'someKey';
     const snap = { key, val: () => null };
 
-    const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(ref, metaType);
+    const generator = cloneableGenerator(sagas.getDataAndListenToChannel)(
+      ref,
+      metaType,
+    );
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
     expect(generator.next(chan).value).toEqual(call([ref, ref.once], 'value'));
 
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
-    expect(generator.next().value).toEqual(put(actions.firebaseListenFulfilled({ key, data: {} }, metaType)));
+    expect(generator.next().value).toEqual(
+      put(actions.firebaseListenFulfilled({ key, data: {} }, metaType)),
+    );
     expect(generator.next().value).toEqual(take(chan));
     const childAddedAction = {
       eventType: eventTypes.CHILD_ADDED,
       key: '1',
       data: 'Data from channel',
     };
-    expect(generator.next(childAddedAction).value).toEqual(put(sagas.getUpdateAction(childAddedAction, metaType)));
+    expect(generator.next(childAddedAction).value).toEqual(
+      put(sagas.getUpdateAction(childAddedAction, metaType)),
+    );
     expect(generator.next().value).toEqual(take(chan)); // return to listen to the channel
     generator.return(); // simulate cancellation
   });
@@ -238,7 +352,11 @@ describe('saga tests', () => {
     // regular flow
     const one = regularGenerator.next(checkedListenRequestAction);
     expect(one.value).toEqual(
-      fork(sagas.getDataAndListenToChannel, ref, checkedListenRequestAction.meta.type),
+      fork(
+        sagas.getDataAndListenToChannel,
+        ref,
+        checkedListenRequestAction.meta.type,
+      ),
     );
     const theTask = regularGenerator.next(mockTask).value;
     expect(theTask).toEqual(
@@ -252,7 +370,9 @@ describe('saga tests', () => {
     const regularWithUnwantedRemoveMetaType = regularGenerator.clone();
     const regularWithListenActionGenerator = regularGenerator.clone();
 
-    expect(regularGenerator.next(checkedListenRemoveAction).value).toEqual(cancel(mockTask));
+    expect(regularGenerator.next(checkedListenRemoveAction).value).toEqual(
+      cancel(mockTask),
+    );
 
     expect(regularGenerator.next().value).toEqual(
       put(
@@ -263,16 +383,21 @@ describe('saga tests', () => {
       ),
     );
     // back to start
-    expect(regularGenerator.next().value).toEqual(take(actionTypes.LISTEN_REQUESTED));
+    expect(regularGenerator.next().value).toEqual(
+      take(actionTypes.LISTEN_REQUESTED),
+    );
 
     // unwanted listen request flow
     const unwantedListenRequestActionGenerator = generator.clone();
-    expect(unwantedListenRequestActionGenerator.next(unwantedListenRequestAction).value).toEqual(
-      take(actionTypes.LISTEN_REQUESTED),
-    ); // unwatned action - go to start
+    expect(
+      unwantedListenRequestActionGenerator.next(unwantedListenRequestAction)
+        .value,
+    ).toEqual(take(actionTypes.LISTEN_REQUESTED)); // unwatned action - go to start
 
     // unwanted remove request while waiting to specifig cancel request
-    expect(regularWithUnwantedRemoveMetaType.next(unwantedListenRemoveAction).value).toEqual(
+    expect(
+      regularWithUnwantedRemoveMetaType.next(unwantedListenRemoveAction).value,
+    ).toEqual(
       take([
         actionTypes.REMOVE_LISTENER_REQUESTED,
         actionTypes.LISTEN_REQUESTED,
@@ -281,9 +406,9 @@ describe('saga tests', () => {
     ); // contintue to wait
 
     // regualr with listen aciton
-    expect(regularWithListenActionGenerator.next(checkedListenRequestAction).value).toEqual(
-      cancel(mockTask),
-    );
+    expect(
+      regularWithListenActionGenerator.next(checkedListenRequestAction).value,
+    ).toEqual(cancel(mockTask));
     expect(regularWithListenActionGenerator.next().value).toEqual(
       put(actions.firebaseListenRemoved(false, checkedMetaType)),
     );
@@ -303,7 +428,6 @@ describe('saga tests', () => {
       ]),
     ); // contintue to wait
   });
-
 
   test('getFlock', () => {
     const snapshot = {

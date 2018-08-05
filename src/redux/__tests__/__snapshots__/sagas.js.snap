@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`saga tests getChickensUpdate 1`] = `
+Object {
+  "chickens/flock1/chicken1": Object {
+    "breed": "Some Breed",
+    "hatched": "2018-10-06",
+    "name": "Test Chicken",
+  },
+}
+`;
+
 exports[`saga tests getFlock 1`] = `
 Object {
   "@@redux-saga/IO": true,
@@ -70,7 +80,7 @@ Object {
 }
 `;
 
-exports[`saga tests getUserSettingsUpdates 1`] = `
+exports[`saga tests getUserSettingsUpdate 1`] = `
 Object {
   "userSettings/userId1/currentFlockId": "flockId1",
   "userSettings/userId1/displayName": "Test User",
@@ -84,6 +94,9 @@ exports[`saga tests root Saga 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "ALL": Array [
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
     GeneratorFunctionPrototype {
       "_invoke": [Function],
     },

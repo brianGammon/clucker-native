@@ -25,26 +25,26 @@ export function firebaseListenFulfilled({ key, data }, metaType) {
   };
 }
 
-export function firebaseListenChildAdded(id, value, metaType) {
+export function firebaseListenChildAdded(key, data, metaType) {
   return {
     type: a.LISTEN_CHILD_ADDED,
-    payload: { id, value },
+    payload: { key, data },
     meta: { type: metaType },
   };
 }
 
-export function firebaseListenChildChanged(id, value, metaType) {
+export function firebaseListenChildChanged(key, data, metaType) {
   return {
     type: a.LISTEN_CHILD_CHANGED,
-    payload: { id, value },
+    payload: { key, data },
     meta: { type: metaType },
   };
 }
 
-export function firebaseListenChildRemoved(id, metaType) {
+export function firebaseListenChildRemoved(key, metaType) {
   return {
     type: a.LISTEN_CHILD_REMOVED,
-    payload: { id },
+    payload: { key },
     meta: { type: metaType },
   };
 }
@@ -139,6 +139,7 @@ export function removeUserSettingsListenerRequested() {
   return firebaseRemoveListenerRequested(false, metaTypes.userSettings);
 }
 
+// TODO: remove this, no need
 export function updateUserSettingsRequested(
   uid,
   displayName,
@@ -160,6 +161,7 @@ export function removeUserSettingsRequested(uid) {
   return firebaseRemoveRequested({ uid }, metaTypes.userSettings);
 }
 
+// TODO: remove refs from actions module
 export function getFlock(flockId) {
   const ref = firebase.database().ref(`flocks/${flockId}`);
   return {

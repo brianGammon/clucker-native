@@ -6,7 +6,7 @@ Object {
     "data": Object {
       "flock1": Object {
         "name": "Flock 1",
-        "ownedBy": "userId1",
+        "ownedBy": "user1",
       },
     },
     "error": "",
@@ -14,11 +14,12 @@ Object {
   },
   "userSettings": Object {
     "data": Object {
-      "a": 1,
-      "b": 2,
+      "item1": "item1value",
+      "item2": "item2value",
     },
     "error": "",
     "inProgress": false,
+    "key": "key1",
   },
 }
 `;
@@ -29,11 +30,11 @@ Object {
     "data": Object {
       "flock1": Object {
         "name": "Flock 1",
-        "ownedBy": "userId1",
+        "ownedBy": "user1",
       },
       "flock2": Object {
         "name": "Flock 2",
-        "ownedBy": "userId2",
+        "ownedBy": "user2",
       },
     },
     "error": "",
@@ -41,11 +42,12 @@ Object {
   },
   "userSettings": Object {
     "data": Object {
-      "a": 1,
-      "b": 2,
+      "item1": "item1value",
+      "item2": "item2value",
     },
     "error": "",
     "inProgress": false,
+    "key": "key1",
   },
 }
 `;
@@ -64,11 +66,12 @@ Object {
   },
   "userSettings": Object {
     "data": Object {
-      "a": 1,
-      "b": 2,
+      "item1": "item1value",
+      "item2": "item2value",
     },
     "error": "",
     "inProgress": false,
+    "key": "key1",
   },
 }
 `;
@@ -82,11 +85,12 @@ Object {
   },
   "userSettings": Object {
     "data": Object {
-      "a": 1,
-      "b": 2,
+      "item1": "item1value",
+      "item2": "item2value",
     },
     "error": "",
     "inProgress": false,
+    "key": "key1",
   },
 }
 `;

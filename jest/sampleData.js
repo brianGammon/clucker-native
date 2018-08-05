@@ -1,4 +1,22 @@
 const sampleData1 = {
+  userSettings: {
+    key: 'user1',
+    data: {
+      currentFlockId: 'flock1',
+    },
+  },
+  flocks: {
+    data: {
+      flock1: {
+        name: 'Test Flock 1',
+        ownedBy: 'user1',
+      },
+      flock2: {
+        name: 'Test Flock 2',
+        ownedBy: 'user2',
+      },
+    },
+  },
   chickens: {
     data: {
       chicken1: {

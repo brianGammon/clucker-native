@@ -25,7 +25,7 @@ describe('ChickenEditor component:', () => {
   });
 
   test('Should render in add new mode', () => {
-    paramReturned = 'NO-ID';
+    paramReturned = null;
     const wrapper = shallow(
       <ChickenEditor store={store} navigation={navigation} />,
     ).dive();

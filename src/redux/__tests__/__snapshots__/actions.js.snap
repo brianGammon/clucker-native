@@ -6,8 +6,8 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "id": "1",
-    "value": "a",
+    "data": "a",
+    "key": "1",
   },
   "type": "LISTEN_CHILD_ADDED",
 }
@@ -19,8 +19,8 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "id": "1",
-    "value": "a",
+    "data": "a",
+    "key": "1",
   },
   "type": "LISTEN_CHILD_CHANGED",
 }
@@ -32,7 +32,7 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "id": "1",
+    "key": "1",
   },
   "type": "LISTEN_CHILD_REMOVED",
 }

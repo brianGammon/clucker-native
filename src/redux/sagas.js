@@ -28,7 +28,17 @@ export function getUserSettingsPath({ uid }) {
   return `userSettings/${uid}`;
 }
 
-export function getUserSettingsUpdates({
+export function getChickensPath({ flockId, chickenId }) {
+  return `chickens/${flockId}/${chickenId}`;
+}
+
+export function getChickensUpdate({ flockId, chickenId, updatedChicken }) {
+  return {
+    [`chickens/${flockId}/${chickenId}`]: updatedChicken,
+  };
+}
+
+export function getUserSettingsUpdate({
   uid,
   displayName,
   currentFlockId,
@@ -57,14 +67,16 @@ export function* watchUpdateRequested() {
     let getUpdates = null;
     switch (action.meta.type) {
       case metaTypes.userSettings:
-        getUpdates = getUserSettingsUpdates;
+        getUpdates = getUserSettingsUpdate;
+        break;
+      case metaTypes.chickens:
+        getUpdates = getChickensUpdate;
         break;
       default:
         break;
     }
     if (typeof getUpdates === 'function') {
       const updates = yield call(getUpdates, action.payload);
-      console.log(updates);
       yield fork(updateItems, updates, action.meta.type);
     }
   }
@@ -77,6 +89,9 @@ export function* watchRemoveRequested() {
     switch (action.meta.type) {
       case metaTypes.userSettings:
         getPath = getUserSettingsPath;
+        break;
+      case metaTypes.chickens:
+        getPath = getChickensPath;
         break;
       default:
         break;
@@ -95,7 +110,7 @@ export function createEventChannel(ref) {
       emit({
         eventType: eventTypes.CHILD_ADDED,
         key: snap.key,
-        value: snap.val(),
+        data: snap.val(),
       });
     });
 
@@ -103,7 +118,7 @@ export function createEventChannel(ref) {
       emit({
         eventType: eventTypes.CHILD_CHANGED,
         key: snap.key,
-        value: snap.val(),
+        data: snap.val(),
       });
     });
 
@@ -122,7 +137,11 @@ export function getUpdateAction(event, metaType) {
     case eventTypes.CHILD_ADDED:
       return actions.firebaseListenChildAdded(event.key, event.data, metaType);
     case eventTypes.CHILD_CHANGED:
-      return actions.firebaseListenChildChanged(event.key, event.data, metaType);
+      return actions.firebaseListenChildChanged(
+        event.key,
+        event.data,
+        metaType,
+      );
     case eventTypes.CHILD_REMOVED:
       return actions.firebaseListenChildRemoved(event.key, metaType);
     default:
@@ -173,10 +192,7 @@ export function* watchListener(metaType) {
         ) {
           yield cancel(task);
           yield put(
-            actions.firebaseListenRemoved(
-              !!action.payload.clearData,
-              metaType,
-            ),
+            actions.firebaseListenRemoved(!!action.payload.clearData, metaType),
           );
 
           if (action.type === a.LISTEN_REQUESTED) {
@@ -215,6 +231,7 @@ export default function* rootSaga() {
     watchListener('userSettings'),
     watchListener('chickens'),
     watchListener('eggs'),
+    watchUpdateRequested(),
     watchGetFlock(),
   ]);
 }

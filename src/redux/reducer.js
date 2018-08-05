@@ -29,34 +29,58 @@ const handlers = {
   },
   [a.UPDATE_REQUESTED](state, action) {
     const property = action.meta.type;
-    const newState = { ...state, [property]: { inProgress: true, error: '' } };
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: true },
+    };
     return newState;
   },
   [a.UPDATE_FULFILLED](state, action) {
     const property = action.meta.type;
-    const newState = { ...state, [property]: { inProgress: false, error: '' } };
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: false },
+    };
     return newState;
   },
   [a.UPDATE_REJECTED](state, action) {
     const property = action.meta.type;
+    const propertyState = state[property];
     const { error } = action.payload;
-    const newState = { ...state, [property]: { inProgress: false, error } };
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: false, error },
+    };
     return newState;
   },
   [a.REMOVE_REQUESTED](state, action) {
     const property = action.meta.type;
-    const newState = { ...state, [property]: { inProgress: true, error: '' } };
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: true, error: '' },
+    };
     return newState;
   },
   [a.REMOVE_FULFILLED](state, action) {
     const property = action.meta.type;
-    const newState = { ...state, [property]: { inProgress: false, error: '' } };
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: false },
+    };
     return newState;
   },
   [a.REMOVE_REJECTED](state, action) {
     const property = action.meta.type;
+    const propertyState = state[property];
     const { error } = action.payload;
-    const newState = { ...state, [property]: { inProgress: false, error } };
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, inProgress: false, error },
+    };
     return newState;
   },
   [a.LISTEN_REQUESTED](state, action) {
@@ -103,7 +127,7 @@ const handlers = {
     const propertyState = state[property];
     const data = {
       ...propertyState.data,
-      [action.payload.id]: action.payload.value,
+      [action.payload.key]: action.payload.data,
     };
 
     const newState = {
@@ -122,7 +146,7 @@ const handlers = {
     const propertyState = state[property];
     const data = {
       ...propertyState.data,
-      [action.payload.id]: action.payload.value,
+      [action.payload.key]: action.payload.data,
     };
 
     const newState = {
@@ -140,7 +164,7 @@ const handlers = {
     const property = action.meta.type;
     const propertyState = state[property];
     const data = { ...propertyState.data };
-    delete data[action.payload.id];
+    delete data[action.payload.key];
 
     const newState = {
       ...state,

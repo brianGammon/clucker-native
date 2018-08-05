@@ -3,6 +3,7 @@
 exports[`ChickenEditor component: Should render in add new mode 1`] = `
 <ChickenEditorRenderer
   onFieldChanged={[Function]}
+  onSaveForm={[Function]}
 />
 `;
 
@@ -10,5 +11,6 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
 <ChickenEditorRenderer
   name="The First Chicken"
   onFieldChanged={[Function]}
+  onSaveForm={[Function]}
 />
 `;

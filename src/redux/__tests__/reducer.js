@@ -3,6 +3,18 @@ import { actionTypes, metaTypes } from '../constants';
 import firebaseReducer from '../reducer';
 
 describe('firebaseReducer reducer', () => {
+  let sampleState;
+  beforeEach(() => {
+    sampleState = {
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: '',
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+  });
+
   test(actionTypes.SET_INITIAL_URL, () => {
     const initialState = {
       someOtherState: 1,
@@ -30,119 +42,141 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.UPDATE_REQUESTED, () => {
-    const initialState = {
-      [metaTypes.updateMessage]: { inProgress: false, error: '' },
-    };
-    const action = actions.firebaseUpdateRequested(metaTypes.updateMessage);
-    const expectedState = {
-      [metaTypes.updateMessage]: { inProgress: true, error: '' },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-  test(actionTypes.UPDATE_REJECTED, () => {
-    const initialState = {
-      [metaTypes.updateMessage]: { inProgress: true, error: '' },
-    };
-    const error = 'error';
-    const action = actions.firebaseUpdateRejected(
-      error,
-      metaTypes.updateMessage,
+    const action = actions.firebaseUpdateRequested(
+      { item1: 'updateItem1Value' },
+      metaTypes.userSettings,
     );
     const expectedState = {
-      [metaTypes.updateMessage]: { inProgress: false, error },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.UPDATE_FULFILLED, () => {
-    const initialState = {
-      [metaTypes.updateMessage]: { inProgress: true, error: '' },
-    };
-    const action = actions.firebaseUpdateFulfilled(metaTypes.updateMessage);
-    const expectedState = {
-      [metaTypes.updateMessage]: { inProgress: false, error: '' },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.REMOVE_REQUESTED, () => {
-    const initialState = {
-      [metaTypes.removeMessage]: { inProgress: false, error: '' },
-    };
-    const action = actions.firebaseRemoveRequested(metaTypes.removeMessage);
-    const expectedState = {
-      [metaTypes.removeMessage]: { inProgress: true, error: '' },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.REMOVE_REJECTED, () => {
-    const initialState = {
-      [metaTypes.removeMessage]: { inProgress: true, error: '' },
-    };
-    const error = 'error';
-    const action = actions.firebaseRemoveRejected(
-      error,
-      metaTypes.removeMessage,
-    );
-    const expectedState = {
-      [metaTypes.removeMessage]: { inProgress: false, error },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.REMOVE_FULFILLED, () => {
-    const initialState = {
-      [metaTypes.removeMessage]: { inProgress: true, error: '' },
-    };
-    const action = actions.firebaseRemoveFulfilled(metaTypes.removeMessage);
-    const expectedState = {
-      [metaTypes.removeMessage]: { inProgress: false, error: '' },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.LISTEN_REQUESTED, () => {
-    const initialState = {
-      [metaTypes.messages]: {
-        inProgress: false,
-        error: '',
-        data: {},
-      },
-    };
-    const ref = {};
-    const action = actions.firebaseListenRequested(ref, metaTypes.messages);
-    const expectedState = {
-      [metaTypes.messages]: {
-        inProgress: true,
-        error: '',
-        data: {},
-      },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.LISTEN_REJECTED, () => {
-    const initialState = {
-      [metaTypes.messages]: { inProgress: true, error: '', data: {} },
-    };
-    const error = 'error';
-    const action = actions.firebaseListenRejected(error, metaTypes.messages);
-    const expectedState = {
-      [metaTypes.messages]: { inProgress: false, error, data: {} },
-    };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.LISTEN_FULFILLED, () => {
-    const initialState = {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: '',
-        data: {},
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
       },
     };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+  test(actionTypes.UPDATE_REJECTED, () => {
+    sampleState[metaTypes.userSettings].inProgress = true;
+
+    const error = 'test error';
+    const action = actions.firebaseUpdateRejected(
+      error,
+      metaTypes.userSettings,
+    );
+
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: 'test error',
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.UPDATE_FULFILLED, () => {
+    sampleState[metaTypes.userSettings].inProgress = true;
+
+    const action = actions.firebaseUpdateFulfilled(metaTypes.userSettings);
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: '',
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.REMOVE_REQUESTED, () => {
+    const action = actions.firebaseRemoveRequested(
+      { key: 'item1' },
+      metaTypes.userSettings,
+    );
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: true,
+        error: '',
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.REMOVE_REJECTED, () => {
+    sampleState[metaTypes.userSettings].inProgress = true;
+
+    const error = 'test error message';
+    const action = actions.firebaseRemoveRejected(
+      error,
+      metaTypes.userSettings,
+    );
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error,
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.REMOVE_FULFILLED, () => {
+    sampleState[metaTypes.userSettings].inProgress = true;
+
+    const action = actions.firebaseRemoveFulfilled(metaTypes.userSettings);
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: '',
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.LISTEN_REQUESTED, () => {
+    const ref = {};
+    const action = actions.firebaseListenRequested(ref, metaTypes.userSettings);
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: true,
+        error: '',
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.LISTEN_REJECTED, () => {
+    sampleState[metaTypes.userSettings].inProgress = true;
+
+    const error = 'error';
+    const action = actions.firebaseListenRejected(
+      error,
+      metaTypes.userSettings,
+    );
+    const expectedState = {
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error,
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.LISTEN_FULFILLED, () => {
+    sampleState[metaTypes.userSettings].data = {};
+
     const key = 'someKey';
     const data = { 1: { text: 'hello' }, 2: { text: 'world' } };
     const action = actions.firebaseListenFulfilled(
@@ -157,159 +191,107 @@ describe('firebaseReducer reducer', () => {
         data,
       },
     };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.LISTEN_CHILD_ADDED, () => {
-    const initialState = {
-      [metaTypes.messages]: {
-        inProgress: false,
-        error: '',
-        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
-      },
-    };
-    const childId = '3';
-    const child = { text: 'goodbye' };
+    const childKey = 'item3';
+    const childData = 'item3value';
     const action = actions.firebaseListenChildAdded(
-      childId,
-      child,
-      metaTypes.messages,
+      childKey,
+      childData,
+      metaTypes.userSettings,
     );
     const expectedState = {
-      [metaTypes.messages]: {
+      [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        data: {
-          1: { text: 'hello' },
-          2: { text: 'world' },
-          3: { text: 'goodbye' },
-        },
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value', item3: 'item3value' },
       },
     };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.LISTEN_CHILD_CHANGED, () => {
-    const initialState = {
-      [metaTypes.messages]: {
-        inProgress: false,
-        error: '',
-        data: {
-          1: { text: 'hello' },
-          2: { text: 'world' },
-          3: { text: 'goodbye' },
-        },
-      },
-    };
-    const childId = '3';
-    const child = { text: 'ciao' };
+    const childKey = 'item2';
+    const childData = 'updatedItem2value';
     const action = actions.firebaseListenChildChanged(
-      childId,
-      child,
-      metaTypes.messages,
+      childKey,
+      childData,
+      metaTypes.userSettings,
     );
     const expectedState = {
-      [metaTypes.messages]: {
+      [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        data: {
-          1: { text: 'hello' },
-          2: { text: 'world' },
-          3: { text: 'ciao' },
-        },
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'updatedItem2value' },
       },
     };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.LISTEN_CHILD_REMOVED, () => {
-    const initialState = {
-      [metaTypes.messages]: {
-        inProgress: false,
-        error: '',
-        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
-      },
-    };
-    const childId = '2';
+    const childKey = 'item1';
     const action = actions.firebaseListenChildRemoved(
-      childId,
-      metaTypes.messages,
+      childKey,
+      metaTypes.userSettings,
     );
     const expectedState = {
-      [metaTypes.messages]: {
+      [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        data: { 1: { text: 'hello' } },
+        key: 'key1',
+        data: { item2: 'item2value' },
       },
     };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(`${actionTypes.LISTEN_REMOVED} clear data false`, () => {
-    const initialState = {
-      [metaTypes.messages]: {
-        inProgress: false,
-        error: '',
-        key: 'someKey',
-        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
-      },
-    };
-    const action = actions.firebaseListenRemoved(false, metaTypes.messages);
+    const action = actions.firebaseListenRemoved(false, metaTypes.userSettings);
     const expectedState = {
-      [metaTypes.messages]: {
+      [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'someKey',
-        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
+        key: 'key1',
+        data: { item1: 'item1value', item2: 'item2value' },
       },
     };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(`${actionTypes.LISTEN_REMOVED} clear data true`, () => {
-    const initialState = {
-      [metaTypes.messages]: {
-        inProgress: false,
-        error: '',
-        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
-      },
-    };
-    const action = actions.firebaseListenRemoved(true, metaTypes.messages);
+    const action = actions.firebaseListenRemoved(true, metaTypes.userSettings);
     const expectedState = {
-      [metaTypes.messages]: {
+      [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
         key: '',
         data: {},
       },
     };
-    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.GET_FLOCK_REQUESTED, () => {
-    const initialState = {
-      [metaTypes.userSettings]: {
-        inProgress: false,
-        error: '',
-        data: { a: 1, b: 2 },
-      },
+    const state = {
+      ...sampleState,
       [metaTypes.flocks]: {
         inProgress: false,
         error: '',
         data: {},
       },
     };
+
     const action = actions.getFlock('flockId1');
-    expect(firebaseReducer(initialState, action)).toMatchSnapshot();
+    expect(firebaseReducer(state, action)).toMatchSnapshot();
   });
 
   test(actionTypes.GET_FLOCK_FULFILLED, () => {
-    const initialState = {
-      [metaTypes.userSettings]: {
-        inProgress: false,
-        error: '',
-        data: { a: 1, b: 2 },
-      },
+    const state = {
+      ...sampleState,
       [metaTypes.flocks]: {
         inProgress: true,
         error: '',
@@ -319,18 +301,18 @@ describe('firebaseReducer reducer', () => {
     const flock = {
       flock1: {
         name: 'Flock 1',
-        ownedBy: 'userId1',
+        ownedBy: 'user1',
       },
     };
     let action = actions.getFlockFulfilled(flock);
-    const newState = firebaseReducer(initialState, action);
+    const newState = firebaseReducer(state, action);
     expect(newState).toMatchSnapshot();
 
     // Add another flock since there can be multiples
     const flock2 = {
       flock2: {
         name: 'Flock 2',
-        ownedBy: 'userId2',
+        ownedBy: 'user2',
       },
     };
     action = actions.getFlockFulfilled(flock2);
@@ -338,12 +320,8 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.GET_FLOCK_REJECTED, () => {
-    const initialState = {
-      [metaTypes.userSettings]: {
-        inProgress: false,
-        error: '',
-        data: { a: 1, b: 2 },
-      },
+    const state = {
+      ...sampleState,
       [metaTypes.flocks]: {
         inProgress: true,
         error: '',
@@ -356,21 +334,14 @@ describe('firebaseReducer reducer', () => {
       },
     };
     const action = actions.getFlockRejected('Error Message');
-    expect(firebaseReducer(initialState, action)).toMatchSnapshot();
+    expect(firebaseReducer(state, action)).toMatchSnapshot();
   });
 
   test('bogus action does nothing', () => {
-    const initialState = {
-      [metaTypes.userSettings]: {
-        inProgress: false,
-        error: '',
-        data: { 1: { text: 'hello' }, 2: { text: 'world' } },
-      },
-    };
     const action = {
       type: 'DO_NOT_TOUCH_STATE_ACTION',
     };
-    expect(firebaseReducer(initialState, action)).toBe(initialState);
+    expect(firebaseReducer(sampleState, action)).toBe(sampleState);
   });
 
   test('undefined initial state', () => {

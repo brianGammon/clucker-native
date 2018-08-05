@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
+import {
+  View, Text, TextInput, Button,
+} from 'react-native';
 import styles from './styles';
 
 type Props = {
@@ -7,6 +9,7 @@ type Props = {
   breed: string,
   hatched: string,
   onFieldChanged: (fieldName: string, text: string) => void,
+  onSaveForm: () => {},
 };
 
 const ChickenEditorRenderer = ({
@@ -14,6 +17,7 @@ const ChickenEditorRenderer = ({
   breed,
   hatched,
   onFieldChanged,
+  onSaveForm,
 }: Props) => (
   <View style={styles.container}>
     <View style={styles.formGroup}>
@@ -41,6 +45,7 @@ const ChickenEditorRenderer = ({
         onChangeText={text => onFieldChanged('hatched', text)}
       />
     </View>
+    <Button onPress={onSaveForm} title="Save" />
   </View>
 );
 

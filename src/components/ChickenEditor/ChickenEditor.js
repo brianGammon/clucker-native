@@ -10,6 +10,8 @@ type Props = {
   navigation: any,
   chicken: Chicken,
   chickenId: string,
+  flockId: string,
+  saveForm: (payload: {}) => void,
 };
 
 type State = {
@@ -27,6 +29,7 @@ class ChickenEditor extends React.Component<Props, State> {
     super();
     this.state = {};
     this.onFieldChanged = this.onFieldChanged.bind(this);
+    this.onSaveForm = this.onSaveForm.bind(this);
   }
 
   componentDidMount() {
@@ -40,8 +43,24 @@ class ChickenEditor extends React.Component<Props, State> {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { chicken, navigation } = this.props;
+    if (prevProps.chicken !== chicken) {
+      navigation.goBack();
+    }
+  }
+
   onFieldChanged(name, text) {
     this.setState({ [name]: text });
+  }
+
+  onSaveForm() {
+    const {
+      chicken, chickenId, flockId, saveForm,
+    } = this.props;
+    const updatedChicken = { ...chicken, ...this.state };
+    const payload = { flockId, chickenId, updatedChicken };
+    saveForm(payload);
   }
 
   render() {
@@ -49,23 +68,25 @@ class ChickenEditor extends React.Component<Props, State> {
       <ChickenEditorRenderer
         {...this.state}
         onFieldChanged={this.onFieldChanged}
+        onSaveForm={this.onSaveForm}
       />
     );
   }
 }
 
-const mapStateToProps = ({ chickens }, { navigation }) => {
-  const chickenId = navigation.getParam('chickenId', 'NO-ID');
-  if (chickenId === 'NO-ID') {
+const mapStateToProps = ({ chickens, userSettings }, { navigation }) => {
+  const chickenId = navigation.getParam('chickenId', null);
+  if (!chickenId) {
     return {};
   }
   return {
     ...chickenSelector(chickens.data, chickenId),
+    flockId: userSettings.data.currentFlockId,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  saveForm: data => dispatch(firebaseUpdateRequested(data, metaTypes.chickens)),
+  saveForm: payload => dispatch(firebaseUpdateRequested(payload, metaTypes.chickens)),
 });
 
 export default connect(
