@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import FlockRenderer from './FlockRenderer';
 import {
   type Chicken,
@@ -31,8 +32,21 @@ class Flock extends React.Component<Props> {
   }
 
   onDeleteChicken = (chickenId) => {
-    const { flockId, deleteChicken } = this.props;
-    deleteChicken(flockId, chickenId);
+    const { flockId, deleteChicken, chickens } = this.props;
+    Alert.alert(
+      'Are you sure?',
+      `This will delete ${chickens[chickenId].name} and all her eggs.`,
+      [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: () => deleteChicken(flockId, chickenId),
+          style: 'destructive',
+        },
+      ],
+    );
   };
 
   render() {
