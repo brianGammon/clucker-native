@@ -18,9 +18,9 @@ export function* addItems(path, data, metaType) {
   try {
     const ref = firebase.database().ref(path);
     yield call([ref, ref.push], data);
-    yield put(actions.firebaseUpdateFulfilled(metaType));
+    yield put(actions.firebaseCreateFulfilled(metaType));
   } catch (error) {
-    yield put(actions.firebaseUpdateRejected(error, metaType));
+    yield put(actions.firebaseCreateRejected(error, metaType));
   }
 }
 
@@ -46,9 +46,9 @@ export function getChickensPath({ flockId, chickenId }) {
   return path;
 }
 
-export function getChickensUpdate({ flockId, chickenId, updatedChicken }) {
+export function getChickensUpdate({ flockId, chickenId, data }) {
   return {
-    [`chickens/${flockId}/${chickenId}`]: updatedChicken,
+    [`chickens/${flockId}/${chickenId}`]: data,
   };
 }
 

@@ -1,5 +1,471 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no stats yet 1`] = `
+<ScrollView>
+  <Button
+    onPress={[Function]}
+    title="Edit Chicken"
+  />
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginTop": 20,
+      }
+    }
+  >
+    <Icon
+      allowFontScaling={false}
+      color="lightgrey"
+      name="ios-arrow-back"
+      onPress={[Function]}
+      size={12}
+      style={
+        Object {
+          "fontSize": 50,
+          "paddingLeft": 10,
+        }
+      }
+    />
+    <Image
+      source={
+        Object {
+          "uri": undefined,
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Icon
+      allowFontScaling={false}
+      color="grey"
+      name="ios-arrow-forward"
+      onPress={[Function]}
+      size={12}
+      style={
+        Object {
+          "fontSize": 50,
+          "paddingRight": 10,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "padding": 10,
+      }
+    }
+  >
+    <Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Name:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      >
+        The First Chicken
+      </Component>
+      <Component
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "fontWeight": "bold",
+            },
+            Object {
+              "paddingTop": 10,
+            },
+          ]
+        }
+      >
+        Hatched On:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      />
+    </Component>
+    <Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Breed:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      />
+    </Component>
+  </Component>
+  <Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Total Eggs:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Component>
+    <Component
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          },
+          Object {
+            "paddingTop": 10,
+          },
+        ]
+      }
+    >
+      Heaviest Egg:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    />
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    />
+    <Component
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          },
+          Object {
+            "paddingTop": 10,
+          },
+        ]
+      }
+    >
+      Longest Streak:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Component>
+    <Component
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          },
+          Object {
+            "paddingTop": 10,
+          },
+        ]
+      }
+    >
+      Last 7 Days:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      {
+  "2018-10-06": 1
+}
+    </Component>
+  </Component>
+</ScrollView>
+`;
+
+exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when stats available 1`] = `
+<ScrollView>
+  <Button
+    onPress={[Function]}
+    title="Edit Chicken"
+  />
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginTop": 20,
+      }
+    }
+  >
+    <Icon
+      allowFontScaling={false}
+      color="lightgrey"
+      name="ios-arrow-back"
+      onPress={[Function]}
+      size={12}
+      style={
+        Object {
+          "fontSize": 50,
+          "paddingLeft": 10,
+        }
+      }
+    />
+    <Image
+      source={
+        Object {
+          "uri": undefined,
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Icon
+      allowFontScaling={false}
+      color="grey"
+      name="ios-arrow-forward"
+      onPress={[Function]}
+      size={12}
+      style={
+        Object {
+          "fontSize": 50,
+          "paddingRight": 10,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "padding": 10,
+      }
+    }
+  >
+    <Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Name:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      >
+        The First Chicken
+      </Component>
+      <Component
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "fontWeight": "bold",
+            },
+            Object {
+              "paddingTop": 10,
+            },
+          ]
+        }
+      >
+        Hatched On:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      />
+    </Component>
+    <Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Breed:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      />
+    </Component>
+  </Component>
+  <Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Total Eggs:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Component>
+    <Component
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          },
+          Object {
+            "paddingTop": 10,
+          },
+        ]
+      }
+    >
+      Heaviest Egg:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      88.1
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      2017-04-02
+    </Component>
+    <Component
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          },
+          Object {
+            "paddingTop": 10,
+          },
+        ]
+      }
+    >
+      Longest Streak:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      0
+    </Component>
+    <Component
+      style={
+        Array [
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          },
+          Object {
+            "paddingTop": 10,
+          },
+        ]
+      }
+    >
+      Last 7 Days:
+    </Component>
+    <Component
+      style={
+        Object {
+          "fontSize": 16,
+        }
+      }
+    >
+      {
+  "2018-10-06": 1
+}
+    </Component>
+  </Component>
+</ScrollView>
+`;
+
 exports[`Chicken component: Should render correctly when chicken ID passed in 1`] = `
 <ChickenRenderer
   chicken={

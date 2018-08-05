@@ -2,7 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import chickenSelector from '../../selectors/chickenSelector';
 import ChickenEditorRenderer from './ChickenEditorRenderer';
-import { firebaseUpdateRequested } from '../../redux/actions';
+import {
+  firebaseUpdateRequested,
+  firebaseCreateRequested,
+} from '../../redux/actions';
 import { type Chicken } from '../../types';
 import { metaTypes } from '../../redux/constants';
 
@@ -11,6 +14,8 @@ type Props = {
   chicken: Chicken,
   chickenId: string,
   flockId: string,
+  inProgress: boolean,
+  error: string,
   saveForm: (payload: {}) => void,
 };
 
@@ -44,8 +49,9 @@ class ChickenEditor extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps) {
-    const { chicken, navigation } = this.props;
-    if (prevProps.chicken !== chicken) {
+    const prevInProgress = prevProps.inProgress;
+    const { inProgress, error, navigation } = this.props;
+    if (!inProgress && prevInProgress && error === '') {
       navigation.goBack();
     }
   }
@@ -58,8 +64,8 @@ class ChickenEditor extends React.Component<Props, State> {
     const {
       chicken, chickenId, flockId, saveForm,
     } = this.props;
-    const updatedChicken = { ...chicken, ...this.state };
-    const payload = { flockId, chickenId, updatedChicken };
+    const data = { ...chicken, ...this.state };
+    const payload = { flockId, chickenId, data };
     saveForm(payload);
   }
 
@@ -76,17 +82,25 @@ class ChickenEditor extends React.Component<Props, State> {
 
 const mapStateToProps = ({ chickens, userSettings }, { navigation }) => {
   const chickenId = navigation.getParam('chickenId', null);
-  if (!chickenId) {
-    return {};
+  let chickenData = {};
+  if (chickenId) {
+    chickenData = chickenSelector(chickens.data, chickenId);
   }
   return {
-    ...chickenSelector(chickens.data, chickenId),
+    ...chickenData,
     flockId: userSettings.data.currentFlockId,
+    inProgress: chickens.inProgress,
+    error: chickens.error,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  saveForm: payload => dispatch(firebaseUpdateRequested(payload, metaTypes.chickens)),
+  saveForm: (payload) => {
+    if (payload.chickenId) {
+      return dispatch(firebaseUpdateRequested(payload, metaTypes.chickens));
+    }
+    return dispatch(firebaseCreateRequested(payload, metaTypes.chickens));
+  },
 });
 
 export default connect(

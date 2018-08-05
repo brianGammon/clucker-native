@@ -23,14 +23,14 @@ describe('saga tests', () => {
 
     const successGenerator = generator.clone();
     expect(successGenerator.next().value).toEqual(
-      put(actions.firebaseUpdateFulfilled(metaType)),
+      put(actions.firebaseCreateFulfilled(metaType)),
     );
     expect(successGenerator.next().done).toEqual(true);
 
     const failGenerator = generator.clone();
     const error = new Error('An error occured');
     expect(failGenerator.throw(error).value).toEqual(
-      put(actions.firebaseUpdateRejected(error, metaType)),
+      put(actions.firebaseCreateRejected(error, metaType)),
     );
     expect(failGenerator.next().done).toEqual(true);
   });
@@ -92,7 +92,7 @@ describe('saga tests', () => {
     const updates = {
       flockId: 'flock1',
       chickenId: 'chicken1',
-      updatedChicken: {
+      data: {
         name: 'Test Chicken',
         breed: 'Some Breed',
         hatched: '2018-10-06',
@@ -193,14 +193,14 @@ describe('saga tests', () => {
     const payload = {
       flockId: 'flock1',
       chickenId: 'chicken1',
-      updatedChicken: {
+      data: {
         name: 'Test Chicken',
         breed: 'Some Breed',
         hatched: '2018-10-06',
       },
     };
     const expectedUpdates = {
-      'chickens/flock1/chicken1': payload.updatedChicken,
+      'chickens/flock1/chicken1': payload.data,
     };
     const action = actions.firebaseUpdateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensUpdate;
