@@ -2,6 +2,9 @@
 
 exports[`ChickenEditor component: Should render in add new mode 1`] = `
 <ChickenEditorRenderer
+  breed=""
+  hatched=""
+  name=""
   onFieldChanged={[Function]}
   onSaveForm={[Function]}
 />

@@ -1,3 +1,4 @@
+/* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 import chickenSelector from '../../selectors/chickenSelector';
@@ -32,7 +33,11 @@ class ChickenEditor extends React.Component<Props, State> {
 
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      name: '',
+      breed: '',
+      hatched: '',
+    };
     this.onFieldChanged = this.onFieldChanged.bind(this);
     this.onSaveForm = this.onSaveForm.bind(this);
   }
@@ -56,18 +61,18 @@ class ChickenEditor extends React.Component<Props, State> {
     }
   }
 
-  onFieldChanged(name, text) {
+  onFieldChanged = (name, text) => {
     this.setState({ [name]: text });
-  }
+  };
 
-  onSaveForm() {
+  onSaveForm = () => {
     const {
       chicken, chickenId, flockId, saveForm,
     } = this.props;
     const data = { ...chicken, ...this.state };
     const payload = { flockId, chickenId, data };
     saveForm(payload);
-  }
+  };
 
   render() {
     return (

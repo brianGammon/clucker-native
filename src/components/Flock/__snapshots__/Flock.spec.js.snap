@@ -108,6 +108,7 @@ exports[`Flock component: Should render connected component as flock guest 1`] =
   }
   isFlockOwner={false}
   navigation={Object {}}
+  onDeleteChicken={[Function]}
 />
 `;
 
@@ -133,5 +134,6 @@ exports[`Flock component: Should render connected component as flock owner 1`] =
   }
   isFlockOwner={true}
   navigation={Object {}}
+  onDeleteChicken={[Function]}
 />
 `;
