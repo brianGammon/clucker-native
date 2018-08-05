@@ -1,27 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EggEditor component: Should render 1`] = `
-<Component
-  style={
+exports[`EggEditor component: Should render connected EggEditor with default chicken, egg, and date 1`] = `
+<EggEditorRenderer
+  chickenId="chicken1"
+  chickens={
     Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
+      "chicken1": Object {
+        "name": "The First Chicken",
+      },
+      "chicken2": Object {
+        "name": "The Second Chicken",
+      },
     }
   }
->
-  <Component
-    style={
-      Object {
-        "fontSize": 18,
-      }
+  defaultDate="2018-02-10"
+  egg={
+    Object {
+      "chickenId": "chicken1",
+      "chickenName": "Bossie",
+      "damaged": false,
+      "date": "2018-08-01",
+      "modified": "2018-01-12T18:05:54.806Z",
+      "notes": "This was the record setting egg from May 2017, real egg was 66.1g on this day",
+      "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
+      "weight": 88.1,
     }
-  >
-    Edit Egg for chicken ID: chicken1 for date: chicken1
-  </Component>
-  <Button
-    onPress={[Function]}
-    title="Dismiss"
-  />
-</Component>
+  }
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "chickenId",
+            null,
+          ],
+          Array [
+            "eggId",
+            null,
+          ],
+          Array [
+            "date",
+            null,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "chicken1",
+          },
+          Object {
+            "isThrow": false,
+            "value": "egg1",
+          },
+          Object {
+            "isThrow": false,
+            "value": "2018-02-10",
+          },
+        ],
+      },
+    }
+  }
+/>
+`;
+
+exports[`EggEditor component: Should render connected EggEditor with no defaults 1`] = `
+<EggEditorRenderer
+  chickenId={null}
+  chickens={
+    Object {
+      "chicken1": Object {
+        "name": "The First Chicken",
+      },
+      "chicken2": Object {
+        "name": "The Second Chicken",
+      },
+    }
+  }
+  defaultDate="2018-08-05"
+  egg={Object {}}
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "chickenId",
+            null,
+          ],
+          Array [
+            "eggId",
+            null,
+          ],
+          Array [
+            "date",
+            null,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": null,
+          },
+          Object {
+            "isThrow": false,
+            "value": null,
+          },
+          Object {
+            "isThrow": false,
+            "value": null,
+          },
+        ],
+      },
+    }
+  }
+/>
 `;

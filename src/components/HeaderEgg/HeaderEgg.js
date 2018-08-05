@@ -12,8 +12,10 @@ export default ({ navigation }: { navigation: Props.navigation }) => {
   const options = {};
   if (chickenId) {
     options.chickenId = chickenId;
-    options.eggId = 'eggID1';
-    options.date = '2018-10-19';
+  }
+  const date = navigation.getParam('date', null);
+  if (date) {
+    options.date = date;
   }
   return (
     <Text

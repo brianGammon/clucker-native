@@ -1,18 +1,35 @@
 import React from 'react';
+import configureStore from 'redux-mock-store';
 import EggEditor from '.';
+import mockNavigation from '../../../jest/mockNavigation';
+import sampleData from '../../../jest/sampleData';
 
 describe('EggEditor component:', () => {
-  const paramReturned = 'chicken1';
-  const navigation = {
-    getParam: jest.fn((param, defaultId) => {
-      if (paramReturned) {
-        return paramReturned;
-      }
-      return defaultId;
-    }),
-  };
-  test('Should render', () => {
-    const wrapper = shallow(<EggEditor navigation={navigation} />);
+  const middlewares = [];
+  const mockStore = configureStore(middlewares);
+  const store = mockStore(sampleData);
+
+  test('Should render connected EggEditor with default chicken, egg, and date', () => {
+    const paramReturned = {
+      getParam: {
+        chickenId: 'chicken1',
+        date: '2018-02-10',
+        eggId: 'egg1',
+      },
+    };
+    const navigation = mockNavigation(paramReturned);
+    const wrapper = shallow(
+      <EggEditor store={store} navigation={navigation} />,
+    ).dive();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('Should render connected EggEditor with no defaults', () => {
+    const paramReturned = {};
+    const navigation = mockNavigation(paramReturned);
+    const wrapper = shallow(
+      <EggEditor store={store} navigation={navigation} />,
+    ).dive();
     expect(wrapper).toMatchSnapshot();
   });
 });
