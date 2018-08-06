@@ -38,6 +38,19 @@ export function getUserSettingsPath({ uid }) {
   return `userSettings/${uid}`;
 }
 
+export function getUserSettingsUpdate({
+  uid,
+  displayName,
+  currentFlockId,
+  flocks,
+}) {
+  return {
+    [`userSettings/${uid}/displayName`]: displayName,
+    [`userSettings/${uid}/currentFlockId`]: currentFlockId,
+    [`userSettings/${uid}/flocks`]: flocks,
+  };
+}
+
 export function getChickensPath({ flockId, chickenId }) {
   let path = `chickens/${flockId}`;
   if (chickenId) {
@@ -52,16 +65,17 @@ export function getChickensUpdate({ flockId, chickenId, data }) {
   };
 }
 
-export function getUserSettingsUpdate({
-  uid,
-  displayName,
-  currentFlockId,
-  flocks,
-}) {
+export function getEggsPath({ flockId, eggId }) {
+  let path = `eggs/${flockId}`;
+  if (eggId) {
+    path += `/${eggId}`;
+  }
+  return path;
+}
+
+export function getEggsUpdate({ flockId, eggId, data }) {
   return {
-    [`userSettings/${uid}/displayName`]: displayName,
-    [`userSettings/${uid}/currentFlockId`]: currentFlockId,
-    [`userSettings/${uid}/flocks`]: flocks,
+    [`eggs/${flockId}/${eggId}`]: data,
   };
 }
 
@@ -82,6 +96,9 @@ export function* watchCreateRequested() {
     switch (action.meta.type) {
       case metaTypes.chickens:
         getPath = getChickensPath;
+        break;
+      case metaTypes.eggs:
+        getPath = getEggsPath;
         break;
       default:
         break;
@@ -104,6 +121,9 @@ export function* watchUpdateRequested() {
       case metaTypes.chickens:
         getUpdates = getChickensUpdate;
         break;
+      case metaTypes.eggs:
+        getUpdates = getEggsUpdate;
+        break;
       default:
         break;
     }
@@ -124,6 +144,9 @@ export function* watchRemoveRequested() {
         break;
       case metaTypes.chickens:
         getPath = getChickensPath;
+        break;
+      case metaTypes.eggs:
+        getPath = getEggsPath;
         break;
       default:
         break;

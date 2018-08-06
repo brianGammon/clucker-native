@@ -102,6 +102,35 @@ describe('saga tests', () => {
     expect(sagas.getChickensUpdate(updates)).toMatchSnapshot();
   });
 
+  test('getEggsPath for remove', () => {
+    const flockId = 'flock1';
+    const eggId = 'egg1';
+    const path = `eggs/${flockId}/${eggId}`;
+    expect(sagas.getEggsPath({ flockId, eggId })).toEqual(path);
+  });
+
+  test('getEggsPath for create', () => {
+    const flockId = 'flock1';
+    const path = `eggs/${flockId}`;
+    expect(
+      sagas.getEggsPath({ flockId, data: { key1: 'value1' } }),
+    ).toEqual(path);
+  });
+
+  test('getEggsUpdate', () => {
+    const updates = {
+      flockId: 'flock1',
+      eggId: 'egg1',
+      data: {
+        chickenName: 'Test Chicken',
+        chickenId: 'chicken1',
+        date: '2018-10-06',
+      },
+    };
+
+    expect(sagas.getEggsUpdate(updates)).toMatchSnapshot();
+  });
+
   test('removeItem - regular stream - success and failure', () => {
     const path = 'a/b/c';
     const metaType = 'someType';
@@ -137,6 +166,30 @@ describe('saga tests', () => {
 
     const action = actions.firebaseCreateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensPath;
+    const result = selector(payload);
+    expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
+    expect(generator.next(result).value).toEqual(
+      fork(sagas.addItems, expectedPath, payload.data, action.meta.type),
+    );
+  });
+
+  test(`watchCreateRequested ${metaTypes.eggs}`, () => {
+    const generator = sagas.watchCreateRequested();
+    const payload = {
+      flockId: 'flock1',
+      data: {
+        chickenName: 'Test Chicken',
+        chickenId: 'chicken1',
+        date: '2018-10-06',
+      },
+    };
+    const expectedPath = 'eggs/flock1';
+
+    const action = actions.firebaseCreateRequested(payload, metaTypes.eggs);
+    const selector = sagas.getEggsPath;
     const result = selector(payload);
     expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
     expect(generator.next(action).value).toEqual(
@@ -204,6 +257,32 @@ describe('saga tests', () => {
     };
     const action = actions.firebaseUpdateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensUpdate;
+    const result = selector(payload);
+    expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
+    expect(generator.next(action).value).toEqual(
+      call(selector, action.payload),
+    );
+    expect(generator.next(result).value).toEqual(
+      fork(sagas.updateItems, expectedUpdates, action.meta.type),
+    );
+  });
+
+  test(`watchUpdateRequested ${metaTypes.eggs}`, () => {
+    const generator = sagas.watchUpdateRequested();
+    const payload = {
+      flockId: 'flock1',
+      eggId: 'egg1',
+      data: {
+        chickenName: 'Test Chicken',
+        chickenId: 'chicken1',
+        date: '2018-10-06',
+      },
+    };
+    const expectedUpdates = {
+      'eggs/flock1/egg1': payload.data,
+    };
+    const action = actions.firebaseUpdateRequested(payload, metaTypes.eggs);
+    const selector = sagas.getEggsUpdate;
     const result = selector(payload);
     expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
     expect(generator.next(action).value).toEqual(

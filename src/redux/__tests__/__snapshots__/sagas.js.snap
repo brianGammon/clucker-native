@@ -10,6 +10,16 @@ Object {
 }
 `;
 
+exports[`saga tests getEggsUpdate 1`] = `
+Object {
+  "eggs/flock1/egg1": Object {
+    "chickenId": "chicken1",
+    "chickenName": "Test Chicken",
+    "date": "2018-10-06",
+  },
+}
+`;
+
 exports[`saga tests getFlock 1`] = `
 Object {
   "@@redux-saga/IO": true,

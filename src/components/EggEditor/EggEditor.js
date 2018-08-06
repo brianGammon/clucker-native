@@ -5,8 +5,15 @@ import moment from 'moment';
 import EggEditorRenderer from './EggEditorRenderer';
 import { nowAsMoment } from '../../utils/dateHelper';
 import { type Chicken, type Egg, type Navigation } from '../../types';
+import { metaTypes } from '../../redux/constants';
+import {
+  firebaseUpdateRequested,
+  firebaseCreateRequested,
+} from '../../redux/actions';
 
 type Props = {
+  inProgress: boolean,
+  error: string,
   chickenId: string,
   chickens: {
     [chickenId: string]: Chicken,
@@ -17,6 +24,7 @@ type Props = {
   navigation: Navigation,
   defaultDate: string,
   userId: string,
+  saveForm: (payload: { flockId: string, eggId?: string, data: Egg }) => void,
 };
 
 type State = {
@@ -56,19 +64,29 @@ class EggEditor extends React.Component<Props, State> {
     this.setState({ ...defaultState });
   }
 
+  componentDidUpdate(prevProps) {
+    const prevInProgress = prevProps.inProgress;
+    const { inProgress, error, navigation } = this.props;
+    if (!inProgress && prevInProgress && error === '') {
+      navigation.goBack();
+    }
+  }
+
   onSaveForm = () => {
-    const { egg, userId } = this.props;
-    const result = {
+    const {
+      egg, userId, flockId, eggId, saveForm,
+    } = this.props;
+    const data = {
       ...egg,
       ...this.state,
       modified: moment().toISOString(),
       userId,
     };
-    console.log('saving egg: ', result);
+    const payload = { flockId, eggId, data };
+    saveForm(payload);
   };
 
   onFieldChanged = (fieldName, value) => {
-    console.log('field changed:', { fieldName, value });
     this.setState({ [fieldName]: value });
   };
 
@@ -113,7 +131,21 @@ const mapStateToProps = ({ chickens, userSettings, eggs }, { navigation }) => {
     flockId: userSettings.data.currentFlockId,
     userId: userSettings.key,
     defaultDate: defaultDate || nowAsMoment().format('YYYY-MM-DD'),
+    inProgress: eggs.inProgress,
+    error: eggs.error,
   };
 };
 
-export default connect(mapStateToProps)(EggEditor);
+const mapDispatchToProps = dispatch => ({
+  saveForm: (payload) => {
+    if (payload.eggId) {
+      return dispatch(firebaseUpdateRequested(payload, metaTypes.eggs));
+    }
+    return dispatch(firebaseCreateRequested(payload, metaTypes.eggs));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EggEditor);
