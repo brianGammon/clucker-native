@@ -94,7 +94,7 @@ class EggEditor extends React.Component<Props, State> {
     const { chickens } = this.props;
     this.setState({
       chickenId: itemValue,
-      chickenName: chickens[itemValue].name,
+      chickenName: chickens[itemValue] ? chickens[itemValue].name : 'Unknown',
     });
   };
 
