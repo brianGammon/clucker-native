@@ -3,6 +3,7 @@
 exports[`EggEditor component: Should render connected EggEditor with default chicken, egg, and date 1`] = `
 <EggEditorRenderer
   chickenId="chicken1"
+  chickenName="Bossie"
   chickens={
     Object {
       "chicken1": Object {
@@ -13,19 +14,10 @@ exports[`EggEditor component: Should render connected EggEditor with default chi
       },
     }
   }
-  defaultDate="2018-02-10"
-  egg={
-    Object {
-      "chickenId": "chicken1",
-      "chickenName": "Bossie",
-      "damaged": false,
-      "date": "2018-08-01",
-      "modified": "2018-01-12T18:05:54.806Z",
-      "notes": "This was the record setting egg from May 2017, real egg was 66.1g on this day",
-      "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
-      "weight": 88.1,
-    }
-  }
+  damaged={false}
+  date="2018-08-01"
+  handlePickItem={[Function]}
+  handleToggleSwitch={[Function]}
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -60,12 +52,17 @@ exports[`EggEditor component: Should render connected EggEditor with default chi
       },
     }
   }
+  notes="This was the record setting egg from May 2017, real egg was 66.1g on this day"
+  onFieldChanged={[Function]}
+  onSaveForm={[Function]}
+  weight={88.1}
 />
 `;
 
 exports[`EggEditor component: Should render connected EggEditor with no defaults 1`] = `
 <EggEditorRenderer
-  chickenId={null}
+  chickenId="unknown"
+  chickenName=""
   chickens={
     Object {
       "chicken1": Object {
@@ -76,8 +73,10 @@ exports[`EggEditor component: Should render connected EggEditor with no defaults
       },
     }
   }
-  defaultDate="2018-08-05"
-  egg={Object {}}
+  damaged={false}
+  date="2018-08-05"
+  handlePickItem={[Function]}
+  handleToggleSwitch={[Function]}
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -112,5 +111,9 @@ exports[`EggEditor component: Should render connected EggEditor with no defaults
       },
     }
   }
+  notes=""
+  onFieldChanged={[Function]}
+  onSaveForm={[Function]}
+  weight=""
 />
 `;

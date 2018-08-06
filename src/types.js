@@ -27,7 +27,7 @@ export type Egg = {
   modified: string,
   notes: string,
   userId: string,
-  weight: number,
+  weight: string | number,
 };
 
 export type ChickenStats = {

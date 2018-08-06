@@ -9,7 +9,7 @@ type Props = {
   breed: string,
   hatched: string,
   onFieldChanged: (fieldName: string, text: string) => void,
-  onSaveForm: () => {},
+  onSaveForm: () => void,
 };
 
 const ChickenEditorRenderer = ({
