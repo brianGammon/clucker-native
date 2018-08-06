@@ -2,6 +2,13 @@
 
 exports[`Calender component: Should render 1`] = `
 <CalendarRenderer
+  dates={
+    Object {
+      "date": "2018-08",
+      "nextDate": null,
+      "previousDate": "2018-07",
+    }
+  }
   eggs={
     Object {
       "egg1": Object {
