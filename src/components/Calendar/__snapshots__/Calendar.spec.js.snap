@@ -1,27 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Calender component: Should render 1`] = `
-<Component
-  style={
+<CalendarRenderer
+  eggs={
     Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
+      "egg1": Object {
+        "chickenId": "chicken1",
+        "chickenName": "Bossie",
+        "damaged": false,
+        "date": "2018-08-01",
+        "modified": "2018-01-12T18:05:54.806Z",
+        "notes": "This was the record setting egg from May 2017, real egg was 66.1g on this day",
+        "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
+        "weight": 88.1,
+      },
+      "egg3": Object {
+        "chickenId": "chicken1",
+        "chickenName": "Bossie",
+        "damaged": false,
+        "date": "2018-08-02",
+        "modified": "2018-08-02T18:05:54.806Z",
+        "notes": "",
+        "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
+        "weight": 68.1,
+      },
     }
   }
->
-  <Component
-    style={
-      Object {
-        "fontSize": 30,
-      }
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "date",
+            "2018-08",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "2018-08",
+          },
+        ],
+      },
     }
-  >
-    Month Calendar
-  </Component>
-  <Button
-    onPress={[Function]}
-    title="Today's Eggs"
-  />
-</Component>
+  }
+  stats={
+    Object {
+      "averageNumber": 0.3333333333333333,
+      "averageWeight": 78.1,
+      "eggsPerChicken": Object {
+        "chicken1": 2,
+      },
+      "firstEgg": "2018-08-01",
+      "heaviest": Object {
+        "chickenId": "chicken1",
+        "chickenName": "Bossie",
+        "damaged": false,
+        "date": "2018-08-01",
+        "modified": "2018-01-12T18:05:54.806Z",
+        "notes": "This was the record setting egg from May 2017, real egg was 66.1g on this day",
+        "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
+        "weight": 88.1,
+      },
+      "mostEggs": "chicken1",
+      "total": undefined,
+    }
+  }
+/>
 `;
