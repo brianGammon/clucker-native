@@ -3,6 +3,7 @@ import configureStore from 'redux-mock-store';
 import EggEditor from '.';
 import mockNavigation from '../../../jest/mockNavigation';
 import sampleData from '../../../jest/sampleData';
+import '../../../jest/mockDateHelper';
 
 describe('EggEditor component:', () => {
   const middlewares = [];

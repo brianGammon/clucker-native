@@ -3,6 +3,7 @@ import configureStore from 'redux-mock-store';
 import sampleData from '../../../jest/sampleData';
 import mockNavigation from '../../../jest/mockNavigation';
 import Calendar from '.';
+import '../../../jest/mockDateHelper';
 
 describe('Calender component:', () => {
   const middlewares = [];

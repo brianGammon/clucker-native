@@ -3,6 +3,7 @@ import configureStore from 'redux-mock-store';
 import sampleData from '../../../jest/sampleData';
 import Chicken from '.';
 import ChickenRenderer from './ChickenRenderer';
+import '../../../jest/mockDateHelper';
 
 describe('Chicken component:', () => {
   let paramReturned = 'chicken1';

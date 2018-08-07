@@ -2,6 +2,7 @@ import { sortBy, forEach } from 'lodash';
 import moment from 'moment';
 import createCachedSelector from 're-reselect';
 import eggsByChickenSelector from './eggsByChickenSelector';
+import { nowAsMoment } from '../utils/dateHelper';
 
 const getChickenId = (state, chickenId) => chickenId;
 
@@ -17,7 +18,7 @@ const chickenStatsSelector = createCachedSelector(
     let lastEggDate = null;
 
     const lastSevenDays = {};
-    const startDay = moment().subtract(6, 'day');
+    const startDay = nowAsMoment().subtract(6, 'day');
     lastSevenDays[startDay.format('YYYY-MM-DD')] = 0;
     let daysAdded = 1;
     while (daysAdded < 7) {

@@ -2,16 +2,29 @@ import moment from 'moment';
 import { forEach, sortBy } from 'lodash';
 import { dateStringAsMoment, nowAsMoment } from './dateHelper';
 
-export default (eggs) => {
+export default (eggs, range) => {
   let heaviestEgg = null;
   let highestWeight = 0;
   let totalWithWeight = 0;
   let totalWeight = 0;
   let earliestDate = null;
-  let thirtyDayCount = 0;
-  const daysBackForAvg = 30;
-  const thirtyDaysAgo = nowAsMoment().subtract(daysBackForAvg - 1, 'day');
+  let rangeCount = 0;
+  let daysBackForAvg = 30;
+  const now = nowAsMoment();
+  const thirtyDaysAgo = now;
+  const firstOfMonth = range === 'allTime' ? null : moment.utc(`${range}-01`);
+  const startofRange = range === 'allTime' ? thirtyDaysAgo : firstOfMonth;
   const eggsPerChicken = {};
+
+  if (range !== 'allTime') {
+    if (now.format('YYYY-MM') === range) {
+      // in current month, use number of days so far in month
+      daysBackForAvg = now.diff(firstOfMonth, 'days') + 1;
+    } else {
+      // not current month, so use number of days in month
+      daysBackForAvg = moment(range).daysInMonth();
+    }
+  }
 
   const sortedEggs = sortBy(eggs, 'date');
   if (sortedEggs.length === 0) {
@@ -41,8 +54,8 @@ export default (eggs) => {
       }
     }
     // Build a running total for the past 30 days
-    if (thisEgg.isAfter(thirtyDaysAgo)) {
-      thirtyDayCount += 1;
+    if (thisEgg.isAfter(startofRange)) {
+      rangeCount += 1;
     }
   });
 
@@ -58,11 +71,12 @@ export default (eggs) => {
 
   const earliest = dateStringAsMoment(earliestDate);
   let daysToGoBack = daysBackForAvg;
-  if (earliest.isAfter(thirtyDaysAgo)) {
-    const daysAfter = earliest.diff(thirtyDaysAgo, 'days');
+
+  if (range === 'allTime' && earliest.isAfter(startofRange)) {
+    const daysAfter = earliest.diff(startofRange, 'days');
     daysToGoBack = daysBackForAvg - daysAfter;
   }
-  const averageNumber = thirtyDayCount > 0 ? thirtyDayCount / daysToGoBack : 0;
+  const averageNumber = rangeCount > 0 ? rangeCount / daysToGoBack : 0;
 
   return {
     total: eggs.length,

@@ -2,7 +2,7 @@ import { reduce } from 'lodash';
 import createCachedSelector from 're-reselect';
 
 const eggsList = state => state;
-const monthSelector = (state, month = 'all') => month;
+const monthSelector = (state, month = 'allTime') => month;
 
 const eggsSelector = createCachedSelector(
   [eggsList, monthSelector],
