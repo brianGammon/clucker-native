@@ -1,8 +1,8 @@
-# Cluckr - Backyard Chicken Egg Tracker
+# Clucker - Backyard Chicken Egg Tracker
 
 ## React Native Version
 
-Cluckr lets you track the egg production and statistics for your backyard flock.
+Clucker lets you track the egg production and statistics for your backyard flock.
 
 ## Features
 

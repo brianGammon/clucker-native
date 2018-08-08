@@ -52,4 +52,7 @@ export const Tabs = createBottomTabNavigator(
   },
 );
 
-export default withLinking(Tabs, Platform.OS === 'android' ? 'cluckr://cluckr/' : 'cluckr://');
+export default withLinking(
+  Tabs,
+  Platform.OS === 'android' ? 'clucker://clucker/' : 'clucker://',
+);

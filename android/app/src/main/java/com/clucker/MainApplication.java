@@ -1,4 +1,4 @@
-package com.cluckrapp;
+package com.clucker;
 
 import android.app.Application;
 
