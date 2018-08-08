@@ -77,19 +77,28 @@ const ChickenRenderer = ({
         <Text style={styles.text}>{chicken.breed}</Text>
       </View>
     </View>
-    <View>
-      <Text style={styles.label}>Total Eggs:</Text>
-      <Text style={styles.text}>{stats.total}</Text>
-      <Text style={[styles.label, { paddingTop: 10 }]}>Heaviest Egg:</Text>
-      <Text style={styles.text}>{stats.heaviest && stats.heaviest.weight}</Text>
-      <Text style={styles.text}>{stats.heaviest && stats.heaviest.date}</Text>
-      <Text style={[styles.label, { paddingTop: 10 }]}>Longest Streak:</Text>
-      <Text style={styles.text}>{stats.longestStreak}</Text>
-      <Text style={[styles.label, { paddingTop: 10 }]}>Last 7 Days:</Text>
-      <Text style={styles.text}>
-        {JSON.stringify(stats.lastSevenDays, null, 2)}
-      </Text>
-    </View>
+    {stats
+      && stats.total > 0 && (
+        <View>
+          <Text style={styles.label}>Total Eggs:</Text>
+          <Text style={styles.text}>{stats.total}</Text>
+          <Text style={[styles.label, { paddingTop: 10 }]}>Heaviest Egg:</Text>
+          <Text style={styles.text}>
+            {stats.heaviest && stats.heaviest.weight}
+          </Text>
+          <Text style={styles.text}>
+            {stats.heaviest && stats.heaviest.date}
+          </Text>
+          <Text style={[styles.label, { paddingTop: 10 }]}>
+            Longest Streak:
+          </Text>
+          <Text style={styles.text}>{stats.longestStreak}</Text>
+          <Text style={[styles.label, { paddingTop: 10 }]}>Last 7 Days:</Text>
+          <Text style={styles.text}>
+            {JSON.stringify(stats.lastSevenDays, null, 2)}
+          </Text>
+        </View>
+    )}
   </ScrollView>
 );
 

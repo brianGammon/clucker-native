@@ -1,289 +1,266 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Calender component: Should render 1`] = `
-<CalendarRenderer
-  dates={
-    Object {
-      "date": "2018-05",
-      "nextDate": null,
-      "previousDate": "2018-04",
-    }
-  }
-  eggs={
-    Object {
-      "-LBS5lYQRf_Nq_mMxXvf": Object {
+{
+  "eggs": {
+    "inProgress": false,
+    "error": "",
+    "key": "",
+    "data": {
+      "-LBBltyC9p1tXZcjeojT": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-28",
+        "modified": "2018-04-28T15:03:19.202Z",
+        "userId": "user1"
+      },
+      "-LBGm3O0s97QgLVFp_yg": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-29",
+        "modified": "2018-04-29T14:22:07.959Z",
+        "userId": "user1"
+      },
+      "-LBMzVqgn0gx1Wbr4GnB": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:35.717Z",
+        "userId": "user1",
+        "weight": "62.5"
+      },
+      "-LBMzYSJNk-9FIp-7ynK": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:46.383Z",
+        "userId": "user1"
+      },
+      "-LBMzabge-5oORvOVzKP": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:59.335Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-LBS5lYQRf_Nq_mMxXvf": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-01",
         "modified": "2018-05-01T19:08:25.201Z",
         "userId": "user1",
-        "weight": "62.7",
+        "weight": "62.7"
       },
-      "-LBS5npaY0jhl2dmWrD1": Object {
+      "-LBS5npaY0jhl2dmWrD1": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-01",
         "modified": "2018-05-01T19:08:34.557Z",
         "userId": "user1",
-        "weight": "58.2",
+        "weight": "58.2"
       },
-      "-LBS5qJUUSTVAgPGKlon": Object {
+      "-LBS5qJUUSTVAgPGKlon": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-01",
         "modified": "2018-05-01T19:09:21.715Z",
         "userId": "user1",
-        "weight": "71.4",
+        "weight": "71.4"
       },
-      "-LBXiVQ-Mliy3NoQ91VR": Object {
+      "-LBXiVQ-Mliy3NoQ91VR": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-02",
         "modified": "2018-05-02T21:20:06.914Z",
         "userId": "user1",
-        "weight": "58",
+        "weight": "58"
       },
-      "-LBXiYFQm1lgZpUT42ou": Object {
+      "-LBXiYFQm1lgZpUT42ou": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-02",
         "modified": "2018-05-02T21:20:18.527Z",
-        "userId": "user1",
-        "weight": "60.7",
+        "userId": "user1"
       },
-      "-LBXi_gihpcjNyzeWMN4": Object {
+      "-LBXi_gihpcjNyzeWMN4": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-02",
         "modified": "2018-05-02T21:20:28.529Z",
         "userId": "user1",
-        "weight": "70.9",
+        "weight": "70.9"
       },
-      "-LBc0uCLkMZfXiVBRq7b": Object {
+      "-LBc0uCLkMZfXiVBRq7b": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-03",
         "modified": "2018-05-03T22:02:59.312Z",
-        "userId": "user1",
-        "weight": "60.5",
+        "userId": "user1"
       },
-      "-LBc0zJWAyT_EhTTuLTL": Object {
+      "-LBc0zJWAyT_EhTTuLTL": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-03",
         "modified": "2018-05-03T22:03:20.251Z",
         "userId": "user1",
-        "weight": "70.1",
+        "weight": "70.1"
       },
-      "-LBheD0Xrdy3bOFSiiZc": Object {
+      "-LBheD0Xrdy3bOFSiiZc": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-04",
         "modified": "2018-05-05T00:17:12.314Z",
         "userId": "user1",
-        "weight": "62.8",
+        "weight": "62.8"
       },
-      "-LBheGzAuGEa534mX9WK": Object {
+      "-LBheGzAuGEa534mX9WK": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-04",
         "modified": "2018-05-05T00:17:28.548Z",
-        "userId": "user1",
-        "weight": "69.9",
+        "userId": "user1"
       },
-      "-LBlT0R18K_m-rJGX3gY": Object {
+      "-LBlT0R18K_m-rJGX3gY": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-05",
         "modified": "2018-05-05T18:02:23.896Z",
         "userId": "user1",
-        "weight": "69.6",
+        "weight": "69.6"
       },
-      "-LBlT7cFvCjGLAJK006h": Object {
+      "-LBlT7cFvCjGLAJK006h": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-05",
         "modified": "2018-05-05T18:02:53.349Z",
         "notes": "Kna",
-        "userId": "user1",
-        "weight": "62.9",
+        "userId": "user1"
       },
-      "-LBqWmOjebR_PX7AxsKn": Object {
+      "-LBqWmOjebR_PX7AxsKn": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-06",
         "modified": "2018-05-06T17:36:56.962Z",
         "notes": "Ert said yay",
-        "userId": "user1",
-        "weight": "64.7",
+        "userId": "user1"
       },
-      "-LBqX3ZkmnTNssUrdPUt": Object {
+      "-LBqX3ZkmnTNssUrdPUt": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-06",
         "modified": "2018-05-06T17:38:11.397Z",
         "notes": "Malala honk honk honk honk HONK",
         "userId": "user1",
-        "weight": "71.1",
+        "weight": "71.1"
       },
-      "-LBwOLh81YRwHsz700-2": Object {
+      "-LBwOLh81YRwHsz700-2": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-07",
         "modified": "2018-05-07T20:57:49.682Z",
         "userId": "user1",
-        "weight": "70.6",
+        "weight": "70.6"
       },
-      "-LBwOOLXZS1pqhV65gtv": Object {
+      "-LBwOOLXZS1pqhV65gtv": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-07",
         "modified": "2018-05-07T20:58:00.523Z",
-        "userId": "user1",
-        "weight": "60.2",
+        "userId": "user1"
       },
-      "-LC0f7zrzbA4dMpqIpoe": Object {
+      "-LC0f7zrzbA4dMpqIpoe": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-08",
         "modified": "2018-05-08T21:33:38.201Z",
         "userId": "user1",
-        "weight": "64.9",
+        "weight": "64.9"
       },
-      "-LC0fB8-RLZtFeo28pbo": Object {
+      "-LC0fB8-RLZtFeo28pbo": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-08",
         "modified": "2018-05-08T21:33:51.075Z",
-        "userId": "user1",
-        "weight": "68.7",
+        "userId": "user1"
       },
-      "-LC69LTsjA1pbkt1wIFo": Object {
+      "-LC69LTsjA1pbkt1wIFo": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-09",
         "modified": "2018-05-09T23:08:05.971Z",
         "userId": "user1",
-        "weight": "62",
+        "weight": "62"
       },
-      "-LC69OfuZkBwGOm7xntV": Object {
+      "-LC69OfuZkBwGOm7xntV": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-09",
         "modified": "2018-05-09T23:08:19.094Z",
-        "userId": "user1",
-        "weight": "67.6",
+        "userId": "user1"
       },
-      "-LC69RfnS0PF9PWVkUgX": Object {
+      "-LC69RfnS0PF9PWVkUgX": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-09",
         "modified": "2018-05-22T23:38:20.234Z",
-        "userId": "user1",
-        "weight": "63.6",
+        "userId": "user1"
       },
-      "-LCBBHoRFzWGBmN6LraU": Object {
+      "-LCBBHoRFzWGBmN6LraU": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-10",
         "modified": "2018-05-10T22:34:41.355Z",
         "notes": "Ert my name is ert I don’t like cold beer ",
         "userId": "user1",
-        "weight": "62.7",
+        "weight": "62.7"
       },
-      "-LCBBYL4zVT_Fj3Cvzv2": Object {
+      "-LCBBYL4zVT_Fj3Cvzv2": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-10",
         "modified": "2018-05-10T22:35:49.045Z",
         "notes": "Kna oh la la kna I am grumpy ",
         "userId": "user1",
-        "weight": "62.2",
+        "weight": "62.2"
       },
-      "-LCJH1DVnxgH-cVrQJAF": Object {
+      "-LCJH1DVnxgH-cVrQJAF": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-11",
         "modified": "2018-05-12T12:16:43.959Z",
         "userId": "user1",
-        "weight": "63.4",
+        "weight": "63.4"
       },
-      "-LCJH5SSfQmP7EPp6zwO": Object {
+      "-LCJH5SSfQmP7EPp6zwO": {
         "chickenId": "chicken2",
         "chickenName": "Chicken2",
         "date": "2018-05-11",
         "modified": "2018-05-12T12:17:01.302Z",
         "userId": "user1",
-        "weight": "61.2",
+        "weight": "61.2"
       },
-      "-LCLORSsCuKFjMHkj5hd": Object {
+      "-LCLORSsCuKFjMHkj5hd": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-12",
         "modified": "2018-05-12T22:08:20.874Z",
         "userId": "user1",
-        "weight": "69.4",
+        "weight": "69.4"
       },
-      "-LCLOhqb0mbMboZzjEvP": Object {
+      "-LCLOhqb0mbMboZzjEvP": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
         "date": "2018-05-12",
         "modified": "2018-05-12T22:09:32.089Z",
-        "notes": "Poop I ert I say poop
-
-",
-        "userId": "user1",
-        "weight": "65.9",
+        "notes": "Poop I ert I say poop\n\n",
+        "userId": "user1"
       },
-      "-LCPfYtkeaQgQEQWpVIu": Object {
+      "-LCPfYtkeaQgQEQWpVIu": {
         "chickenId": "chicken1",
         "chickenName": "Chicken1",
         "date": "2018-05-13",
         "modified": "2018-05-13T18:05:58.792Z",
         "userId": "user1",
-        "weight": "70.1",
-      },
+        "weight": "70.1"
+      }
     }
   }
-  navigation={
-    Object {
-      "getParam": [MockFunction] {
-        "calls": Array [
-          Array [
-            "date",
-            "2018-05",
-          ],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": "2018-05",
-          },
-        ],
-      },
-    }
-  }
-  stats={
-    Object {
-      "averageNumber": 1.8666666666666667,
-      "averageWeight": 65.21428571428572,
-      "eggsPerChicken": Object {
-        "chicken1": 12,
-        "chicken2": 8,
-        "chicken4": 8,
-      },
-      "firstEgg": "2018-05-01",
-      "heaviest": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-01",
-        "modified": "2018-05-01T19:09:21.715Z",
-        "userId": "user1",
-        "weight": "71.4",
-      },
-      "mostEggs": "chicken1",
-      "total": undefined,
-    }
-  }
-/>
-`;
+}

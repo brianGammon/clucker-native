@@ -32,7 +32,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     <Image
       source={
         Object {
-          "uri": undefined,
+          "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
         }
       }
       style={
@@ -83,7 +83,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
         }
       >
-        The First Chicken
+        Chicken1
       </Component>
       <Component
         style={
@@ -106,7 +106,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             "fontSize": 16,
           }
         }
-      />
+      >
+        2016-10-05
+      </Component>
     </Component>
     <Component>
       <Component
@@ -125,7 +127,144 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             "fontSize": 16,
           }
         }
-      />
+      >
+        Cuckoo Maran
+      </Component>
+    </Component>
+  </Component>
+</ScrollView>
+`;
+
+exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no weight yet 1`] = `
+<ScrollView>
+  <Button
+    onPress={[Function]}
+    title="Edit Chicken"
+  />
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginTop": 20,
+      }
+    }
+  >
+    <Icon
+      allowFontScaling={false}
+      color="lightgrey"
+      name="ios-arrow-back"
+      onPress={[Function]}
+      size={12}
+      style={
+        Object {
+          "fontSize": 50,
+          "paddingLeft": 10,
+        }
+      }
+    />
+    <Image
+      source={
+        Object {
+          "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Icon
+      allowFontScaling={false}
+      color="grey"
+      name="ios-arrow-forward"
+      onPress={[Function]}
+      size={12}
+      style={
+        Object {
+          "fontSize": 50,
+          "paddingRight": 10,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "padding": 10,
+      }
+    }
+  >
+    <Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Name:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      >
+        Chicken1
+      </Component>
+      <Component
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+              "fontWeight": "bold",
+            },
+            Object {
+              "paddingTop": 10,
+            },
+          ]
+        }
+      >
+        Hatched On:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      >
+        2016-10-05
+      </Component>
+    </Component>
+    <Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Breed:
+      </Component>
+      <Component
+        style={
+          Object {
+            "fontSize": 16,
+          }
+        }
+      >
+        Cuckoo Maran
+      </Component>
     </Component>
   </Component>
   <Component>
@@ -146,7 +285,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     >
-      0
+      1
     </Component>
     <Component
       style={
@@ -231,7 +370,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
 </ScrollView>
 `;
 
-exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when stats available 1`] = `
+exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly with all stats available 1`] = `
 <ScrollView>
   <Button
     onPress={[Function]}
@@ -263,7 +402,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     <Image
       source={
         Object {
-          "uri": undefined,
+          "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
         }
       }
       style={
@@ -314,7 +453,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
         }
       >
-        The First Chicken
+        Chicken1
       </Component>
       <Component
         style={
@@ -337,7 +476,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             "fontSize": 16,
           }
         }
-      />
+      >
+        2016-10-05
+      </Component>
     </Component>
     <Component>
       <Component
@@ -356,7 +497,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             "fontSize": 16,
           }
         }
-      />
+      >
+        Cuckoo Maran
+      </Component>
     </Component>
   </Component>
   <Component>
@@ -377,7 +520,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     >
-      0
+      1
     </Component>
     <Component
       style={
@@ -470,7 +613,13 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
 <ChickenRenderer
   chicken={
     Object {
-      "name": "The First Chicken",
+      "breed": "Cuckoo Maran",
+      "hatched": "2016-10-05",
+      "name": "Chicken1",
+      "photoPath": "uploads/user:user1/flock:flock1/1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+      "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+      "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+      "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72",
     }
   }
   chickenId="chicken1"
@@ -498,25 +647,23 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
     Object {
       "heaviest": Object {
         "chickenId": "chicken1",
-        "chickenName": "Bossie",
-        "damaged": false,
-        "date": "2018-08-01",
-        "modified": "2018-01-12T18:05:54.806Z",
-        "notes": "This was the record setting egg from May 2017, real egg was 66.1g on this day",
-        "userId": "MVQUEcoTaVUhUdo2ZS0zsIE6tn93",
-        "weight": 88.1,
+        "chickenName": "Chicken1",
+        "date": "2018-02-13",
+        "modified": "2018-02-13T13:45:46.640Z",
+        "userId": "user1",
+        "weight": "73.5",
       },
       "lastSevenDays": Object {
-        "2018-07-31": 0,
-        "2018-08-01": 1,
-        "2018-08-02": 1,
-        "2018-08-03": 0,
-        "2018-08-04": 0,
-        "2018-08-05": 0,
-        "2018-08-06": 0,
+        "2018-05-09": 1,
+        "2018-05-10": 0,
+        "2018-05-11": 1,
+        "2018-05-12": 1,
+        "2018-05-13": 1,
+        "2018-05-14": 0,
+        "2018-05-15": 0,
       },
-      "longestStreak": 2,
-      "total": 2,
+      "longestStreak": 10,
+      "total": 78,
     }
   }
 />
@@ -524,7 +671,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
 
 exports[`Chicken component: Should render correctly when chicken not found 1`] = `
 <Component>
-  Chicken with ID chicken3 not found
+  Chicken with ID chicken5 not found
 </Component>
 `;
 

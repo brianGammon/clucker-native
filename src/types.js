@@ -39,6 +39,18 @@ export type ChickenStats = {
   },
 };
 
+export type FlockStats = {
+  total: number,
+  heaviest?: Egg,
+  averageWeight: number,
+  averageNumber: number,
+  firstEgg: string,
+  mostEggs: string,
+  eggsPerChicken: {
+    [chickenId: string]: number,
+  },
+};
+
 export type UserSettings = {
   name: string,
   currentFlockId: string,

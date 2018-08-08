@@ -92,11 +92,11 @@ exports[`Flock component: Should render connected component as flock guest 1`] =
     Object {
       "chicken1": Object {
         "breed": "Maran",
-        "name": "Bossie",
+        "name": "Chicken1",
       },
       "chicken2": Object {
         "breed": "Maran",
-        "name": "Bossie",
+        "name": "Chicken1",
       },
     }
   }
@@ -118,11 +118,11 @@ exports[`Flock component: Should render connected component as flock owner 1`] =
     Object {
       "chicken1": Object {
         "breed": "Maran",
-        "name": "Bossie",
+        "name": "Chicken1",
       },
       "chicken2": Object {
         "breed": "Maran",
-        "name": "Bossie",
+        "name": "Chicken1",
       },
     }
   }

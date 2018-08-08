@@ -1,0 +1,28 @@
+{
+  "chickens": {
+    "inProgress": false,
+    "error": "",
+    "key": "",
+    "data": {}
+  },
+  "eggs": {
+    "inProgress": false,
+    "error": "",
+    "key": "",
+    "data": {}
+  },
+  "flocks": {
+    "inProgress": false,
+    "error": "",
+    "key": "",
+    "data": {}
+  },
+  "userSettings": {
+    "inProgress": false,
+    "error": "",
+    "key": "user1",
+    "data": {
+      "displayName": "test@example.com"
+    }
+  }
+}

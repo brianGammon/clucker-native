@@ -10,11 +10,11 @@ describe('Flock component:', () => {
     chickens: {
       data: {
         chicken1: {
-          name: 'Bossie',
+          name: 'Chicken1',
           breed: 'Maran',
         },
         chicken2: {
-          name: 'Bossie',
+          name: 'Chicken1',
           breed: 'Maran',
         },
       },

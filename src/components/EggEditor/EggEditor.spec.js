@@ -2,7 +2,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import EggEditor from '.';
 import mockNavigation from '../../../jest/mockNavigation';
-import sampleData from '../../../jest/sampleData';
+import sampleData from '../../../jest/test-data/full.2017-10-to-2018-05.json';
 import '../../../jest/mockDateHelper';
 
 describe('EggEditor component:', () => {
@@ -15,7 +15,7 @@ describe('EggEditor component:', () => {
       getParam: {
         chickenId: 'chicken1',
         date: '2018-02-10',
-        eggId: 'egg1',
+        eggId: '-L4geyAR0BkMrAjiF7NZ',
       },
     };
     const navigation = mockNavigation(paramReturned);

@@ -1,6 +1,6 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import sampleData from '../../../jest/sampleData';
+import sampleData from '../../../jest/test-data/full.2017-10-to-2018-05.json';
 import ChickenEditor from '.';
 
 describe('ChickenEditor component:', () => {

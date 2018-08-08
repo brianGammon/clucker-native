@@ -1,6 +1,6 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
-import sampleData from '../../../jest/sampleData';
+import sampleData from '../../../jest/test-data/full.2017-10-to-2018-05.json';
 import Chicken from '.';
 import ChickenRenderer from './ChickenRenderer';
 import '../../../jest/mockDateHelper';
@@ -37,7 +37,7 @@ describe('Chicken component:', () => {
   });
 
   test('Should render correctly when chicken not found', () => {
-    paramReturned = 'chicken3';
+    paramReturned = 'chicken5';
     const wrapper = shallow(
       <Chicken store={store} navigation={navigation} />,
     ).dive();
@@ -53,7 +53,7 @@ describe('Chicken component:', () => {
         nextChickenId: 'chicken2',
         chicken: sampleData.chickens.data.chicken1,
         stats: {
-          total: 0,
+          total: 1,
           heaviest: {
             weight: 88.1,
             date: '2017-04-02',
@@ -66,7 +66,7 @@ describe('Chicken component:', () => {
       };
     });
 
-    test('ChickenRenderer should render correctly when no stats yet', () => {
+    test('ChickenRenderer should render correctly when no weight yet', () => {
       const { stats } = props;
       const { heaviest, ...rest } = stats;
       props.stats = { ...rest };
@@ -77,7 +77,17 @@ describe('Chicken component:', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    test('ChickenRenderer should render correctly when stats available', () => {
+    test('ChickenRenderer should render correctly when no stats yet', () => {
+      const { stats, ...rest } = props;
+      props = { ...rest };
+      paramReturned = 'chicken1';
+      const wrapper = shallow(
+        <ChickenRenderer navigation={navigation} {...props} />,
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    test('ChickenRenderer should render correctly with all stats available', () => {
       paramReturned = 'chicken1';
       console.log(props);
       const wrapper = shallow(

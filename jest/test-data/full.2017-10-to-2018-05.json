@@ -1,0 +1,1905 @@
+{
+  "chickens": {
+    "inProgress": false,
+    "error": "",
+    "key": "flock1",
+    "data": {
+      "chicken1": {
+        "breed": "Cuckoo Maran",
+        "hatched": "2016-10-05",
+        "name": "Chicken1",
+        "photoPath":
+          "uploads/user:user1/flock:flock1/1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "photoUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+        "thumbnailPath":
+          "uploads/user:user1/flock:flock1/thumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "thumbnailUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72"
+      },
+      "chicken2": {
+        "breed": "Black Australorpe",
+        "hatched": "2016-10-05",
+        "name": "Chicken2",
+        "photoPath":
+          "uploads/user:user1/flock:flock1/8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "photoUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0ae6a73d-7027-4d18-8ab2-3f40340496c5",
+        "thumbnailPath":
+          "uploads/user:user1/flock:flock1/thumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "thumbnailUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0e0d4dea-5104-4cfe-9a49-f87d4b412e24"
+      },
+      "chicken3": {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken3",
+        "photoPath":
+          "uploads/user:user1/flock:flock1/1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "photoUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=54a9eb90-7a2a-4370-a030-7cb3fa3bb738",
+        "thumbnailPath":
+          "uploads/user:user1/flock:flock1/thumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "thumbnailUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=708ffb11-4a0a-4dab-9633-27a2c0c74d18"
+      },
+      "chicken4": {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken4",
+        "photoPath":
+          "uploads/user:user1/flock:flock1/9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "photoUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=77141d6f-bb85-4174-817b-ad2cad174315",
+        "thumbnailPath":
+          "uploads/user:user1/flock:flock1/thumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "thumbnailUrl":
+          "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=baa3c541-626a-45e7-b75c-1eab00454476"
+      }
+    }
+  },
+  "eggs": {
+    "inProgress": false,
+    "error": "",
+    "key": "flock1",
+    "data": {
+      "-Kz4jFQ_J8zUXwVW8XI9": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "damaged": true,
+        "date": "2017-11-16",
+        "modified": "2017-11-16T16:50:20.563Z",
+        "notes": "",
+        "userId": "user1",
+        "weight": "58.4"
+      },
+      "-L4HcswUOR7uEZxwUU-F": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-01",
+        "modified": "2018-02-01T18:31:46.231Z",
+        "notes": "First egg in 2 months! 🎊🎉",
+        "userId": "user1",
+        "weight": "57.9"
+      },
+      "-L4SE4xGL0_QDKB6EQlD": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "damaged": false,
+        "date": "2018-02-03",
+        "modified": "2018-02-03T19:54:53.166Z",
+        "userId": "user1",
+        "weight": "62.3"
+      },
+      "-L4bN9G98GHIgV45wX5N": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-05",
+        "modified": "2018-02-05T19:10:42.270Z",
+        "userId": "user1",
+        "weight": "58.9"
+      },
+      "-L4geyAR0BkMrAjiF7NZ": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "damaged": true,
+        "date": "2018-02-06",
+        "modified": "2018-02-06T19:52:07.552Z",
+        "notes": "Chicken1’s first egg in 3 months!! ",
+        "userId": "user1",
+        "weight": "65.9"
+      },
+      "-L4pPWXxIwBMKLVosWB4": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-07",
+        "modified": "2018-02-08T12:35:42.937Z",
+        "userId": "user1",
+        "weight": "65"
+      },
+      "-L4pXonbsYLZdd95cjLW": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-08",
+        "modified": "2018-02-08T13:11:58.976Z",
+        "userId": "user1",
+        "weight": "65.8"
+      },
+      "-L4v108PCI5sSG6uRqR6": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-09",
+        "modified": "2018-02-09T14:46:22.106Z",
+        "userId": "user1",
+        "weight": "69.4"
+      },
+      "-L5-yNl2hRciq2C7XNic": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-10",
+        "modified": "2018-02-10T18:28:40.006Z",
+        "notes": "100th egg! 💯 💯 ",
+        "userId": "user1",
+        "weight": "68.4"
+      },
+      "-L55J5z-MHVuvH2lCDkS": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-11",
+        "modified": "2018-02-11T19:21:13.947Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-L55J9Qx7TneQ29Z801u": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-11",
+        "modified": "2018-02-11T19:21:28.091Z",
+        "userId": "user1",
+        "weight": "70.5"
+      },
+      "-L5AckEZiil8Lw--Gjie": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-12",
+        "modified": "2018-02-12T20:09:31.906Z",
+        "userId": "user1",
+        "weight": "55.8"
+      },
+      "-L5EPV_tbn3zWuJFKvjX": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-13",
+        "modified": "2018-02-13T13:45:46.640Z",
+        "userId": "user1",
+        "weight": "73.5"
+      },
+      "-L5F1zK76pqHEuJlJ1CG": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-13",
+        "modified": "2018-02-13T16:42:38.318Z",
+        "userId": "user1",
+        "weight": "63.6"
+      },
+      "-L5KZJVwapxazkYxpWP2": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-14",
+        "modified": "2018-02-14T18:26:21.926Z",
+        "userId": "user1",
+        "weight": "71.2"
+      },
+      "-L5KZP0Hp0VU0uW79GOE": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-14",
+        "modified": "2018-02-14T18:26:44.478Z",
+        "userId": "user1",
+        "weight": "56.4"
+      },
+      "-L5LFX-yEec6UV8qNnew": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-14",
+        "modified": "2018-02-14T21:39:31.543Z",
+        "userId": "user1",
+        "weight": "63.6"
+      },
+      "-L5P-Y4NEBTL_0voAXEX": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-15",
+        "modified": "2018-02-15T15:08:10.496Z",
+        "userId": "user1",
+        "weight": "68.6"
+      },
+      "-L5WbBbYkWGIXadTFwEV": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-16",
+        "modified": "2018-02-17T02:34:22.614Z",
+        "userId": "user1"
+      },
+      "-L5WbDIrSJjA9Zg7BeiZ": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-16",
+        "modified": "2018-02-17T02:34:29.546Z",
+        "userId": "user1"
+      },
+      "-L5WbF0FFYNavp1F-gs1": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-16",
+        "modified": "2018-02-17T02:34:36.547Z",
+        "userId": "user1"
+      },
+      "-L5a72lNhouW1M8R4IvE": {
+        "chickenId": "unknown",
+        "chickenName": "Unknown",
+        "date": "2018-02-17",
+        "modified": "2018-02-17T23:36:19.326Z",
+        "notes": "Anthony picked up while chicken sitting",
+        "userId": "user1"
+      },
+      "-L5a78ui_LAfSXI9U2Gj": {
+        "chickenId": "unknown",
+        "chickenName": "Unknown",
+        "date": "2018-02-17",
+        "modified": "2018-02-17T23:36:44.502Z",
+        "userId": "user1"
+      },
+      "-L5fM9TFsOSrleLAwGIa": {
+        "chickenId": "unknown",
+        "chickenName": "Unknown",
+        "date": "2018-02-18",
+        "modified": "2018-02-19T00:00:31.679Z",
+        "userId": "user1"
+      },
+      "-L5nn_Ou0-qhe8XeBgSo": {
+        "chickenId": "unknown",
+        "chickenName": "Unknown",
+        "date": "2018-02-19",
+        "modified": "2018-02-20T15:21:37.324Z",
+        "userId": "user1"
+      },
+      "-L5nnb5YfhMGQPDswn0i": {
+        "chickenId": "unknown",
+        "chickenName": "Unknown",
+        "date": "2018-02-19",
+        "modified": "2018-02-20T15:21:44.277Z",
+        "userId": "user1"
+      },
+      "-L5o22nZmvEG05DpC8xr": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-20",
+        "modified": "2018-02-20T16:29:16.422Z",
+        "userId": "user1",
+        "weight": "70.2"
+      },
+      "-L5odPT9za8sfnQ5k5hw": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-20",
+        "modified": "2018-02-20T19:16:50.730Z",
+        "userId": "user1",
+        "weight": "63"
+      },
+      "-L5tSTLcZhpy8QDVqkRa": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-21",
+        "modified": "2018-02-21T17:42:46.973Z",
+        "userId": "user1",
+        "weight": "71.9"
+      },
+      "-L5tSWjxRz9V3e_Cngvf": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-21",
+        "modified": "2018-02-21T17:43:00.884Z",
+        "userId": "user1",
+        "weight": "57.4"
+      },
+      "-L5yBbt2QzxYDkBFs94R": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-22",
+        "modified": "2018-02-22T15:47:15.696Z",
+        "userId": "user1",
+        "weight": "64"
+      },
+      "-L63V0dUp4k_gdJ0GTKM": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-23",
+        "modified": "2018-02-23T21:09:45.227Z",
+        "userId": "user1",
+        "weight": "59.9"
+      },
+      "-L63V3jCgZycGzYehlco": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-23",
+        "modified": "2018-02-23T21:09:57.882Z",
+        "userId": "user1",
+        "weight": "68.5"
+      },
+      "-L63V7-i1CKzIklZ1Q2W": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-23",
+        "modified": "2018-02-23T21:10:11.291Z",
+        "userId": "user1",
+        "weight": "58"
+      },
+      "-L67AnnZIEQI63VfMue3": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-24",
+        "modified": "2018-02-24T14:19:54.514Z",
+        "userId": "user1",
+        "weight": "67.7"
+      },
+      "-L6CfojDN7vKLEE9ubZR": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-25",
+        "modified": "2018-02-25T15:57:52.996Z",
+        "userId": "user1",
+        "weight": "68.1"
+      },
+      "-L6Cft3T6dVK44csDsJ1": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-25",
+        "modified": "2018-02-25T15:58:10.741Z",
+        "userId": "user1",
+        "weight": "63.7"
+      },
+      "-L6D2hcNG38Hsar28daO": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-25",
+        "modified": "2018-02-25T17:42:15.340Z",
+        "userId": "user1",
+        "weight": "59.3"
+      },
+      "-L6IuhG5PKThsTP54XYc": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-26",
+        "modified": "2018-02-26T21:00:37.899Z",
+        "userId": "user1",
+        "weight": "68.1"
+      },
+      "-L6IujRsxDDtDQrZ1maU": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-26",
+        "modified": "2018-02-26T21:00:46.847Z",
+        "userId": "user1",
+        "weight": "62.6"
+      },
+      "-L6NPkpycfBOAU_1hdmc": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-27",
+        "modified": "2018-02-27T17:59:09.993Z",
+        "userId": "user1",
+        "weight": "69.7"
+      },
+      "-L6NPn2kK2YcjmutHjog": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-02-27",
+        "modified": "2018-02-27T17:59:19.069Z",
+        "userId": "user1",
+        "weight": "59.1"
+      },
+      "-L6TLUR9f9rxdZtpza7y": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-02-28",
+        "modified": "2018-02-28T21:38:13.420Z",
+        "userId": "user1",
+        "weight": "62.2"
+      },
+      "-L6TLXenNHNjE3K-eL_a": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-02-28",
+        "modified": "2018-02-28T21:38:26.646Z",
+        "userId": "user1",
+        "weight": "68.4"
+      },
+      "-L6YeoJyiw_GtyOa47Be": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-01",
+        "modified": "2018-03-01T22:25:07.948Z",
+        "userId": "user1",
+        "weight": "58.9"
+      },
+      "-L6cdqdchwoDCC2M79B_": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-02",
+        "modified": "2018-03-02T21:39:01.379Z",
+        "userId": "user1",
+        "weight": "65"
+      },
+      "-L6cdu_s97gDzOz4JjG2": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-02",
+        "modified": "2018-03-02T21:39:17.524Z",
+        "userId": "user1",
+        "weight": "64.6"
+      },
+      "-L6ce38bOyHgEF0EK8SV": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-02",
+        "modified": "2018-03-02T21:39:56.674Z",
+        "notes": "First egg since molting!",
+        "userId": "user1",
+        "weight": "56.2"
+      },
+      "-L6glPLCEbVfj8gVk54H": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-03",
+        "modified": "2018-03-03T16:50:31.481Z",
+        "userId": "user1",
+        "weight": "69.6"
+      },
+      "-L6ieze0_dNrMQumJ75G": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-03",
+        "modified": "2018-03-04T01:41:43.702Z",
+        "userId": "user1",
+        "weight": "62.8"
+      },
+      "-L6mLkF2x7sBRc3a7tZV": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-04",
+        "modified": "2018-03-04T18:51:46.585Z",
+        "userId": "user1",
+        "weight": "59.7"
+      },
+      "-L6mLo1DED2vZiajRvpY": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-04",
+        "modified": "2018-03-04T18:52:02.086Z",
+        "userId": "user1",
+        "weight": "57.9"
+      },
+      "-L6mLsnik_XOe1EHAKHB": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-04",
+        "modified": "2018-03-04T18:52:21.639Z",
+        "userId": "user1",
+        "weight": "70.3"
+      },
+      "-L6sPXfg5KiuzDAcIoP8": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-05",
+        "modified": "2018-03-05T23:06:02.899Z",
+        "userId": "user1",
+        "weight": "55.1"
+      },
+      "-L6sPamAFCoObYN31pGo": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-05",
+        "modified": "2018-03-05T23:06:19.700Z",
+        "userId": "user1",
+        "weight": "63.1"
+      },
+      "-L6sPdlO0koaFBBQosY8": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-05",
+        "modified": "2018-03-05T23:06:31.939Z",
+        "userId": "user1",
+        "weight": "70.8"
+      },
+      "-L6xPDO42cSbAv8O3JsI": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-06",
+        "modified": "2018-03-06T22:22:45.855Z",
+        "userId": "user1",
+        "weight": "71.3"
+      },
+      "-L6xPGiRFdKXa_KbXqVA": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-06",
+        "modified": "2018-03-06T22:22:59.512Z",
+        "userId": "user1",
+        "weight": "61.3"
+      },
+      "-L6xPK2wV9cMMDlBnCaE": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-06",
+        "modified": "2018-03-06T22:23:13.175Z",
+        "userId": "user1",
+        "weight": "59.6"
+      },
+      "-L71_KQADYztkTKE3UZg": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-07",
+        "modified": "2018-03-07T22:29:24.321Z",
+        "userId": "user1",
+        "weight": "67.7"
+      },
+      "-L71_ObTJTk2L7hUvG7H": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-07",
+        "modified": "2018-03-07T22:29:41.493Z",
+        "userId": "user1",
+        "weight": "59.6"
+      },
+      "-L759uwhhLrMsPUvY_Ov": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-08",
+        "modified": "2018-03-08T15:12:29.039Z",
+        "userId": "user1",
+        "weight": "69.5"
+      },
+      "-L759xuXwupg420Juu5h": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-08",
+        "modified": "2018-03-08T15:12:41.189Z",
+        "userId": "user1",
+        "weight": "65.2"
+      },
+      "-L7AtL_DsPnycOvERVSK": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-09",
+        "modified": "2018-03-09T17:53:26.883Z",
+        "userId": "user1",
+        "weight": "68.9"
+      },
+      "-L7AtNoXMKimeJojpAw3": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-09",
+        "modified": "2018-03-09T22:16:45.369Z",
+        "userId": "user1",
+        "weight": "60.9"
+      },
+      "-L7BpW7QnDcaXCR_YpjQ": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-09",
+        "modified": "2018-03-09T22:16:18.740Z",
+        "userId": "user1",
+        "weight": "63.3"
+      },
+      "-L7BpZwL_-tmsdvs8huD": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-09",
+        "modified": "2018-03-09T22:16:34.354Z",
+        "userId": "user1",
+        "weight": "62.3"
+      },
+      "-L7G55ECHz-WxEZjcvR4": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-10",
+        "modified": "2018-03-10T18:07:13.897Z",
+        "userId": "user1",
+        "weight": "69.7"
+      },
+      "-L7H-yl4sr3pIqJ4DkjZ": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-10",
+        "modified": "2018-03-10T22:24:29.794Z",
+        "userId": "user1",
+        "weight": "61.2"
+      },
+      "-L7KZV0rY03nOmGuTd6-": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-11",
+        "modified": "2018-03-11T14:58:32.721Z",
+        "userId": "user1",
+        "weight": "64.2"
+      },
+      "-L7QodUYVdq5TJk65CKz": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-12",
+        "modified": "2018-03-12T20:06:49.107Z",
+        "userId": "user1",
+        "weight": "62.1"
+      },
+      "-L7Qogm_u3hPKg4cKScl": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-12",
+        "modified": "2018-03-12T20:07:02.615Z",
+        "userId": "user1",
+        "weight": "61"
+      },
+      "-L7Qok8aASWHWzrfCj97": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-12",
+        "modified": "2018-03-12T20:07:16.376Z",
+        "userId": "user1",
+        "weight": "56.6"
+      },
+      "-L7VCaYgro4OWh6-PwPG": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-13",
+        "modified": "2018-03-13T16:34:19.532Z",
+        "userId": "user1",
+        "weight": "69.1"
+      },
+      "-L7WSLYcOymW7oL1FwTP": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-13",
+        "modified": "2018-03-13T22:22:45.545Z",
+        "userId": "user1",
+        "weight": "61.7"
+      },
+      "-L7_aPjzbVoDzvNEA7kh": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-14",
+        "modified": "2018-03-14T17:40:50.839Z",
+        "userId": "user1",
+        "weight": "67.2"
+      },
+      "-L7_aSbVx-n-m9l0G_4c": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-14",
+        "modified": "2018-03-14T17:41:02.586Z",
+        "userId": "user1",
+        "weight": "62.7"
+      },
+      "-L7aPqMs3g2dZVT0Mkms": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-14",
+        "modified": "2018-03-14T21:29:55.469Z",
+        "userId": "user1",
+        "weight": "58.3"
+      },
+      "-L7esEqw-ISPfXUfT4F_": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-15",
+        "modified": "2018-03-15T18:16:50.891Z",
+        "userId": "user1",
+        "weight": "62.2"
+      },
+      "-L7esIcXMw97memyZ5hM": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-15",
+        "modified": "2018-03-15T18:17:06.354Z",
+        "userId": "user1",
+        "weight": "69.8"
+      },
+      "-L7esLVwjewpl1vahLct": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-15",
+        "modified": "2018-03-15T18:17:18.155Z",
+        "userId": "user1",
+        "weight": "62.3"
+      },
+      "-L7kRsGOB0iweIttecmy": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-16",
+        "modified": "2018-03-16T20:14:59.693Z",
+        "userId": "user1",
+        "weight": "70.2"
+      },
+      "-L7od7JAlIrSHSA6Lp21": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-17",
+        "modified": "2018-03-17T15:47:00.007Z",
+        "userId": "user1",
+        "weight": "64.3"
+      },
+      "-L7odFnh01fh1uGIy1z1": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-17",
+        "modified": "2018-03-17T15:47:34.794Z",
+        "userId": "user1",
+        "weight": "53.4"
+      },
+      "-L7odIq4zU45F9RadxWT": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-17",
+        "modified": "2018-03-17T15:47:47.233Z",
+        "userId": "user1",
+        "weight": "62.2"
+      },
+      "-L7t5GAxPD9eYK33Sq_s": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-17",
+        "modified": "2018-03-18T12:32:47.389Z",
+        "userId": "user1",
+        "weight": "67.4"
+      },
+      "-L7v3MOgGeAnhu-ZfjTa": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-18",
+        "modified": "2018-03-18T21:43:42.980Z",
+        "userId": "user1",
+        "weight": "60.1"
+      },
+      "-L7v3P1LGw3-TEOKhwrN": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-18",
+        "modified": "2018-03-18T21:43:53.774Z",
+        "userId": "user1",
+        "weight": "60.3"
+      },
+      "-L7v3S-GsGorhMhOqV57": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-18",
+        "modified": "2018-03-18T21:44:05.929Z",
+        "userId": "user1",
+        "weight": "61.8"
+      },
+      "-L82vGtqP9CNMCNy1gyH": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-20",
+        "modified": "2018-03-20T15:00:36.125Z",
+        "userId": "user1",
+        "weight": "66.6"
+      },
+      "-L82vJZwLufQfHLh6Lm_": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-20",
+        "modified": "2018-03-20T15:00:47.077Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-L82vNWPXZrvRP8cxHkk": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-20",
+        "modified": "2018-03-20T15:01:03.235Z",
+        "userId": "user1",
+        "weight": "69.7"
+      },
+      "-L83z68iXhn0Vh2gLYwP": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-20",
+        "modified": "2018-03-20T19:56:57.877Z",
+        "userId": "user1",
+        "weight": "59.3"
+      },
+      "-L8A5o1P6RNXiRizSY15": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-21",
+        "modified": "2018-03-22T00:28:20.027Z",
+        "userId": "user1",
+        "weight": "62.3"
+      },
+      "-L8A5ruXzaxwidQm0HwK": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-21",
+        "modified": "2018-03-22T00:28:35.909Z",
+        "userId": "user1",
+        "weight": "68.9"
+      },
+      "-L8A5yDLUOzcjgKAhV8H": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-21",
+        "modified": "2018-03-22T00:29:01.753Z",
+        "userId": "user1",
+        "weight": "60.4"
+      },
+      "-L8EbxI5UzzqQuboL0vX": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-22",
+        "modified": "2018-03-22T21:31:37.579Z",
+        "userId": "user1",
+        "weight": "71"
+      },
+      "-L8Ec-LUGJM8e3Ko-SwH": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-22",
+        "modified": "2018-03-22T21:31:50.086Z",
+        "userId": "user1",
+        "weight": "60.2"
+      },
+      "-L8JVrjw38kdhHtggjrX": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-23",
+        "modified": "2018-03-23T20:18:45.906Z",
+        "userId": "user1",
+        "weight": "66.3"
+      },
+      "-L8JVuqxVLc1QUUtfHkU": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-23",
+        "modified": "2018-03-23T20:18:58.645Z",
+        "userId": "user1",
+        "weight": "61.9"
+      },
+      "-L8OHKUo1twuiCcAxZHQ": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-24",
+        "modified": "2018-03-24T18:33:21.675Z",
+        "userId": "user1",
+        "weight": "70.6"
+      },
+      "-L8OHNSJOC89BKSoCzeS": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-24",
+        "modified": "2018-03-24T18:33:33.805Z",
+        "userId": "user1",
+        "weight": "61.3"
+      },
+      "-L8OjlgffsH6C-2VYOLT": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-24",
+        "modified": "2018-03-24T20:41:59.407Z",
+        "userId": "user1",
+        "weight": "62.1"
+      },
+      "-L8SqJ1qtwjTf--JPtfz": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-25",
+        "modified": "2018-03-25T15:49:01.781Z",
+        "userId": "user1",
+        "weight": "69.4"
+      },
+      "-L8Toh9yxhI_IgLDegv2": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-25",
+        "modified": "2018-03-25T20:21:37.615Z",
+        "userId": "user1",
+        "weight": "60.4"
+      },
+      "-L8TolKMPwuEqCqhol3H": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-25",
+        "modified": "2018-03-25T20:21:54.664Z",
+        "userId": "user1",
+        "weight": "55.1"
+      },
+      "-L8YwcosXqAoperCg37s": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-26",
+        "modified": "2018-03-26T20:14:23.060Z",
+        "userId": "user1",
+        "weight": "68.6"
+      },
+      "-L8Ywi-Xr8EYkiyhchwj": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-26",
+        "modified": "2018-03-26T20:14:44.286Z",
+        "userId": "user1",
+        "weight": "66.4"
+      },
+      "-L8doGPifRgsXr_RRJ8i": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-27",
+        "modified": "2018-03-27T23:35:33.328Z",
+        "userId": "user1",
+        "weight": "57.9"
+      },
+      "-L8doJexzsOzUM0TT343": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-27",
+        "modified": "2018-03-27T23:35:46.657Z",
+        "userId": "user1",
+        "weight": "61"
+      },
+      "-L8doN2Q2kXgiqD8a_3j": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-27",
+        "modified": "2018-03-27T23:36:00.511Z",
+        "userId": "user1",
+        "weight": "69.7"
+      },
+      "-L8doQA4QGvTYirB_cBs": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-27",
+        "modified": "2018-03-27T23:36:13.289Z",
+        "userId": "user1",
+        "weight": "62"
+      },
+      "-L8iWbQ0gImCGFOYzWlB": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-28",
+        "modified": "2018-03-28T21:32:08.800Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-L8llH-vlnnQH-_VB06Z": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-29",
+        "modified": "2018-03-29T12:39:27.063Z",
+        "userId": "user1",
+        "weight": "64.4"
+      },
+      "-L8nf-SjgymfToawAADc": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-29",
+        "modified": "2018-03-29T21:31:16.749Z",
+        "userId": "user1",
+        "weight": "62.8"
+      },
+      "-L8nf3vafbTEfhr75z4m": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-29",
+        "modified": "2018-03-29T21:31:35.045Z",
+        "userId": "user1",
+        "weight": "61.8"
+      },
+      "-L8r_RQ3hD4SKTShrC3u": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-30",
+        "modified": "2018-03-30T15:45:27.270Z",
+        "userId": "user1",
+        "weight": "70.9"
+      },
+      "-L8r_TnwLBJeTTDz9n_i": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-30",
+        "modified": "2018-03-30T15:45:37.056Z",
+        "userId": "user1",
+        "weight": "60.7"
+      },
+      "-L8tGPLLxpYMm8HScmYF": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-03-30",
+        "modified": "2018-03-30T23:37:10.318Z",
+        "userId": "user1",
+        "weight": "60.7"
+      },
+      "-L8tGT0Qtzfx-L6yl443": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-03-30",
+        "modified": "2018-03-30T23:37:25.364Z",
+        "userId": "user1",
+        "weight": "59.7"
+      },
+      "-L8wkFTI96u6H9Q_o2I5": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-03-31",
+        "modified": "2018-03-31T15:50:47.979Z",
+        "userId": "user1",
+        "weight": "68.1"
+      },
+      "-L8xhEvLj6TTirJtJHJe": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-03-31",
+        "modified": "2018-03-31T20:17:16.527Z",
+        "userId": "user1",
+        "weight": "62.3"
+      },
+      "-L91gSf4MV20VXirRW0Q": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-01",
+        "modified": "2018-04-01T19:31:56.771Z",
+        "userId": "user1",
+        "weight": "60.2"
+      },
+      "-L91g_TIM6Wn8t3JcRl5": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-01",
+        "modified": "2018-04-01T19:32:28.724Z",
+        "userId": "user1",
+        "weight": "69.0"
+      },
+      "-L91gg6Emoe6xT_a2ccF": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-01",
+        "modified": "2018-04-01T19:32:55.920Z",
+        "userId": "user1",
+        "weight": "63.6"
+      },
+      "-L9HOzoCk_kZQ9JGxsvp": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-02",
+        "modified": "2018-04-04T20:45:11.351Z",
+        "userId": "user1"
+      },
+      "-L9HP3uZjlaJFC3L8fTR": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-03",
+        "modified": "2018-04-04T20:45:54.993Z",
+        "userId": "user1"
+      },
+      "-L9HPBRLLleWD-cpt4RI": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-03",
+        "modified": "2018-04-04T20:46:03.073Z",
+        "userId": "user1"
+      },
+      "-L9HPDC72PhEZ6Xr1pr5": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-03",
+        "modified": "2018-04-04T20:46:10.291Z",
+        "userId": "user1"
+      },
+      "-L9HPEiAYQxjIzEQsPpl": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-03",
+        "modified": "2018-04-04T20:46:16.502Z",
+        "userId": "user1"
+      },
+      "-L9HPJRT86UqA-qsxoNn": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-04",
+        "modified": "2018-04-04T20:46:35.849Z",
+        "userId": "user1",
+        "weight": "60.2"
+      },
+      "-L9HPV_0lPVVNRD1zkat": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-04",
+        "modified": "2018-04-04T20:47:25.548Z",
+        "userId": "user1"
+      },
+      "-L9HP_mMfM8rtEk3hZgt": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-02",
+        "modified": "2018-04-06T16:52:49.010Z",
+        "userId": "user1"
+      },
+      "-L9MOf6tOfpnbNnuG4dc": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-05",
+        "modified": "2018-04-05T20:01:52.659Z",
+        "userId": "user1",
+        "weight": "68.9"
+      },
+      "-L9MOlNuBnV0jyvdpQcG": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-05",
+        "modified": "2018-04-05T20:02:18.324Z",
+        "userId": "user1",
+        "weight": "57.4"
+      },
+      "-L9MOqTqOSYyRAR8_ScE": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-05",
+        "modified": "2018-04-05T20:02:39.185Z",
+        "userId": "user1",
+        "weight": "63.0"
+      },
+      "-L9Qqwch3PlnWImxQkX_": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-06",
+        "modified": "2018-04-06T16:48:15.447Z",
+        "userId": "user1",
+        "weight": "66.3"
+      },
+      "-L9R3lD0tELbcP2u06oY": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-06",
+        "modified": "2018-04-06T17:48:38.675Z",
+        "userId": "user1",
+        "weight": "60.1"
+      },
+      "-L9VJPV0LY70yVyz7_R-": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-07",
+        "modified": "2018-04-07T13:35:28.835Z",
+        "userId": "user1",
+        "weight": "61.9"
+      },
+      "-L9WtaEi6J8EtvmmdkL0": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-07",
+        "modified": "2018-04-07T20:57:33.464Z",
+        "userId": "user1",
+        "weight": "59.9"
+      },
+      "-L9WteKzz5mHRjOa6Ni6": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-07",
+        "modified": "2018-04-07T20:57:50.250Z",
+        "userId": "user1",
+        "weight": "55.9"
+      },
+      "-L9Wth9K2RPoVnK3QFKw": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-07",
+        "modified": "2018-04-07T20:58:01.791Z",
+        "userId": "user1",
+        "weight": "66.9"
+      },
+      "-L9b2aQ6qNxCmg5AfMoU": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-08",
+        "modified": "2018-04-08T20:59:21.696Z",
+        "userId": "user1",
+        "weight": "60.1"
+      },
+      "-L9b2doBcV0z7ZljPEzd": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-08",
+        "modified": "2018-04-08T20:59:35.590Z",
+        "userId": "user1",
+        "weight": "58.1"
+      },
+      "-L9fIU-_Tj6KXYSR_q73": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-09",
+        "modified": "2018-04-09T16:47:14.493Z",
+        "userId": "user1",
+        "weight": "62"
+      },
+      "-L9ghc-azW_ryg2B0RMo": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-09",
+        "modified": "2018-04-09T23:21:04.317Z",
+        "userId": "user1",
+        "weight": "62.6"
+      },
+      "-L9kcFcl2LMcDSuqfmoE": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-10",
+        "modified": "2018-04-10T17:36:06.728Z",
+        "userId": "user1",
+        "weight": "60.2"
+      },
+      "-L9kcIHFdpfmRwLc6Xys": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-10",
+        "modified": "2018-04-10T17:36:17.575Z",
+        "userId": "user1",
+        "weight": "61.6"
+      },
+      "-L9kcL4uH6Dp8w1Tjzlu": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-10",
+        "modified": "2018-04-10T17:36:29.074Z",
+        "userId": "user1",
+        "weight": "70"
+      },
+      "-L9pcXeOjYPo95SHuUPJ": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-11",
+        "modified": "2018-04-11T16:55:26.637Z",
+        "userId": "user1",
+        "weight": "62.8"
+      },
+      "-L9pc_tHVSuJeD16-Kor": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-11",
+        "modified": "2018-04-11T16:55:39.878Z",
+        "userId": "user1",
+        "weight": "69"
+      },
+      "-L9rMiAA8cH_E9A7NQ9M": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-11",
+        "modified": "2018-04-12T01:01:11.785Z",
+        "userId": "user1",
+        "weight": "60.9"
+      },
+      "-L9rMlY6nQfQFeuKJdAv": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-11",
+        "modified": "2018-04-12T01:01:25.607Z",
+        "userId": "user1",
+        "weight": "58.6"
+      },
+      "-L9uuxz-IJbvfW7yRdDY": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-12",
+        "modified": "2018-04-12T17:34:03.227Z",
+        "userId": "user1",
+        "weight": "70"
+      },
+      "-L9vOPoQFY6Lwhi7YyGM": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-12",
+        "modified": "2018-04-12T19:47:05.651Z",
+        "userId": "user1",
+        "weight": "62.5"
+      },
+      "-LA-1Rmh6q1VH9oi_xDX": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-13",
+        "modified": "2018-04-13T17:24:50.502Z",
+        "userId": "user1",
+        "weight": "61"
+      },
+      "-LA-1UVQi4Iqo7kNKk0l": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-13",
+        "modified": "2018-04-13T17:25:01.621Z",
+        "userId": "user1",
+        "weight": "57.4"
+      },
+      "-LA-1WzvcdvCL6AzCA7d": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-13",
+        "modified": "2018-04-13T17:25:11.830Z",
+        "userId": "user1",
+        "weight": "69.6"
+      },
+      "-LA4GAqeLpSK-EkEb8RR": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-14",
+        "modified": "2018-04-14T17:47:19.416Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-LA4GDYllOqVhSQ8ay3g": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-14",
+        "modified": "2018-04-14T17:47:30.497Z",
+        "userId": "user1",
+        "weight": "71.1"
+      },
+      "-LA5_AlfPnTTmcTpjZBz": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-14",
+        "modified": "2018-04-14T23:54:19.133Z",
+        "userId": "user1",
+        "weight": "58.7"
+      },
+      "-LA5_GLU_VDK6UcjyibE": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-14",
+        "modified": "2018-04-14T23:54:41.970Z",
+        "userId": "user1",
+        "weight": "61.7"
+      },
+      "-LA95jXbSQOXgG2Tezml": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-15",
+        "modified": "2018-04-15T16:19:48.036Z",
+        "userId": "user1",
+        "weight": "70.2"
+      },
+      "-LAENLA-Qv-iERBe7BAC": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-16",
+        "modified": "2018-04-16T16:54:48.809Z",
+        "userId": "user1",
+        "weight": "70.5"
+      },
+      "-LAENNsFwWUmRDjnHynq": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-16",
+        "modified": "2018-04-16T16:54:59.899Z",
+        "userId": "user1",
+        "weight": "57.1"
+      },
+      "-LAENQIyi8oXg-AqekQE": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-16",
+        "modified": "2018-04-16T16:55:09.865Z",
+        "userId": "user1",
+        "weight": "65.5"
+      },
+      "-LAKZf9OsGh0g_Cxx3Ft": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-17",
+        "modified": "2018-04-17T21:46:23.792Z",
+        "userId": "user1",
+        "weight": "64.4"
+      },
+      "-LAKZhxnTvApJnX6pIjF": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-17",
+        "modified": "2018-04-17T21:46:35.276Z",
+        "userId": "user1",
+        "weight": "57.6"
+      },
+      "-LAKZn0a05NLqWTjM4Ts": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-17",
+        "modified": "2018-04-17T21:46:55.998Z",
+        "userId": "user1",
+        "weight": "61.7"
+      },
+      "-LAKZqbvsN04FyRDAC7r": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-17",
+        "modified": "2018-04-17T21:47:10.740Z",
+        "userId": "user1",
+        "weight": "67.7"
+      },
+      "-LAPdbBTY4NIuWgM7sK4": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-18",
+        "modified": "2018-04-18T21:26:04.351Z",
+        "userId": "user1",
+        "weight": "68.6"
+      },
+      "-LAPdeJAchuSz1Ba0jRx": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-18",
+        "modified": "2018-04-18T21:26:17.132Z",
+        "userId": "user1",
+        "weight": "63.6"
+      },
+      "-LAPdhHJCXdCLRSynzZ_": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-18",
+        "modified": "2018-04-18T21:26:29.302Z",
+        "userId": "user1",
+        "weight": "61.6"
+      },
+      "-LAU_cZwFezwRu80R_HT": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-19",
+        "modified": "2018-04-19T20:26:47.512Z",
+        "userId": "user1",
+        "weight": "67.8"
+      },
+      "-LAU_f13SC0Icyhu0yjy": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-19",
+        "modified": "2018-04-19T20:26:57.570Z",
+        "userId": "user1",
+        "weight": "60.6"
+      },
+      "-LA_Vl_RVLgykcakiG_l": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-20",
+        "modified": "2018-04-21T00:03:16.978Z",
+        "userId": "user1",
+        "weight": "54.6"
+      },
+      "-LA_VohPfmCJNUs0PyXx": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-20",
+        "modified": "2018-04-21T00:03:29.776Z",
+        "userId": "user1",
+        "weight": "64.4"
+      },
+      "-LA_Vr7dGApT-qlQJl5H": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-20",
+        "modified": "2018-04-21T00:03:39.711Z",
+        "userId": "user1",
+        "weight": "59.9"
+      },
+      "-LAeWh1j1PyHnJcb3Ci0": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-21",
+        "modified": "2018-04-21T23:25:26.606Z",
+        "userId": "user1",
+        "weight": "59.6"
+      },
+      "-LAeWjWGj4gPYPrQMou9": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-21",
+        "modified": "2018-04-21T23:25:36.754Z",
+        "userId": "user1",
+        "weight": "70"
+      },
+      "-LAeWmD29W9GD_e-10Of": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-21",
+        "modified": "2018-04-21T23:25:47.811Z",
+        "userId": "user1",
+        "weight": "62"
+      },
+      "-LAjEvWktUKuIwrtdZLR": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-22",
+        "modified": "2018-04-22T21:25:53.415Z",
+        "userId": "user1",
+        "weight": "64.4"
+      },
+      "-LAnb94Geaxs7TPsoqSI": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-23",
+        "modified": "2018-04-23T17:45:51.211Z",
+        "userId": "user1",
+        "weight": "66.9"
+      },
+      "-LAnbBrhU1kFbfwVBzUR": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-23",
+        "modified": "2018-04-23T17:46:02.633Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-LAnbEg4GYH5TGHSABBD": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-23",
+        "modified": "2018-04-23T17:46:14.176Z",
+        "userId": "user1",
+        "weight": "61.9"
+      },
+      "-LAu-OgWm53wZ2MTlcPI": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-24",
+        "modified": "2018-04-24T23:33:52.078Z",
+        "userId": "user1",
+        "weight": "60.6"
+      },
+      "-LAu-SW93mf88yZDPwIO": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-24",
+        "modified": "2018-04-24T23:34:07.736Z",
+        "userId": "user1",
+        "weight": "64.1"
+      },
+      "-LAzDKJTwMArfV5WtPLu": {
+        "chickenId": "chicken3",
+        "chickenName": "Chicken3",
+        "date": "2018-04-25",
+        "modified": "2018-04-25T23:52:50.233Z",
+        "userId": "user1",
+        "weight": "55.8"
+      },
+      "-LAzDN7QrzbmyhIqWRGu": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-25",
+        "modified": "2018-04-25T23:53:01.751Z",
+        "userId": "user1",
+        "weight": "64.3"
+      },
+      "-LAzDQGyTlPsU0KRhevt": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-25",
+        "modified": "2018-04-25T23:53:14.650Z",
+        "userId": "user1",
+        "weight": "58.4"
+      },
+      "-LB5s886r1GcLL2X8wZI": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-26",
+        "modified": "2018-04-27T11:32:50.942Z",
+        "userId": "user1",
+        "weight": "64.4"
+      },
+      "-LB63iAP7OQffckbW1fA": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-27",
+        "modified": "2018-04-27T12:27:48.338Z",
+        "userId": "user1",
+        "weight": "67.6"
+      },
+      "-LBBMV3GPRcu_GoYL2l8": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-27",
+        "modified": "2018-04-28T13:07:57.353Z",
+        "userId": "user1"
+      },
+      "-LBBMXfNsKJs683ehiiD": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-27",
+        "modified": "2018-04-28T13:08:08.051Z",
+        "userId": "user1"
+      },
+      "-LBBltyC9p1tXZcjeojT": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-28",
+        "modified": "2018-04-28T15:03:19.202Z",
+        "userId": "user1",
+        "weight": "71.5"
+      },
+      "-LBGm3O0s97QgLVFp_yg": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-29",
+        "modified": "2018-04-29T14:22:07.959Z",
+        "userId": "user1",
+        "weight": "63.2"
+      },
+      "-LBMzVqgn0gx1Wbr4GnB": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:35.717Z",
+        "userId": "user1",
+        "weight": "62.5"
+      },
+      "-LBMzYSJNk-9FIp-7ynK": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:46.383Z",
+        "userId": "user1",
+        "weight": "65.3"
+      },
+      "-LBMzabge-5oORvOVzKP": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:59.335Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-LBS5lYQRf_Nq_mMxXvf": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-01",
+        "modified": "2018-05-01T19:08:25.201Z",
+        "userId": "user1",
+        "weight": "62.7"
+      },
+      "-LBS5npaY0jhl2dmWrD1": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-01",
+        "modified": "2018-05-01T19:08:34.557Z",
+        "userId": "user1",
+        "weight": "58.2"
+      },
+      "-LBS5qJUUSTVAgPGKlon": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-01",
+        "modified": "2018-05-01T19:09:21.715Z",
+        "userId": "user1",
+        "weight": "71.4"
+      },
+      "-LBXiVQ-Mliy3NoQ91VR": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-02",
+        "modified": "2018-05-02T21:20:06.914Z",
+        "userId": "user1",
+        "weight": "58"
+      },
+      "-LBXiYFQm1lgZpUT42ou": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-02",
+        "modified": "2018-05-02T21:20:18.527Z",
+        "userId": "user1",
+        "weight": "60.7"
+      },
+      "-LBXi_gihpcjNyzeWMN4": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-02",
+        "modified": "2018-05-02T21:20:28.529Z",
+        "userId": "user1",
+        "weight": "70.9"
+      },
+      "-LBc0uCLkMZfXiVBRq7b": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-03",
+        "modified": "2018-05-03T22:02:59.312Z",
+        "userId": "user1",
+        "weight": "60.5"
+      },
+      "-LBc0zJWAyT_EhTTuLTL": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-03",
+        "modified": "2018-05-03T22:03:20.251Z",
+        "userId": "user1",
+        "weight": "70.1"
+      },
+      "-LBheD0Xrdy3bOFSiiZc": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-04",
+        "modified": "2018-05-05T00:17:12.314Z",
+        "userId": "user1",
+        "weight": "62.8"
+      },
+      "-LBheGzAuGEa534mX9WK": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-04",
+        "modified": "2018-05-05T00:17:28.548Z",
+        "userId": "user1",
+        "weight": "69.9"
+      },
+      "-LBlT0R18K_m-rJGX3gY": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-05",
+        "modified": "2018-05-05T18:02:23.896Z",
+        "userId": "user1",
+        "weight": "69.6"
+      },
+      "-LBlT7cFvCjGLAJK006h": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-05",
+        "modified": "2018-05-05T18:02:53.349Z",
+        "notes": "Kna",
+        "userId": "user1",
+        "weight": "62.9"
+      },
+      "-LBqWmOjebR_PX7AxsKn": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-06",
+        "modified": "2018-05-06T17:36:56.962Z",
+        "notes": "Ert said yay",
+        "userId": "user1",
+        "weight": "64.7"
+      },
+      "-LBqX3ZkmnTNssUrdPUt": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-06",
+        "modified": "2018-05-06T17:38:11.397Z",
+        "notes": "Malala honk honk honk honk HONK",
+        "userId": "user1",
+        "weight": "71.1"
+      },
+      "-LBwOLh81YRwHsz700-2": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-07",
+        "modified": "2018-05-07T20:57:49.682Z",
+        "userId": "user1",
+        "weight": "70.6"
+      },
+      "-LBwOOLXZS1pqhV65gtv": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-07",
+        "modified": "2018-05-07T20:58:00.523Z",
+        "userId": "user1",
+        "weight": "60.2"
+      },
+      "-LC0f7zrzbA4dMpqIpoe": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-08",
+        "modified": "2018-05-08T21:33:38.201Z",
+        "userId": "user1",
+        "weight": "64.9"
+      },
+      "-LC0fB8-RLZtFeo28pbo": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-08",
+        "modified": "2018-05-08T21:33:51.075Z",
+        "userId": "user1",
+        "weight": "68.7"
+      },
+      "-LC69LTsjA1pbkt1wIFo": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-09",
+        "modified": "2018-05-09T23:08:05.971Z",
+        "userId": "user1",
+        "weight": "62"
+      },
+      "-LC69OfuZkBwGOm7xntV": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-09",
+        "modified": "2018-05-09T23:08:19.094Z",
+        "userId": "user1",
+        "weight": "67.6"
+      },
+      "-LC69RfnS0PF9PWVkUgX": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-09",
+        "modified": "2018-05-22T23:38:20.234Z",
+        "userId": "user1",
+        "weight": "63.6"
+      },
+      "-LCBBHoRFzWGBmN6LraU": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-10",
+        "modified": "2018-05-10T22:34:41.355Z",
+        "notes": "Ert my name is ert I don’t like cold beer ",
+        "userId": "user1",
+        "weight": "62.7"
+      },
+      "-LCBBYL4zVT_Fj3Cvzv2": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-10",
+        "modified": "2018-05-10T22:35:49.045Z",
+        "notes": "Kna oh la la kna I am grumpy ",
+        "userId": "user1",
+        "weight": "62.2"
+      },
+      "-LCJH1DVnxgH-cVrQJAF": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-11",
+        "modified": "2018-05-12T12:16:43.959Z",
+        "userId": "user1",
+        "weight": "63.4"
+      },
+      "-LCJH5SSfQmP7EPp6zwO": {
+        "chickenId": "chicken2",
+        "chickenName": "Chicken2",
+        "date": "2018-05-11",
+        "modified": "2018-05-12T12:17:01.302Z",
+        "userId": "user1",
+        "weight": "61.2"
+      },
+      "-LCLORSsCuKFjMHkj5hd": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-12",
+        "modified": "2018-05-12T22:08:20.874Z",
+        "userId": "user1",
+        "weight": "69.4"
+      },
+      "-LCLOhqb0mbMboZzjEvP": {
+        "chickenId": "chicken4",
+        "chickenName": "Chicken4",
+        "date": "2018-05-12",
+        "modified": "2018-05-12T22:09:32.089Z",
+        "notes": "Poop I ert I say poop\n\n",
+        "userId": "user1",
+        "weight": "65.9"
+      },
+      "-LCPfYtkeaQgQEQWpVIu": {
+        "chickenId": "chicken1",
+        "chickenName": "Chicken1",
+        "date": "2018-05-13",
+        "modified": "2018-05-13T18:05:58.792Z",
+        "userId": "user1",
+        "weight": "70.1"
+      }
+    }
+  },
+  "flocks": {
+    "flock1": {
+      "name": "Test Flock 1",
+      "ownedBy": "user1"
+    },
+    "flock2": {
+      "name": "Test Flock 2",
+      "ownedBy": "user1"
+    }
+  },
+  "userSettings": {
+    "inProgress": false,
+    "error": "",
+    "key": "user1",
+    "data": {
+      "currentFlockId": "flock1",
+      "displayName": "test@example.com",
+      "flocks": {
+        "flock1": true,
+        "flock2": true
+      }
+    }
+  }
+}
