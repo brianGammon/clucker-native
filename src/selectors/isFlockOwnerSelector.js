@@ -1,15 +1,15 @@
 import createCachedSelector from 're-reselect';
 import currentFlockSelector from './currentFlockSelector';
 
-const currentUserSelector = (flocks, { key }) => key;
+const getCurrentUser = (flocks, { key }) => key;
 
 const isFlockOwnerSelector = createCachedSelector(
-  [currentFlockSelector, currentUserSelector],
+  [currentFlockSelector, getCurrentUser],
   (flock, userId) => {
     const result = flock ? flock.ownedBy === userId : false;
     console.log('ran isFlockOwner selector: ', result);
     return result;
   },
-)(currentUserSelector);
+)(getCurrentUser);
 
 export default isFlockOwnerSelector;

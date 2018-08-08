@@ -1,11 +1,11 @@
 import { reduce } from 'lodash';
 import createCachedSelector from 're-reselect';
 
-const eggsList = state => state;
-const monthSelector = (state, month = 'allTime') => month;
+const getEggsList = state => state;
+const getMonth = (state, month = 'allTime') => month;
 
 const eggsSelector = createCachedSelector(
-  [eggsList, monthSelector],
+  [getEggsList, getMonth],
   (eggs, date) => {
     // eslint-disable-next-line no-console
     console.log(`Running eggs selector for range: ${date}`);
@@ -24,6 +24,6 @@ const eggsSelector = createCachedSelector(
     // returns a lost of eggs sorted by the month requests, or all
     return eggsForRange;
   },
-)(monthSelector);
+)(getMonth);
 
 export default eggsSelector;

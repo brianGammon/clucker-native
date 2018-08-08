@@ -1,5 +1,5 @@
 /* @flow */
-type ReturnVals = {
+type ReturnValues = {
   [methodName: string]: {
     [param: string]: string,
   },
@@ -9,10 +9,10 @@ type MockNavigation = {
   getParam: (param: string, defaultId: string) => string,
 };
 
-const mockNavigation = (returnVals: ReturnVals) => ({
+const mockNavigation = (returnValues: ReturnValues) => ({
   getParam: jest.fn((param: string, defaultId: string) => {
-    if (returnVals.getParam && returnVals.getParam[param]) {
-      return returnVals.getParam[param];
+    if (returnValues.getParam && returnValues.getParam[param]) {
+      return returnValues.getParam[param];
     }
     return defaultId;
   }),

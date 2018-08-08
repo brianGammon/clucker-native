@@ -1,11 +1,11 @@
 import { reduce } from 'lodash';
 import { createSelector } from 'reselect';
 
-const eggsList = state => state.eggs;
-const dateselector = (state, date) => date;
+const getEggsList = state => state.eggs;
+const getDate = (state, date) => date;
 
 const eggsByDaySelector = createSelector(
-  [eggsList, dateselector],
+  [getEggsList, getDate],
   (eggs, date) => {
     // eslint-disable-next-line no-console
     console.log('Running eggs for date selector');
