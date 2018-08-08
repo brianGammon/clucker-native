@@ -2,247 +2,51 @@
 
 exports[`Calender component: Should render 1`] = `
 <CalendarRenderer
+  chickens={
+    Object {
+      "chicken1": Object {
+        "breed": "Cuckoo Maran",
+        "hatched": "2016-10-05",
+        "name": "Chicken1",
+        "photoPath": "uploads/user:user1/flock:flock1/1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72",
+      },
+      "chicken2": Object {
+        "breed": "Black Australorpe",
+        "hatched": "2016-10-05",
+        "name": "Chicken2",
+        "photoPath": "uploads/user:user1/flock:flock1/8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0ae6a73d-7027-4d18-8ab2-3f40340496c5",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0e0d4dea-5104-4cfe-9a49-f87d4b412e24",
+      },
+      "chicken3": Object {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken3",
+        "photoPath": "uploads/user:user1/flock:flock1/1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=54a9eb90-7a2a-4370-a030-7cb3fa3bb738",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=708ffb11-4a0a-4dab-9633-27a2c0c74d18",
+      },
+      "chicken4": Object {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken4",
+        "photoPath": "uploads/user:user1/flock:flock1/9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=77141d6f-bb85-4174-817b-ad2cad174315",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=baa3c541-626a-45e7-b75c-1eab00454476",
+      },
+    }
+  }
   dates={
     Object {
       "date": "2018-05",
       "nextDate": null,
       "previousDate": "2018-04",
-    }
-  }
-  eggs={
-    Object {
-      "-LBS5lYQRf_Nq_mMxXvf": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-01",
-        "modified": "2018-05-01T19:08:25.201Z",
-        "userId": "user1",
-        "weight": "62.7",
-      },
-      "-LBS5npaY0jhl2dmWrD1": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-01",
-        "modified": "2018-05-01T19:08:34.557Z",
-        "userId": "user1",
-        "weight": "58.2",
-      },
-      "-LBS5qJUUSTVAgPGKlon": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-01",
-        "modified": "2018-05-01T19:09:21.715Z",
-        "userId": "user1",
-        "weight": "71.4",
-      },
-      "-LBXiVQ-Mliy3NoQ91VR": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-02",
-        "modified": "2018-05-02T21:20:06.914Z",
-        "userId": "user1",
-        "weight": "58",
-      },
-      "-LBXiYFQm1lgZpUT42ou": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-02",
-        "modified": "2018-05-02T21:20:18.527Z",
-        "userId": "user1",
-        "weight": "60.7",
-      },
-      "-LBXi_gihpcjNyzeWMN4": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-02",
-        "modified": "2018-05-02T21:20:28.529Z",
-        "userId": "user1",
-        "weight": "70.9",
-      },
-      "-LBc0uCLkMZfXiVBRq7b": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-03",
-        "modified": "2018-05-03T22:02:59.312Z",
-        "userId": "user1",
-        "weight": "60.5",
-      },
-      "-LBc0zJWAyT_EhTTuLTL": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-03",
-        "modified": "2018-05-03T22:03:20.251Z",
-        "userId": "user1",
-        "weight": "70.1",
-      },
-      "-LBheD0Xrdy3bOFSiiZc": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-04",
-        "modified": "2018-05-05T00:17:12.314Z",
-        "userId": "user1",
-        "weight": "62.8",
-      },
-      "-LBheGzAuGEa534mX9WK": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-04",
-        "modified": "2018-05-05T00:17:28.548Z",
-        "userId": "user1",
-        "weight": "69.9",
-      },
-      "-LBlT0R18K_m-rJGX3gY": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-05",
-        "modified": "2018-05-05T18:02:23.896Z",
-        "userId": "user1",
-        "weight": "69.6",
-      },
-      "-LBlT7cFvCjGLAJK006h": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-05",
-        "modified": "2018-05-05T18:02:53.349Z",
-        "notes": "Kna",
-        "userId": "user1",
-        "weight": "62.9",
-      },
-      "-LBqWmOjebR_PX7AxsKn": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-06",
-        "modified": "2018-05-06T17:36:56.962Z",
-        "notes": "Ert said yay",
-        "userId": "user1",
-        "weight": "64.7",
-      },
-      "-LBqX3ZkmnTNssUrdPUt": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-06",
-        "modified": "2018-05-06T17:38:11.397Z",
-        "notes": "Malala honk honk honk honk HONK",
-        "userId": "user1",
-        "weight": "71.1",
-      },
-      "-LBwOLh81YRwHsz700-2": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-07",
-        "modified": "2018-05-07T20:57:49.682Z",
-        "userId": "user1",
-        "weight": "70.6",
-      },
-      "-LBwOOLXZS1pqhV65gtv": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-07",
-        "modified": "2018-05-07T20:58:00.523Z",
-        "userId": "user1",
-        "weight": "60.2",
-      },
-      "-LC0f7zrzbA4dMpqIpoe": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-08",
-        "modified": "2018-05-08T21:33:38.201Z",
-        "userId": "user1",
-        "weight": "64.9",
-      },
-      "-LC0fB8-RLZtFeo28pbo": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-08",
-        "modified": "2018-05-08T21:33:51.075Z",
-        "userId": "user1",
-        "weight": "68.7",
-      },
-      "-LC69LTsjA1pbkt1wIFo": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-09",
-        "modified": "2018-05-09T23:08:05.971Z",
-        "userId": "user1",
-        "weight": "62",
-      },
-      "-LC69OfuZkBwGOm7xntV": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-09",
-        "modified": "2018-05-09T23:08:19.094Z",
-        "userId": "user1",
-        "weight": "67.6",
-      },
-      "-LC69RfnS0PF9PWVkUgX": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-09",
-        "modified": "2018-05-22T23:38:20.234Z",
-        "userId": "user1",
-        "weight": "63.6",
-      },
-      "-LCBBHoRFzWGBmN6LraU": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-10",
-        "modified": "2018-05-10T22:34:41.355Z",
-        "notes": "Ert my name is ert I don’t like cold beer ",
-        "userId": "user1",
-        "weight": "62.7",
-      },
-      "-LCBBYL4zVT_Fj3Cvzv2": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-10",
-        "modified": "2018-05-10T22:35:49.045Z",
-        "notes": "Kna oh la la kna I am grumpy ",
-        "userId": "user1",
-        "weight": "62.2",
-      },
-      "-LCJH1DVnxgH-cVrQJAF": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-11",
-        "modified": "2018-05-12T12:16:43.959Z",
-        "userId": "user1",
-        "weight": "63.4",
-      },
-      "-LCJH5SSfQmP7EPp6zwO": Object {
-        "chickenId": "chicken2",
-        "chickenName": "Chicken2",
-        "date": "2018-05-11",
-        "modified": "2018-05-12T12:17:01.302Z",
-        "userId": "user1",
-        "weight": "61.2",
-      },
-      "-LCLORSsCuKFjMHkj5hd": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-12",
-        "modified": "2018-05-12T22:08:20.874Z",
-        "userId": "user1",
-        "weight": "69.4",
-      },
-      "-LCLOhqb0mbMboZzjEvP": Object {
-        "chickenId": "chicken4",
-        "chickenName": "Chicken4",
-        "date": "2018-05-12",
-        "modified": "2018-05-12T22:09:32.089Z",
-        "notes": "Poop I ert I say poop
-
-",
-        "userId": "user1",
-        "weight": "65.9",
-      },
-      "-LCPfYtkeaQgQEQWpVIu": Object {
-        "chickenId": "chicken1",
-        "chickenName": "Chicken1",
-        "date": "2018-05-13",
-        "modified": "2018-05-13T18:05:58.792Z",
-        "userId": "user1",
-        "weight": "70.1",
-      },
     }
   }
   navigation={
@@ -272,6 +76,101 @@ exports[`Calender component: Should render 1`] = `
         "chicken2": 8,
         "chicken4": 8,
       },
+      "eggsPerDay": Object {
+        "2018-05-01": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-02": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-03": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-04": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-05": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-06": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-07": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-08": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-09": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-10": Object {
+          "byChicken": Object {
+            "chicken2": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-11": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken2": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-12": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+            "chicken4": 1,
+          },
+          "total": 1,
+        },
+        "2018-05-13": Object {
+          "byChicken": Object {
+            "chicken1": 1,
+          },
+          "total": 1,
+        },
+      },
       "firstEgg": "2018-05-01",
       "heaviest": Object {
         "chickenId": "chicken1",
@@ -282,7 +181,7 @@ exports[`Calender component: Should render 1`] = `
         "weight": "71.4",
       },
       "mostEggs": "chicken1",
-      "total": undefined,
+      "total": 28,
     }
   }
 />

@@ -2,17 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import CalendarRenderer from './CalendarRenderer';
-import eggsByRangeSelector from '../../selectors/eggsByRangeSelector';
 import flockStatsSelector from '../../selectors/flockStatsSelector';
-import { type Egg } from '../../types';
 import { nowAsMoment, dateStringAsMoment } from '../../utils/dateHelper';
+import { type Chicken } from '../../types';
 
 type Props = {
   navigation: any,
-  eggs: {
-    [eggId: string]: Egg,
-  },
   stats: any,
+  chickens: {
+    [chickenId: string]: Chicken,
+  },
   dates: {
     date: string,
     previousDate: string,
@@ -23,20 +22,20 @@ type Props = {
 class Calendar extends React.Component<Props> {
   render() {
     const {
-      navigation, eggs, stats, dates,
+      navigation, stats, dates, chickens,
     } = this.props;
     return (
       <CalendarRenderer
         navigation={navigation}
-        eggs={eggs}
         stats={stats}
+        chickens={chickens}
         dates={dates}
       />
     );
   }
 }
 
-const mapStateToProps = ({ eggs }, { navigation }) => {
+const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
   const date = navigation.getParam('date', nowAsMoment().format('YYYY-MM'));
   const currDate = moment.utc(date);
   const previousDate = currDate
@@ -51,8 +50,8 @@ const mapStateToProps = ({ eggs }, { navigation }) => {
     nextDate = null;
   }
   return {
-    eggs: eggsByRangeSelector(eggs.data, date),
     stats: flockStatsSelector(eggs.data, date),
+    chickens: chickens.data,
     dates: {
       date,
       previousDate,
