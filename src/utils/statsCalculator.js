@@ -62,7 +62,7 @@ export default (eggs, range) => {
         eggsPerDay[egg.date] = { total: 0, byChicken: {} };
       }
 
-      eggsPerDay[egg.date].total = eggsPerDay[egg.date].total || 0 + 1;
+      eggsPerDay[egg.date].total += 1;
       eggsPerDay[egg.date].byChicken[egg.chickenId] = eggsPerDay[egg.date].byChicken[egg.chickenId] || 0 + 1;
     }
   });
@@ -86,7 +86,7 @@ export default (eggs, range) => {
   }
   const averageNumber = rangeCount > 0 ? rangeCount / daysToGoBack : 0;
 
-  return {
+  const stats = {
     total: sortedEggs.length,
     heaviest: heaviestEgg,
     averageWeight: totalWeight / totalWithWeight,
@@ -96,4 +96,5 @@ export default (eggs, range) => {
     eggsPerChicken,
     eggsPerDay,
   };
+  return stats;
 };

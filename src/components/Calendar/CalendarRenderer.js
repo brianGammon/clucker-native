@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   Text, Button, ScrollView, View,
 } from 'react-native';
+import { type Chicken } from '../../types';
 import styles from './styles';
 
 type Props = {

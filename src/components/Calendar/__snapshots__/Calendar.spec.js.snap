@@ -83,7 +83,7 @@ exports[`Calender component: Should render 1`] = `
             "chicken2": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 3,
         },
         "2018-05-02": Object {
           "byChicken": Object {
@@ -91,49 +91,49 @@ exports[`Calender component: Should render 1`] = `
             "chicken2": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 3,
         },
         "2018-05-03": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken2": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-04": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-05": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken2": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-06": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-07": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-08": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken2": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-09": Object {
           "byChicken": Object {
@@ -141,28 +141,28 @@ exports[`Calender component: Should render 1`] = `
             "chicken2": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 3,
         },
         "2018-05-10": Object {
           "byChicken": Object {
             "chicken2": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-11": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken2": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-12": Object {
           "byChicken": Object {
             "chicken1": 1,
             "chicken4": 1,
           },
-          "total": 1,
+          "total": 2,
         },
         "2018-05-13": Object {
           "byChicken": Object {

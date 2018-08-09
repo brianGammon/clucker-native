@@ -1,7 +1,7 @@
 import { reduce } from 'lodash';
 import { createSelector } from 'reselect';
 
-const getEggsList = state => state.eggs;
+const getEggsList = state => state;
 const getDate = (state, date) => date;
 
 const eggsByDaySelector = createSelector(
