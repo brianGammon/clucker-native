@@ -60,8 +60,6 @@ const CalendarRenderer = ({
           </View>
         ))}
     </View>
-
-    <Button onPress={() => navigation.navigate('Day')} title="Today's Eggs" />
   </ScrollView>
 );
 

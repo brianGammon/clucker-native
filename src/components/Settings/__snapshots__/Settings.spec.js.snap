@@ -1,7 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Settings component: Should render 1`] = `
-<Component>
-  Settings Screen
-</Component>
+<SettingsRenderer
+  flocks={
+    Object {
+      "flock1": Object {
+        "name": "Test Flock 1",
+        "ownedBy": "user1",
+      },
+      "flock2": Object {
+        "name": "Test Flock 2",
+        "ownedBy": "user1",
+      },
+    }
+  }
+/>
 `;

@@ -12,9 +12,14 @@
     "data": {}
   },
   "flocks": {
-    "flock1": {
-      "name": "Test Flock 1",
-      "ownedBy": "user1"
+    "inProgress": false,
+    "error": "",
+    "key": "user1",
+    "data": {
+      "flock1": {
+        "name": "Test Flock 1",
+        "ownedBy": "user1"
+      }
     }
   },
   "userSettings": {
