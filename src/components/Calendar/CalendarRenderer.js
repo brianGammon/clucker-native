@@ -51,7 +51,10 @@ const CalendarRenderer = ({
             </View>
             {Object.keys(stats.eggsPerDay[key].byChicken || {}).map(
               chickenId => (
-                <Text key={chickenId}>{chickens[chickenId].name}</Text>
+                <Text key={chickenId}>
+                  {(chickens[chickenId] && chickens[chickenId].name)
+                    || 'Unknown'}
+                </Text>
               ),
             )}
           </View>

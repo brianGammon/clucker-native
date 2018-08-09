@@ -2,7 +2,13 @@
 
 exports[`CalendarDay component: Should render correctly 1`] = `
 <CalendarDayRenderer
-  date="2018-05-09"
+  dates={
+    Object {
+      "date": "2018-05-09",
+      "nextDate": "2018-05-10",
+      "previousDate": "2018-05-08",
+    }
+  }
   eggs={
     Object {
       "-LC69LTsjA1pbkt1wIFo": Object {
@@ -49,5 +55,6 @@ exports[`CalendarDay component: Should render correctly 1`] = `
       },
     }
   }
+  onDeleteEgg={[Function]}
 />
 `;

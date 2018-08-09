@@ -45,7 +45,7 @@ exports[`Calender component: Should render 1`] = `
   dates={
     Object {
       "date": "2018-05",
-      "nextDate": null,
+      "nextDate": "2018-06",
       "previousDate": "2018-04",
     }
   }
