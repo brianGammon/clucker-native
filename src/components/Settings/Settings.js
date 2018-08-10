@@ -9,17 +9,27 @@ type Props = {
   flocks: {
     [flockId: string]: Flock,
   },
+  currentFlockId: string,
+  userId: string,
 };
 
 class Settings extends React.Component<Props> {
   render() {
-    const { flocks } = this.props;
-    return <SettingsRenderer flocks={flocks} />;
+    const { flocks, currentFlockId, userId } = this.props;
+    return (
+      <SettingsRenderer
+        flocks={flocks}
+        currentFlockId={currentFlockId}
+        userId={userId}
+      />
+    );
   }
 }
 
-const mapStateToProps = ({ flocks }) => ({
+const mapStateToProps = ({ flocks, userSettings }) => ({
   flocks: flocks.data,
+  currentFlockId: userSettings.data.currentFlockId,
+  userId: userSettings.key,
 });
 
 export default connect(mapStateToProps)(Settings);

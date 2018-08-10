@@ -2,6 +2,7 @@
 
 exports[`Settings component: Should render 1`] = `
 <SettingsRenderer
+  currentFlockId="flock1"
   flocks={
     Object {
       "flock1": Object {
@@ -14,5 +15,6 @@ exports[`Settings component: Should render 1`] = `
       },
     }
   }
+  userId="user1"
 />
 `;
