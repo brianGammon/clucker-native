@@ -17,9 +17,15 @@ type Props = {
   },
   currentFlockId: string,
   userId: string,
+  handleSignOut: () => void,
 };
 
-const SettingsRenderer = ({ flocks, currentFlockId, userId }: Props) => (
+const SettingsRenderer = ({
+  flocks,
+  currentFlockId,
+  userId,
+  handleSignOut,
+}: Props) => (
   <ScrollView style={{ padding: 10 }}>
     <View>
       <Text style={styles.sectionLabel}>Account</Text>
@@ -29,7 +35,7 @@ const SettingsRenderer = ({ flocks, currentFlockId, userId }: Props) => (
           <Text style={{ marginRight: 10 }}>test@example.com</Text>
         </View>
 
-        <Button title="Sign Out" onPress={() => {}} />
+        <Button title="Sign Out" onPress={handleSignOut} />
       </View>
     </View>
     <View style={styles.sectionLine} />
@@ -78,14 +84,14 @@ const SettingsRenderer = ({ flocks, currentFlockId, userId }: Props) => (
       <View style={{ marginTop: 20 }}>
         <Text style={styles.label}>New Flock</Text>
         <View style={styles.rowContainer}>
-          <TextInput style={styles.input} onChangeText={(text) => {}} autoFocus />
+          <TextInput style={styles.input} onChangeText={() => {}} />
           <Button title="Save" onPress={() => {}} />
         </View>
       </View>
       <View style={{ marginTop: 20 }}>
         <Text style={styles.label}>Join Flock</Text>
         <View style={styles.rowContainer}>
-          <TextInput style={styles.input} onChangeText={(text) => {}} autoFocus />
+          <TextInput style={styles.input} onChangeText={() => {}} />
           <Button title="Join" onPress={() => {}} />
         </View>
       </View>

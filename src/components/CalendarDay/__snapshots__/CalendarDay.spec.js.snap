@@ -43,7 +43,7 @@ exports[`CalendarDay component: Should render correctly 1`] = `
         "calls": Array [
           Array [
             "date",
-            "2018-08-08",
+            "2018-05-15",
           ],
         ],
         "results": Array [

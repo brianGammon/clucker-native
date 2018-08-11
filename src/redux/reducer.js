@@ -1,8 +1,10 @@
-import { metaTypes, actionTypes as a } from './constants';
+import { metaTypes, actionTypes as a, appStates } from './constants';
 
 const getInitialState = () => {
   const state = {
+    appState: appStates.STARTING,
     initialUrl: null,
+    user: null,
   };
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
@@ -19,6 +21,23 @@ const getInitialState = () => {
 const initialState = getInitialState();
 
 const handlers = {
+  [a.AUTH_STATUS_LOGGED_IN](state, action) {
+    const newState = {
+      ...state,
+      appState: appStates.READY,
+      user: action.payload,
+    };
+    return newState;
+  },
+  [a.AUTH_STATUS_LOGGED_OUT](state) {
+    const newState = { ...state, appState: appStates.READY, user: null };
+    return newState;
+  },
+  [a.CLEAR_FLOCKS](state) {
+    const { flocks } = getInitialState();
+    const newState = { ...state, flocks };
+    return newState;
+  },
   [a.SET_INITIAL_URL](state, action) {
     const newState = { ...state, initialUrl: action.payload };
     return newState;

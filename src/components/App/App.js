@@ -2,18 +2,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Linking } from 'react-native';
-// $FlowFixMe
-import firebase from 'react-native-firebase';
 
 import Splash from '../Splash';
 import RootNavigator from '../../navigation/RootNavigator';
 import * as actions from '../../redux/actions';
-import { metaTypes } from '../../redux/constants';
+import { metaTypes, appStates } from '../../redux/constants';
 import { type UserSettings } from '../../types';
 
 type Props = {
   getFlock: (flockId: string) => void,
-  listenToUserSettings: (uid: string) => void,
   listenToChickens: (flockId: string) => void,
   listenToEggs: (flockId: string) => void,
   setInitialUrl: (url: string) => void,
@@ -22,44 +19,23 @@ type Props = {
     error: string,
     data: UserSettings,
   },
+  appState: string,
 };
 
 type Event = {
   url: string,
 };
 
-type State = {
-  initialized: boolean,
-};
-
-export class App extends React.Component<Props, State> {
-  authUnsubscriber = null;
-
+class App extends React.Component<Props> {
   constructor() {
     super();
 
     this.handleOpenURL = this.handleOpenURL.bind(this);
-
-    this.state = {
-      initialized: false,
-    };
   }
 
   componentDidMount() {
-    const { listenToUserSettings } = this.props;
     Linking.addEventListener('url', this.handleOpenURL);
     Linking.getInitialURL().then(url => url && this.handleOpenURL({ url }));
-
-    this.authUnsubscriber = firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ initialized: true });
-      if (user) {
-        console.log('Logged in, start listening');
-        listenToUserSettings(user.uid);
-      } else {
-        console.log('Logged out, stop listening');
-        // clear all listeners
-      }
-    });
   }
 
   // shouldComponentUpdate() {
@@ -73,7 +49,10 @@ export class App extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const prevUserSettings = prevProps.userSettings;
     const {
-      userSettings, getFlock, listenToChickens, listenToEggs,
+      userSettings,
+      getFlock,
+      listenToChickens,
+      listenToEggs,
     } = this.props;
     const newFlocks = userSettings.data && userSettings.data.flocks;
     const newCurrentFlockId = userSettings.data && userSettings.data.currentFlockId;
@@ -85,7 +64,7 @@ export class App extends React.Component<Props, State> {
     if (flocksChanged) {
       console.log('Flocks changed');
       // Dispatch to clear current flocks
-      Object.keys(userSettings.data.flocks).forEach(key => getFlock(key));
+      Object.keys(userSettings.data.flocks || {}).forEach(key => getFlock(key));
     }
 
     if (currentFlockIdChanged) {
@@ -97,10 +76,6 @@ export class App extends React.Component<Props, State> {
 
   componentWillUnmount() {
     Linking.removeEventListener('url', this.handleOpenURL);
-
-    if (this.authUnsubscriber) {
-      this.authUnsubscriber();
-    }
   }
 
   handleOpenURL = (event: Event) => {
@@ -109,8 +84,8 @@ export class App extends React.Component<Props, State> {
   };
 
   render() {
-    const { initialized } = this.state;
-    if (!initialized) {
+    const { appState } = this.props;
+    if (appState === appStates.STARTING) {
       console.log('RENDERING SPLASH');
       return <Splash />;
     }
@@ -119,11 +94,11 @@ export class App extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ userSettings }) => ({
+const mapStateToProps = ({ appState, userSettings }) => ({
+  appState,
   userSettings,
 });
 const mapDispatchToProps = dispatch => ({
-  listenToUserSettings: uid => dispatch(actions.listenToUserSettings(uid)),
   listenToChickens: flockId => dispatch(actions.listenToChickens(flockId)),
   listenToEggs: flockId => dispatch(actions.listenToEggs(flockId)),
   getFlock: flockId => dispatch(actions.getFlock(flockId, metaTypes.flocks)),

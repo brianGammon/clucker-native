@@ -187,6 +187,46 @@ export function createEventChannel(ref) {
   return listener;
 }
 
+export function createAuthEventChannel() {
+  let unsubscriber;
+  const listener = eventChannel((emit) => {
+    unsubscriber = firebase.auth().onAuthStateChanged((user) => {
+      emit({ eventType: e.AUTH_STATUS_CHANGED, user });
+    });
+    return () => {
+      unsubscriber();
+    };
+  }, buffers.expanding(1));
+  return listener;
+}
+
+export function* watchAuthChanged() {
+  const chan = yield call(createAuthEventChannel);
+  while (true) {
+    const event = yield take(chan);
+    yield put(actions.authStatusChanged(event.user));
+    if (event.user) {
+      yield put(actions.listenToUserSettings(event.user.uid));
+    } else {
+      yield put(actions.firebaseRemoveAllListenersRequested());
+    }
+  }
+}
+
+export function* watchSignOutRequested() {
+  while (true) {
+    yield take(a.SIGN_OUT_REQUESTED);
+    // clear flocks and turn off all listeners first
+    yield all([
+      put(actions.firebaseRemoveAllListenersRequested()),
+      put({ type: a.CLEAR_FLOCKS }),
+    ]);
+    // then call firebase sign out
+    const auth = firebase.auth();
+    yield call([auth, auth.signOut]);
+  }
+}
+
 export function getUpdateAction(event, metaType) {
   switch (event.eventType) {
     case e.CHILD_ADDED_EVENT:
@@ -283,6 +323,8 @@ export function* watchGetFlock() {
 
 export default function* rootSaga() {
   yield all([
+    watchAuthChanged(),
+    watchSignOutRequested(),
     watchListener('userSettings'),
     watchListener('chickens'),
     watchListener('eggs'),

@@ -144,6 +144,14 @@ export function firebaseRemoveAllListenersRequested() {
   };
 }
 
+export function authStatusChanged(user) {
+  const status = user ? a.AUTH_STATUS_LOGGED_IN : a.AUTH_STATUS_LOGGED_OUT;
+  return {
+    type: status,
+    payload: user,
+  };
+}
+
 export function listenToChickens(flockId) {
   const ref = firebase.database().ref(`chickens/${flockId}`);
   return firebaseListenRequested(ref, metaTypes.chickens);

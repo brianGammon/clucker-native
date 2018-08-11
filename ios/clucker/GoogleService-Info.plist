@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>484678615994-5ijv8q0kuru182eo2pi9614v9cuop9us.apps.googleusercontent.com</string>
+	<string>484678615994-9lsc7rroacg80dsicqm5dh30v34v2akg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.484678615994-5ijv8q0kuru182eo2pi9614v9cuop9us</string>
+	<string>com.googleusercontent.apps.484678615994-9lsc7rroacg80dsicqm5dh30v34v2akg</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCsKw5QegWWE5hpkdmh75nEttPh7Sttshs</string>
 	<key>GCM_SENDER_ID</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:484678615994:ios:23cba0aee9e74f3d</string>
+	<string>1:484678615994:ios:742bea62b5021fd1</string>
 	<key>DATABASE_URL</key>
 	<string>https://cluckrdev.firebaseio.com</string>
 </dict>

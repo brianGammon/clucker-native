@@ -97,6 +97,7 @@ Object {
 
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
+  "appState": "STARTING",
   "chickens": Object {
     "data": Object {},
     "error": "",
@@ -116,6 +117,7 @@ Object {
     "key": "",
   },
   "initialUrl": null,
+  "user": null,
   "userSettings": Object {
     "data": Object {},
     "error": "",
@@ -127,6 +129,7 @@ Object {
 
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
+  "appState": "STARTING",
   "chickens": Object {
     "data": Object {},
     "error": "",
@@ -146,6 +149,7 @@ Object {
     "key": "",
   },
   "initialUrl": null,
+  "user": null,
   "userSettings": Object {
     "data": Object {},
     "error": "",

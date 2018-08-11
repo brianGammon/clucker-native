@@ -2,6 +2,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import sampleData from '../../../jest/test-data/full.2017-10-to-2018-05.json';
 import mockNavigation from '../../../jest/mockNavigation';
+import '../../../jest/mockDateHelper';
 import CalendarDay from '.';
 
 describe('CalendarDay component:', () => {

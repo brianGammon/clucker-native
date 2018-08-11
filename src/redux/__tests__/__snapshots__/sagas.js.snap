@@ -126,6 +126,12 @@ Object {
     GeneratorFunctionPrototype {
       "_invoke": [Function],
     },
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
   ],
 }
 `;
