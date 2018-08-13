@@ -1,12 +1,13 @@
 import React from 'react';
 import configureStore from 'redux-mock-store';
+import sampleData from '../../../jest/test-data/full.2017-10-to-2018-05.json';
 import Flock from './Flock';
 import FlockRenderer from './FlockRenderer';
 
 describe('Flock component:', () => {
   const middlewares = [];
   const mockStore = configureStore(middlewares);
-  const sampleData = {
+  const sampleData2 = {
     chickens: {
       data: {
         chicken1: {
@@ -51,7 +52,7 @@ describe('Flock component:', () => {
   test('Should render connected component as flock guest', () => {
     const navigation = {};
     const data = { ...sampleData };
-    data.userSettings.key = 'user2';
+    data.authState.user = { uid: 'user2' };
     const thisStore = mockStore(data);
     const wrapper = shallow(
       <Flock store={thisStore} navigation={navigation} />,

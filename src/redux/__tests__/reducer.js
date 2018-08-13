@@ -8,21 +8,19 @@ describe('firebaseReducer reducer', () => {
     sampleState = {
       appState: appStates.STARTING,
       initialUrl: null,
-      user: null,
       authState: {
         inProgress: false,
         error: '',
+        user: null,
       },
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
       [metaTypes.flocks]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { flock1: 'item1value', flock2: 'item2value' },
       },
     };
@@ -38,12 +36,20 @@ describe('firebaseReducer reducer', () => {
     const user = { uid: 'testId', email: 'test@example.com' };
     const initialState = {
       appState: appStates.STARTING,
-      user,
+      authState: {
+        inProgress: false,
+        error: '',
+        user,
+      },
     };
     const action = actions.authStatusChanged(null);
     const expectedState = {
       appState: appStates.READY,
-      user: null,
+      authState: {
+        inProgress: false,
+        error: '',
+        user: null,
+      },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
@@ -55,6 +61,7 @@ describe('firebaseReducer reducer', () => {
       authState: {
         inProgress: true,
         error: '',
+        user: null,
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
@@ -69,6 +76,7 @@ describe('firebaseReducer reducer', () => {
       authState: {
         inProgress: true,
         error: '',
+        user: null,
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
@@ -82,6 +90,7 @@ describe('firebaseReducer reducer', () => {
       authState: {
         inProgress: false,
         error: '',
+        user: null,
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
@@ -96,6 +105,7 @@ describe('firebaseReducer reducer', () => {
       authState: {
         inProgress: false,
         error: error.message,
+        user: null,
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
@@ -108,7 +118,6 @@ describe('firebaseReducer reducer', () => {
       flocks: {
         inProgress: false,
         error: '',
-        key: '',
         data: {},
       },
     };
@@ -146,7 +155,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: '',
         data: {},
       },
     };
@@ -160,7 +168,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: '',
         data: {},
       },
     };
@@ -173,18 +180,15 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: '',
         data: {},
       },
     };
-    const payload = {};
     const action = actions.firebaseCreateFulfilled(metaTypes.userSettings);
     const expectedState = {
       ...initialState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: '',
         data: {},
       },
     };
@@ -197,7 +201,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: '',
         data: {},
       },
     };
@@ -211,7 +214,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: error.message,
-        key: '',
         data: {},
       },
     };
@@ -228,7 +230,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -248,7 +249,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: 'test error',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -264,7 +264,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -281,7 +280,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -301,7 +299,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error,
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -317,7 +314,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -332,7 +328,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -352,7 +347,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error,
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -362,10 +356,9 @@ describe('firebaseReducer reducer', () => {
   test(actionTypes.LISTEN_FULFILLED, () => {
     sampleState[metaTypes.userSettings].data = {};
 
-    const key = 'someKey';
     const data = { 1: { text: 'hello' }, 2: { text: 'world' } };
     const action = actions.firebaseListenFulfilled(
-      { key, data },
+      data,
       metaTypes.userSettings,
     );
     const expectedState = {
@@ -373,7 +366,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key,
         data,
       },
     };
@@ -393,7 +385,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value', item3: 'item3value' },
       },
     };
@@ -413,7 +404,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'updatedItem2value' },
       },
     };
@@ -431,7 +421,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item2: 'item2value' },
       },
     };
@@ -445,7 +434,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -459,7 +447,6 @@ describe('firebaseReducer reducer', () => {
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
-        key: '',
         data: {},
       },
     };

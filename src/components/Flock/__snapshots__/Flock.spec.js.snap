@@ -19,6 +19,8 @@ exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
       Array [
         "chicken1",
         "chicken2",
+        "chicken3",
+        "chicken4",
       ]
     }
     disableVirtualization={false}
@@ -64,6 +66,8 @@ exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
       Array [
         "chicken1",
         "chicken2",
+        "chicken3",
+        "chicken4",
       ]
     }
     disableVirtualization={false}
@@ -91,18 +95,46 @@ exports[`Flock component: Should render connected component as flock guest 1`] =
   chickens={
     Object {
       "chicken1": Object {
-        "breed": "Maran",
+        "breed": "Cuckoo Maran",
+        "hatched": "2016-10-05",
         "name": "Chicken1",
+        "photoPath": "uploads/user:user1/flock:flock1/1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72",
       },
       "chicken2": Object {
-        "breed": "Maran",
-        "name": "Chicken1",
+        "breed": "Black Australorpe",
+        "hatched": "2016-10-05",
+        "name": "Chicken2",
+        "photoPath": "uploads/user:user1/flock:flock1/8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0ae6a73d-7027-4d18-8ab2-3f40340496c5",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0e0d4dea-5104-4cfe-9a49-f87d4b412e24",
+      },
+      "chicken3": Object {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken3",
+        "photoPath": "uploads/user:user1/flock:flock1/1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=54a9eb90-7a2a-4370-a030-7cb3fa3bb738",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=708ffb11-4a0a-4dab-9633-27a2c0c74d18",
+      },
+      "chicken4": Object {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken4",
+        "photoPath": "uploads/user:user1/flock:flock1/9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=77141d6f-bb85-4174-817b-ad2cad174315",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=baa3c541-626a-45e7-b75c-1eab00454476",
       },
     }
   }
   flock={
     Object {
-      "name": "Test Flock",
+      "name": "Test Flock 1",
       "ownedBy": "user1",
     }
   }
@@ -117,18 +149,46 @@ exports[`Flock component: Should render connected component as flock owner 1`] =
   chickens={
     Object {
       "chicken1": Object {
-        "breed": "Maran",
+        "breed": "Cuckoo Maran",
+        "hatched": "2016-10-05",
         "name": "Chicken1",
+        "photoPath": "uploads/user:user1/flock:flock1/1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72",
       },
       "chicken2": Object {
-        "breed": "Maran",
-        "name": "Chicken1",
+        "breed": "Black Australorpe",
+        "hatched": "2016-10-05",
+        "name": "Chicken2",
+        "photoPath": "uploads/user:user1/flock:flock1/8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0ae6a73d-7027-4d18-8ab2-3f40340496c5",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0e0d4dea-5104-4cfe-9a49-f87d4b412e24",
+      },
+      "chicken3": Object {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken3",
+        "photoPath": "uploads/user:user1/flock:flock1/1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=54a9eb90-7a2a-4370-a030-7cb3fa3bb738",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=708ffb11-4a0a-4dab-9633-27a2c0c74d18",
+      },
+      "chicken4": Object {
+        "breed": "Welsummer",
+        "hatched": "2016-10-05",
+        "name": "Chicken4",
+        "photoPath": "uploads/user:user1/flock:flock1/9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "photoUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=77141d6f-bb85-4174-817b-ad2cad174315",
+        "thumbnailPath": "uploads/user:user1/flock:flock1/thumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg",
+        "thumbnailUrl": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_9B6AF4A8-B948-4BF1-AEB6-9D78AD9A382E.jpeg?alt=media&token=baa3c541-626a-45e7-b75c-1eab00454476",
       },
     }
   }
   flock={
     Object {
-      "name": "Test Flock",
+      "name": "Test Flock 1",
       "ownedBy": "user1",
     }
   }

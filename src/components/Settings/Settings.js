@@ -38,10 +38,10 @@ class Settings extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ flocks, userSettings }) => ({
+const mapStateToProps = ({ flocks, userSettings, authState: { user } }) => ({
   flocks: flocks.data,
   currentFlockId: userSettings.data.currentFlockId,
-  userId: userSettings.key,
+  userId: user ? user.uid : '',
 });
 
 const mapDispatchToProps = dispatch => ({

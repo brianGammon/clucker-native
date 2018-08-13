@@ -1,7 +1,7 @@
 import createCachedSelector from 're-reselect';
 import currentFlockSelector from './currentFlockSelector';
 
-const getCurrentUser = (flocks, { key }) => key;
+const getCurrentUser = (flocks, userSettings, uid) => uid;
 
 const isFlockOwnerSelector = createCachedSelector(
   [currentFlockSelector, getCurrentUser],

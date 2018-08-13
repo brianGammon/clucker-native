@@ -24,7 +24,7 @@ const SignInRenderer = ({
 }: Props) => (
   <View style={styles.container}>
     <Text style={styles.text}>Sign In</Text>
-    {error && <Text style={{ color: 'red' }}>{error}</Text>}
+    {error !== '' && <Text style={{ color: 'red' }}>{error}</Text>}
     <TextInput
       style={styles.textInput}
       autoCapitalize="none"

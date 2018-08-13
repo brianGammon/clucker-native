@@ -119,7 +119,12 @@ class EggEditor extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ chickens, userSettings, eggs }, { navigation }) => {
+const mapStateToProps = (
+  {
+    chickens, userSettings, eggs, authState: { user },
+  },
+  { navigation },
+) => {
   const chickenId = navigation.getParam('chickenId', null);
   const eggId = navigation.getParam('eggId', null);
   const defaultDate = navigation.getParam('date', null);
@@ -129,7 +134,7 @@ const mapStateToProps = ({ chickens, userSettings, eggs }, { navigation }) => {
     eggId,
     egg: eggId ? eggs.data[eggId] : {},
     flockId: userSettings.data.currentFlockId,
-    userId: userSettings.key,
+    userId: user ? user.uid : '',
     defaultDate: defaultDate || nowAsMoment().format('YYYY-MM-DD'),
     inProgress: eggs.inProgress,
     error: eggs.error,

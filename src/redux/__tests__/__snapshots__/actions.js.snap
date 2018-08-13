@@ -81,11 +81,8 @@ Object {
     "type": "userContacts",
   },
   "payload": Object {
-    "data": Object {
-      "item1": 1,
-      "item2": 2,
-    },
-    "key": "someKey",
+    "item1": 1,
+    "item2": 2,
   },
   "type": "LISTEN_FULFILLED",
 }

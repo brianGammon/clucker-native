@@ -487,7 +487,7 @@ describe('saga tests', () => {
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
     expect(generator.next().value).toEqual(
-      put(actions.firebaseListenFulfilled({ key, data }, metaType)),
+      put(actions.firebaseListenFulfilled(data, metaType)),
     );
     expect(generator.next().value).toEqual(take(chan));
     const childAddedAction = {
@@ -526,7 +526,7 @@ describe('saga tests', () => {
     // regular flow
     expect(generator.next(snap).value).toEqual(flush(chan));
     expect(generator.next().value).toEqual(
-      put(actions.firebaseListenFulfilled({ key, data: {} }, metaType)),
+      put(actions.firebaseListenFulfilled({}, metaType)),
     );
     expect(generator.next().value).toEqual(take(chan));
     const childAddedAction = {

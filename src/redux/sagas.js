@@ -270,8 +270,7 @@ export function* getDataAndListenToChannel(ref, metaType) {
       const snap = yield call([ref, ref.once], 'value');
       yield flush(chan);
       const data = snap.val() || {};
-      const { key } = snap;
-      yield put(actions.firebaseListenFulfilled({ key, data }, metaType));
+      yield put(actions.firebaseListenFulfilled(data, metaType));
     } catch (error) {
       yield put(actions.firebaseListenRejected(error, metaType));
     }

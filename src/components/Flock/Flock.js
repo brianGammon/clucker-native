@@ -65,11 +65,20 @@ class Flock extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ chickens, flocks, userSettings }) => ({
+const mapStateToProps = ({
+  chickens,
+  flocks,
+  userSettings,
+  authState: { user },
+}) => ({
   chickens: chickens.data,
   flockId: userSettings.data.currentFlockId,
   flock: currentFlockSelector(flocks.data, userSettings),
-  isFlockOwner: isFlockOwnerSelector(flocks.data, userSettings),
+  isFlockOwner: isFlockOwnerSelector(
+    flocks.data,
+    userSettings,
+    user ? user.uid : '',
+  ),
 });
 
 const mapDispatchtoProps = dispatch => ({

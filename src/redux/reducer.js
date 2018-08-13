@@ -4,17 +4,16 @@ const getInitialState = () => {
   const state = {
     appState: appStates.STARTING,
     initialUrl: null,
-    user: null,
     authState: {
       inProgress: false,
       error: '',
+      user: null,
     },
   };
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
       inProgress: false,
       error: '',
-      key: '',
       data: {},
     };
     state[key] = subState;
@@ -29,26 +28,38 @@ const handlers = {
     const newState = {
       ...state,
       appState: appStates.READY,
-      user: action.payload,
+      authState: {
+        inProgress: false,
+        error: '',
+        user: action.payload,
+      },
     };
     return newState;
   },
   [a.AUTH_STATUS_LOGGED_OUT](state) {
-    const newState = { ...state, appState: appStates.READY, user: null };
+    const newState = {
+      ...state,
+      appState: appStates.READY,
+      authState: { inProgress: false, error: '', user: null },
+    };
     return newState;
   },
   [a.SIGN_IN_REQUESTED](state) {
-    const authState = { inProgress: true, error: '' };
+    const authState = { inProgress: true, error: '', user: null };
     const newState = { ...state, authState };
     return newState;
   },
   [a.SIGN_IN_FULFILLED](state) {
-    const authState = { inProgress: false, error: '' };
+    const authState = { inProgress: false, error: '', user: null };
     const newState = { ...state, authState };
     return newState;
   },
   [a.SIGN_IN_REJECTED](state, action) {
-    const authState = { inProgress: false, error: action.payload.message };
+    const authState = {
+      inProgress: false,
+      error: action.payload.message,
+      user: null,
+    };
     const newState = { ...state, authState };
     return newState;
   },
@@ -160,7 +171,7 @@ const handlers = {
     return newState;
   },
   [a.LISTEN_FULFILLED](state, action) {
-    const { key, data } = action.payload;
+    const data = action.payload;
     const property = action.meta.type;
     const propertyState = state[property];
 
@@ -170,7 +181,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-        key,
+
         data,
       },
     };
@@ -246,7 +257,6 @@ const handlers = {
   [a.LISTEN_REMOVED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
-    const key = action.payload.clearData ? '' : propertyState.key;
     const data = action.payload.clearData ? {} : propertyState.data;
 
     const newState = {
@@ -255,7 +265,7 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-        key,
+
         data,
       },
     };

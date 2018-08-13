@@ -2,13 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import SignInRenderer from './SignInRenderer';
 import { signInRequested } from '../../redux/actions';
+import { type User } from '../../types';
 
 type Props = {
   navigation: any,
-  user: any,
   authState: {
     inProgress: boolean,
     error: string,
+    user: User,
   },
   signIn: (email: string, password: string) => void,
 };
@@ -29,7 +30,10 @@ class SignIn extends React.Component<Props, State> {
   };
 
   componentDidUpdate() {
-    const { user, navigation } = this.props;
+    const {
+      authState: { user },
+      navigation,
+    } = this.props;
     if (user) {
       navigation.navigate('SignedIn');
     }
@@ -64,8 +68,7 @@ class SignIn extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ user, authState }) => ({
-  user,
+const mapStateToProps = ({ authState }) => ({
   authState,
 });
 
