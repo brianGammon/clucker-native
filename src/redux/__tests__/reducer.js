@@ -1,20 +1,119 @@
 import * as actions from '../actions';
-import { actionTypes, metaTypes } from '../constants';
+import { actionTypes, metaTypes, appStates } from '../constants';
 import firebaseReducer from '../reducer';
 
 describe('firebaseReducer reducer', () => {
   let sampleState;
   beforeEach(() => {
     sampleState = {
+      appState: appStates.STARTING,
+      initialUrl: null,
+      user: null,
+      authState: {
+        inProgress: false,
+        error: '',
+      },
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
         key: 'key1',
         data: { item1: 'item1value', item2: 'item2value' },
       },
+      [metaTypes.flocks]: {
+        inProgress: false,
+        error: '',
+        key: 'key1',
+        data: { flock1: 'item1value', flock2: 'item2value' },
+      },
     };
   });
 
+  test(actionTypes.AUTH_STATUS_LOGGED_IN, () => {
+    const user = { uid: 'testId', email: 'test@example.com' };
+    const action = actions.authStatusChanged(user);
+    expect(firebaseReducer(sampleState, action)).toMatchSnapshot();
+  });
+
+  test(actionTypes.AUTH_STATUS_LOGGED_OUT, () => {
+    const user = { uid: 'testId', email: 'test@example.com' };
+    const initialState = {
+      appState: appStates.STARTING,
+      user,
+    };
+    const action = actions.authStatusChanged(null);
+    const expectedState = {
+      appState: appStates.READY,
+      user: null,
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.SIGN_IN_REQUESTED, () => {
+    const action = actions.signInRequested('email', 'password');
+    const expectedState = {
+      ...sampleState,
+      authState: {
+        inProgress: true,
+        error: '',
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(`${actionTypes.SIGN_IN_REQUESTED} after an error`, () => {
+    sampleState.authState = { inProgress: false, error: 'some error' };
+
+    const action = actions.signInRequested('email', 'password');
+    const expectedState = {
+      ...sampleState,
+      authState: {
+        inProgress: true,
+        error: '',
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.SIGN_IN_FULFILLED, () => {
+    sampleState.authState = { inProgress: true, error: '' };
+    const action = { type: actionTypes.SIGN_IN_FULFILLED };
+    const expectedState = {
+      ...sampleState,
+      authState: {
+        inProgress: false,
+        error: '',
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.SIGN_IN_REJECTED, () => {
+    sampleState.authState = { inProgress: true, error: '' };
+    const error = new Error('Some error occurred');
+    const action = actions.signInRejected(error);
+    const expectedState = {
+      ...sampleState,
+      authState: {
+        inProgress: false,
+        error: error.message,
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.CLEAR_FLOCKS, () => {
+    const action = { type: actionTypes.CLEAR_FLOCKS };
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        inProgress: false,
+        error: '',
+        key: '',
+        data: {},
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
   test(actionTypes.SET_INITIAL_URL, () => {
     const initialState = {
       someOtherState: 1,
@@ -41,12 +140,91 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
+  test(actionTypes.CREATE_REQUESTED, () => {
+    const initialState = {
+      ...sampleState,
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: '',
+        key: '',
+        data: {},
+      },
+    };
+    const payload = {};
+    const action = actions.firebaseCreateRequested(
+      payload,
+      metaTypes.userSettings,
+    );
+    const expectedState = {
+      ...initialState,
+      [metaTypes.userSettings]: {
+        inProgress: true,
+        error: '',
+        key: '',
+        data: {},
+      },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.CREATE_FULFILLED, () => {
+    const initialState = {
+      ...sampleState,
+      [metaTypes.userSettings]: {
+        inProgress: true,
+        error: '',
+        key: '',
+        data: {},
+      },
+    };
+    const payload = {};
+    const action = actions.firebaseCreateFulfilled(metaTypes.userSettings);
+    const expectedState = {
+      ...initialState,
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: '',
+        key: '',
+        data: {},
+      },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.CREATE_REJECTED, () => {
+    const initialState = {
+      ...sampleState,
+      [metaTypes.userSettings]: {
+        inProgress: true,
+        error: '',
+        key: '',
+        data: {},
+      },
+    };
+    const error = new Error('Some error message');
+    const action = actions.firebaseCreateRejected(
+      error,
+      metaTypes.userSettings,
+    );
+    const expectedState = {
+      ...initialState,
+      [metaTypes.userSettings]: {
+        inProgress: false,
+        error: error.message,
+        key: '',
+        data: {},
+      },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
   test(actionTypes.UPDATE_REQUESTED, () => {
     const action = actions.firebaseUpdateRequested(
       { item1: 'updateItem1Value' },
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
@@ -66,6 +244,7 @@ describe('firebaseReducer reducer', () => {
     );
 
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: 'test error',
@@ -81,6 +260,7 @@ describe('firebaseReducer reducer', () => {
 
     const action = actions.firebaseUpdateFulfilled(metaTypes.userSettings);
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -97,6 +277,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
@@ -116,6 +297,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error,
@@ -131,6 +313,7 @@ describe('firebaseReducer reducer', () => {
 
     const action = actions.firebaseRemoveFulfilled(metaTypes.userSettings);
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -145,6 +328,7 @@ describe('firebaseReducer reducer', () => {
     const ref = {};
     const action = actions.firebaseListenRequested(ref, metaTypes.userSettings);
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: true,
         error: '',
@@ -164,6 +348,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error,
@@ -184,6 +369,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -203,6 +389,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -222,6 +409,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -239,6 +427,7 @@ describe('firebaseReducer reducer', () => {
       metaTypes.userSettings,
     );
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -252,6 +441,7 @@ describe('firebaseReducer reducer', () => {
   test(`${actionTypes.LISTEN_REMOVED} clear data false`, () => {
     const action = actions.firebaseListenRemoved(false, metaTypes.userSettings);
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -265,6 +455,7 @@ describe('firebaseReducer reducer', () => {
   test(`${actionTypes.LISTEN_REMOVED} clear data true`, () => {
     const action = actions.firebaseListenRemoved(true, metaTypes.userSettings);
     const expectedState = {
+      ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',

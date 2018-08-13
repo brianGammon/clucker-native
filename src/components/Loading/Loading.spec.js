@@ -1,7 +1,7 @@
 import React from 'react';
 import Loading from '.';
 
-describe('HeaderProfile component:', () => {
+describe('Loading component:', () => {
   test('Should render without message', () => {
     const wrapper = shallow(<Loading />);
     expect(wrapper).toMatchSnapshot();

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import HeaderProfile from '../components/HeaderProfile';
 import HeaderEgg from '../components/HeaderEgg';
 import FlockScreen from '../components/Flock';
 import ChickenScreen from '../components/Chicken';
@@ -10,9 +9,8 @@ export default createStackNavigator(
   {
     Flock: {
       screen: FlockScreen,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: () => ({
         title: 'Flock',
-        headerLeft: <HeaderProfile navigation={navigation} />,
       }),
     },
     Chicken: {

@@ -5,6 +5,10 @@ const getInitialState = () => {
     appState: appStates.STARTING,
     initialUrl: null,
     user: null,
+    authState: {
+      inProgress: false,
+      error: '',
+    },
   };
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
@@ -31,6 +35,21 @@ const handlers = {
   },
   [a.AUTH_STATUS_LOGGED_OUT](state) {
     const newState = { ...state, appState: appStates.READY, user: null };
+    return newState;
+  },
+  [a.SIGN_IN_REQUESTED](state) {
+    const authState = { inProgress: true, error: '' };
+    const newState = { ...state, authState };
+    return newState;
+  },
+  [a.SIGN_IN_FULFILLED](state) {
+    const authState = { inProgress: false, error: '' };
+    const newState = { ...state, authState };
+    return newState;
+  },
+  [a.SIGN_IN_REJECTED](state, action) {
+    const authState = { inProgress: false, error: action.payload.message };
+    const newState = { ...state, authState };
     return newState;
   },
   [a.CLEAR_FLOCKS](state) {
@@ -70,7 +89,7 @@ const handlers = {
     const { error } = action.payload;
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false, error },
+      [property]: { ...propertyState, inProgress: false, error: error.message },
     };
     return newState;
   },

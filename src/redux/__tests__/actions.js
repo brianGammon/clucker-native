@@ -177,4 +177,25 @@ describe('Redux actions:', () => {
   test('removeInitialUrl', () => {
     expect(actions.removeInitialUrl()).toMatchSnapshot();
   });
+
+  test('authStatusChanged to authenticated', () => {
+    const user = { uid: 'test', email: 'test@example.com' };
+    expect(actions.authStatusChanged(user)).toMatchSnapshot();
+  });
+
+  test('authStatusChanged to not authenticated', () => {
+    expect(actions.authStatusChanged(null)).toMatchSnapshot();
+  });
+
+  test('signInRequested', () => {
+    expect(
+      actions.signInRequested('test@example.com', 'password123'),
+    ).toMatchSnapshot();
+  });
+
+  test('signInRejected', () => {
+    expect(
+      actions.signInRejected(new Error('sign in rejected test')),
+    ).toMatchSnapshot();
+  });
 });

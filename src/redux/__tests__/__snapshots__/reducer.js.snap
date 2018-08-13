@@ -1,7 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`firebaseReducer reducer AUTH_STATUS_LOGGED_IN 1`] = `
+Object {
+  "appState": "READY",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
+  "flocks": Object {
+    "data": Object {
+      "flock1": "item1value",
+      "flock2": "item2value",
+    },
+    "error": "",
+    "inProgress": false,
+    "key": "key1",
+  },
+  "initialUrl": null,
+  "user": Object {
+    "email": "test@example.com",
+    "uid": "testId",
+  },
+  "userSettings": Object {
+    "data": Object {
+      "item1": "item1value",
+      "item2": "item2value",
+    },
+    "error": "",
+    "inProgress": false,
+    "key": "key1",
+  },
+}
+`;
+
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
 Object {
+  "appState": "STARTING",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "flocks": Object {
     "data": Object {
       "flock1": Object {
@@ -12,6 +50,8 @@ Object {
     "error": "",
     "inProgress": false,
   },
+  "initialUrl": null,
+  "user": null,
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -26,6 +66,11 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
 Object {
+  "appState": "STARTING",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "flocks": Object {
     "data": Object {
       "flock1": Object {
@@ -40,6 +85,8 @@ Object {
     "error": "",
     "inProgress": false,
   },
+  "initialUrl": null,
+  "user": null,
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -54,6 +101,11 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
 Object {
+  "appState": "STARTING",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "flocks": Object {
     "data": Object {
       "flock1": Object {
@@ -64,6 +116,8 @@ Object {
     "error": "Error Message",
     "inProgress": false,
   },
+  "initialUrl": null,
+  "user": null,
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -78,11 +132,18 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
 Object {
+  "appState": "STARTING",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "flocks": Object {
     "data": Object {},
     "error": "",
     "inProgress": true,
   },
+  "initialUrl": null,
+  "user": null,
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -98,6 +159,10 @@ Object {
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
   "appState": "STARTING",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "chickens": Object {
     "data": Object {},
     "error": "",
@@ -130,6 +195,10 @@ Object {
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
   "appState": "STARTING",
+  "authState": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "chickens": Object {
     "data": Object {},
     "error": "",

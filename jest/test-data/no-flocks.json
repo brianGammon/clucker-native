@@ -1,4 +1,8 @@
 {
+  "authState": {
+    "error": "",
+    "inProgress": false
+  },
   "chickens": {
     "inProgress": false,
     "error": "",

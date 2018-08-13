@@ -4,6 +4,11 @@ import {
   type NavigationStateRoute,
 } from 'react-navigation';
 
+export type User = {
+  uid: string,
+  email: string,
+};
+
 export type Flock = {
   name: string,
   ownedBy: string,

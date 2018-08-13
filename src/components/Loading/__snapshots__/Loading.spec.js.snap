@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderProfile component: Should render with message 1`] = `
+exports[`Loading component: Should render with message 1`] = `
 <Component
   style={
     Object {
@@ -24,7 +24,7 @@ exports[`HeaderProfile component: Should render with message 1`] = `
 </Component>
 `;
 
-exports[`HeaderProfile component: Should render without message 1`] = `
+exports[`Loading component: Should render without message 1`] = `
 <Component
   style={
     Object {

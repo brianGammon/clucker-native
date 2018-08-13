@@ -46,7 +46,9 @@ const CalendarDayRenderer = ({
               <Text>{eggs[key].chickenName}</Text>
               <Text>{eggs[key].weight || '-- g'}</Text>
               <Text>{eggs[key].notes}</Text>
-              <Text>{eggs[key].damaged.toString()}</Text>
+              <Text>
+                {eggs[key].damaged ? eggs[key].damaged.toString() : 'false'}
+              </Text>
             </View>
             <View>
               <Button

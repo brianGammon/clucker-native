@@ -1,12 +1,12 @@
 import { createSwitchNavigator } from 'react-navigation';
 import PreloadScreen from '../components/Preload';
-import AppDrawer from './AppDrawer';
+import ModalStack from './ModalStack';
 import AuthStack from './AuthStack';
 
 export default createSwitchNavigator(
   {
     Preload: PreloadScreen,
-    SignedIn: AppDrawer,
+    SignedIn: ModalStack,
     SignedOut: AuthStack,
   },
   {

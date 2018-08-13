@@ -7,6 +7,7 @@ import {
   fork,
   cancel,
   flush,
+  all,
 } from 'redux-saga/effects';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
@@ -348,6 +349,61 @@ describe('saga tests', () => {
     );
   });
 
+  test('watchAuthChanged', () => {
+    const generator = cloneableGenerator(sagas.watchAuthChanged)();
+    const chan = sagas.createAuthEventChannel();
+
+    expect(generator.next().value).toEqual(call(sagas.createAuthEventChannel));
+    expect(generator.next(chan).value).toEqual(take(chan));
+    const loggedOutGenerator = generator.clone();
+
+    // logged in flow
+    const user = { uid: 'user1' };
+    let event = { eventType: eventTypes.AUTH_STATUS_CHANGED, user };
+    expect(generator.next(event).value).toEqual(put(actions.authStatusChanged(event.user)));
+    expect(generator.next().value).toEqual(put(actions.listenToUserSettings(event.user.uid)));
+    expect(generator.next().value).toEqual(take(chan));
+
+    // logged out flow
+    event = { eventType: eventTypes.AUTH_STATUS_CHANGED, user: null };
+    expect(loggedOutGenerator.next(event).value).toEqual(put(actions.authStatusChanged(event.user)));
+    expect(loggedOutGenerator.next().value).toEqual(put(actions.firebaseRemoveAllListenersRequested()));
+    expect(loggedOutGenerator.next().value).toEqual(take(chan));
+  });
+
+  test('watchSignOutRequested', () => {
+    const auth = firebase.auth();
+    const generator = sagas.watchSignOutRequested();
+    expect(generator.next().value).toEqual(take(actionTypes.SIGN_OUT_REQUESTED));
+    expect(generator.next().value).toEqual(all(
+      [
+        put(actions.firebaseRemoveAllListenersRequested()),
+        put({ type: actionTypes.CLEAR_FLOCKS }),
+      ],
+    ));
+    expect(generator.next().value).toEqual(call([auth, auth.signOut]));
+  });
+
+  test('watchSignInRequested', () => {
+    const auth = firebase.auth();
+    const generator = cloneableGenerator(sagas.watchSignInRequested)();
+    const action = actions.signInRequested('email', 'password');
+
+    expect(generator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
+    expect(generator.next(action).value).toEqual(call(
+      [auth, auth.signInAndRetrieveDataWithEmailAndPassword],
+      'email',
+      'password',
+    ));
+    const errorGenerator = generator.clone();
+    expect(generator.next().value).toEqual(put({ type: actionTypes.SIGN_IN_FULFILLED }));
+    expect(generator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
+
+    const error = new Error('some error signing in');
+    expect(errorGenerator.throw(error).value).toEqual(put(actions.signInRejected(error)));
+    expect(errorGenerator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
+  });
+
   test('getUpdateAction CHILD_ADDED_EVENT', () => {
     const childAddedEvent = {
       eventType: eventTypes.CHILD_ADDED_EVENT,
@@ -398,6 +454,17 @@ describe('saga tests', () => {
         metaTypes.userSettings,
       ),
     );
+  });
+
+  test('getUpdateAction default case', () => {
+    const childRemovedEvent = {
+      eventType: 'UNKNOWN_TYPE',
+      key: '1',
+    };
+
+    expect(
+      sagas.getUpdateAction(childRemovedEvent, metaTypes.userSettings),
+    ).toEqual({});
   });
 
   test('getDataAndListenToChannel', () => {

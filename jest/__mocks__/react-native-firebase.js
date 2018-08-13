@@ -68,6 +68,16 @@ export class Database {
   };
 }
 
+export class Auth {
+  onAuthStateChanged = (cb) => {
+    cb();
+  };
+
+  signOut = () => {};
+
+  signInAndRetrieveDataWithEmailAndPassword = () => {};
+}
+
 export class MockFirebase {
   constructor() {
     this.database = () => {
@@ -75,6 +85,12 @@ export class MockFirebase {
         this.databaseInstance = new Database();
       }
       return this.databaseInstance;
+    };
+    this.auth = () => {
+      if (!this.authInstance) {
+        this.authInstance = new Auth();
+      }
+      return this.authInstance;
     };
   }
 }

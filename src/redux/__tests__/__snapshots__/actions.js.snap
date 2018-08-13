@@ -225,6 +225,23 @@ Object {
 }
 `;
 
+exports[`Redux actions: authStatusChanged to authenticated 1`] = `
+Object {
+  "payload": Object {
+    "email": "test@example.com",
+    "uid": "test",
+  },
+  "type": "AUTH_STATUS_LOGGED_IN",
+}
+`;
+
+exports[`Redux actions: authStatusChanged to not authenticated 1`] = `
+Object {
+  "payload": null,
+  "type": "AUTH_STATUS_LOGGED_OUT",
+}
+`;
+
 exports[`Redux actions: getFlock 1`] = `
 Object {
   "meta": Object {
@@ -384,6 +401,23 @@ exports[`Redux actions: setInitialUrl 1`] = `
 Object {
   "payload": "test://test",
   "type": "SET_INITIAL_URL",
+}
+`;
+
+exports[`Redux actions: signInRejected 1`] = `
+Object {
+  "payload": [Error: sign in rejected test],
+  "type": "SIGN_IN_REJECTED",
+}
+`;
+
+exports[`Redux actions: signInRequested 1`] = `
+Object {
+  "payload": Object {
+    "email": "test@example.com",
+    "password": "password123",
+  },
+  "type": "SIGN_IN_REQUESTED",
 }
 `;
 

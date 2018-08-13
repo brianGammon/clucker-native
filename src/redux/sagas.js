@@ -227,6 +227,25 @@ export function* watchSignOutRequested() {
   }
 }
 
+export function* watchSignInRequested() {
+  while (true) {
+    const action = yield take(a.SIGN_IN_REQUESTED);
+
+    // then call firebase sign out
+    try {
+      const auth = firebase.auth();
+      yield call(
+        [auth, auth.signInAndRetrieveDataWithEmailAndPassword],
+        action.payload.email,
+        action.payload.password,
+      );
+      yield put({ type: a.SIGN_IN_FULFILLED });
+    } catch (error) {
+      yield put(actions.signInRejected(error));
+    }
+  }
+}
+
 export function getUpdateAction(event, metaType) {
   switch (event.eventType) {
     case e.CHILD_ADDED_EVENT:
@@ -324,6 +343,7 @@ export function* watchGetFlock() {
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
+    watchSignInRequested(),
     watchSignOutRequested(),
     watchListener('userSettings'),
     watchListener('chickens'),

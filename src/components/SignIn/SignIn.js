@@ -1,77 +1,79 @@
 import * as React from 'react';
-import {
-  Text, View, Button, TextInput,
-} from 'react-native';
-import firebase from 'react-native-firebase';
-
-import styles from './styles';
+import { connect } from 'react-redux';
+import SignInRenderer from './SignInRenderer';
+import { signInRequested } from '../../redux/actions';
 
 type Props = {
   navigation: any,
+  user: any,
+  authState: {
+    inProgress: boolean,
+    error: string,
+  },
+  signIn: (email: string, password: string) => void,
 };
 
 type State = {
   email: string,
   password: string,
-  errorMessage: string,
 };
 
-export default class SignIn extends React.Component<Props, State> {
+class SignIn extends React.Component<Props, State> {
   static navigationOptions = {
     title: 'Sign In',
   };
 
-  constructor() {
-    super();
+  state = {
+    email: '',
+    password: '',
+  };
 
-    this.state = {
-      email: '',
-      password: '',
-      errorMessage: null,
-    };
-
-    this.handleSignIn = this.handleSignIn.bind(this);
+  componentDidUpdate() {
+    const { user, navigation } = this.props;
+    if (user) {
+      navigation.navigate('SignedIn');
+    }
   }
 
-  async handleSignIn() {
+  handleSignIn = async () => {
     const { email, password } = this.state;
-    const { navigation } = this.props;
-    firebase
-      .auth()
-      .signInAndRetrieveDataWithEmailAndPassword(email, password)
-      .then(() => navigation.navigate('App'))
-      .catch(error => this.setState({ errorMessage: error.message }));
-  }
+    const { signIn } = this.props;
+    signIn(email, password);
+  };
+
+  handleChangeText = (field: string, text: string) => {
+    this.setState({ [field]: text });
+  };
 
   render() {
-    const { navigation } = this.props;
-    const { errorMessage, password, email } = this.state;
+    const {
+      navigation,
+      authState: { error },
+    } = this.props;
+    const { email, password } = this.state;
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Sign In</Text>
-        {errorMessage && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
-        <TextInput
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Email"
-          onChangeText={emailText => this.setState({ email: emailText })}
-          value={email}
-        />
-        <TextInput
-          secureTextEntry
-          style={styles.textInput}
-          autoCapitalize="none"
-          placeholder="Password"
-          onChangeText={passwordText => this.setState({ password: passwordText })}
-          value={password}
-        />
-        <Button title="Submit" onPress={this.handleSignIn} />
-        <Button
-          title="Don't have an account? Sign Up"
-          onPress={() => navigation.replace('SignUp')}
-        />
-        <Button onPress={() => navigation.navigate('ResetPassword')} title="Reset Password" />
-      </View>
+      <SignInRenderer
+        email={email}
+        password={password}
+        error={error}
+        navigation={navigation}
+        handleSignIn={this.handleSignIn}
+        handleChangeText={this.handleChangeText}
+      />
     );
   }
 }
+
+const mapStateToProps = ({ user, authState }) => ({
+  user,
+  authState,
+});
+
+const mapDispatchToProps = dispatch => ({
+  signIn: (email, password) => dispatch(signInRequested(email, password)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignIn);

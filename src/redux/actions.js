@@ -152,6 +152,20 @@ export function authStatusChanged(user) {
   };
 }
 
+export function signInRequested(email, password) {
+  return {
+    type: a.SIGN_IN_REQUESTED,
+    payload: { email, password },
+  };
+}
+
+export function signInRejected(error) {
+  return {
+    type: a.SIGN_IN_REJECTED,
+    payload: error,
+  };
+}
+
 export function listenToChickens(flockId) {
   const ref = firebase.database().ref(`chickens/${flockId}`);
   return firebaseListenRequested(ref, metaTypes.chickens);
