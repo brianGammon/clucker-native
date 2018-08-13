@@ -6,7 +6,7 @@ import { type User } from '../../types';
 
 type Props = {
   navigation: any,
-  authState: {
+  auth: {
     inProgress: boolean,
     error: string,
     user: User,
@@ -31,7 +31,7 @@ class SignIn extends React.Component<Props, State> {
 
   componentDidUpdate() {
     const {
-      authState: { user },
+      auth: { user },
       navigation,
     } = this.props;
     if (user) {
@@ -52,7 +52,7 @@ class SignIn extends React.Component<Props, State> {
   render() {
     const {
       navigation,
-      authState: { error },
+      auth: { error },
     } = this.props;
     const { email, password } = this.state;
     return (
@@ -68,8 +68,8 @@ class SignIn extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ authState }) => ({
-  authState,
+const mapStateToProps = ({ auth }) => ({
+  auth,
 });
 
 const mapDispatchToProps = dispatch => ({

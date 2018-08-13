@@ -38,16 +38,9 @@ export function getUserSettingsPath({ uid }) {
   return `userSettings/${uid}`;
 }
 
-export function getUserSettingsUpdate({
-  uid,
-  displayName,
-  currentFlockId,
-  flocks,
-}) {
+export function getUserSettingsUpdate({ userId, userSettings }) {
   return {
-    [`userSettings/${uid}/displayName`]: displayName,
-    [`userSettings/${uid}/currentFlockId`]: currentFlockId,
-    [`userSettings/${uid}/flocks`]: flocks,
+    [`userSettings/${userId}`]: userSettings,
   };
 }
 

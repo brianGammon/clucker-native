@@ -417,20 +417,3 @@ Object {
   "type": "SIGN_IN_REQUESTED",
 }
 `;
-
-exports[`Redux actions: updateUserSettingsRequested 1`] = `
-Object {
-  "meta": Object {
-    "type": "userSettings",
-  },
-  "payload": Object {
-    "currentFlockId": "flockId1",
-    "displayName": "some name",
-    "flocks": Object {
-      "flockId1": true,
-    },
-    "uid": "userId1",
-  },
-  "type": "UPDATE_REQUESTED",
-}
-`;

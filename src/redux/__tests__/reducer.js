@@ -8,7 +8,7 @@ describe('firebaseReducer reducer', () => {
     sampleState = {
       appState: appStates.STARTING,
       initialUrl: null,
-      authState: {
+      auth: {
         inProgress: false,
         error: '',
         user: null,
@@ -36,7 +36,7 @@ describe('firebaseReducer reducer', () => {
     const user = { uid: 'testId', email: 'test@example.com' };
     const initialState = {
       appState: appStates.STARTING,
-      authState: {
+      auth: {
         inProgress: false,
         error: '',
         user,
@@ -45,7 +45,7 @@ describe('firebaseReducer reducer', () => {
     const action = actions.authStatusChanged(null);
     const expectedState = {
       appState: appStates.READY,
-      authState: {
+      auth: {
         inProgress: false,
         error: '',
         user: null,
@@ -58,7 +58,7 @@ describe('firebaseReducer reducer', () => {
     const action = actions.signInRequested('email', 'password');
     const expectedState = {
       ...sampleState,
-      authState: {
+      auth: {
         inProgress: true,
         error: '',
         user: null,
@@ -68,12 +68,12 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(`${actionTypes.SIGN_IN_REQUESTED} after an error`, () => {
-    sampleState.authState = { inProgress: false, error: 'some error' };
+    sampleState.auth = { inProgress: false, error: 'some error' };
 
     const action = actions.signInRequested('email', 'password');
     const expectedState = {
       ...sampleState,
-      authState: {
+      auth: {
         inProgress: true,
         error: '',
         user: null,
@@ -83,11 +83,11 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.SIGN_IN_FULFILLED, () => {
-    sampleState.authState = { inProgress: true, error: '' };
+    sampleState.auth = { inProgress: true, error: '' };
     const action = { type: actionTypes.SIGN_IN_FULFILLED };
     const expectedState = {
       ...sampleState,
-      authState: {
+      auth: {
         inProgress: false,
         error: '',
         user: null,
@@ -97,12 +97,12 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.SIGN_IN_REJECTED, () => {
-    sampleState.authState = { inProgress: true, error: '' };
+    sampleState.auth = { inProgress: true, error: '' };
     const error = new Error('Some error occurred');
     const action = actions.signInRejected(error);
     const expectedState = {
       ...sampleState,
-      authState: {
+      auth: {
         inProgress: false,
         error: error.message,
         user: null,

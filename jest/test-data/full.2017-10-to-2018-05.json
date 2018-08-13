@@ -1,5 +1,5 @@
 {
-  "authState": {
+  "auth": {
     "error": "",
     "inProgress": false,
     "user": {

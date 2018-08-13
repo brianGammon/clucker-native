@@ -65,10 +65,11 @@ describe('saga tests', () => {
 
   test('getUserSettingsUpdate', () => {
     const updates = {
-      uid: 'userId1',
-      displayName: 'Test User',
-      currentFlockId: 'flockId1',
-      flocks: { flockId1: true },
+      userId: 'userId1',
+      userSettings: {
+        currentFlockId: 'flockId1',
+        flocks: { flockId1: true },
+      },
     };
 
     expect(sagas.getUserSettingsUpdate(updates)).toMatchSnapshot();
@@ -214,22 +215,19 @@ describe('saga tests', () => {
   test(`watchUpdateRequested ${metaTypes.userSettings}`, () => {
     const generator = sagas.watchUpdateRequested();
     const payload = {
-      uid: 'bgammon',
-      displayName: 'Brian',
-      currentFlockId: 'flockId1',
-      flocks: { flockId1: true },
+      userId: 'user1',
+      userSettings: {
+        currentFlockId: 'flockId1',
+        flocks: { flockId1: true },
+      },
     };
     const expectedUpdates = {
-      'userSettings/bgammon/currentFlockId': payload.currentFlockId,
-      'userSettings/bgammon/displayName': payload.displayName,
-      'userSettings/bgammon/flocks': payload.flocks,
+      'userSettings/user1': payload.userSettings,
     };
-    const action = actions.updateUserSettingsRequested(
-      payload.uid,
-      payload.displayName,
-      payload.currentFlockId,
-      payload.flocks,
-    );
+    const action = actions.firebaseUpdateRequested({
+      userId: payload.userId,
+      userSettings: payload.userSettings,
+    }, metaTypes.userSettings);
     const selector = sagas.getUserSettingsUpdate;
 
     const result = selector(payload);

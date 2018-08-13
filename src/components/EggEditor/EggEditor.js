@@ -121,7 +121,7 @@ class EggEditor extends React.Component<Props, State> {
 
 const mapStateToProps = (
   {
-    chickens, userSettings, eggs, authState: { user },
+    chickens, userSettings, eggs, auth: { user },
   },
   { navigation },
 ) => {

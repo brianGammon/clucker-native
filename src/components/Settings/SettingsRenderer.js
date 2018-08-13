@@ -18,6 +18,7 @@ type Props = {
   currentFlockId: string,
   userId: string,
   handleSignOut: () => void,
+  handleSelectFlock: (flockId: string) => void,
 };
 
 const SettingsRenderer = ({
@@ -25,6 +26,7 @@ const SettingsRenderer = ({
   currentFlockId,
   userId,
   handleSignOut,
+  handleSelectFlock,
 }: Props) => (
   <ScrollView style={{ padding: 10 }}>
     <View>
@@ -45,7 +47,7 @@ const SettingsRenderer = ({
       <View style={styles.flockSelector}>
         {Object.keys(flocks).map(key => (
           <View key={key} style={[styles.rowContainer, styles.flockRow]}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => handleSelectFlock(key)}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons
                   name={

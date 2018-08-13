@@ -3,7 +3,7 @@
 exports[`firebaseReducer reducer AUTH_STATUS_LOGGED_IN 1`] = `
 Object {
   "appState": "READY",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": Object {
@@ -34,7 +34,7 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
 Object {
   "appState": "STARTING",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": null,
@@ -64,7 +64,7 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
 Object {
   "appState": "STARTING",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": null,
@@ -98,7 +98,7 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
 Object {
   "appState": "STARTING",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": null,
@@ -128,7 +128,7 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
 Object {
   "appState": "STARTING",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": null,
@@ -153,7 +153,7 @@ Object {
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
   "appState": "STARTING",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": null,
@@ -185,7 +185,7 @@ Object {
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
   "appState": "STARTING",
-  "authState": Object {
+  "auth": Object {
     "error": "",
     "inProgress": false,
     "user": null,

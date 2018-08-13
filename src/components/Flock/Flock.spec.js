@@ -7,38 +7,6 @@ import FlockRenderer from './FlockRenderer';
 describe('Flock component:', () => {
   const middlewares = [];
   const mockStore = configureStore(middlewares);
-  const sampleData2 = {
-    chickens: {
-      data: {
-        chicken1: {
-          name: 'Chicken1',
-          breed: 'Maran',
-        },
-        chicken2: {
-          name: 'Chicken1',
-          breed: 'Maran',
-        },
-      },
-    },
-    flocks: {
-      data: {
-        flock1: {
-          name: 'Test Flock',
-          ownedBy: 'user1',
-        },
-        flock2: {
-          name: 'Test Flock 2',
-          ownedBy: 'user2',
-        },
-      },
-    },
-    userSettings: {
-      key: 'user1',
-      data: {
-        currentFlockId: 'flock1',
-      },
-    },
-  };
   const store = mockStore(sampleData);
 
   test('Should render connected component as flock owner', () => {
@@ -52,7 +20,7 @@ describe('Flock component:', () => {
   test('Should render connected component as flock guest', () => {
     const navigation = {};
     const data = { ...sampleData };
-    data.authState.user = { uid: 'user2' };
+    data.auth.user = { uid: 'user2' };
     const thisStore = mockStore(data);
     const wrapper = shallow(
       <Flock store={thisStore} navigation={navigation} />,

@@ -69,7 +69,7 @@ const mapStateToProps = ({
   chickens,
   flocks,
   userSettings,
-  authState: { user },
+  auth: { user },
 }) => ({
   chickens: chickens.data,
   flockId: userSettings.data.currentFlockId,

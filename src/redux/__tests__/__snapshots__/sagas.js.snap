@@ -93,10 +93,11 @@ Object {
 
 exports[`saga tests getUserSettingsUpdate 1`] = `
 Object {
-  "userSettings/userId1/currentFlockId": "flockId1",
-  "userSettings/userId1/displayName": "Test User",
-  "userSettings/userId1/flocks": Object {
-    "flockId1": true,
+  "userSettings/userId1": Object {
+    "currentFlockId": "flockId1",
+    "flocks": Object {
+      "flockId1": true,
+    },
   },
 }
 `;

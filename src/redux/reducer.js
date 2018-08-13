@@ -4,7 +4,7 @@ const getInitialState = () => {
   const state = {
     appState: appStates.STARTING,
     initialUrl: null,
-    authState: {
+    auth: {
       inProgress: false,
       error: '',
       user: null,
@@ -28,7 +28,7 @@ const handlers = {
     const newState = {
       ...state,
       appState: appStates.READY,
-      authState: {
+      auth: {
         inProgress: false,
         error: '',
         user: action.payload,
@@ -40,27 +40,27 @@ const handlers = {
     const newState = {
       ...state,
       appState: appStates.READY,
-      authState: { inProgress: false, error: '', user: null },
+      auth: { inProgress: false, error: '', user: null },
     };
     return newState;
   },
   [a.SIGN_IN_REQUESTED](state) {
-    const authState = { inProgress: true, error: '', user: null };
-    const newState = { ...state, authState };
+    const auth = { inProgress: true, error: '', user: null };
+    const newState = { ...state, auth };
     return newState;
   },
   [a.SIGN_IN_FULFILLED](state) {
-    const authState = { inProgress: false, error: '', user: null };
-    const newState = { ...state, authState };
+    const auth = { inProgress: false, error: '', user: null };
+    const newState = { ...state, auth };
     return newState;
   },
   [a.SIGN_IN_REJECTED](state, action) {
-    const authState = {
+    const auth = {
       inProgress: false,
       error: action.payload.message,
       user: null,
     };
-    const newState = { ...state, authState };
+    const newState = { ...state, auth };
     return newState;
   },
   [a.CLEAR_FLOCKS](state) {
@@ -181,7 +181,6 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-
         data,
       },
     };
@@ -265,7 +264,6 @@ const handlers = {
         ...propertyState,
         inProgress: false,
         error: '',
-
         data,
       },
     };

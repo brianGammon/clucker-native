@@ -143,14 +143,6 @@ describe('Redux actions:', () => {
     expect(actions.removeUserSettingsListenerRequested()).toMatchSnapshot();
   });
 
-  test('updateUserSettingsRequested', () => {
-    expect(
-      actions.updateUserSettingsRequested('userId1', 'some name', 'flockId1', {
-        flockId1: true,
-      }),
-    ).toMatchSnapshot();
-  });
-
   test('removeUserSettingsRequested', () => {
     expect(actions.removeUserSettingsRequested('userId1')).toMatchSnapshot();
   });

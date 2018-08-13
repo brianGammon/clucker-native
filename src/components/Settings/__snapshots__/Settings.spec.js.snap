@@ -15,6 +15,7 @@ exports[`Settings component: Should render 1`] = `
       },
     }
   }
+  handleSelectFlock={[Function]}
   handleSignOut={[Function]}
   userId="user1"
 />

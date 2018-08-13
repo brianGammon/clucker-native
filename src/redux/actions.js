@@ -185,24 +185,6 @@ export function removeUserSettingsListenerRequested() {
   return firebaseRemoveListenerRequested(false, metaTypes.userSettings);
 }
 
-// TODO: remove this, no need
-export function updateUserSettingsRequested(
-  uid,
-  displayName,
-  currentFlockId,
-  flocks,
-) {
-  return firebaseUpdateRequested(
-    {
-      uid,
-      displayName,
-      currentFlockId,
-      flocks,
-    },
-    metaTypes.userSettings,
-  );
-}
-
 export function removeUserSettingsRequested(uid) {
   return firebaseRemoveRequested({ uid }, metaTypes.userSettings);
 }
