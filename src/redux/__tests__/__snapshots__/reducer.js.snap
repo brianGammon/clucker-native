@@ -2,6 +2,10 @@
 
 exports[`firebaseReducer reducer AUTH_STATUS_LOGGED_IN 1`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "READY",
   "auth": Object {
     "error": "",
@@ -20,6 +24,10 @@ Object {
     "inProgress": false,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -33,6 +41,10 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "STARTING",
   "auth": Object {
     "error": "",
@@ -50,6 +62,10 @@ Object {
     "inProgress": false,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -63,6 +79,10 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "STARTING",
   "auth": Object {
     "error": "",
@@ -84,6 +104,10 @@ Object {
     "inProgress": false,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -97,6 +121,10 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "STARTING",
   "auth": Object {
     "error": "",
@@ -114,6 +142,10 @@ Object {
     "inProgress": false,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -127,6 +159,10 @@ Object {
 
 exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "STARTING",
   "auth": Object {
     "error": "",
@@ -139,6 +175,10 @@ Object {
     "inProgress": true,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {
       "item1": "item1value",
@@ -152,6 +192,10 @@ Object {
 
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "STARTING",
   "auth": Object {
     "error": "",
@@ -174,6 +218,10 @@ Object {
     "inProgress": false,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {},
     "error": "",
@@ -184,6 +232,10 @@ Object {
 
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
+  "addForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "appState": "STARTING",
   "auth": Object {
     "error": "",
@@ -206,6 +258,10 @@ Object {
     "inProgress": false,
   },
   "initialUrl": null,
+  "joinForm": Object {
+    "error": "",
+    "inProgress": false,
+  },
   "userSettings": Object {
     "data": Object {},
     "error": "",

@@ -7,6 +7,10 @@
       "email": "test@example.com"
     }
   },
+  "joinForm": {
+    "inProgress": false,
+    "error": ""
+  },
   "chickens": {
     "inProgress": false,
     "error": "",

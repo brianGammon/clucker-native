@@ -9,6 +9,14 @@ const getInitialState = () => {
       error: '',
       user: null,
     },
+    joinForm: {
+      inProgress: false,
+      error: '',
+    },
+    addForm: {
+      inProgress: false,
+      error: '',
+    },
   };
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
@@ -304,6 +312,27 @@ const handlers = {
     const newState = {
       ...state,
       [property]: { ...propertyState, inProgress: false, error },
+    };
+    return newState;
+  },
+  [a.JOIN_FLOCK_REQUESTED](state) {
+    const newState = {
+      ...state,
+      joinForm: { inProgress: true, error: '' },
+    };
+    return newState;
+  },
+  [a.JOIN_FLOCK_FULFILLED](state) {
+    const newState = {
+      ...state,
+      joinForm: { inProgress: false, error: '' },
+    };
+    return newState;
+  },
+  [a.JOIN_FLOCK_REJECTED](state, action) {
+    const newState = {
+      ...state,
+      joinForm: { inProgress: false, error: action.payload.message },
     };
     return newState;
   },

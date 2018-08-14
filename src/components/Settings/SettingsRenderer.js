@@ -19,6 +19,14 @@ type Props = {
   userId: string,
   handleSignOut: () => void,
   handleSelectFlock: (flockId: string) => void,
+  handleJoinFlock: () => void,
+  joinForm: {
+    value: string,
+    error: string,
+    touched: boolean,
+  },
+  handleChangeText: (form: string, text: string) => void,
+  joinError: string,
 };
 
 const SettingsRenderer = ({
@@ -27,6 +35,10 @@ const SettingsRenderer = ({
   userId,
   handleSignOut,
   handleSelectFlock,
+  handleJoinFlock,
+  handleChangeText,
+  joinForm,
+  joinError,
 }: Props) => (
   <ScrollView style={{ padding: 10 }}>
     <View>
@@ -93,9 +105,14 @@ const SettingsRenderer = ({
       <View style={{ marginTop: 20 }}>
         <Text style={styles.label}>Join Flock</Text>
         <View style={styles.rowContainer}>
-          <TextInput style={styles.input} onChangeText={() => {}} />
-          <Button title="Join" onPress={() => {}} />
+          <TextInput
+            style={styles.input}
+            value={joinForm.value}
+            onChangeText={text => handleChangeText('joinForm', text)}
+          />
+          <Button title="Join" onPress={handleJoinFlock} />
         </View>
+        {joinError !== '' && <Text>{joinError}</Text>}
       </View>
     </View>
   </ScrollView>

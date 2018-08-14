@@ -13,6 +13,14 @@ describe('firebaseReducer reducer', () => {
         error: '',
         user: null,
       },
+      joinForm: {
+        inProgress: false,
+        error: '',
+      },
+      addForm: {
+        inProgress: false,
+        error: '',
+      },
       [metaTypes.userSettings]: {
         inProgress: false,
         error: '',
@@ -514,6 +522,55 @@ describe('firebaseReducer reducer', () => {
     const action = actions.getFlockRejected('Error Message');
     expect(firebaseReducer(state, action)).toMatchSnapshot();
   });
+
+  test(actionTypes.JOIN_FLOCK_REQUESTED, () => {
+    const action = {
+      type: actionTypes.JOIN_FLOCK_REQUESTED,
+      payload: { userId: 'user1', flockId: 'flock1' },
+    };
+    const expectedState = {
+      ...sampleState,
+      joinForm: { inProgress: true, error: '' },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.JOIN_FLOCK_FULFILLED, () => {
+    const initialState = {
+      ...sampleState,
+      joinForm: { inProgress: true, error: '' },
+    };
+    const action = {
+      type: actionTypes.JOIN_FLOCK_FULFILLED,
+    };
+    const expectedState = {
+      ...initialState,
+      joinForm: { inProgress: false, error: '' },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.JOIN_FLOCK_REJECTED, () => {
+    const initialState = {
+      ...sampleState,
+      joinForm: { inProgress: true, error: '' },
+    };
+    const action = {
+      type: actionTypes.JOIN_FLOCK_REJECTED,
+      payload: new Error('Test error message'),
+    };
+    const expectedState = {
+      ...initialState,
+      joinForm: { inProgress: false, error: 'Test error message' },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  // test(actionTypes.ADD_FLOCK_REQUESTED, () => {});
+
+  // test(actionTypes.ADD_FLOCK_FULFILLED, () => {});
+
+  // test(actionTypes.ADD_FLOCK_REJECTED, () => {});
 
   test('bogus action does nothing', () => {
     const action = {

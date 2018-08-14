@@ -8,6 +8,8 @@ import {
   cancel,
   flush,
   all,
+  select,
+  takeLatest,
 } from 'redux-saga/effects';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
@@ -114,9 +116,9 @@ describe('saga tests', () => {
   test('getEggsPath for create', () => {
     const flockId = 'flock1';
     const path = `eggs/${flockId}`;
-    expect(
-      sagas.getEggsPath({ flockId, data: { key1: 'value1' } }),
-    ).toEqual(path);
+    expect(sagas.getEggsPath({ flockId, data: { key1: 'value1' } })).toEqual(
+      path,
+    );
   });
 
   test('getEggsUpdate', () => {
@@ -224,10 +226,13 @@ describe('saga tests', () => {
     const expectedUpdates = {
       'userSettings/user1': payload.userSettings,
     };
-    const action = actions.firebaseUpdateRequested({
-      userId: payload.userId,
-      userSettings: payload.userSettings,
-    }, metaTypes.userSettings);
+    const action = actions.firebaseUpdateRequested(
+      {
+        userId: payload.userId,
+        userSettings: payload.userSettings,
+      },
+      metaTypes.userSettings,
+    );
     const selector = sagas.getUserSettingsUpdate;
 
     const result = selector(payload);
@@ -358,27 +363,37 @@ describe('saga tests', () => {
     // logged in flow
     const user = { uid: 'user1' };
     let event = { eventType: eventTypes.AUTH_STATUS_CHANGED, user };
-    expect(generator.next(event).value).toEqual(put(actions.authStatusChanged(event.user)));
-    expect(generator.next().value).toEqual(put(actions.listenToUserSettings(event.user.uid)));
+    expect(generator.next(event).value).toEqual(
+      put(actions.authStatusChanged(event.user)),
+    );
+    expect(generator.next().value).toEqual(
+      put(actions.listenToUserSettings(event.user.uid)),
+    );
     expect(generator.next().value).toEqual(take(chan));
 
     // logged out flow
     event = { eventType: eventTypes.AUTH_STATUS_CHANGED, user: null };
-    expect(loggedOutGenerator.next(event).value).toEqual(put(actions.authStatusChanged(event.user)));
-    expect(loggedOutGenerator.next().value).toEqual(put(actions.firebaseRemoveAllListenersRequested()));
+    expect(loggedOutGenerator.next(event).value).toEqual(
+      put(actions.authStatusChanged(event.user)),
+    );
+    expect(loggedOutGenerator.next().value).toEqual(
+      put(actions.firebaseRemoveAllListenersRequested()),
+    );
     expect(loggedOutGenerator.next().value).toEqual(take(chan));
   });
 
   test('watchSignOutRequested', () => {
     const auth = firebase.auth();
     const generator = sagas.watchSignOutRequested();
-    expect(generator.next().value).toEqual(take(actionTypes.SIGN_OUT_REQUESTED));
-    expect(generator.next().value).toEqual(all(
-      [
+    expect(generator.next().value).toEqual(
+      take(actionTypes.SIGN_OUT_REQUESTED),
+    );
+    expect(generator.next().value).toEqual(
+      all([
         put(actions.firebaseRemoveAllListenersRequested()),
         put({ type: actionTypes.CLEAR_FLOCKS }),
-      ],
-    ));
+      ]),
+    );
     expect(generator.next().value).toEqual(call([auth, auth.signOut]));
   });
 
@@ -388,18 +403,26 @@ describe('saga tests', () => {
     const action = actions.signInRequested('email', 'password');
 
     expect(generator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
-    expect(generator.next(action).value).toEqual(call(
-      [auth, auth.signInAndRetrieveDataWithEmailAndPassword],
-      'email',
-      'password',
-    ));
+    expect(generator.next(action).value).toEqual(
+      call(
+        [auth, auth.signInAndRetrieveDataWithEmailAndPassword],
+        'email',
+        'password',
+      ),
+    );
     const errorGenerator = generator.clone();
-    expect(generator.next().value).toEqual(put({ type: actionTypes.SIGN_IN_FULFILLED }));
+    expect(generator.next().value).toEqual(
+      put({ type: actionTypes.SIGN_IN_FULFILLED }),
+    );
     expect(generator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
 
     const error = new Error('some error signing in');
-    expect(errorGenerator.throw(error).value).toEqual(put(actions.signInRejected(error)));
-    expect(errorGenerator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
+    expect(errorGenerator.throw(error).value).toEqual(
+      put(actions.signInRejected(error)),
+    );
+    expect(errorGenerator.next().value).toEqual(
+      take(actionTypes.SIGN_IN_REQUESTED),
+    );
   });
 
   test('getUpdateAction CHILD_ADDED_EVENT', () => {
@@ -666,6 +689,73 @@ describe('saga tests', () => {
   test('watchGetFlock', () => {
     const generator = sagas.watchGetFlock();
     expect(generator.next().value).toMatchSnapshot();
+  });
+
+  test('joinFlock', () => {
+    const userSettings = {
+      currentFlockId: 'flock2',
+      flocks: {
+        flock2: true,
+      },
+    };
+
+    const action = {
+      type: actionTypes.JOIN_FLOCK_REQUESTED,
+      payload: {
+        userId: 'user1',
+        flockId: 'flock1',
+      },
+    };
+    const ref = firebase.database().ref(`flocks/${action.payload.flockId}`);
+    const snapshot = {
+      val() {
+        return { name: 'Valid Flock' };
+      },
+    };
+
+    const generator = cloneableGenerator(sagas.joinFlock)(action);
+    expect(generator.next().value).toEqual(call([ref, ref.once]));
+    const errorGenerator = generator.clone();
+
+    // Happy path flow
+    expect(JSON.stringify(generator.next(snapshot).value)).toEqual(
+      JSON.stringify(select(state => state.userSettings.data)),
+    );
+
+    const expectedUserSettings = {
+      currentFlockId: 'flock2',
+      flocks: {
+        flock1: true,
+        flock2: true,
+      },
+    };
+    expect(generator.next(userSettings).value).toEqual(
+      put(
+        actions.firebaseUpdateRequested(
+          { userId: action.payload.userId, userSettings: expectedUserSettings },
+          metaTypes.userSettings,
+        ),
+      ),
+    );
+    expect(generator.next().value).toEqual(
+      put({ type: actionTypes.JOIN_FLOCK_FULFILLED }),
+    );
+    expect(generator.next().done).toEqual(true);
+
+    // Error flow
+    snapshot.val = () => null;
+    expect(errorGenerator.next(snapshot).value).toEqual(
+      put({
+        type: actionTypes.JOIN_FLOCK_REJECTED,
+        payload: new Error(`Flock ID '${action.payload.flockId}' not found`),
+      }),
+    );
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('watchJoinFlockRequested', () => {
+    const generator = sagas.watchJoinFlockRequested();
+    expect(generator.next().value).toEqual(takeLatest(actionTypes.JOIN_FLOCK_REQUESTED, sagas.joinFlock));
   });
 
   test('root Saga', () => {

@@ -8,6 +8,8 @@ import {
   flush,
   all,
   takeEvery,
+  takeLatest,
+  select,
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
@@ -332,6 +334,37 @@ export function* watchGetFlock() {
   yield takeEvery(a.GET_FLOCK_REQUESTED, getFlock);
 }
 
+export function* joinFlock(action) {
+  const { userId, flockId } = action.payload;
+  // call firebaseRef.once to get a snap of that flock
+  const ref = firebase.database().ref(`flocks/${flockId}`);
+  const snap = yield call([ref, ref.once]);
+  if (snap.val()) {
+    const userSettings = yield select(state => state.userSettings.data);
+    const flocks = userSettings.flocks || {};
+    const newUserSettings = {
+      ...userSettings,
+      flocks: { ...flocks, [flockId]: true },
+    };
+    yield put(
+      actions.firebaseUpdateRequested(
+        { userId, userSettings: newUserSettings },
+        metaTypes.userSettings,
+      ),
+    );
+    yield put({ type: a.JOIN_FLOCK_FULFILLED });
+  } else {
+    yield put({
+      type: a.JOIN_FLOCK_REJECTED,
+      payload: new Error(`Flock ID '${flockId}' not found`),
+    });
+  }
+}
+
+export function* watchJoinFlockRequested() {
+  yield takeLatest(a.JOIN_FLOCK_REQUESTED, joinFlock);
+}
+
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
@@ -344,5 +377,6 @@ export default function* rootSaga() {
     watchUpdateRequested(),
     watchRemoveRequested(),
     watchGetFlock(),
+    watchJoinFlockRequested(),
   ]);
 }
