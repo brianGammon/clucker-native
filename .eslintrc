@@ -11,7 +11,8 @@
 
     // TODO: remove "react/prefer-stateless-function"
     "react/prefer-stateless-function": 0,
-    "max-len": "off"
+    "max-len": "off",
+    "global-require": 0
   },
   "env": {
     "jest": true

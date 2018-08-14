@@ -54,13 +54,12 @@ class App extends React.Component<Props> {
       listenToChickens,
       listenToEggs,
     } = this.props;
-    const newFlocks = userSettings.data && userSettings.data.flocks;
-    const newCurrentFlockId = userSettings.data && userSettings.data.currentFlockId;
-    const oldFlocks = prevUserSettings.data && prevUserSettings.data.flocks;
-    const oldCUrrentFlockId = prevUserSettings.data && prevUserSettings.data.currentFlockId;
+    const newFlocks = userSettings.data.flocks;
+    const newCurrentFlockId = userSettings.data.currentFlockId;
+    const oldFlocks = prevUserSettings.data.flocks;
+    const oldCUrrentFlockId = prevUserSettings.data.currentFlockId;
     const flocksChanged = newFlocks !== oldFlocks;
     const currentFlockIdChanged = newCurrentFlockId !== oldCUrrentFlockId;
-    console.log('DidUpdate');
     if (flocksChanged) {
       console.log('Flocks changed');
       // Dispatch to clear current flocks
@@ -86,10 +85,8 @@ class App extends React.Component<Props> {
   render() {
     const { appState } = this.props;
     if (appState === appStates.STARTING) {
-      console.log('RENDERING SPLASH');
       return <Splash />;
     }
-    console.log('RENDERING APP');
     return <RootNavigator />;
   }
 }

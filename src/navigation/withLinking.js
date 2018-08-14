@@ -25,15 +25,16 @@ type Props = {
   removeInitialUrl: () => void,
 };
 
-export default (Comp: NavigationContainer<any, any, any>, uriPrefix: string) => {
+export default (
+  Comp: NavigationContainer<any, any, any>,
+  uriPrefix: string,
+) => {
   const { router } = Comp;
 
   class WrappedComponent extends Component<Props> {
     static router = router;
 
     componentDidMount() {
-      // TODO: move to redux state instead of AsyncStorage
-      console.log('TEST');
       const { initialUrl, removeInitialUrl } = this.props;
       if (initialUrl) {
         this.handleOpenURL({ url: initialUrl });
@@ -51,7 +52,6 @@ export default (Comp: NavigationContainer<any, any, any>, uriPrefix: string) => 
       const { navigation } = this.props;
       const { path, params } = parsedUrl;
       const action = router.getActionForPathAndParams(path, params);
-      console.log(action);
       if (action) {
         if (action.action) {
           if (action.action.action) {

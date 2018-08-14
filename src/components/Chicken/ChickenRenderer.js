@@ -47,7 +47,11 @@ const ChickenRenderer = ({
       />
       <Image
         style={{ width: 200, height: 200 }}
-        source={{ uri: chicken.photoUrl }}
+        source={
+          chicken.photoUrl
+            ? { uri: chicken.photoUrl }
+            : require('../../assets/default-profile-photo.png')
+        }
       />
       <Ionicons
         onPress={() => (nextChickenId

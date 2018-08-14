@@ -46,7 +46,11 @@ const FlockRenderer = ({
           <View>
             <Image
               style={{ width: 80, height: 80 }}
-              source={{ uri: chickens[item].thumbnailUrl }}
+              source={
+                chickens[item].thumbnailUrl
+                  ? { uri: chickens[item].thumbnailUrl }
+                  : require('../../assets/default-profile-photo_thumb.png')
+              }
             />
           </View>
           <View style={{ flex: 1, paddingLeft: 10 }}>

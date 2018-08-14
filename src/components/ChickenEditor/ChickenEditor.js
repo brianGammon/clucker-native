@@ -75,9 +75,13 @@ class ChickenEditor extends React.Component<Props, State> {
   };
 
   render() {
+    const {
+      chicken: { photoUrl },
+    } = this.props;
     return (
       <ChickenEditorRenderer
         {...this.state}
+        photoUrl={photoUrl}
         onFieldChanged={this.onFieldChanged}
         onSaveForm={this.onSaveForm}
       />
@@ -87,7 +91,7 @@ class ChickenEditor extends React.Component<Props, State> {
 
 const mapStateToProps = ({ chickens, userSettings }, { navigation }) => {
   const chickenId = navigation.getParam('chickenId', null);
-  let chickenData = {};
+  let chickenData = { chicken: {} };
   if (chickenId) {
     chickenData = chickenSelector(chickens.data, chickenId);
   }

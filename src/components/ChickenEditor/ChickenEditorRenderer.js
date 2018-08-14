@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Text, TextInput, Button,
+  View, Text, TextInput, Button, Image,
 } from 'react-native';
 import styles from './styles';
 
@@ -8,6 +8,7 @@ type Props = {
   name: string,
   breed: string,
   hatched: string,
+  photoUrl: string,
   onFieldChanged: (fieldName: string, text: string) => void,
   onSaveForm: () => void,
 };
@@ -16,6 +17,7 @@ const ChickenEditorRenderer = ({
   name,
   breed,
   hatched,
+  photoUrl,
   onFieldChanged,
   onSaveForm,
 }: Props) => (
@@ -43,6 +45,17 @@ const ChickenEditorRenderer = ({
         style={styles.input}
         value={hatched}
         onChangeText={text => onFieldChanged('hatched', text)}
+      />
+    </View>
+    <View style={styles.formGroup}>
+      <Text style={styles.label}>Profile Photo:</Text>
+      <Image
+        style={{ width: 200, height: 200 }}
+        source={
+          photoUrl
+            ? { uri: photoUrl }
+            : require('../../assets/default-profile-photo.png')
+        }
       />
     </View>
     <Button onPress={onSaveForm} title="Save" />
