@@ -58,8 +58,8 @@ class App extends React.Component<Props> {
     const newCurrentFlockId = userSettings.data.currentFlockId;
     const oldFlocks = prevUserSettings.data.flocks;
     const oldCUrrentFlockId = prevUserSettings.data.currentFlockId;
-    const flocksChanged = newFlocks !== oldFlocks;
-    const currentFlockIdChanged = newCurrentFlockId !== oldCUrrentFlockId;
+    const flocksChanged = newFlocks && newFlocks !== oldFlocks;
+    const currentFlockIdChanged = newCurrentFlockId && newCurrentFlockId !== oldCUrrentFlockId;
     if (flocksChanged) {
       console.log('Flocks changed');
       // Dispatch to clear current flocks

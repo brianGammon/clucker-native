@@ -15,18 +15,8 @@ exports[`Settings component: Should render 1`] = `
       },
     }
   }
-  handleChangeText={[Function]}
-  handleJoinFlock={[Function]}
   handleSelectFlock={[Function]}
   handleSignOut={[Function]}
-  joinError=""
-  joinForm={
-    Object {
-      "error": "",
-      "touched": false,
-      "value": "",
-    }
-  }
   userId="user1"
 />
 `;

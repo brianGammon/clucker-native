@@ -16,22 +16,6 @@ type Props = {
   userId: string,
   signOut: () => void,
   saveUserSettings: (userId: string, userSettings: UserSettings) => void,
-  joinFlock: (userId: string, flockId: string) => void,
-  joinError: string,
-  joinInProgess: boolean,
-};
-
-type State = {
-  joinForm: {
-    value: string,
-    error: string,
-    touched: boolean,
-  },
-  // addForm: {
-  //   value: string,
-  //   error: string,
-  //   touched: boolean,
-  // },
 };
 
 const formDefaultValues = {
@@ -40,24 +24,11 @@ const formDefaultValues = {
   touched: false,
 };
 
-class Settings extends React.Component<Props, State> {
-  state = {
-    joinForm: {
-      ...formDefaultValues,
-    },
-    // addForm: {
-    //   value: '',
-    //   error: '',
-    //   touched: '',
-    // }
-  };
-
+class Settings extends React.Component<Props> {
   componentDidUpdate(prevProps) {
     const {
       userSettings: { currentFlockId },
       flocks,
-      joinInProgess,
-      joinError,
     } = this.props;
 
     if (
@@ -68,32 +39,16 @@ class Settings extends React.Component<Props, State> {
         { text: 'OK' },
       ]);
     }
-    if (prevProps.joinInProgess && !joinInProgess && joinError === '') {
-      this.resetForm('joinForm');
-    }
   }
 
   resetForm = (form: string) => {
     this.setState({ [form]: { ...formDefaultValues } });
   };
 
-  handleChangeText = (form: string, text: string) => {
-    const { [form]: formState } = this.state;
-    this.setState({ [form]: { ...formState, value: text } });
-  };
-
   handleSelectFlock = (flockId) => {
     const { userId, userSettings, saveUserSettings } = this.props;
     const newUserSettings = { ...userSettings, currentFlockId: flockId };
     saveUserSettings(userId, newUserSettings);
-  };
-
-  handleJoinFlock = () => {
-    const { userId, joinFlock } = this.props;
-    const {
-      joinForm: { value },
-    } = this.state;
-    joinFlock(userId, value);
   };
 
   handleSignOut = () => {
@@ -106,9 +61,7 @@ class Settings extends React.Component<Props, State> {
     const {
       flocks,
       userId,
-      navigation,
       userSettings: { currentFlockId },
-      joinError,
     } = this.props;
     return (
       <SettingsRenderer
@@ -117,11 +70,6 @@ class Settings extends React.Component<Props, State> {
         userId={userId}
         handleSignOut={this.handleSignOut}
         handleSelectFlock={this.handleSelectFlock}
-        navigation={navigation}
-        handleJoinFlock={this.handleJoinFlock}
-        handleChangeText={this.handleChangeText}
-        {...this.state}
-        joinError={joinError}
       />
     );
   }
