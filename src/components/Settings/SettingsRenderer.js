@@ -1,41 +1,27 @@
 import * as React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
-  Text,
-  ScrollView,
-  View,
-  Button,
-  TouchableOpacity,
-  TextInput,
+  Text, ScrollView, View, Button, TextInput,
 } from 'react-native';
 import JoinFlock from '../JoinFlock';
-import { type Flock } from '../../types';
+import FlockSelector from '../FlockSelector';
+import { type User } from '../../types';
 import styles from './styles';
 
 type Props = {
-  flocks: {
-    [flockId: string]: Flock,
-  },
-  currentFlockId: string,
-  userId: string,
+  user: User,
   handleSignOut: () => void,
-  handleSelectFlock: (flockId: string) => void,
 };
 
-const SettingsRenderer = ({
-  flocks,
-  currentFlockId,
-  userId,
-  handleSignOut,
-  handleSelectFlock,
-}: Props) => (
+const SettingsRenderer = ({ handleSignOut, user }: Props) => (
   <ScrollView style={{ padding: 10 }}>
     <View>
       <Text style={styles.sectionLabel}>Account</Text>
       <View style={styles.rowContainer}>
         <View>
           <Text style={styles.label}>Logged In:</Text>
-          <Text style={{ marginRight: 10 }}>test@example.com</Text>
+          <Text style={{ marginRight: 10 }}>
+            {user ? user.email : 'unknown user'}
+          </Text>
         </View>
 
         <Button title="Sign Out" onPress={handleSignOut} />
@@ -44,46 +30,7 @@ const SettingsRenderer = ({
     <View style={styles.sectionLine} />
     <View>
       <Text style={styles.sectionLabel}>Flocks</Text>
-      <Text style={styles.label}>Select Active Flock</Text>
-      <View style={styles.flockSelector}>
-        {Object.keys(flocks).map(key => (
-          <View key={key} style={[styles.rowContainer, styles.flockRow]}>
-            <TouchableOpacity onPress={() => handleSelectFlock(key)}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Ionicons
-                  name={
-                    key === currentFlockId
-                      ? 'ios-radio-button-on'
-                      : 'ios-radio-button-off'
-                  }
-                  color={key === currentFlockId ? 'green' : 'black'}
-                  style={{ fontSize: 24, marginRight: 10 }}
-                />
-
-                <Text
-                  style={
-                    key === currentFlockId
-                      ? { fontWeight: 'bold' }
-                      : { fontWeight: 'normal' }
-                  }
-                >
-                  {flocks[key].name}
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}}>
-              <Ionicons
-                name={
-                  userId === flocks[key].ownedBy
-                    ? 'ios-trash-outline'
-                    : 'ios-link-outline'
-                }
-                style={{ fontSize: 24, marginRight: 10 }}
-              />
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
+      <FlockSelector />
       <View style={{ marginTop: 20 }}>
         <Text style={styles.label}>New Flock</Text>
         <View style={styles.rowContainer}>

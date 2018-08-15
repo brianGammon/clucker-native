@@ -2,21 +2,12 @@
 
 exports[`Settings component: Should render 1`] = `
 <SettingsRenderer
-  currentFlockId="flock1"
-  flocks={
+  handleSignOut={[Function]}
+  user={
     Object {
-      "flock1": Object {
-        "name": "Test Flock 1",
-        "ownedBy": "user1",
-      },
-      "flock2": Object {
-        "name": "Test Flock 2",
-        "ownedBy": "user1",
-      },
+      "email": "test@example.com",
+      "uid": "user1",
     }
   }
-  handleSelectFlock={[Function]}
-  handleSignOut={[Function]}
-  userId="user1"
 />
 `;
