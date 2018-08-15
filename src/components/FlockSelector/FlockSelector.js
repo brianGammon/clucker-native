@@ -26,6 +26,7 @@ class FlockSelector extends React.Component<Props> {
     if (
       currentFlockId
       && currentFlockId !== prevProps.userSettings.currentFlockId
+      && flocks[currentFlockId]
     ) {
       Alert.alert(`"${flocks[currentFlockId].name}" is now active`, null, [
         { text: 'OK' },

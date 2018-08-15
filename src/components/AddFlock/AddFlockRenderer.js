@@ -5,14 +5,14 @@ import {
 import styles from './styles';
 
 type Props = {
-  flockId: string,
+  name: string,
   error: string,
   handleAddFlock: () => void,
   handleChangeText: (text: string) => void,
 };
 
 const AddFlockRenderer = ({
-  flockId,
+  name,
   error,
   handleAddFlock,
   handleChangeText,
@@ -22,7 +22,7 @@ const AddFlockRenderer = ({
     <View style={styles.rowContainer}>
       <TextInput
         style={styles.input}
-        value={flockId}
+        value={name}
         onChangeText={text => handleChangeText(text)}
       />
       <Button title="Add" onPress={handleAddFlock} />

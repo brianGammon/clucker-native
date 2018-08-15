@@ -344,6 +344,7 @@ export function* joinFlock(action) {
     const flocks = userSettings.flocks || {};
     const newUserSettings = {
       ...userSettings,
+      currentFlockId: flockId,
       flocks: { ...flocks, [flockId]: true },
     };
     yield put(
@@ -376,6 +377,7 @@ export function* addFlock(action) {
     const flocks = userSettings.flocks || {};
     const newUserSettings = {
       ...userSettings,
+      currentFlockId: newRef.key,
       flocks: { ...flocks, [newRef.key]: true },
     };
     yield put(

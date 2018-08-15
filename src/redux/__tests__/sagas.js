@@ -723,7 +723,7 @@ describe('saga tests', () => {
     );
 
     const expectedUserSettings = {
-      currentFlockId: 'flock2',
+      currentFlockId: 'flock1',
       flocks: {
         flock1: true,
         flock2: true,
@@ -792,7 +792,7 @@ describe('saga tests', () => {
     );
 
     const expectedUserSettings = {
-      currentFlockId: 'flock1',
+      currentFlockId: 'key1',
       flocks: {
         flock1: true,
         key1: true,
