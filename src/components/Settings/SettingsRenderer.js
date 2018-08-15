@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   Text, ScrollView, View, Button, TextInput,
 } from 'react-native';
+import AddFlock from '../AddFlock';
 import JoinFlock from '../JoinFlock';
 import FlockSelector from '../FlockSelector';
 import { type User } from '../../types';
@@ -31,13 +32,7 @@ const SettingsRenderer = ({ handleSignOut, user }: Props) => (
     <View>
       <Text style={styles.sectionLabel}>Flocks</Text>
       <FlockSelector />
-      <View style={{ marginTop: 20 }}>
-        <Text style={styles.label}>New Flock</Text>
-        <View style={styles.rowContainer}>
-          <TextInput style={styles.input} onChangeText={() => {}} />
-          <Button title="Save" onPress={() => {}} />
-        </View>
-      </View>
+      <AddFlock />
       <JoinFlock />
     </View>
   </ScrollView>

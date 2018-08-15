@@ -6,6 +6,8 @@ export class Reference {
     this.data = null;
   }
 
+  key = 'key1';
+
   val = jest.fn(() => this.data);
 
   once = jest.fn((param, callback) => {
@@ -40,7 +42,11 @@ export class Reference {
     return promise;
   });
 
-  push = jest.fn(() => {
+  push = jest.fn((value) => {
+    if (!value) {
+      const newRef = new Reference();
+      return newRef;
+    }
     const promise = Promise.resolve();
     RNFirebase.promises.push(promise);
     return promise;
@@ -53,6 +59,12 @@ export class Reference {
   });
 
   remove = jest.fn(() => {
+    const promise = Promise.resolve();
+    RNFirebase.promises.push(promise);
+    return promise;
+  });
+
+  set = jest.fn(() => {
     const promise = Promise.resolve();
     RNFirebase.promises.push(promise);
     return promise;

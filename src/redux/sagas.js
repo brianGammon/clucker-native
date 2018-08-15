@@ -365,6 +365,38 @@ export function* watchJoinFlockRequested() {
   yield takeLatest(a.JOIN_FLOCK_REQUESTED, joinFlock);
 }
 
+export function* addFlock(action) {
+  const { userId, name } = action.payload;
+  const ref = firebase.database().ref('flocks');
+  try {
+    // const newRef = yield call([ref, ref.push]);
+    const newRef = ref.push();
+    yield call([newRef, newRef.set], { name, ownedBy: userId });
+    const userSettings = yield select(state => state.userSettings.data);
+    const flocks = userSettings.flocks || {};
+    const newUserSettings = {
+      ...userSettings,
+      flocks: { ...flocks, [newRef.key]: true },
+    };
+    yield put(
+      actions.firebaseUpdateRequested(
+        { userId, userSettings: newUserSettings },
+        metaTypes.userSettings,
+      ),
+    );
+    yield put({ type: a.ADD_FLOCK_FULFILLED });
+  } catch (error) {
+    yield put({
+      type: a.ADD_FLOCK_REJECTED,
+      payload: error,
+    });
+  }
+}
+
+export function* watchAddFlockRequested() {
+  yield takeLatest(a.ADD_FLOCK_REQUESTED, addFlock);
+}
+
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
@@ -378,5 +410,6 @@ export default function* rootSaga() {
     watchRemoveRequested(),
     watchGetFlock(),
     watchJoinFlockRequested(),
+    watchAddFlockRequested(),
   ]);
 }

@@ -1,22 +1,22 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import JoinFlockRenderer from './JoinFlockRenderer';
+import AddFlockRenderer from './AddFlockRenderer';
 import { actionTypes } from '../../redux/constants';
 
 type Props = {
   userId: string,
-  joinFlock: (userId: string, flockId: string) => void,
+  addFlock: (userId: string, name: string) => void,
   error: string,
   inProgress: boolean,
 };
 
 type State = {
-  flockId: string,
+  name: string,
 };
 
-class JoinFlock extends React.Component<Props, State> {
-  state = { flockId: '' };
+class AddFlock extends React.Component<Props, State> {
+  state = { name: '' };
 
   componentDidUpdate(prevProps) {
     const { inProgress, error } = this.props;
@@ -26,28 +26,28 @@ class JoinFlock extends React.Component<Props, State> {
   }
 
   resetForm = () => {
-    this.setState({ flockId: '' });
+    this.setState({ name: '' });
   };
 
   handleChangeText = (text: string) => {
-    this.setState({ flockId: text });
+    this.setState({ name: text });
   };
 
-  handleJoinFlock = () => {
-    const { userId, joinFlock } = this.props;
-    const { flockId } = this.state;
-    joinFlock(userId, flockId);
+  handleAddFlock = () => {
+    const { userId, addFlock } = this.props;
+    const { name } = this.state;
+    addFlock(userId, name);
   };
 
   render() {
     const { userId, error } = this.props;
-    const { flockId } = this.state;
+    const { name } = this.state;
     return (
-      <JoinFlockRenderer
+      <AddFlockRenderer
         userId={userId}
-        handleJoinFlock={this.handleJoinFlock}
+        handleAddFlock={this.handleAddFlock}
         handleChangeText={this.handleChangeText}
-        flockId={flockId}
+        name={name}
         error={error}
       />
     );
@@ -56,7 +56,7 @@ class JoinFlock extends React.Component<Props, State> {
 
 const mapStateToProps = ({
   auth: { user },
-  joinForm: { error, inProgress },
+  addForm: { error, inProgress },
 }) => ({
   userId: user ? user.uid : '',
   error,
@@ -64,13 +64,13 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  joinFlock: (userId: string, flockId: string) => dispatch({
-    type: actionTypes.JOIN_FLOCK_REQUESTED,
-    payload: { userId, flockId },
+  addFlock: (userId: string, name: string) => dispatch({
+    type: actionTypes.ADD_FLOCK_REQUESTED,
+    payload: { userId, name },
   }),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(JoinFlock);
+)(AddFlock);

@@ -11,6 +11,10 @@
     "inProgress": false,
     "error": ""
   },
+  "addForm": {
+    "inProgress": false,
+    "error": ""
+  },
   "chickens": {
     "inProgress": false,
     "error": "",

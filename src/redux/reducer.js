@@ -336,6 +336,27 @@ const handlers = {
     };
     return newState;
   },
+  [a.ADD_FLOCK_REQUESTED](state) {
+    const newState = {
+      ...state,
+      addForm: { inProgress: true, error: '' },
+    };
+    return newState;
+  },
+  [a.ADD_FLOCK_FULFILLED](state) {
+    const newState = {
+      ...state,
+      addForm: { inProgress: false, error: '' },
+    };
+    return newState;
+  },
+  [a.ADD_FLOCK_REJECTED](state, action) {
+    const newState = {
+      ...state,
+      addForm: { inProgress: false, error: action.payload.message },
+    };
+    return newState;
+  },
 };
 
 export default (state = initialState, action = {}) => {

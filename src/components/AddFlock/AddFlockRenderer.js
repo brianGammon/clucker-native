@@ -7,28 +7,28 @@ import styles from './styles';
 type Props = {
   flockId: string,
   error: string,
-  handleJoinFlock: () => void,
+  handleAddFlock: () => void,
   handleChangeText: (text: string) => void,
 };
 
-const JoinFlockRenderer = ({
+const AddFlockRenderer = ({
   flockId,
   error,
-  handleJoinFlock,
+  handleAddFlock,
   handleChangeText,
 }: Props) => (
   <View style={{ marginTop: 20 }}>
-    <Text style={styles.label}>Join Flock</Text>
+    <Text style={styles.label}>Add Flock</Text>
     <View style={styles.rowContainer}>
       <TextInput
         style={styles.input}
         value={flockId}
         onChangeText={text => handleChangeText(text)}
       />
-      <Button title="Join" onPress={handleJoinFlock} />
+      <Button title="Add" onPress={handleAddFlock} />
     </View>
     {error !== '' && <Text>{error}</Text>}
   </View>
 );
 
-export default JoinFlockRenderer;
+export default AddFlockRenderer;

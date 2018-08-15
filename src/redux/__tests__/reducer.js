@@ -566,11 +566,48 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
-  // test(actionTypes.ADD_FLOCK_REQUESTED, () => {});
+  test(actionTypes.ADD_FLOCK_REQUESTED, () => {
+    const action = {
+      type: actionTypes.ADD_FLOCK_REQUESTED,
+      payload: { userId: 'user1', flockId: 'flock1' },
+    };
+    const expectedState = {
+      ...sampleState,
+      addForm: { inProgress: true, error: '' },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
 
-  // test(actionTypes.ADD_FLOCK_FULFILLED, () => {});
+  test(actionTypes.ADD_FLOCK_FULFILLED, () => {
+    const initialState = {
+      ...sampleState,
+      addForm: { inProgress: true, error: '' },
+    };
+    const action = {
+      type: actionTypes.ADD_FLOCK_FULFILLED,
+    };
+    const expectedState = {
+      ...initialState,
+      addForm: { inProgress: false, error: '' },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
 
-  // test(actionTypes.ADD_FLOCK_REJECTED, () => {});
+  test(actionTypes.ADD_FLOCK_REJECTED, () => {
+    const initialState = {
+      ...sampleState,
+      addForm: { inProgress: true, error: '' },
+    };
+    const action = {
+      type: actionTypes.ADD_FLOCK_REJECTED,
+      payload: new Error('Test error message'),
+    };
+    const expectedState = {
+      ...initialState,
+      addForm: { inProgress: false, error: 'Test error message' },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
 
   test('bogus action does nothing', () => {
     const action = {

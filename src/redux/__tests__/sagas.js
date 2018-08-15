@@ -755,7 +755,77 @@ describe('saga tests', () => {
 
   test('watchJoinFlockRequested', () => {
     const generator = sagas.watchJoinFlockRequested();
-    expect(generator.next().value).toEqual(takeLatest(actionTypes.JOIN_FLOCK_REQUESTED, sagas.joinFlock));
+    expect(generator.next().value).toEqual(
+      takeLatest(actionTypes.JOIN_FLOCK_REQUESTED, sagas.joinFlock),
+    );
+  });
+
+  test('addFlock', () => {
+    const userSettings = {
+      currentFlockId: 'flock1',
+      flocks: {
+        flock1: true,
+      },
+    };
+
+    const action = {
+      type: actionTypes.ADD_FLOCK_REQUESTED,
+      payload: {
+        userId: 'user1',
+        name: 'Test Flock 1',
+      },
+    };
+    const newRef = firebase.database().ref('flocks').push();
+
+    const generator = cloneableGenerator(sagas.addFlock)(action);
+    expect(JSON.stringify(generator.next().value)).toEqual(
+      JSON.stringify(call([newRef, newRef.set], {
+        name: action.payload.name,
+        ownedBy: action.payload.userId,
+      })),
+    );
+    const errorGenerator = generator.clone();
+
+    // Happy path flow
+    expect(JSON.stringify(generator.next().value)).toEqual(
+      JSON.stringify(select(state => state.userSettings.data)),
+    );
+
+    const expectedUserSettings = {
+      currentFlockId: 'key1',
+      flocks: {
+        flock1: true,
+        key1: true,
+      },
+    };
+    expect(generator.next(userSettings).value).toEqual(
+      put(
+        actions.firebaseUpdateRequested(
+          { userId: action.payload.userId, userSettings: expectedUserSettings },
+          metaTypes.userSettings,
+        ),
+      ),
+    );
+    expect(generator.next().value).toEqual(
+      put({ type: actionTypes.ADD_FLOCK_FULFILLED }),
+    );
+    expect(generator.next().done).toEqual(true);
+
+    // Error flow
+    expect(errorGenerator.throw(new Error('Error saving item')).value).toEqual(
+      put({
+        type: actionTypes.ADD_FLOCK_REJECTED,
+        payload: new Error('Error saving item'),
+      }),
+    );
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('watchAddFlockRequested', () => {
+    const generator = sagas.watchAddFlockRequested();
+    expect(generator.next().value).toEqual(
+      takeLatest(actionTypes.ADD_FLOCK_REQUESTED, sagas.addFlock),
+    );
   });
 
   test('root Saga', () => {
