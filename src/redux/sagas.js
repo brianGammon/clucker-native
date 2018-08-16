@@ -214,7 +214,7 @@ export function* watchSignOutRequested() {
     // clear flocks and turn off all listeners first
     yield all([
       put(actions.firebaseRemoveAllListenersRequested()),
-      put({ type: a.CLEAR_FLOCKS }),
+      put({ type: a.CLEAR_ALL_FLOCKS }),
     ]);
     // then call firebase sign out
     const auth = firebase.auth();
@@ -399,6 +399,38 @@ export function* watchAddFlockRequested() {
   yield takeLatest(a.ADD_FLOCK_REQUESTED, addFlock);
 }
 
+export function* unlinkFlock(action) {
+  const { userId, userSettings, flockId } = action.payload;
+  const { currentFlockId } = userSettings;
+  let newCurrentFlockId = currentFlockId;
+
+  if (currentFlockId && currentFlockId === flockId) {
+    newCurrentFlockId = null;
+    yield all([
+      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+    ]);
+  }
+
+  yield put({ type: a.CLEAR_FLOCK, payload: flockId });
+  const { [flockId]: removed, ...rest } = userSettings.flocks;
+  const newUserSettings = {
+    ...userSettings,
+    currentFlockId: newCurrentFlockId,
+    flocks: rest,
+  };
+  yield put(
+    actions.firebaseUpdateRequested(
+      { userId, userSettings: newUserSettings },
+      metaTypes.userSettings,
+    ),
+  );
+}
+
+export function* watchUnlinkFlockRequested() {
+  yield takeLatest(a.UNLINK_FLOCK, unlinkFlock);
+}
+
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
@@ -413,5 +445,6 @@ export default function* rootSaga() {
     watchGetFlock(),
     watchJoinFlockRequested(),
     watchAddFlockRequested(),
+    watchUnlinkFlockRequested(),
   ]);
 }

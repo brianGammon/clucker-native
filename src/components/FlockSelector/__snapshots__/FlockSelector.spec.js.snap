@@ -15,7 +15,9 @@ exports[`FlockSelector component: Should render 1`] = `
       },
     }
   }
+  handleDeleteFlock={[Function]}
   handleSelectFlock={[Function]}
+  handleUnlinkFlock={[Function]}
   userId="user1"
 />
 `;

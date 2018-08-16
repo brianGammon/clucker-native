@@ -58,7 +58,8 @@ const handlers = {
     return newState;
   },
   [a.SIGN_IN_FULFILLED](state) {
-    const auth = { inProgress: false, error: '', user: null };
+    const currentUser = state.auth.user;
+    const auth = { inProgress: false, error: '', user: currentUser };
     const newState = { ...state, auth };
     return newState;
   },
@@ -71,7 +72,13 @@ const handlers = {
     const newState = { ...state, auth };
     return newState;
   },
-  [a.CLEAR_FLOCKS](state) {
+  [a.CLEAR_FLOCK](state, action) {
+    const { flocks } = state;
+    const { [action.payload]: removed, ...rest } = flocks.data;
+    const newState = { ...state, flocks: { ...flocks, data: rest } };
+    return newState;
+  },
+  [a.CLEAR_ALL_FLOCKS](state) {
     const { flocks } = getInitialState();
     const newState = { ...state, flocks };
     return newState;

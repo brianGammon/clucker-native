@@ -91,14 +91,14 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.SIGN_IN_FULFILLED, () => {
-    sampleState.auth = { inProgress: true, error: '' };
+    sampleState.auth = { inProgress: true, error: '', user: { uid: '123' } };
     const action = { type: actionTypes.SIGN_IN_FULFILLED };
     const expectedState = {
       ...sampleState,
       auth: {
         inProgress: false,
         error: '',
-        user: null,
+        user: { uid: '123' },
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
@@ -119,8 +119,23 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.CLEAR_FLOCKS, () => {
-    const action = { type: actionTypes.CLEAR_FLOCKS };
+  test(actionTypes.CLEAR_FLOCK, () => {
+    const action = { type: actionTypes.CLEAR_FLOCK, payload: 'flock1' };
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        inProgress: false,
+        error: '',
+        data: {
+          flock2: 'item2value',
+        },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.CLEAR_ALL_FLOCKS, () => {
+    const action = { type: actionTypes.CLEAR_ALL_FLOCKS };
     const expectedState = {
       ...sampleState,
       flocks: {

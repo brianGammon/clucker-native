@@ -391,7 +391,7 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(
       all([
         put(actions.firebaseRemoveAllListenersRequested()),
-        put({ type: actionTypes.CLEAR_FLOCKS }),
+        put({ type: actionTypes.CLEAR_ALL_FLOCKS }),
       ]),
     );
     expect(generator.next().value).toEqual(call([auth, auth.signOut]));
@@ -825,6 +825,79 @@ describe('saga tests', () => {
     const generator = sagas.watchAddFlockRequested();
     expect(generator.next().value).toEqual(
       takeLatest(actionTypes.ADD_FLOCK_REQUESTED, sagas.addFlock),
+    );
+  });
+
+  test('unlinkFlock when flock is selected', () => {
+    const userId = 'user1';
+    const userSettings = {
+      currentFlockId: 'flock1',
+      flocks: {
+        flock1: true,
+        flock2: true,
+      },
+    };
+    const flockId = 'flock1';
+    const action = {
+      type: actionTypes.UNLINK_FLOCK,
+      payload: { userId, userSettings, flockId },
+    };
+    const generator = sagas.unlinkFlock(action);
+    expect(generator.next().value).toEqual(all([
+      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+    ]));
+    expect(generator.next().value).toEqual(put({ type: actionTypes.CLEAR_FLOCK, payload: flockId }));
+    const expectedUserSettings = {
+      currentFlockId: null,
+      flocks: {
+        flock2: true,
+      },
+    };
+    expect(generator.next().value).toEqual(put(
+      actions.firebaseUpdateRequested(
+        { userId, userSettings: expectedUserSettings },
+        metaTypes.userSettings,
+      ),
+    ));
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('unlinkFlock when flock not selected', () => {
+    const userId = 'user1';
+    const userSettings = {
+      currentFlockId: 'flock1',
+      flocks: {
+        flock1: true,
+        flock2: true,
+      },
+    };
+    const flockId = 'flock2';
+    const action = {
+      type: actionTypes.UNLINK_FLOCK,
+      payload: { userId, userSettings, flockId },
+    };
+    const generator = sagas.unlinkFlock(action);
+    expect(generator.next().value).toEqual(put({ type: actionTypes.CLEAR_FLOCK, payload: flockId }));
+    const expectedUserSettings = {
+      currentFlockId: 'flock1',
+      flocks: {
+        flock1: true,
+      },
+    };
+    expect(generator.next().value).toEqual(put(
+      actions.firebaseUpdateRequested(
+        { userId, userSettings: expectedUserSettings },
+        metaTypes.userSettings,
+      ),
+    ));
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('watchUnlinkFlockRequested', () => {
+    const generator = sagas.watchUnlinkFlockRequested();
+    expect(generator.next().value).toEqual(
+      takeLatest(actionTypes.UNLINK_FLOCK, sagas.unlinkFlock),
     );
   });
 
