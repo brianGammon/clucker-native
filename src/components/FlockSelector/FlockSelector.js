@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import FlockSelectorRenderer from './FlockSelectorRenderer';
 import { type Flock, type UserSettings } from '../../types';
 import { firebaseUpdateRequested } from '../../redux/actions';
@@ -38,8 +39,25 @@ class FlockSelector extends React.Component<Props> {
   };
 
   handleDeleteFlock = (flockId) => {
-    const { userId, userSettings, deleteFlock } = this.props;
-    deleteFlock(userId, userSettings, flockId);
+    const {
+      userId, userSettings, deleteFlock, flocks,
+    } = this.props;
+    Alert.alert(
+      'Are you sure?',
+      `This will delete the flock ${
+        flocks[flockId].name
+      }, including all chickens, and eggs.`,
+      [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: () => deleteFlock(userId, userSettings, flockId),
+          style: 'destructive',
+        },
+      ],
+    );
   };
 
   render() {
