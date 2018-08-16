@@ -18,6 +18,11 @@ type Props = {
     userSettings: UserSettings,
     flockId: string,
   ) => void,
+  deleteFlock: (
+    userId: string,
+    userSettings: UserSettings,
+    flockId: string,
+  ) => void,
 };
 
 class FlockSelector extends React.Component<Props> {
@@ -33,8 +38,8 @@ class FlockSelector extends React.Component<Props> {
   };
 
   handleDeleteFlock = (flockId) => {
-    console.log('Delete flock ID:', flockId);
-    // saveUserSettings(userId, newUserSettings);
+    const { userId, userSettings, deleteFlock } = this.props;
+    deleteFlock(userId, userSettings, flockId);
   };
 
   render() {
@@ -67,7 +72,11 @@ const mapDispatchToProps = dispatch => ({
     firebaseUpdateRequested({ userId, userSettings }, metaTypes.userSettings),
   ),
   unlinkFlock: (userId: string, userSettings: UserSettings, flockId: string) => dispatch({
-    type: actionTypes.UNLINK_FLOCK,
+    type: actionTypes.UNLINK_FLOCK_REQUESTED,
+    payload: { userId, userSettings, flockId },
+  }),
+  deleteFlock: (userId: string, userSettings: UserSettings, flockId: string) => dispatch({
+    type: actionTypes.DELETE_FLOCK_REQUESTED,
     payload: { userId, userSettings, flockId },
   }),
 });

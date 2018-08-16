@@ -6,7 +6,7 @@ import { Linking } from 'react-native';
 import Splash from '../Splash';
 import RootNavigator from '../../navigation/RootNavigator';
 import * as actions from '../../redux/actions';
-import { metaTypes, appStates } from '../../redux/constants';
+import { metaTypes, appStates, actionTypes } from '../../redux/constants';
 import { type UserSettings } from '../../types';
 
 type Props = {
@@ -14,11 +14,8 @@ type Props = {
   listenToChickens: (flockId: string) => void,
   listenToEggs: (flockId: string) => void,
   setInitialUrl: (url: string) => void,
-  userSettings: {
-    inProgress: boolean,
-    error: string,
-    data: UserSettings,
-  },
+  clearFlock: (flockId: string) => void,
+  userSettings: UserSettings,
   appState: string,
 };
 
@@ -38,38 +35,30 @@ class App extends React.Component<Props> {
     Linking.getInitialURL().then(url => url && this.handleOpenURL({ url }));
   }
 
-  // shouldComponentUpdate() {
-  //   const { initialized } = this.state;
-  //   if (!initialized) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
-
   componentDidUpdate(prevProps: Props) {
-    const prevUserSettings = prevProps.userSettings;
     const {
-      userSettings,
+      flocks: prevFlocks,
+      currentFlockId: prevCurrentFlockId,
+    } = prevProps.userSettings;
+    const {
+      userSettings: { flocks, currentFlockId },
       getFlock,
+      clearFlock,
       listenToChickens,
       listenToEggs,
     } = this.props;
-    const newFlocks = userSettings.data.flocks;
-    const newCurrentFlockId = userSettings.data.currentFlockId;
-    const oldFlocks = prevUserSettings.data.flocks;
-    const oldCUrrentFlockId = prevUserSettings.data.currentFlockId;
-    const flocksChanged = newFlocks && newFlocks !== oldFlocks;
-    const currentFlockIdChanged = newCurrentFlockId && newCurrentFlockId !== oldCUrrentFlockId;
-    if (flocksChanged) {
-      console.log('Flocks changed');
-      // Dispatch to clear current flocks
-      Object.keys(userSettings.data.flocks || {}).forEach(key => getFlock(key));
-    }
 
-    if (currentFlockIdChanged) {
-      console.log('Start listening to flock data');
-      listenToChickens(newCurrentFlockId);
-      listenToEggs(newCurrentFlockId);
+    const oldSet = new Set(Object.keys(prevFlocks || {}));
+    const newSet = new Set(Object.keys(flocks || {}));
+    const deleted = new Set([...oldSet].filter(key => !newSet.has(key)));
+    const added = new Set([...newSet].filter(key => !oldSet.has(key)));
+    console.log({ added, deleted });
+    [...deleted].forEach(key => clearFlock(key));
+    [...added].forEach(key => getFlock(key));
+
+    if (currentFlockId && currentFlockId !== prevCurrentFlockId) {
+      listenToChickens(currentFlockId);
+      listenToEggs(currentFlockId);
     }
   }
 
@@ -93,13 +82,14 @@ class App extends React.Component<Props> {
 
 const mapStateToProps = ({ appState, userSettings }) => ({
   appState,
-  userSettings,
+  userSettings: userSettings.data,
 });
 const mapDispatchToProps = dispatch => ({
   listenToChickens: flockId => dispatch(actions.listenToChickens(flockId)),
   listenToEggs: flockId => dispatch(actions.listenToEggs(flockId)),
   getFlock: flockId => dispatch(actions.getFlock(flockId, metaTypes.flocks)),
   setInitialUrl: url => dispatch(actions.setInitialUrl(url)),
+  clearFlock: flockId => dispatch({ type: actionTypes.CLEAR_FLOCK, payload: flockId }),
 });
 
 export default connect(

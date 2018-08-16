@@ -10,6 +10,12 @@ export class Reference {
 
   val = jest.fn(() => this.data);
 
+  child = () => this;
+
+  orderByChild = () => this;
+
+  equalTo = () => this;
+
   once = jest.fn((param, callback) => {
     const promise = new Promise((resolve) => {
       if (callback) {

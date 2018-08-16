@@ -775,14 +775,19 @@ describe('saga tests', () => {
         name: 'Test Flock 1',
       },
     };
-    const newRef = firebase.database().ref('flocks').push();
+    const newRef = firebase
+      .database()
+      .ref('flocks')
+      .push();
 
     const generator = cloneableGenerator(sagas.addFlock)(action);
     expect(JSON.stringify(generator.next().value)).toEqual(
-      JSON.stringify(call([newRef, newRef.set], {
-        name: action.payload.name,
-        ownedBy: action.payload.userId,
-      })),
+      JSON.stringify(
+        call([newRef, newRef.set], {
+          name: action.payload.name,
+          ownedBy: action.payload.userId,
+        }),
+      ),
     );
     const errorGenerator = generator.clone();
 
@@ -839,27 +844,30 @@ describe('saga tests', () => {
     };
     const flockId = 'flock1';
     const action = {
-      type: actionTypes.UNLINK_FLOCK,
+      type: actionTypes.UNLINK_FLOCK_REQUESTED,
       payload: { userId, userSettings, flockId },
     };
     const generator = sagas.unlinkFlock(action);
-    expect(generator.next().value).toEqual(all([
-      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-    ]));
-    expect(generator.next().value).toEqual(put({ type: actionTypes.CLEAR_FLOCK, payload: flockId }));
+    expect(generator.next().value).toEqual(
+      all([
+        put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+        put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+      ]),
+    );
     const expectedUserSettings = {
       currentFlockId: null,
       flocks: {
         flock2: true,
       },
     };
-    expect(generator.next().value).toEqual(put(
-      actions.firebaseUpdateRequested(
-        { userId, userSettings: expectedUserSettings },
-        metaTypes.userSettings,
+    expect(generator.next().value).toEqual(
+      put(
+        actions.firebaseUpdateRequested(
+          { userId, userSettings: expectedUserSettings },
+          metaTypes.userSettings,
+        ),
       ),
-    ));
+    );
     expect(generator.next().done).toEqual(true);
   });
 
@@ -874,30 +882,190 @@ describe('saga tests', () => {
     };
     const flockId = 'flock2';
     const action = {
-      type: actionTypes.UNLINK_FLOCK,
+      type: actionTypes.UNLINK_FLOCK_REQUESTED,
       payload: { userId, userSettings, flockId },
     };
     const generator = sagas.unlinkFlock(action);
-    expect(generator.next().value).toEqual(put({ type: actionTypes.CLEAR_FLOCK, payload: flockId }));
     const expectedUserSettings = {
       currentFlockId: 'flock1',
       flocks: {
         flock1: true,
       },
     };
-    expect(generator.next().value).toEqual(put(
-      actions.firebaseUpdateRequested(
-        { userId, userSettings: expectedUserSettings },
-        metaTypes.userSettings,
+    expect(generator.next().value).toEqual(
+      put(
+        actions.firebaseUpdateRequested(
+          { userId, userSettings: expectedUserSettings },
+          metaTypes.userSettings,
+        ),
       ),
-    ));
+    );
     expect(generator.next().done).toEqual(true);
   });
 
   test('watchUnlinkFlockRequested', () => {
     const generator = sagas.watchUnlinkFlockRequested();
     expect(generator.next().value).toEqual(
-      takeLatest(actionTypes.UNLINK_FLOCK, sagas.unlinkFlock),
+      takeLatest(actionTypes.UNLINK_FLOCK_REQUESTED, sagas.unlinkFlock),
+    );
+  });
+
+  test('deleteFlock when currently selected', () => {
+    const userId = 'user1';
+    const userSettings = {
+      currentFlockId: 'flock1',
+      flocks: {
+        flock1: true,
+        flock2: true,
+      },
+    };
+    const flockId = 'flock1';
+    const action = {
+      type: actionTypes.DELETE_FLOCK_REQUESTED,
+      payload: { userId, userSettings, flockId },
+    };
+    const generator = cloneableGenerator(sagas.deleteFlock)(action);
+    expect(generator.next().value).toEqual(
+      all([
+        put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+        put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+      ]),
+    );
+
+    const baseRef = firebase.database().ref();
+    const userSettingsRef = baseRef.child('userSettings');
+    const queryRef = userSettingsRef
+      .orderByChild('flocks/flock1')
+      .equalTo(true);
+    expect(generator.next().value).toEqual(
+      call([queryRef, queryRef.once], 'value'),
+    );
+
+    // Save for later
+    const errorGenerator = generator.clone();
+
+    const snapshot1 = {
+      key: 'user1',
+      val() {
+        return {
+          currentFlockId: 'flock1',
+          flocks: {
+            flock1: true,
+            flock2: true,
+          },
+        };
+      },
+    };
+
+    // Part of the deleted flock, but different flock active
+    const snapshot2 = {
+      key: 'user2',
+      val() {
+        return {
+          currentFlockId: 'flock2',
+          flocks: {
+            flock1: true,
+            flock2: true,
+          },
+        };
+      },
+    };
+
+    // Has no current flock, but is part of the deleted flock
+    const snapshot3 = {
+      key: 'user3',
+      val() {
+        return {
+          flocks: {
+            flock1: true,
+            flock2: true,
+          },
+        };
+      },
+    };
+
+    const snapshot = {
+      forEach(cb) {
+        [snapshot1, snapshot2, snapshot3].forEach(child => cb(child));
+      },
+    };
+
+    const updates = {
+      'user1/currentFlockId': null,
+      'user1/flocks/flock1': null,
+      'user2/flocks/flock1': null,
+      'user3/flocks/flock1': null,
+    };
+
+    expect(generator.next(snapshot).value).toEqual(
+      call([userSettingsRef, userSettingsRef.update], updates),
+    );
+    let removalRef = baseRef.child('eggs/flock1');
+    expect(generator.next().value).toEqual(
+      call([removalRef, removalRef.remove]),
+    );
+
+    removalRef = baseRef.child('chickens/flock1');
+    expect(generator.next().value).toEqual(
+      call([removalRef, removalRef.remove]),
+    );
+
+    removalRef = baseRef.child('flocks/flock1');
+    expect(generator.next().value).toEqual(
+      call([removalRef, removalRef.remove]),
+    );
+
+    const deletedFlocksRef = baseRef.child('deletedFlocks/user1/flock1');
+    expect(generator.next().value).toEqual(
+      call([deletedFlocksRef, deletedFlocksRef.set], true),
+    );
+
+    expect(generator.next().done).toEqual(true);
+
+    // Error path
+    const error = new Error('An error occured');
+    expect(errorGenerator.throw(error).value).toEqual(
+      put({ type: actionTypes.DELETE_FLOCK_REJECTED, payload: error }),
+    );
+  });
+
+  test('deleteFlock when not currently selected', () => {
+    const userId = 'user1';
+    const userSettings = {
+      currentFlockId: 'flock2',
+      flocks: {
+        flock1: true,
+        flock2: true,
+      },
+    };
+    const flockId = 'flock1';
+    const action = {
+      type: actionTypes.DELETE_FLOCK_REQUESTED,
+      payload: { userId, userSettings, flockId },
+    };
+    const baseRef = firebase.database().ref();
+    const userSettingsRef = baseRef.child('userSettings');
+    const queryRef = userSettingsRef
+      .orderByChild('flocks/flock1')
+      .equalTo(true);
+
+    const generator = cloneableGenerator(sagas.deleteFlock)(action);
+    const noCurrFlockGenerator = generator.clone();
+    expect(generator.next().value).toEqual(
+      call([queryRef, queryRef.once], 'value'),
+    );
+
+    // When no current flock is set at all
+    delete userSettings.currentFlockId;
+    expect(noCurrFlockGenerator.next().value).toEqual(
+      call([queryRef, queryRef.once], 'value'),
+    );
+  });
+
+  test('watchDeleteFlockRequested', () => {
+    const generator = sagas.watchDeleteFlockRequested();
+    expect(generator.next().value).toEqual(
+      takeLatest(actionTypes.DELETE_FLOCK_REQUESTED, sagas.deleteFlock),
     );
   });
 

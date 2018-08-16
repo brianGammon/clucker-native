@@ -624,6 +624,19 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
+  test(actionTypes.DELETE_FLOCK_REJECTED, () => {
+    const { flocks: flocksState } = sampleState;
+    const action = {
+      type: actionTypes.DELETE_FLOCK_REJECTED,
+      payload: new Error('Test error message'),
+    };
+    const expectedState = {
+      ...sampleState,
+      flocks: { ...flocksState, error: 'Test error message' },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
   test('bogus action does nothing', () => {
     const action = {
       type: 'DO_NOT_TOUCH_STATE_ACTION',

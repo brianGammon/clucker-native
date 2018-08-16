@@ -364,6 +364,14 @@ const handlers = {
     };
     return newState;
   },
+  [a.DELETE_FLOCK_REJECTED](state, action) {
+    const { flocks: flocksState } = state;
+    const newState = {
+      ...state,
+      flocks: { ...flocksState, error: action.payload.message },
+    };
+    return newState;
+  },
 };
 
 export default (state = initialState, action = {}) => {

@@ -412,7 +412,6 @@ export function* unlinkFlock(action) {
     ]);
   }
 
-  yield put({ type: a.CLEAR_FLOCK, payload: flockId });
   const { [flockId]: removed, ...rest } = userSettings.flocks;
   const newUserSettings = {
     ...userSettings,
@@ -428,7 +427,55 @@ export function* unlinkFlock(action) {
 }
 
 export function* watchUnlinkFlockRequested() {
-  yield takeLatest(a.UNLINK_FLOCK, unlinkFlock);
+  yield takeLatest(a.UNLINK_FLOCK_REQUESTED, unlinkFlock);
+}
+
+export function* deleteFlock(action) {
+  const { userId, userSettings, flockId } = action.payload;
+  const { currentFlockId } = userSettings;
+
+  if (currentFlockId && currentFlockId === flockId) {
+    yield all([
+      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+    ]);
+  }
+
+  const baseRef = firebase.database().ref();
+  const userSettingsRef = baseRef.child('userSettings');
+  const queryRef = userSettingsRef
+    .orderByChild(`flocks/${flockId}`)
+    .equalTo(true);
+  try {
+    const snapshot = yield call([queryRef, queryRef.once], 'value');
+    const updates = {};
+    snapshot.forEach((child) => {
+      const { key } = child;
+      const { currentFlockId: curr } = child.val();
+      if (curr && curr === flockId) {
+        updates[`${key}/currentFlockId`] = null;
+      }
+      updates[`${key}/flocks/${flockId}`] = null;
+    });
+
+    yield call([userSettingsRef, userSettingsRef.update], updates);
+    let removalRef = baseRef.child(`eggs/${flockId}`);
+    yield call([removalRef, removalRef.remove]);
+    removalRef = baseRef.child(`chickens/${flockId}`);
+    yield call([removalRef, removalRef.remove]);
+    removalRef = baseRef.child(`flocks/${flockId}`);
+    yield call([removalRef, removalRef.remove]);
+    const deletedFlocksRef = baseRef.child(
+      `deletedFlocks/${userId}/${flockId}`,
+    );
+    yield call([deletedFlocksRef, deletedFlocksRef.set], true);
+  } catch (error) {
+    yield put({ type: a.DELETE_FLOCK_REJECTED, payload: error });
+  }
+}
+
+export function* watchDeleteFlockRequested() {
+  yield takeLatest(a.DELETE_FLOCK_REQUESTED, deleteFlock);
 }
 
 export default function* rootSaga() {
@@ -446,5 +493,6 @@ export default function* rootSaga() {
     watchJoinFlockRequested(),
     watchAddFlockRequested(),
     watchUnlinkFlockRequested(),
+    watchDeleteFlockRequested(),
   ]);
 }
