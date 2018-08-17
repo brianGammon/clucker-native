@@ -5,6 +5,10 @@ const iconPadding = 10;
 const fontSize = 16;
 
 export default StyleSheet.create({
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   iconLeft: {
     fontSize: iconSize,
     paddingLeft: iconPadding,

@@ -16,7 +16,6 @@ type Props = {
   },
   flock: Flock,
   isFlockOwner: boolean,
-  onDeleteChicken: (chickenId: string) => void,
 };
 
 const FlockRenderer = ({
@@ -24,7 +23,6 @@ const FlockRenderer = ({
   chickens,
   flock,
   isFlockOwner,
-  onDeleteChicken,
 }: Props) => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text>Flock Name: {flock && flock.name}</Text>
@@ -56,9 +54,6 @@ const FlockRenderer = ({
           <View style={{ flex: 1, paddingLeft: 10 }}>
             <Text>Name: {chickens[item].name}</Text>
           </View>
-          {isFlockOwner && (
-            <Button onPress={() => onDeleteChicken(item)} title="Delete" />
-          )}
         </TouchableOpacity>
       )}
     />

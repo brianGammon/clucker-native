@@ -2,10 +2,23 @@
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no stats yet 1`] = `
 <ScrollView>
-  <Button
-    onPress={[Function]}
-    title="Edit Chicken"
-  />
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Button
+      onPress={[Function]}
+      title="Edit"
+    />
+    <Button
+      onPress={[Function]}
+      title="Delete"
+    />
+  </Component>
   <Component
     style={
       Object {
@@ -137,10 +150,23 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no weight yet 1`] = `
 <ScrollView>
-  <Button
-    onPress={[Function]}
-    title="Edit Chicken"
-  />
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Button
+      onPress={[Function]}
+      title="Edit"
+    />
+    <Button
+      onPress={[Function]}
+      title="Delete"
+    />
+  </Component>
   <Component
     style={
       Object {
@@ -372,10 +398,23 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly with all stats available 1`] = `
 <ScrollView>
-  <Button
-    onPress={[Function]}
-    title="Edit Chicken"
-  />
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Button
+      onPress={[Function]}
+      title="Edit"
+    />
+    <Button
+      onPress={[Function]}
+      title="Delete"
+    />
+  </Component>
   <Component
     style={
       Object {
@@ -623,6 +662,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
     }
   }
   chickenId="chicken1"
+  handleDeleteChicken={[Function]}
   navigation={
     Object {
       "getParam": [MockFunction] {

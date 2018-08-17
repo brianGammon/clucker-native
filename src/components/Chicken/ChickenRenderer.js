@@ -13,6 +13,7 @@ type Props = {
   nextChickenId: string,
   chicken: Chicken,
   stats: ChickenStats,
+  handleDeleteChicken: (chickenId: string) => void,
 };
 
 const ChickenRenderer = ({
@@ -22,12 +23,16 @@ const ChickenRenderer = ({
   chickenId,
   prevChickenId,
   nextChickenId,
+  handleDeleteChicken,
 }: Props) => (
   <ScrollView>
-    <Button
-      onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
-      title="Edit Chicken"
-    />
+    <View style={styles.rowContainer}>
+      <Button
+        onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
+        title="Edit"
+      />
+      <Button onPress={() => handleDeleteChicken(chickenId)} title="Delete" />
+    </View>
     <View
       style={{
         marginTop: 20,
