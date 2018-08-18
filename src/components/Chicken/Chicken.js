@@ -4,8 +4,7 @@ import { Text, Alert } from 'react-native';
 import ChickenRenderer from './ChickenRenderer';
 import chickenSelector from '../../selectors/chickenSelector';
 import chickenStatsSelector from '../../selectors/chickenStatsSelector';
-import { firebaseRemoveRequested } from '../../redux/actions';
-import { metaTypes } from '../../redux/constants';
+import { actionTypes } from '../../redux/constants';
 import { Chicken as ChickenType, Navigation, ChickenStats } from '../../types';
 
 type Props = {
@@ -89,9 +88,10 @@ const mapStateToProps = ({ chickens, eggs, userSettings }, { navigation }) => {
 };
 
 const mapDispatchtoProps = dispatch => ({
-  deleteChicken: (flockId, chickenId) => dispatch(
-    firebaseRemoveRequested({ flockId, chickenId }, metaTypes.chickens),
-  ),
+  deleteChicken: (flockId, chickenId) => dispatch({
+    type: actionTypes.DELETE_CHICKEN_REQUESTED,
+    payload: { flockId, chickenId },
+  }),
 });
 
 export default connect(

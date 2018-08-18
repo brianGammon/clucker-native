@@ -17,6 +17,14 @@ const getInitialState = () => {
       inProgress: false,
       error: '',
     },
+    deleteFlock: {
+      inProgress: false,
+      error: null,
+    },
+    deleteChicken: {
+      inProgress: false,
+      error: null,
+    },
   };
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
@@ -64,9 +72,10 @@ const handlers = {
     return newState;
   },
   [a.SIGN_IN_REJECTED](state, action) {
+    const { error } = action.payload;
     const auth = {
       inProgress: false,
-      error: action.payload.message,
+      error: error.message,
       user: null,
     };
     const newState = { ...state, auth };
@@ -143,7 +152,7 @@ const handlers = {
     const { error } = action.payload;
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false, error },
+      [property]: { ...propertyState, inProgress: false, error: error.message },
     };
     return newState;
   },
@@ -171,7 +180,7 @@ const handlers = {
     const { error } = action.payload;
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false, error },
+      [property]: { ...propertyState, inProgress: false, error: error.message },
     };
     return newState;
   },
@@ -208,7 +217,7 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false, error },
+      [property]: { ...propertyState, inProgress: false, error: error.message },
     };
     return newState;
   },
@@ -318,7 +327,7 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false, error },
+      [property]: { ...propertyState, inProgress: false, error: error.message },
     };
     return newState;
   },
@@ -337,9 +346,10 @@ const handlers = {
     return newState;
   },
   [a.JOIN_FLOCK_REJECTED](state, action) {
+    const { error } = action.payload;
     const newState = {
       ...state,
-      joinForm: { inProgress: false, error: action.payload.message },
+      joinForm: { inProgress: false, error: error.message },
     };
     return newState;
   },
@@ -358,17 +368,54 @@ const handlers = {
     return newState;
   },
   [a.ADD_FLOCK_REJECTED](state, action) {
+    const { error } = action.payload;
     const newState = {
       ...state,
-      addForm: { inProgress: false, error: action.payload.message },
+      addForm: { inProgress: false, error: error.message },
+    };
+    return newState;
+  },
+  [a.DELETE_FLOCK_REQUESTED](state) {
+    const newState = {
+      ...state,
+      deleteFlock: { inProgress: true, error: null },
+    };
+    return newState;
+  },
+  [a.DELETE_FLOCK_FULFILLED](state) {
+    const newState = {
+      ...state,
+      deleteFlock: { inProgress: false, error: null },
     };
     return newState;
   },
   [a.DELETE_FLOCK_REJECTED](state, action) {
-    const { flocks: flocksState } = state;
+    const { error } = action.payload;
     const newState = {
       ...state,
-      flocks: { ...flocksState, error: action.payload.message },
+      deleteFlock: { inProgress: false, error: error.message },
+    };
+    return newState;
+  },
+  [a.DELETE_CHICKEN_REQUESTED](state) {
+    const newState = {
+      ...state,
+      deleteChicken: { inProgress: true, error: null },
+    };
+    return newState;
+  },
+  [a.DELETE_CHICKEN_FULFILLED](state) {
+    const newState = {
+      ...state,
+      deleteChicken: { inProgress: false, error: null },
+    };
+    return newState;
+  },
+  [a.DELETE_CHICKEN_REJECTED](state, action) {
+    const { error } = action.payload;
+    const newState = {
+      ...state,
+      deleteChicken: { inProgress: false, error: error.message },
     };
     return newState;
   },

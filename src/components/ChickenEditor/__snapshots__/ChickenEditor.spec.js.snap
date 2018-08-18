@@ -7,6 +7,10 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
   name=""
   onFieldChanged={[Function]}
   onSaveForm={[Function]}
+  photoPath=""
+  photoUrl=""
+  thumbnailPath=""
+  thumbnailUrl=""
 />
 `;
 
@@ -17,6 +21,9 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
   name="Chicken1"
   onFieldChanged={[Function]}
   onSaveForm={[Function]}
+  photoPath="uploads/user:user1/flock:flock1/1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg"
   photoUrl="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+  thumbnailPath="uploads/user:user1/flock:flock1/thumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg"
+  thumbnailUrl="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72"
 />
 `;

@@ -40,15 +40,20 @@ const mapStateToProps = ({
   flocks,
   userSettings,
   auth: { user },
-}) => ({
-  chickens: chickens.data,
-  flockId: userSettings.data.currentFlockId,
-  flock: currentFlockSelector(flocks.data, userSettings),
-  isFlockOwner: isFlockOwnerSelector(
-    flocks.data,
-    userSettings,
-    user ? user.uid : '',
-  ),
-});
+}) => {
+  const flockId = userSettings.data.currentFlockId;
+  let flock = {};
+  let isFlockOwner = false;
+  if (flockId) {
+    flock = currentFlockSelector(flocks.data, userSettings);
+    isFlockOwner = isFlockOwnerSelector(flocks.data, userSettings, user.uid);
+  }
+  return {
+    chickens: chickens.data,
+    flockId,
+    flock,
+    isFlockOwner,
+  };
+};
 
 export default connect(mapStateToProps)(Flock);

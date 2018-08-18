@@ -24,6 +24,10 @@ type State = {
   name: string,
   breed: string,
   hatched: string,
+  photoUrl: string,
+  photoPath: string,
+  thumbnailUrl: string,
+  thumbnailPath: string,
 };
 
 class ChickenEditor extends React.Component<Props, State> {
@@ -31,24 +35,21 @@ class ChickenEditor extends React.Component<Props, State> {
     title: `${navigation.getParam('chickenId', null) ? 'Edit' : 'Add'} Chicken`,
   });
 
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      breed: '',
-      hatched: '',
-    };
-    this.onFieldChanged = this.onFieldChanged.bind(this);
-    this.onSaveForm = this.onSaveForm.bind(this);
-  }
+  state = {
+    name: '',
+    breed: '',
+    hatched: '',
+    photoUrl: '',
+    photoPath: '',
+    thumbnailUrl: '',
+    thumbnailPath: '',
+  };
 
   componentDidMount() {
     const { chicken, chickenId } = this.props;
     if (chickenId) {
       this.setState({
-        name: chicken.name,
-        breed: chicken.breed,
-        hatched: chicken.hatched,
+        ...chicken,
       });
     }
   }
@@ -75,13 +76,9 @@ class ChickenEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      chicken: { photoUrl },
-    } = this.props;
     return (
       <ChickenEditorRenderer
         {...this.state}
-        photoUrl={photoUrl}
         onFieldChanged={this.onFieldChanged}
         onSaveForm={this.onSaveForm}
       />

@@ -428,7 +428,9 @@ Object {
 
 exports[`Redux actions: signInRejected 1`] = `
 Object {
-  "payload": [Error: sign in rejected test],
+  "payload": Object {
+    "error": [Error: sign in rejected test],
+  },
   "type": "SIGN_IN_REJECTED",
 }
 `;

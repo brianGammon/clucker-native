@@ -15,6 +15,14 @@
     "inProgress": false,
     "error": ""
   },
+  "deleteFlock": {
+    "inProgress": false,
+    "error": null
+  },
+  "deleteChicken": {
+    "inProgress": false,
+    "error": null
+  },
   "chickens": {
     "inProgress": false,
     "error": "",

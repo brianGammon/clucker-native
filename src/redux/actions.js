@@ -162,7 +162,7 @@ export function signInRequested(email, password) {
 export function signInRejected(error) {
   return {
     type: a.SIGN_IN_REJECTED,
-    payload: error,
+    payload: { error },
   };
 }
 

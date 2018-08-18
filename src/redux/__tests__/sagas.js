@@ -14,6 +14,7 @@ import {
 import * as sagas from '../sagas';
 import * as actions from '../actions';
 import { metaTypes, eventTypes, actionTypes } from '../constants';
+import eggsByChickenSelector from '../../selectors/eggsByChickenSelector';
 
 describe('saga tests', () => {
   test('addItems - regular stream - success and failure', () => {
@@ -820,7 +821,7 @@ describe('saga tests', () => {
     expect(errorGenerator.throw(new Error('Error saving item')).value).toEqual(
       put({
         type: actionTypes.ADD_FLOCK_REJECTED,
-        payload: new Error('Error saving item'),
+        payload: { error: new Error('Error saving item') },
       }),
     );
     expect(generator.next().done).toEqual(true);
@@ -1020,12 +1021,14 @@ describe('saga tests', () => {
       call([deletedFlocksRef, deletedFlocksRef.set], true),
     );
 
+    expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_FLOCK_FULFILLED }));
+
     expect(generator.next().done).toEqual(true);
 
     // Error path
     const error = new Error('An error occured');
     expect(errorGenerator.throw(error).value).toEqual(
-      put({ type: actionTypes.DELETE_FLOCK_REJECTED, payload: error }),
+      put({ type: actionTypes.DELETE_FLOCK_REJECTED, payload: { error } }),
     );
   });
 
@@ -1072,5 +1075,46 @@ describe('saga tests', () => {
   test('root Saga', () => {
     const generator = sagas.default();
     expect(generator.next().value).toMatchSnapshot();
+  });
+
+  test('deleteChicken', () => {
+    const action = {
+      type: actionTypes.DELETE_CHICKEN_REQUESTED,
+      payload: {
+        chickenId: 'chicken1',
+        // chicken: {
+        //   photoPath: 'photoPath1',
+        //   thumbnailPath: 'thumbnailPath1',
+        // },
+        flockId: 'flock1',
+      },
+    };
+    const eggs = {
+      egg1: true,
+      egg2: true,
+      egg3: true,
+    };
+    const generator = cloneableGenerator(sagas.deleteChicken)(action);
+    const ref = firebase.database().ref();
+    const eggsRef = ref.child('/eggs/flock1');
+    const updates = {
+      egg1: null,
+      egg2: null,
+      egg3: null,
+    };
+    expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => eggsByChickenSelector(state.eggs.data, action.payload.chickenId))));
+    const errorGenerator = generator.clone();
+    expect(generator.next(eggs).value).toEqual(
+      call([eggsRef, eggsRef.update], updates),
+    );
+
+    const chickensRef = ref.child('/chickens/flock1/chicken1');
+    expect(generator.next().value).toEqual(call([chickensRef, chickensRef.remove]));
+    expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_CHICKEN_FULFILLED }));
+    expect(generator.next().done).toEqual(true);
+
+    // error flow
+    const error = new Error('An error has occurred');
+    expect(errorGenerator.throw(error).value).toEqual(put({ type: actionTypes.DELETE_CHICKEN_REJECTED, payload: { error } }));
   });
 });

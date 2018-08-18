@@ -261,7 +261,7 @@ describe('firebaseReducer reducer', () => {
   test(actionTypes.UPDATE_REJECTED, () => {
     sampleState[metaTypes.userSettings].inProgress = true;
 
-    const error = 'test error';
+    const error = new Error('test error');
     const action = actions.firebaseUpdateRejected(
       error,
       metaTypes.userSettings,
@@ -312,7 +312,7 @@ describe('firebaseReducer reducer', () => {
   test(actionTypes.REMOVE_REJECTED, () => {
     sampleState[metaTypes.userSettings].inProgress = true;
 
-    const error = 'test error message';
+    const error = new Error('test error message');
     const action = actions.firebaseRemoveRejected(
       error,
       metaTypes.userSettings,
@@ -321,7 +321,7 @@ describe('firebaseReducer reducer', () => {
       ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
-        error,
+        error: error.message,
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -360,7 +360,7 @@ describe('firebaseReducer reducer', () => {
   test(actionTypes.LISTEN_REJECTED, () => {
     sampleState[metaTypes.userSettings].inProgress = true;
 
-    const error = 'error';
+    const error = new Error('error');
     const action = actions.firebaseListenRejected(
       error,
       metaTypes.userSettings,
@@ -369,7 +369,7 @@ describe('firebaseReducer reducer', () => {
       ...sampleState,
       [metaTypes.userSettings]: {
         inProgress: false,
-        error,
+        error: error.message,
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
@@ -534,7 +534,8 @@ describe('firebaseReducer reducer', () => {
         },
       },
     };
-    const action = actions.getFlockRejected('Error Message');
+    const error = new Error('Error Message');
+    const action = actions.getFlockRejected(error);
     expect(firebaseReducer(state, action)).toMatchSnapshot();
   });
 
@@ -570,13 +571,14 @@ describe('firebaseReducer reducer', () => {
       ...sampleState,
       joinForm: { inProgress: true, error: '' },
     };
+    const error = new Error('Test error message');
     const action = {
       type: actionTypes.JOIN_FLOCK_REJECTED,
-      payload: new Error('Test error message'),
+      payload: { error },
     };
     const expectedState = {
       ...initialState,
-      joinForm: { inProgress: false, error: 'Test error message' },
+      joinForm: { inProgress: false, error: error.message },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
@@ -613,26 +615,98 @@ describe('firebaseReducer reducer', () => {
       ...sampleState,
       addForm: { inProgress: true, error: '' },
     };
+    const error = new Error('Test error message');
     const action = {
       type: actionTypes.ADD_FLOCK_REJECTED,
-      payload: new Error('Test error message'),
+      payload: { error },
     };
     const expectedState = {
       ...initialState,
-      addForm: { inProgress: false, error: 'Test error message' },
+      addForm: { inProgress: false, error: error.message },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.DELETE_FLOCK_REQUESTED, () => {
+    const action = {
+      type: actionTypes.DELETE_FLOCK_REQUESTED,
+    };
+    const expectedState = {
+      ...sampleState,
+      deleteFlock: { inProgress: true, error: null },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.DELETE_FLOCK_FULFILLED, () => {
+    const initialState = {
+      ...sampleState,
+      deleteFlock: {
+        inProgress: true,
+        error: 'test',
+      },
+    };
+    const action = {
+      type: actionTypes.DELETE_FLOCK_FULFILLED,
+    };
+    const expectedState = {
+      ...sampleState,
+      deleteFlock: { inProgress: false, error: null },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.DELETE_FLOCK_REJECTED, () => {
-    const { flocks: flocksState } = sampleState;
+    const error = new Error('Test error message');
     const action = {
       type: actionTypes.DELETE_FLOCK_REJECTED,
-      payload: new Error('Test error message'),
+      payload: { error },
     };
     const expectedState = {
       ...sampleState,
-      flocks: { ...flocksState, error: 'Test error message' },
+      deleteFlock: { inProgress: false, error: error.message },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.DELETE_CHICKEN_REQUESTED, () => {
+    const action = {
+      type: actionTypes.DELETE_CHICKEN_REQUESTED,
+    };
+    const expectedState = {
+      ...sampleState,
+      deleteChicken: { inProgress: true, error: null },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.DELETE_CHICKEN_FULFILLED, () => {
+    const initialState = {
+      ...sampleState,
+      deleteChicken: {
+        inProgress: true,
+        error: 'test',
+      },
+    };
+    const action = {
+      type: actionTypes.DELETE_CHICKEN_FULFILLED,
+    };
+    const expectedState = {
+      ...sampleState,
+      deleteChicken: { inProgress: false, error: null },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.DELETE_CHICKEN_REJECTED, () => {
+    const error = new Error('Test error message');
+    const action = {
+      type: actionTypes.DELETE_CHICKEN_REJECTED,
+      payload: { error },
+    };
+    const expectedState = {
+      ...sampleState,
+      deleteChicken: { inProgress: false, error: error.message },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });

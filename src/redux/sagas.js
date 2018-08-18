@@ -13,6 +13,7 @@ import {
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
+import eggsByChickenSelector from '../selectors/eggsByChickenSelector';
 import { actionTypes as a, metaTypes, eventTypes as e } from './constants';
 import * as actions from './actions';
 
@@ -390,7 +391,7 @@ export function* addFlock(action) {
   } catch (error) {
     yield put({
       type: a.ADD_FLOCK_REJECTED,
-      payload: error,
+      payload: { error },
     });
   }
 }
@@ -469,13 +470,49 @@ export function* deleteFlock(action) {
       `deletedFlocks/${userId}/${flockId}`,
     );
     yield call([deletedFlocksRef, deletedFlocksRef.set], true);
+    yield put({ type: a.DELETE_FLOCK_FULFILLED });
   } catch (error) {
-    yield put({ type: a.DELETE_FLOCK_REJECTED, payload: error });
+    yield put({ type: a.DELETE_FLOCK_REJECTED, payload: { error } });
   }
 }
 
 export function* watchDeleteFlockRequested() {
   yield takeLatest(a.DELETE_FLOCK_REQUESTED, deleteFlock);
+}
+
+export function* deleteChicken(action) {
+  const { chickenId, flockId } = action.payload;
+
+  try {
+    // run the egg selector for the chickenId
+    const eggs = yield select(state => eggsByChickenSelector(state.eggs.data, chickenId));
+
+    // loop over eggs build a list of updates to null
+    const updates = {};
+    Object.keys(eggs || {}).forEach((key) => {
+      updates[key] = null;
+    });
+
+    // call the egg deletion
+    const ref = firebase.database().ref();
+    const eggsRef = ref.child(`/eggs/${flockId}`);
+    yield call([eggsRef, eggsRef.update], updates);
+
+    // remove the chicken's images from storage
+    // TBD
+
+    // delete the chicken
+    const chickensRef = ref.child(`/chickens/${flockId}/${chickenId}`);
+    yield call([chickensRef, chickensRef.remove]);
+
+    yield put({ type: a.DELETE_CHICKEN_FULFILLED });
+  } catch (error) {
+    yield put({ type: a.DELETE_CHICKEN_REJECTED, payload: { error } });
+  }
+}
+
+export function* watchDeleteChickenRequested() {
+  yield takeLatest(a.DELETE_CHICKEN_REQUESTED, deleteChicken);
 }
 
 export default function* rootSaga() {
@@ -494,5 +531,6 @@ export default function* rootSaga() {
     watchAddFlockRequested(),
     watchUnlinkFlockRequested(),
     watchDeleteFlockRequested(),
+    watchDeleteChickenRequested(),
   ]);
 }

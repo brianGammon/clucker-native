@@ -207,6 +207,14 @@ Object {
     "error": "",
     "inProgress": false,
   },
+  "deleteChicken": Object {
+    "error": null,
+    "inProgress": false,
+  },
+  "deleteFlock": Object {
+    "error": null,
+    "inProgress": false,
+  },
   "eggs": Object {
     "data": Object {},
     "error": "",
@@ -245,6 +253,14 @@ Object {
   "chickens": Object {
     "data": Object {},
     "error": "",
+    "inProgress": false,
+  },
+  "deleteChicken": Object {
+    "error": null,
+    "inProgress": false,
+  },
+  "deleteFlock": Object {
+    "error": null,
     "inProgress": false,
   },
   "eggs": Object {
