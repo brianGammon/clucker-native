@@ -27,7 +27,7 @@ const JoinFlockRenderer = ({
       />
       <Button title="Join" onPress={handleJoinFlock} />
     </View>
-    {error !== '' && <Text>{error}</Text>}
+    {error && <Text>{error}</Text>}
   </View>
 );
 

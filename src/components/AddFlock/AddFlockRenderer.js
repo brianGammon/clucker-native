@@ -27,7 +27,7 @@ const AddFlockRenderer = ({
       />
       <Button title="Add" onPress={handleAddFlock} />
     </View>
-    {error !== '' && <Text>{error}</Text>}
+    {error && <Text>{error}</Text>}
   </View>
 );
 

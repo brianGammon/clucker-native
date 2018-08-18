@@ -358,7 +358,7 @@ export function* joinFlock(action) {
   } else {
     yield put({
       type: a.JOIN_FLOCK_REJECTED,
-      payload: new Error(`Flock ID '${flockId}' not found`),
+      payload: { error: new Error(`Flock ID '${flockId}' not found`) },
     });
   }
 }

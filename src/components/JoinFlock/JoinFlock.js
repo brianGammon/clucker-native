@@ -20,7 +20,7 @@ class JoinFlock extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps) {
     const { inProgress, error } = this.props;
-    if (prevProps.inProgress && !inProgress && error === '') {
+    if (prevProps.inProgress && !inProgress && !error) {
       this.resetForm();
     }
   }

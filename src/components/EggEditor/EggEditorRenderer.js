@@ -20,6 +20,7 @@ type Props = {
   handleToggleSwitch: (state: boolean) => void,
   handlePickItem: (itemValue: string) => void,
   onSaveForm: () => void,
+  error: string,
 };
 
 const EggEditorRenderer = ({
@@ -34,8 +35,10 @@ const EggEditorRenderer = ({
   handleToggleSwitch,
   handlePickItem,
   onSaveForm,
+  error,
 }: Props) => (
   <View style={styles.container}>
+    {error && <Text>{error}</Text>}
     <View style={styles.formGroup}>
       <Text style={styles.label}>Date:</Text>
       <TextInput

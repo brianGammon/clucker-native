@@ -6,16 +6,16 @@ const getInitialState = () => {
     initialUrl: null,
     auth: {
       inProgress: false,
-      error: '',
+      error: null,
       user: null,
     },
     joinForm: {
       inProgress: false,
-      error: '',
+      error: null,
     },
     addForm: {
       inProgress: false,
-      error: '',
+      error: null,
     },
     deleteFlock: {
       inProgress: false,
@@ -29,7 +29,7 @@ const getInitialState = () => {
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
       inProgress: false,
-      error: '',
+      error: null,
       data: {},
     };
     state[key] = subState;
@@ -46,7 +46,7 @@ const handlers = {
       appState: appStates.READY,
       auth: {
         inProgress: false,
-        error: '',
+        error: null,
         user: action.payload,
       },
     };
@@ -56,18 +56,18 @@ const handlers = {
     const newState = {
       ...state,
       appState: appStates.READY,
-      auth: { inProgress: false, error: '', user: null },
+      auth: { inProgress: false, error: null, user: null },
     };
     return newState;
   },
   [a.SIGN_IN_REQUESTED](state) {
-    const auth = { inProgress: true, error: '', user: null };
+    const auth = { inProgress: true, error: null, user: null };
     const newState = { ...state, auth };
     return newState;
   },
   [a.SIGN_IN_FULFILLED](state) {
     const currentUser = state.auth.user;
-    const auth = { inProgress: false, error: '', user: currentUser };
+    const auth = { inProgress: false, error: null, user: currentUser };
     const newState = { ...state, auth };
     return newState;
   },
@@ -100,12 +100,21 @@ const handlers = {
     const newState = { ...state, initialUrl: null };
     return newState;
   },
+  [a.CLEAR_ERROR](state, action) {
+    const property = action.meta.type;
+    const propertyState = state[property];
+    const newState = {
+      ...state,
+      [property]: { ...propertyState, error: null },
+    };
+    return newState;
+  },
   [a.CREATE_REQUESTED](state, action) {
     const property = action.meta.type;
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true },
+      [property]: { ...propertyState, inProgress: true, error: null },
     };
     return newState;
   },
@@ -114,7 +123,7 @@ const handlers = {
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false },
+      [property]: { ...propertyState, inProgress: false, error: null },
     };
     return newState;
   },
@@ -133,7 +142,7 @@ const handlers = {
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true },
+      [property]: { ...propertyState, inProgress: true, error: null },
     };
     return newState;
   },
@@ -142,7 +151,7 @@ const handlers = {
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false },
+      [property]: { ...propertyState, inProgress: false, error: null },
     };
     return newState;
   },
@@ -161,7 +170,7 @@ const handlers = {
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true },
+      [property]: { ...propertyState, inProgress: true, error: null },
     };
     return newState;
   },
@@ -170,7 +179,7 @@ const handlers = {
     const propertyState = state[property];
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false },
+      [property]: { ...propertyState, inProgress: false, error: null },
     };
     return newState;
   },
@@ -190,7 +199,7 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true },
+      [property]: { ...propertyState, inProgress: true, error: null },
     };
     return newState;
   },
@@ -204,7 +213,7 @@ const handlers = {
       [property]: {
         ...propertyState,
         inProgress: false,
-        error: '',
+        error: null,
         data,
       },
     };
@@ -235,7 +244,7 @@ const handlers = {
       [property]: {
         ...propertyState,
         inProgress: false,
-        error: '',
+        error: null,
         data,
       },
     };
@@ -254,7 +263,7 @@ const handlers = {
       [property]: {
         ...propertyState,
         inProgress: false,
-        error: '',
+        error: null,
         data,
       },
     };
@@ -271,7 +280,7 @@ const handlers = {
       [property]: {
         ...propertyState,
         inProgress: false,
-        error: '',
+        error: null,
         data,
       },
     };
@@ -287,7 +296,7 @@ const handlers = {
       [property]: {
         ...propertyState,
         inProgress: false,
-        error: '',
+        error: null,
         data,
       },
     };
@@ -299,7 +308,7 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true },
+      [property]: { ...propertyState, inProgress: true, error: null },
     };
     return newState;
   },
@@ -314,7 +323,7 @@ const handlers = {
       [property]: {
         ...propertyState,
         inProgress: false,
-        error: '',
+        error: null,
         data: newData,
       },
     };
@@ -334,14 +343,14 @@ const handlers = {
   [a.JOIN_FLOCK_REQUESTED](state) {
     const newState = {
       ...state,
-      joinForm: { inProgress: true, error: '' },
+      joinForm: { inProgress: true, error: null },
     };
     return newState;
   },
   [a.JOIN_FLOCK_FULFILLED](state) {
     const newState = {
       ...state,
-      joinForm: { inProgress: false, error: '' },
+      joinForm: { inProgress: false, error: null },
     };
     return newState;
   },
@@ -356,14 +365,14 @@ const handlers = {
   [a.ADD_FLOCK_REQUESTED](state) {
     const newState = {
       ...state,
-      addForm: { inProgress: true, error: '' },
+      addForm: { inProgress: true, error: null },
     };
     return newState;
   },
   [a.ADD_FLOCK_FULFILLED](state) {
     const newState = {
       ...state,
-      addForm: { inProgress: false, error: '' },
+      addForm: { inProgress: false, error: null },
     };
     return newState;
   },

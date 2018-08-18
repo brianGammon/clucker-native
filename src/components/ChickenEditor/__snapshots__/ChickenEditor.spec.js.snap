@@ -3,6 +3,7 @@
 exports[`ChickenEditor component: Should render in add new mode 1`] = `
 <ChickenEditorRenderer
   breed=""
+  error=""
   hatched=""
   name=""
   onFieldChanged={[Function]}
@@ -17,6 +18,7 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
 exports[`ChickenEditor component: Should render in edit mode 1`] = `
 <ChickenEditorRenderer
   breed="Cuckoo Maran"
+  error=""
   hatched="2016-10-05"
   name="Chicken1"
   onFieldChanged={[Function]}

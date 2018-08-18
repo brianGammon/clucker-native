@@ -5,7 +5,7 @@ import moment from 'moment';
 import EggEditorRenderer from './EggEditorRenderer';
 import { nowAsMoment } from '../../utils/dateHelper';
 import { type Chicken, type Egg, type Navigation } from '../../types';
-import { metaTypes } from '../../redux/constants';
+import { metaTypes, actionTypes } from '../../redux/constants';
 import {
   firebaseUpdateRequested,
   firebaseCreateRequested,
@@ -25,6 +25,7 @@ type Props = {
   defaultDate: string,
   userId: string,
   saveForm: (payload: { flockId: string, eggId?: string, data: Egg }) => void,
+  clearError: () => void,
 };
 
 type State = {
@@ -67,8 +68,15 @@ class EggEditor extends React.Component<Props, State> {
   componentDidUpdate(prevProps) {
     const prevInProgress = prevProps.inProgress;
     const { inProgress, error, navigation } = this.props;
-    if (!inProgress && prevInProgress && error === '') {
+    if (!inProgress && prevInProgress && !error) {
       navigation.goBack();
+    }
+  }
+
+  componentWillUnmount() {
+    const { error, clearError } = this.props;
+    if (error) {
+      clearError();
     }
   }
 
@@ -103,7 +111,7 @@ class EggEditor extends React.Component<Props, State> {
   }));
 
   render() {
-    const { navigation, chickens } = this.props;
+    const { navigation, chickens, error } = this.props;
 
     return (
       <EggEditorRenderer
@@ -114,6 +122,7 @@ class EggEditor extends React.Component<Props, State> {
         handleToggleSwitch={this.handleToggleSwitch}
         handlePickItem={this.handlePickItem}
         onSaveForm={this.onSaveForm}
+        error={error}
       />
     );
   }
@@ -148,6 +157,7 @@ const mapDispatchToProps = dispatch => ({
     }
     return dispatch(firebaseCreateRequested(payload, metaTypes.eggs));
   },
+  clearError: () => dispatch({ type: actionTypes.CLEAR_ERROR, meta: { type: metaTypes.eggs } }),
 });
 
 export default connect(

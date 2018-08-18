@@ -745,10 +745,11 @@ describe('saga tests', () => {
 
     // Error flow
     snapshot.val = () => null;
+    const error = new Error(`Flock ID '${action.payload.flockId}' not found`);
     expect(errorGenerator.next(snapshot).value).toEqual(
       put({
         type: actionTypes.JOIN_FLOCK_REJECTED,
-        payload: new Error(`Flock ID '${action.payload.flockId}' not found`),
+        payload: { error },
       }),
     );
     expect(generator.next().done).toEqual(true);

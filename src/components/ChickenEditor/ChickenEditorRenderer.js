@@ -11,6 +11,7 @@ type Props = {
   photoUrl: string,
   onFieldChanged: (fieldName: string, text: string) => void,
   onSaveForm: () => void,
+  error: string,
 };
 
 const ChickenEditorRenderer = ({
@@ -20,8 +21,10 @@ const ChickenEditorRenderer = ({
   photoUrl,
   onFieldChanged,
   onSaveForm,
+  error,
 }: Props) => (
   <View style={styles.container}>
+    {error && <Text>{error}</Text>}
     <View style={styles.formGroup}>
       <Text style={styles.label}>Name:</Text>
       <TextInput

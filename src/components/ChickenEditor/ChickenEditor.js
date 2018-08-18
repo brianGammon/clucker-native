@@ -8,7 +8,7 @@ import {
   firebaseCreateRequested,
 } from '../../redux/actions';
 import { type Chicken } from '../../types';
-import { metaTypes } from '../../redux/constants';
+import { actionTypes, metaTypes } from '../../redux/constants';
 
 type Props = {
   navigation: any,
@@ -18,6 +18,7 @@ type Props = {
   inProgress: boolean,
   error: string,
   saveForm: (payload: {}) => void,
+  clearError: () => void,
 };
 
 type State = {
@@ -57,8 +58,15 @@ class ChickenEditor extends React.Component<Props, State> {
   componentDidUpdate(prevProps) {
     const prevInProgress = prevProps.inProgress;
     const { inProgress, error, navigation } = this.props;
-    if (!inProgress && prevInProgress && error === '') {
+    if (!inProgress && prevInProgress && !error) {
       navigation.goBack();
+    }
+  }
+
+  componentWillUnmount() {
+    const { error, clearError } = this.props;
+    if (error) {
+      clearError();
     }
   }
 
@@ -76,11 +84,13 @@ class ChickenEditor extends React.Component<Props, State> {
   };
 
   render() {
+    const { error } = this.props;
     return (
       <ChickenEditorRenderer
         {...this.state}
         onFieldChanged={this.onFieldChanged}
         onSaveForm={this.onSaveForm}
+        error={error}
       />
     );
   }
@@ -107,6 +117,10 @@ const mapDispatchToProps = dispatch => ({
     }
     return dispatch(firebaseCreateRequested(payload, metaTypes.chickens));
   },
+  clearError: () => dispatch({
+    type: actionTypes.CLEAR_ERROR,
+    meta: { type: metaTypes.chickens },
+  }),
 });
 
 export default connect(

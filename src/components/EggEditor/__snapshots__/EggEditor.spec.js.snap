@@ -46,6 +46,7 @@ exports[`EggEditor component: Should render connected EggEditor with default chi
   }
   damaged={true}
   date="2018-02-06"
+  error=""
   handlePickItem={[Function]}
   handleToggleSwitch={[Function]}
   navigation={
@@ -135,6 +136,7 @@ exports[`EggEditor component: Should render connected EggEditor with no defaults
   }
   damaged={false}
   date="2018-05-15"
+  error=""
   handlePickItem={[Function]}
   handleToggleSwitch={[Function]}
   navigation={

@@ -3,12 +3,12 @@
 exports[`firebaseReducer reducer AUTH_STATUS_LOGGED_IN 1`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "READY",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": Object {
       "email": "test@example.com",
@@ -20,12 +20,12 @@ Object {
       "flock1": "item1value",
       "flock2": "item2value",
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
@@ -33,7 +33,7 @@ Object {
       "item1": "item1value",
       "item2": "item2value",
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
@@ -42,12 +42,12 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": null,
   },
@@ -58,12 +58,12 @@ Object {
         "ownedBy": "user1",
       },
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
@@ -71,7 +71,7 @@ Object {
       "item1": "item1value",
       "item2": "item2value",
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
@@ -80,12 +80,12 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": null,
   },
@@ -100,12 +100,12 @@ Object {
         "ownedBy": "user2",
       },
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
@@ -113,7 +113,7 @@ Object {
       "item1": "item1value",
       "item2": "item2value",
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
@@ -122,12 +122,12 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": null,
   },
@@ -143,7 +143,7 @@ Object {
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
@@ -151,7 +151,7 @@ Object {
       "item1": "item1value",
       "item2": "item2value",
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
@@ -160,23 +160,23 @@ Object {
 exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": null,
   },
   "flocks": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": true,
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
@@ -184,7 +184,7 @@ Object {
       "item1": "item1value",
       "item2": "item2value",
     },
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
@@ -193,18 +193,18 @@ Object {
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": null,
   },
   "chickens": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "deleteChicken": Object {
@@ -217,22 +217,22 @@ Object {
   },
   "eggs": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "flocks": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
@@ -241,18 +241,18 @@ Object {
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
   "addForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
     "user": null,
   },
   "chickens": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "deleteChicken": Object {
@@ -265,22 +265,22 @@ Object {
   },
   "eggs": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "flocks": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "initialUrl": null,
   "joinForm": Object {
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
   "userSettings": Object {
     "data": Object {},
-    "error": "",
+    "error": null,
     "inProgress": false,
   },
 }
