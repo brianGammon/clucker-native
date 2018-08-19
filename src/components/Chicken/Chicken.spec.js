@@ -52,6 +52,8 @@ describe('Chicken component:', () => {
         prevChickenId: null,
         nextChickenId: 'chicken2',
         chicken: sampleData.chickens.data.chicken1,
+        showModal: true,
+        toggleModal: () => {},
         stats: {
           total: 1,
           heaviest: {
@@ -89,7 +91,6 @@ describe('Chicken component:', () => {
 
     test('ChickenRenderer should render correctly with all stats available', () => {
       paramReturned = 'chicken1';
-      console.log(props);
       const wrapper = shallow(
         <ChickenRenderer navigation={navigation} {...props} />,
       );

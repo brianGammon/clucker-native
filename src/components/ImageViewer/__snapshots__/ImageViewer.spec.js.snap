@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageViewer renders properly showModal set to false 1`] = `
+<Component
+  animationType="fade"
+  hardwareAccelerated={false}
+  onOrientationChange={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={false}
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.75)",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "position": "absolute",
+          "right": 10,
+          "top": 10,
+        }
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        color="white"
+        name="ios-close"
+        size={12}
+        style={
+          Object {
+            "fontSize": 60,
+          }
+        }
+      />
+    </TouchableOpacity>
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "uri": "https://example.com/image.jpg",
+        }
+      }
+      style={
+        Object {
+          "height": 750,
+          "width": 750,
+        }
+      }
+    />
+  </Component>
+</Component>
+`;
+
+exports[`ImageViewer renders properly with image URL 1`] = `
+<Component
+  animationType="fade"
+  hardwareAccelerated={false}
+  onOrientationChange={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={true}
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.75)",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "position": "absolute",
+          "right": 10,
+          "top": 10,
+        }
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        color="white"
+        name="ios-close"
+        size={12}
+        style={
+          Object {
+            "fontSize": 60,
+          }
+        }
+      />
+    </TouchableOpacity>
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "uri": "https://example.com/image.jpg",
+        }
+      }
+      style={
+        Object {
+          "height": 750,
+          "width": 750,
+        }
+      }
+    />
+  </Component>
+</Component>
+`;
+
+exports[`ImageViewer renders properly with no image URL provided 1`] = `
+<Component
+  animationType="fade"
+  hardwareAccelerated={false}
+  onOrientationChange={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={true}
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0,0,0,0.75)",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "position": "absolute",
+          "right": 10,
+          "top": 10,
+        }
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        color="white"
+        name="ios-close"
+        size={12}
+        style={
+          Object {
+            "fontSize": 60,
+          }
+        }
+      />
+    </TouchableOpacity>
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "testUri": "../../../src/assets/default-profile-photo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 750,
+          "width": 750,
+        }
+      }
+    />
+  </Component>
+</Component>
+`;

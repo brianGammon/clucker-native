@@ -1,19 +1,28 @@
+/* @flow */
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
-  Text, Button, View, Image, ScrollView,
+  Text,
+  Button,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
-import { type Chicken, type Navigation, ChickenStats } from '../../types';
+import ImageViewer from '../ImageViewer';
+import { type Chicken, type ChickenStats } from '../../types';
 import styles from './styles';
 
 type Props = {
-  navigation: Navigation,
+  navigation: any,
   chickenId: string,
   prevChickenId: string,
   nextChickenId: string,
   chicken: Chicken,
   stats: ChickenStats,
   handleDeleteChicken: (chickenId: string) => void,
+  showModal: boolean,
+  toggleModal: boolean => void,
 };
 
 const ChickenRenderer = ({
@@ -24,8 +33,15 @@ const ChickenRenderer = ({
   prevChickenId,
   nextChickenId,
   handleDeleteChicken,
+  showModal,
+  toggleModal,
 }: Props) => (
   <ScrollView>
+    <ImageViewer
+      toggleModal={toggleModal}
+      showModal={showModal}
+      url={chicken.photoUrl}
+    />
     <View style={styles.rowContainer}>
       <Button
         onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
@@ -50,14 +66,17 @@ const ChickenRenderer = ({
         color={prevChickenId ? 'grey' : 'lightgrey'}
         style={styles.iconLeft}
       />
-      <Image
-        style={{ width: 200, height: 200 }}
-        source={
-          chicken.photoUrl
-            ? { uri: chicken.photoUrl }
-            : require('../../assets/default-profile-photo.png')
-        }
-      />
+      <TouchableOpacity onPress={() => toggleModal(!showModal)}>
+        <Image
+          style={{ width: 200, height: 200 }}
+          source={
+            chicken.photoUrl
+              ? { uri: chicken.photoUrl }
+              : require('../../assets/default-profile-photo.png')
+          }
+        />
+      </TouchableOpacity>
+
       <Ionicons
         onPress={() => (nextChickenId
           ? navigation.replace('Chicken', { chickenId: nextChickenId })

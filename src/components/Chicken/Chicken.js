@@ -1,3 +1,4 @@
+/* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Text, Alert } from 'react-native';
@@ -5,7 +6,11 @@ import ChickenRenderer from './ChickenRenderer';
 import chickenSelector from '../../selectors/chickenSelector';
 import chickenStatsSelector from '../../selectors/chickenStatsSelector';
 import { actionTypes } from '../../redux/constants';
-import { Chicken as ChickenType, Navigation, ChickenStats } from '../../types';
+import {
+  type Chicken as ChickenType,
+  type Navigation,
+  type ChickenStats,
+} from '../../types';
 
 type Props = {
   navigation: Navigation,
@@ -18,7 +23,15 @@ type Props = {
   deleteChicken: (flockId: string, chickenId: string) => void,
 };
 
-class Chicken extends React.Component<Props> {
+type State = {
+  showModal: boolean,
+};
+
+class Chicken extends React.Component<Props, State> {
+  state = {
+    showModal: false,
+  };
+
   shouldComponentUpdate(newProps) {
     const { chicken, navigation } = newProps;
     if (!chicken) {
@@ -27,6 +40,10 @@ class Chicken extends React.Component<Props> {
     }
     return true;
   }
+
+  toggleModal = (visible) => {
+    this.setState({ showModal: visible });
+  };
 
   handleDeleteChicken = (chickenId) => {
     const { flockId, deleteChicken, chicken } = this.props;
@@ -56,6 +73,8 @@ class Chicken extends React.Component<Props> {
       navigation,
     } = this.props;
 
+    const { showModal } = this.state;
+
     if (chickenId === 'NO-ID') {
       return <Text>No Chicken ID passed in!</Text>;
     }
@@ -73,6 +92,8 @@ class Chicken extends React.Component<Props> {
         prevChickenId={prevChickenId}
         nextChickenId={nextChickenId}
         handleDeleteChicken={this.handleDeleteChicken}
+        showModal={showModal}
+        toggleModal={this.toggleModal}
       />
     );
   }

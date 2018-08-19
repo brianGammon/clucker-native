@@ -2,6 +2,11 @@
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no stats yet 1`] = `
 <ScrollView>
+  <ImageViewer
+    showModal={true}
+    toggleModal={[Function]}
+    url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+  />
   <Component
     style={
       Object {
@@ -42,19 +47,24 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     />
-    <Image
-      source={
-        Object {
-          "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+          }
         }
-      }
-      style={
-        Object {
-          "height": 200,
-          "width": 200,
+        style={
+          Object {
+            "height": 200,
+            "width": 200,
+          }
         }
-      }
-    />
+      />
+    </TouchableOpacity>
     <Icon
       allowFontScaling={false}
       color="grey"
@@ -150,6 +160,11 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no weight yet 1`] = `
 <ScrollView>
+  <ImageViewer
+    showModal={true}
+    toggleModal={[Function]}
+    url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+  />
   <Component
     style={
       Object {
@@ -190,19 +205,24 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     />
-    <Image
-      source={
-        Object {
-          "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+          }
         }
-      }
-      style={
-        Object {
-          "height": 200,
-          "width": 200,
+        style={
+          Object {
+            "height": 200,
+            "width": 200,
+          }
         }
-      }
-    />
+      />
+    </TouchableOpacity>
     <Icon
       allowFontScaling={false}
       color="grey"
@@ -398,6 +418,11 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly with all stats available 1`] = `
 <ScrollView>
+  <ImageViewer
+    showModal={true}
+    toggleModal={[Function]}
+    url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+  />
   <Component
     style={
       Object {
@@ -438,19 +463,24 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     />
-    <Image
-      source={
-        Object {
-          "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+          }
         }
-      }
-      style={
-        Object {
-          "height": 200,
-          "width": 200,
+        style={
+          Object {
+            "height": 200,
+            "width": 200,
+          }
         }
-      }
-    />
+      />
+    </TouchableOpacity>
     <Icon
       allowFontScaling={false}
       color="grey"
@@ -683,6 +713,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
   }
   nextChickenId="chicken2"
   prevChickenId={null}
+  showModal={false}
   stats={
     Object {
       "heaviest": Object {
@@ -706,6 +737,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
       "total": 78,
     }
   }
+  toggleModal={[Function]}
 />
 `;
 
