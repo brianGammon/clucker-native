@@ -13,6 +13,7 @@ import {
 } from 'redux-saga/effects';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
+import NavigationService from '../../navigation/NavigationService';
 import { metaTypes, eventTypes, actionTypes } from '../constants';
 import eggsByChickenSelector from '../../selectors/eggsByChickenSelector';
 
@@ -411,7 +412,13 @@ describe('saga tests', () => {
         'password',
       ),
     );
+
+    // Save for later
     const errorGenerator = generator.clone();
+
+    expect(generator.next().value).toEqual(
+      call([NavigationService, NavigationService.navigate], 'SignedIn'),
+    );
     expect(generator.next().value).toEqual(
       put({ type: actionTypes.SIGN_IN_FULFILLED }),
     );
@@ -870,6 +877,7 @@ describe('saga tests', () => {
         ),
       ),
     );
+    expect(generator.next().value).toEqual(put({ type: actionTypes.UNLINK_FLOCK_FULFILLED, resetStack: true }));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -902,6 +910,7 @@ describe('saga tests', () => {
         ),
       ),
     );
+    expect(generator.next().value).toEqual(put({ type: actionTypes.UNLINK_FLOCK_FULFILLED, resetStack: false }));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -912,7 +921,7 @@ describe('saga tests', () => {
     );
   });
 
-  test('deleteFlock when currently selected', () => {
+  describe('deleteFlocks', () => {
     const userId = 'user1';
     const userSettings = {
       currentFlockId: 'flock1',
@@ -926,25 +935,12 @@ describe('saga tests', () => {
       type: actionTypes.DELETE_FLOCK_REQUESTED,
       payload: { userId, userSettings, flockId },
     };
-    const generator = cloneableGenerator(sagas.deleteFlock)(action);
-    expect(generator.next().value).toEqual(
-      all([
-        put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-        put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-      ]),
-    );
 
     const baseRef = firebase.database().ref();
     const userSettingsRef = baseRef.child('userSettings');
     const queryRef = userSettingsRef
       .orderByChild('flocks/flock1')
       .equalTo(true);
-    expect(generator.next().value).toEqual(
-      call([queryRef, queryRef.once], 'value'),
-    );
-
-    // Save for later
-    const errorGenerator = generator.clone();
 
     const snapshot1 = {
       key: 'user1',
@@ -999,71 +995,95 @@ describe('saga tests', () => {
       'user3/flocks/flock1': null,
     };
 
-    expect(generator.next(snapshot).value).toEqual(
-      call([userSettingsRef, userSettingsRef.update], updates),
-    );
-    let removalRef = baseRef.child('eggs/flock1');
-    expect(generator.next().value).toEqual(
-      call([removalRef, removalRef.remove]),
-    );
+    test('deleteFlock when currently selected', () => {
+      const generator = cloneableGenerator(sagas.deleteFlock)(action);
+      expect(generator.next().value).toEqual(
+        all([
+          put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+          put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+        ]),
+      );
 
-    removalRef = baseRef.child('chickens/flock1');
-    expect(generator.next().value).toEqual(
-      call([removalRef, removalRef.remove]),
-    );
+      expect(generator.next().value).toEqual(
+        call([queryRef, queryRef.once], 'value'),
+      );
 
-    removalRef = baseRef.child('flocks/flock1');
-    expect(generator.next().value).toEqual(
-      call([removalRef, removalRef.remove]),
-    );
+      // Save for later
+      const errorGenerator = generator.clone();
 
-    const deletedFlocksRef = baseRef.child('deletedFlocks/user1/flock1');
-    expect(generator.next().value).toEqual(
-      call([deletedFlocksRef, deletedFlocksRef.set], true),
-    );
+      expect(generator.next(snapshot).value).toEqual(
+        call([userSettingsRef, userSettingsRef.update], updates),
+      );
+      let removalRef = baseRef.child('eggs/flock1');
+      expect(generator.next().value).toEqual(
+        call([removalRef, removalRef.remove]),
+      );
 
-    expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_FLOCK_FULFILLED }));
+      removalRef = baseRef.child('chickens/flock1');
+      expect(generator.next().value).toEqual(
+        call([removalRef, removalRef.remove]),
+      );
 
-    expect(generator.next().done).toEqual(true);
+      removalRef = baseRef.child('flocks/flock1');
+      expect(generator.next().value).toEqual(
+        call([removalRef, removalRef.remove]),
+      );
 
-    // Error path
-    const error = new Error('An error occured');
-    expect(errorGenerator.throw(error).value).toEqual(
-      put({ type: actionTypes.DELETE_FLOCK_REJECTED, payload: { error } }),
-    );
-  });
+      const deletedFlocksRef = baseRef.child('deletedFlocks/user1/flock1');
+      expect(generator.next().value).toEqual(
+        call([deletedFlocksRef, deletedFlocksRef.set], true),
+      );
 
-  test('deleteFlock when not currently selected', () => {
-    const userId = 'user1';
-    const userSettings = {
-      currentFlockId: 'flock2',
-      flocks: {
-        flock1: true,
-        flock2: true,
-      },
-    };
-    const flockId = 'flock1';
-    const action = {
-      type: actionTypes.DELETE_FLOCK_REQUESTED,
-      payload: { userId, userSettings, flockId },
-    };
-    const baseRef = firebase.database().ref();
-    const userSettingsRef = baseRef.child('userSettings');
-    const queryRef = userSettingsRef
-      .orderByChild('flocks/flock1')
-      .equalTo(true);
+      expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: true }));
+      expect(generator.next().done).toEqual(true);
 
-    const generator = cloneableGenerator(sagas.deleteFlock)(action);
-    const noCurrFlockGenerator = generator.clone();
-    expect(generator.next().value).toEqual(
-      call([queryRef, queryRef.once], 'value'),
-    );
+      // Error path
+      const error = new Error('An error occured');
+      expect(errorGenerator.throw(error).value).toEqual(
+        put({ type: actionTypes.DELETE_FLOCK_REJECTED, payload: { error } }),
+      );
+    });
 
-    // When no current flock is set at all
-    delete userSettings.currentFlockId;
-    expect(noCurrFlockGenerator.next().value).toEqual(
-      call([queryRef, queryRef.once], 'value'),
-    );
+    test('deleteFlock when not the currently selected flock', () => {
+      // When no current flock is set at all
+      const { currentFlockId, ...rest } = userSettings;
+      const action2 = {
+        type: actionTypes.DELETE_FLOCK_REQUESTED,
+        payload: { userId, userSettings: rest, flockId },
+      };
+
+      const generator = sagas.deleteFlock(action2);
+
+      expect(generator.next().value).toEqual(
+        call([queryRef, queryRef.once], 'value'),
+      );
+
+      expect(generator.next(snapshot).value).toEqual(
+        call([userSettingsRef, userSettingsRef.update], updates),
+      );
+      let removalRef = baseRef.child('eggs/flock1');
+      expect(generator.next().value).toEqual(
+        call([removalRef, removalRef.remove]),
+      );
+
+      removalRef = baseRef.child('chickens/flock1');
+      expect(generator.next().value).toEqual(
+        call([removalRef, removalRef.remove]),
+      );
+
+      removalRef = baseRef.child('flocks/flock1');
+      expect(generator.next().value).toEqual(
+        call([removalRef, removalRef.remove]),
+      );
+
+      const deletedFlocksRef = baseRef.child('deletedFlocks/user1/flock1');
+      expect(generator.next().value).toEqual(
+        call([deletedFlocksRef, deletedFlocksRef.set], true),
+      );
+
+      expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: false }));
+      expect(generator.next().done).toEqual(true);
+    });
   });
 
   test('watchDeleteFlockRequested', () => {
@@ -1071,11 +1091,6 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(
       takeLatest(actionTypes.DELETE_FLOCK_REQUESTED, sagas.deleteFlock),
     );
-  });
-
-  test('root Saga', () => {
-    const generator = sagas.default();
-    expect(generator.next().value).toMatchSnapshot();
   });
 
   test('deleteChicken', () => {
@@ -1117,5 +1132,32 @@ describe('saga tests', () => {
     // error flow
     const error = new Error('An error has occurred');
     expect(errorGenerator.throw(error).value).toEqual(put({ type: actionTypes.DELETE_CHICKEN_REJECTED, payload: { error } }));
+  });
+
+  test('watchDeleteChickenRequested', () => {
+    const generator = sagas.watchDeleteChickenRequested();
+    expect(generator.next().value).toEqual(takeLatest(actionTypes.DELETE_CHICKEN_REQUESTED, sagas.deleteChicken));
+  });
+
+  test('resetNavigation with resetStack = true', () => {
+    const action = { type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: true };
+    const generator = sagas.resetNavigation(action);
+    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.resetTabs]));
+  });
+
+  test('resetNavigation with resetStack = false', () => {
+    const action = { type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: false };
+    const generator = sagas.resetNavigation(action);
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('watchFlockActionsComplete', () => {
+    const generator = sagas.watchFlockActionsComplete();
+    expect(generator.next().value).toEqual(takeLatest([actionTypes.DELETE_FLOCK_FULFILLED, actionTypes.UNLINK_FLOCK_FULFILLED], sagas.resetNavigation));
+  });
+
+  test('root Saga', () => {
+    const generator = sagas.default();
+    expect(generator.next().value).toMatchSnapshot();
   });
 });

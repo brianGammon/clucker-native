@@ -5,6 +5,7 @@ import { Linking } from 'react-native';
 
 import Splash from '../Splash';
 import RootNavigator from '../../navigation/RootNavigator';
+import NavigationService from '../../navigation/NavigationService';
 import * as actions from '../../redux/actions';
 import { metaTypes, appStates, actionTypes } from '../../redux/constants';
 import { type UserSettings } from '../../types';
@@ -76,7 +77,11 @@ class App extends React.Component<Props> {
     if (appState === appStates.STARTING) {
       return <Splash />;
     }
-    return <RootNavigator />;
+    return (
+      <RootNavigator
+        ref={nav => NavigationService.setTopLevelNavigator(nav)}
+      />
+    );
   }
 }
 

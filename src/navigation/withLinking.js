@@ -2,11 +2,7 @@
 import React, { Component } from 'react';
 import { Linking } from 'react-native';
 import { connect } from 'react-redux';
-import {
-  type NavigationContainer,
-  StackActions,
-  NavigationActions,
-} from 'react-navigation';
+import { type NavigationContainer } from 'react-navigation';
 import { removeInitialUrl as removeInitialUrlAction } from '../redux/actions';
 import { type Navigation } from '../types';
 
@@ -26,7 +22,6 @@ const urlToPathAndParams = (uriPrefix, url) => {
 type Props = {
   navigation: Navigation,
   initialUrl: string,
-  currentFlockId: string,
   removeInitialUrl: () => void,
 };
 
@@ -46,27 +41,6 @@ export default (
         removeInitialUrl();
       }
       Linking.addEventListener('url', this.handleOpenURL);
-    }
-
-    componentDidUpdate(prevProps) {
-      const { currentFlockId: prev } = prevProps;
-      const { currentFlockId: curr, navigation } = this.props;
-      // TODO: Side effect! - Should be moved into Sagas
-      if (prev && curr !== prev) {
-        const resetAction = StackActions.reset({
-          index: 0,
-          actions: [
-            NavigationActions.navigate({
-              routeName: 'Tabs',
-              action: NavigationActions.navigate({
-                routeName: 'Settings',
-              }),
-            }),
-          ],
-          key: null,
-        });
-        navigation.dispatch(resetAction);
-      }
     }
 
     componentWillUnmount() {
@@ -97,12 +71,7 @@ export default (
     }
   }
 
-  const mapStateToProps = ({
-    initialUrl,
-    userSettings: {
-      data: { currentFlockId },
-    },
-  }) => ({ initialUrl, currentFlockId });
+  const mapStateToProps = ({ initialUrl }) => ({ initialUrl });
   const mapDispatchToProps = dispatch => ({
     removeInitialUrl: () => dispatch(removeInitialUrlAction()),
   });

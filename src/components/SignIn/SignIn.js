@@ -29,16 +29,6 @@ class SignIn extends React.Component<Props, State> {
     password: '',
   };
 
-  componentDidUpdate() {
-    const {
-      auth: { user },
-      navigation,
-    } = this.props;
-    if (user) {
-      navigation.navigate('SignedIn');
-    }
-  }
-
   handleSignIn = async () => {
     const { email, password } = this.state;
     const { signIn } = this.props;

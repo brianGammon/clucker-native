@@ -14,6 +14,7 @@ import {
 // $FlowFixMe
 import firebase from 'react-native-firebase';
 import eggsByChickenSelector from '../selectors/eggsByChickenSelector';
+import NavigationService from '../navigation/NavigationService';
 import { actionTypes as a, metaTypes, eventTypes as e } from './constants';
 import * as actions from './actions';
 
@@ -235,6 +236,7 @@ export function* watchSignInRequested() {
         action.payload.email,
         action.payload.password,
       );
+      yield call([NavigationService, NavigationService.navigate], 'SignedIn');
       yield put({ type: a.SIGN_IN_FULFILLED });
     } catch (error) {
       yield put(actions.signInRejected(error));
@@ -404,6 +406,7 @@ export function* unlinkFlock(action) {
   const { userId, userSettings, flockId } = action.payload;
   const { currentFlockId } = userSettings;
   let newCurrentFlockId = currentFlockId;
+  let resetStack = false;
 
   if (currentFlockId && currentFlockId === flockId) {
     newCurrentFlockId = null;
@@ -411,6 +414,7 @@ export function* unlinkFlock(action) {
       put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
       put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
     ]);
+    resetStack = true;
   }
 
   const { [flockId]: removed, ...rest } = userSettings.flocks;
@@ -425,6 +429,7 @@ export function* unlinkFlock(action) {
       metaTypes.userSettings,
     ),
   );
+  yield put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack });
 }
 
 export function* watchUnlinkFlockRequested() {
@@ -434,12 +439,14 @@ export function* watchUnlinkFlockRequested() {
 export function* deleteFlock(action) {
   const { userId, userSettings, flockId } = action.payload;
   const { currentFlockId } = userSettings;
+  let resetStack = false;
 
   if (currentFlockId && currentFlockId === flockId) {
     yield all([
       put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
       put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
     ]);
+    resetStack = true;
   }
 
   const baseRef = firebase.database().ref();
@@ -470,7 +477,7 @@ export function* deleteFlock(action) {
       `deletedFlocks/${userId}/${flockId}`,
     );
     yield call([deletedFlocksRef, deletedFlocksRef.set], true);
-    yield put({ type: a.DELETE_FLOCK_FULFILLED });
+    yield put({ type: a.DELETE_FLOCK_FULFILLED, resetStack });
   } catch (error) {
     yield put({ type: a.DELETE_FLOCK_REJECTED, payload: { error } });
   }
@@ -515,6 +522,17 @@ export function* watchDeleteChickenRequested() {
   yield takeLatest(a.DELETE_CHICKEN_REQUESTED, deleteChicken);
 }
 
+export function* resetNavigation(action) {
+  const { resetStack } = action;
+  if (resetStack) {
+    yield call([NavigationService, NavigationService.resetTabs]);
+  }
+}
+
+export function* watchFlockActionsComplete() {
+  yield takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], resetNavigation);
+}
+
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
@@ -532,5 +550,6 @@ export default function* rootSaga() {
     watchUnlinkFlockRequested(),
     watchDeleteFlockRequested(),
     watchDeleteChickenRequested(),
+    watchFlockActionsComplete(),
   ]);
 }
