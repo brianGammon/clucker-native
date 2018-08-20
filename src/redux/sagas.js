@@ -533,6 +533,20 @@ export function* watchFlockActionsComplete() {
   yield takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], resetNavigation);
 }
 
+export function* resetPassword(action) {
+  const firebaseAuth = firebase.auth();
+  try {
+    yield call([firebaseAuth, firebaseAuth.sendPasswordResetEmail], action.payload.email);
+    yield put({ type: a.RESET_PASSWORD_FULFILLED });
+  } catch (error) {
+    yield put({ type: a.RESET_PASSWORD_REJECTED, payload: { error } });
+  }
+}
+
+export function* watchResetPassword() {
+  yield takeLatest([a.RESET_PASSWORD_REQUESTED], resetPassword);
+}
+
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
@@ -551,5 +565,6 @@ export default function* rootSaga() {
     watchDeleteFlockRequested(),
     watchDeleteChickenRequested(),
     watchFlockActionsComplete(),
+    watchResetPassword(),
   ]);
 }

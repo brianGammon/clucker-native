@@ -81,6 +81,26 @@ const handlers = {
     const newState = { ...state, auth };
     return newState;
   },
+  [a.RESET_PASSWORD_REQUESTED](state) {
+    const auth = { inProgress: true, error: null, user: null };
+    const newState = { ...state, auth };
+    return newState;
+  },
+  [a.RESET_PASSWORD_FULFILLED](state) {
+    const auth = { inProgress: false, error: null, user: null };
+    const newState = { ...state, auth };
+    return newState;
+  },
+  [a.RESET_PASSWORD_REJECTED](state, action) {
+    const { error } = action.payload;
+    const auth = {
+      inProgress: false,
+      error: error.message,
+      user: null,
+    };
+    const newState = { ...state, auth };
+    return newState;
+  },
   [a.CLEAR_FLOCK](state, action) {
     const { flocks } = state;
     const { [action.payload]: removed, ...rest } = flocks.data;

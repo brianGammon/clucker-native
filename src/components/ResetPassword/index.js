@@ -1,3 +1,3 @@
-import ResetPasswordComponent from './ResetPassword';
+import ResetPassword from './ResetPassword';
 
-export default ResetPasswordComponent;
+export default ResetPassword;

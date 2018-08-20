@@ -104,10 +104,58 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.SIGN_IN_REJECTED, () => {
+  test(actionTypes.RESET_PASSWORD_REQUESTED, () => {
+    const action = {
+      type: actionTypes.RESET_PASSWORD_REQUESTED,
+      payload: { email: 'test@example.com' },
+    };
+    const expectedState = {
+      ...sampleState,
+      auth: {
+        inProgress: true,
+        error: null,
+        user: null,
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(`${actionTypes.RESET_PASSWORD_REQUESTED} after an error`, () => {
+    sampleState.auth = { inProgress: false, error: 'some error' };
+
+    const action = {
+      type: actionTypes.RESET_PASSWORD_REQUESTED,
+      payload: { email: 'test@example.com' },
+    };
+    const expectedState = {
+      ...sampleState,
+      auth: {
+        inProgress: true,
+        error: null,
+        user: null,
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.RESET_PASSWORD_FULFILLED, () => {
+    sampleState.auth = { inProgress: true, error: null, user: null };
+    const action = { type: actionTypes.RESET_PASSWORD_FULFILLED };
+    const expectedState = {
+      ...sampleState,
+      auth: {
+        inProgress: false,
+        error: null,
+        user: null,
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.RESET_PASSWORD_REJECTED, () => {
     sampleState.auth = { inProgress: true, error: null };
     const error = new Error('Some error occurred');
-    const action = actions.signInRejected(error);
+    const action = { type: actionTypes.SIGN_IN_REJECTED, payload: { error } };
     const expectedState = {
       ...sampleState,
       auth: {
@@ -173,7 +221,10 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.CLEAR_ERROR, () => {
-    const action = { type: actionTypes.CLEAR_ERROR, meta: { type: metaTypes.userSettings } };
+    const action = {
+      type: actionTypes.CLEAR_ERROR,
+      meta: { type: metaTypes.userSettings },
+    };
     const propertyState = sampleState.userSettings;
     const initialState = {
       ...sampleState,

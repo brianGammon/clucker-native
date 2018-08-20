@@ -1,23 +1,72 @@
 import * as React from 'react';
-import { Text, View, Button } from 'react-native';
+import { connect } from 'react-redux';
+import SignUpRenderer from './SignUpRenderer';
+import { signInRequested } from '../../redux/actions';
+import { type User } from '../../types';
 
 type Props = {
   navigation: any,
+  auth: {
+    inProgress: boolean,
+    error: string,
+    user: User,
+  },
+  signUp: (email: string, password: string) => void,
 };
 
-export default class SignUp extends React.Component<Props> {
+type State = {
+  email: string,
+  password: string,
+};
+
+class SignUp extends React.Component<Props, State> {
   static navigationOptions = {
-    title: 'Sign Up',
+    title: 'Sign In',
+  };
+
+  state = {
+    email: '',
+    password: '',
+  };
+
+  handleSignUp = async () => {
+    const { email, password } = this.state;
+    const { signUp } = this.props;
+    signUp(email, password);
+  };
+
+  handleChangeText = (field: string, text: string) => {
+    this.setState({ [field]: text });
   };
 
   render() {
-    const { navigation } = this.props;
+    const {
+      navigation,
+      auth: { error },
+    } = this.props;
+    const { email, password } = this.state;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Sign Up Screen</Text>
-        <Button onPress={() => navigation.replace('SignIn')} title="Sign In" />
-        <Button onPress={() => navigation.navigate('ResetPassword')} title="Reset Password" />
-      </View>
+      <SignUpRenderer
+        email={email}
+        password={password}
+        error={error}
+        navigation={navigation}
+        handleSignUp={this.handleSignUp}
+        handleChangeText={this.handleChangeText}
+      />
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
+
+const mapDispatchToProps = dispatch => ({
+  signUp: (email, password) => dispatch(signInRequested(email, password)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUp);
