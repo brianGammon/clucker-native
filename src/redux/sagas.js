@@ -15,7 +15,9 @@ import {
 import firebase from 'react-native-firebase';
 import eggsByChickenSelector from '../selectors/eggsByChickenSelector';
 import NavigationService from '../navigation/NavigationService';
-import { actionTypes as a, metaTypes, eventTypes as e } from './constants';
+import {
+  actionTypes as a, metaTypes, eventTypes as e, authTypes,
+} from './constants';
 import * as actions from './actions';
 
 export function* addItems(path, data, metaType) {
@@ -204,6 +206,7 @@ export function* watchAuthChanged() {
     yield put(actions.authStatusChanged(event.user));
     if (event.user) {
       yield put(actions.listenToUserSettings(event.user.uid));
+      yield call([NavigationService, NavigationService.navigate], 'SignedIn');
     } else {
       yield put(actions.firebaseRemoveAllListenersRequested());
     }
@@ -224,24 +227,31 @@ export function* watchSignOutRequested() {
   }
 }
 
-export function* watchSignInRequested() {
-  while (true) {
-    const action = yield take(a.SIGN_IN_REQUESTED);
+export function* performAuthAction(action) {
+  const auth = firebase.auth();
+  // Default to sign in action
+  let func = auth.signInAndRetrieveDataWithEmailAndPassword;
 
-    // then call firebase sign out
-    try {
-      const auth = firebase.auth();
-      yield call(
-        [auth, auth.signInAndRetrieveDataWithEmailAndPassword],
-        action.payload.email,
-        action.payload.password,
-      );
-      yield call([NavigationService, NavigationService.navigate], 'SignedIn');
-      yield put({ type: a.SIGN_IN_FULFILLED });
-    } catch (error) {
-      yield put(actions.signInRejected(error));
-    }
+  switch (action.meta.type) {
+    case authTypes.signUp:
+      func = auth.createUserAndRetrieveDataWithEmailAndPassword;
+      break;
+    case authTypes.resetPassword:
+      func = auth.sendPasswordResetEmail;
+      break;
+    default:
+      break;
   }
+  try {
+    yield call([auth, func], ...action.payload);
+    yield put({ type: a.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } });
+  } catch (error) {
+    yield put({ type: a.AUTH_ACTION_REJECTED, payload: { error }, meta: { type: action.meta.type } });
+  }
+}
+
+export function* watchAuthActionRequested() {
+  yield takeLatest(a.AUTH_ACTION_REQUESTED, performAuthAction);
 }
 
 export function getUpdateAction(event, metaType) {
@@ -533,24 +543,10 @@ export function* watchFlockActionsComplete() {
   yield takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], resetNavigation);
 }
 
-export function* resetPassword(action) {
-  const firebaseAuth = firebase.auth();
-  try {
-    yield call([firebaseAuth, firebaseAuth.sendPasswordResetEmail], action.payload.email);
-    yield put({ type: a.RESET_PASSWORD_FULFILLED });
-  } catch (error) {
-    yield put({ type: a.RESET_PASSWORD_REJECTED, payload: { error } });
-  }
-}
-
-export function* watchResetPassword() {
-  yield takeLatest([a.RESET_PASSWORD_REQUESTED], resetPassword);
-}
-
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
-    watchSignInRequested(),
+    watchAuthActionRequested(),
     watchSignOutRequested(),
     watchListener('userSettings'),
     watchListener('chickens'),
@@ -565,6 +561,5 @@ export default function* rootSaga() {
     watchDeleteFlockRequested(),
     watchDeleteChickenRequested(),
     watchFlockActionsComplete(),
-    watchResetPassword(),
   ]);
 }

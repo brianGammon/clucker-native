@@ -2,16 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import SignInRenderer from './SignInRenderer';
 import { signInRequested } from '../../redux/actions';
-import { type User } from '../../types';
+import { actionTypes } from '../../redux/constants';
 
 type Props = {
   navigation: any,
-  auth: {
-    inProgress: boolean,
-    error: string,
-    user: User,
-  },
+  error: string,
   signIn: (email: string, password: string) => void,
+  clearError: () => void,
 };
 
 type State = {
@@ -29,6 +26,13 @@ class SignIn extends React.Component<Props, State> {
     password: '',
   };
 
+  componentWillUnmount() {
+    const { error, clearError } = this.props;
+    if (error) {
+      clearError();
+    }
+  }
+
   handleSignIn = async () => {
     const { email, password } = this.state;
     const { signIn } = this.props;
@@ -40,10 +44,7 @@ class SignIn extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      navigation,
-      auth: { error },
-    } = this.props;
+    const { navigation, error } = this.props;
     const { email, password } = this.state;
     return (
       <SignInRenderer
@@ -58,12 +59,13 @@ class SignIn extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  auth,
+const mapStateToProps = ({ auth: { errors } }) => ({
+  error: errors.signIn,
 });
 
 const mapDispatchToProps = dispatch => ({
   signIn: (email, password) => dispatch(signInRequested(email, password)),
+  clearError: () => dispatch({ type: actionTypes.CLEAR_AUTH_ERROR }),
 });
 
 export default connect(

@@ -184,9 +184,15 @@ describe('Redux actions:', () => {
     ).toMatchSnapshot();
   });
 
-  test('signInRejected', () => {
+  test('signUpRequested', () => {
     expect(
-      actions.signInRejected(new Error('sign in rejected test')),
+      actions.signUpRequested('test@example.com', 'password123'),
+    ).toMatchSnapshot();
+  });
+
+  test('resetPasswordRequested', () => {
+    expect(
+      actions.resetPasswordRequested('test@example.com'),
     ).toMatchSnapshot();
   });
 });

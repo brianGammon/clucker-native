@@ -9,6 +9,7 @@ type Props = {
   navigation: any,
   email: string,
   password: string,
+  confirmPassword: string,
   error: string,
   handleSignUp: () => void,
   handleChangeText: (type: string, text: string) => void,
@@ -17,6 +18,7 @@ type Props = {
 const SignUpRenderer = ({
   email,
   password,
+  confirmPassword,
   error,
   navigation,
   handleChangeText,
@@ -30,7 +32,6 @@ const SignUpRenderer = ({
       <TextInput
         style={styles.input}
         autoCapitalize="none"
-        placeholder="email"
         onChangeText={text => handleChangeText('email', text)}
         value={email}
       />
@@ -41,7 +42,6 @@ const SignUpRenderer = ({
         secureTextEntry
         style={styles.input}
         autoCapitalize="none"
-        placeholder="Password"
         onChangeText={text => handleChangeText('password', text)}
         value={password}
       />
@@ -52,9 +52,8 @@ const SignUpRenderer = ({
         secureTextEntry
         style={styles.input}
         autoCapitalize="none"
-        placeholder="Re-type Password"
         onChangeText={text => handleChangeText('confirmPassword', text)}
-        value={password}
+        value={confirmPassword}
       />
     </View>
     <Button title="Submit" onPress={handleSignUp} />

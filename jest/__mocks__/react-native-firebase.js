@@ -94,6 +94,10 @@ export class Auth {
   signOut = () => {};
 
   signInAndRetrieveDataWithEmailAndPassword = () => {};
+
+  createUserAndRetrieveDataWithEmailAndPassword = () => {};
+
+  sendPasswordResetEmail = () => {};
 }
 
 export class MockFirebase {

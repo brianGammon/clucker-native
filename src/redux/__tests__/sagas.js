@@ -371,6 +371,9 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(
       put(actions.listenToUserSettings(event.user.uid)),
     );
+    expect(generator.next().value).toEqual(
+      call([NavigationService, NavigationService.navigate], 'SignedIn'),
+    );
     expect(generator.next().value).toEqual(take(chan));
 
     // logged out flow
@@ -399,17 +402,14 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(call([auth, auth.signOut]));
   });
 
-  test('watchSignInRequested', () => {
+  test('performAuthAction for signIn type', () => {
     const auth = firebase.auth();
-    const generator = cloneableGenerator(sagas.watchSignInRequested)();
     const action = actions.signInRequested('email', 'password');
+    const generator = cloneableGenerator(sagas.performAuthAction)(action);
 
-    expect(generator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
-    expect(generator.next(action).value).toEqual(
+    expect(generator.next().value).toEqual(
       call(
-        [auth, auth.signInAndRetrieveDataWithEmailAndPassword],
-        'email',
-        'password',
+        [auth, auth.signInAndRetrieveDataWithEmailAndPassword], ...action.payload,
       ),
     );
 
@@ -417,20 +417,54 @@ describe('saga tests', () => {
     const errorGenerator = generator.clone();
 
     expect(generator.next().value).toEqual(
-      call([NavigationService, NavigationService.navigate], 'SignedIn'),
+      put({ type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
     );
-    expect(generator.next().value).toEqual(
-      put({ type: actionTypes.SIGN_IN_FULFILLED }),
-    );
-    expect(generator.next().value).toEqual(take(actionTypes.SIGN_IN_REQUESTED));
+    expect(generator.next().done).toEqual(true);
 
     const error = new Error('some error signing in');
     expect(errorGenerator.throw(error).value).toEqual(
-      put(actions.signInRejected(error)),
+      put({ type: actionTypes.AUTH_ACTION_REJECTED, payload: { error }, meta: { type: action.meta.type } }),
     );
-    expect(errorGenerator.next().value).toEqual(
-      take(actionTypes.SIGN_IN_REQUESTED),
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('performAuthAction for signUp type', () => {
+    const auth = firebase.auth();
+    const action = actions.signUpRequested('email', 'password');
+    const generator = sagas.performAuthAction(action);
+
+    expect(generator.next().value).toEqual(
+      call(
+        [auth, auth.createUserAndRetrieveDataWithEmailAndPassword], ...action.payload,
+      ),
     );
+
+    expect(generator.next().value).toEqual(
+      put({ type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
+    );
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('performAuthAction for resetPassword type', () => {
+    const auth = firebase.auth();
+    const action = actions.resetPasswordRequested('email');
+    const generator = sagas.performAuthAction(action);
+
+    expect(generator.next().value).toEqual(
+      call(
+        [auth, auth.sendPasswordResetEmail], ...action.payload,
+      ),
+    );
+
+    expect(generator.next().value).toEqual(
+      put({ type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
+    );
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('watchAuthActionRequested', () => {
+    const generator = sagas.watchAuthActionRequested();
+    expect(generator.next().value).toEqual(takeLatest(actionTypes.AUTH_ACTION_REQUESTED, sagas.performAuthAction));
   });
 
   test('getUpdateAction CHILD_ADDED_EVENT', () => {

@@ -419,6 +419,18 @@ Object {
 }
 `;
 
+exports[`Redux actions: resetPasswordRequested 1`] = `
+Object {
+  "meta": Object {
+    "type": "resetPassword",
+  },
+  "payload": Array [
+    "test@example.com",
+  ],
+  "type": "AUTH_ACTION_REQUESTED",
+}
+`;
+
 exports[`Redux actions: setInitialUrl 1`] = `
 Object {
   "payload": "test://test",
@@ -426,21 +438,28 @@ Object {
 }
 `;
 
-exports[`Redux actions: signInRejected 1`] = `
+exports[`Redux actions: signInRequested 1`] = `
 Object {
-  "payload": Object {
-    "error": [Error: sign in rejected test],
+  "meta": Object {
+    "type": "signIn",
   },
-  "type": "SIGN_IN_REJECTED",
+  "payload": Array [
+    "test@example.com",
+    "password123",
+  ],
+  "type": "AUTH_ACTION_REQUESTED",
 }
 `;
 
-exports[`Redux actions: signInRequested 1`] = `
+exports[`Redux actions: signUpRequested 1`] = `
 Object {
-  "payload": Object {
-    "email": "test@example.com",
-    "password": "password123",
+  "meta": Object {
+    "type": "signUp",
   },
-  "type": "SIGN_IN_REQUESTED",
+  "payload": Array [
+    "test@example.com",
+    "password123",
+  ],
+  "type": "AUTH_ACTION_REQUESTED",
 }
 `;

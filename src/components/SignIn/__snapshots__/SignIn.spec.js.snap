@@ -3,7 +3,7 @@
 exports[`SignIn component: Should render 1`] = `
 <SignInRenderer
   email=""
-  error=""
+  error={null}
   handleChangeText={[Function]}
   handleSignIn={[Function]}
   password=""

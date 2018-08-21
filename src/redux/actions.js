@@ -1,5 +1,5 @@
 import firebase from 'react-native-firebase';
-import { metaTypes, actionTypes as a } from './constants';
+import { metaTypes, authTypes, actionTypes as a } from './constants';
 
 export function firebaseListenRequested(ref, metaType) {
   return {
@@ -154,15 +154,25 @@ export function authStatusChanged(user) {
 
 export function signInRequested(email, password) {
   return {
-    type: a.SIGN_IN_REQUESTED,
-    payload: { email, password },
+    type: a.AUTH_ACTION_REQUESTED,
+    payload: [email, password],
+    meta: { type: authTypes.signIn },
   };
 }
 
-export function signInRejected(error) {
+export function signUpRequested(email, password) {
   return {
-    type: a.SIGN_IN_REJECTED,
-    payload: { error },
+    type: a.AUTH_ACTION_REQUESTED,
+    payload: [email, password],
+    meta: { type: authTypes.signUp },
+  };
+}
+
+export function resetPasswordRequested(email) {
+  return {
+    type: a.AUTH_ACTION_REQUESTED,
+    payload: [email],
+    meta: { type: authTypes.resetPassword },
   };
 }
 

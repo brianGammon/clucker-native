@@ -1,5 +1,7 @@
 import * as actions from '../actions';
-import { actionTypes, metaTypes, appStates } from '../constants';
+import {
+  actionTypes, metaTypes, appStates, authTypes,
+} from '../constants';
 import firebaseReducer from '../reducer';
 
 describe('firebaseReducer reducer', () => {
@@ -10,7 +12,11 @@ describe('firebaseReducer reducer', () => {
       initialUrl: null,
       auth: {
         inProgress: false,
-        error: null,
+        errors: {
+          signIn: null,
+          signUp: null,
+          resetPassword: null,
+        },
         user: null,
       },
       joinForm: {
@@ -42,11 +48,12 @@ describe('firebaseReducer reducer', () => {
 
   test(actionTypes.AUTH_STATUS_LOGGED_OUT, () => {
     const user = { uid: 'testId', email: 'test@example.com' };
+    const { errors } = sampleState.auth;
     const initialState = {
       appState: appStates.STARTING,
       auth: {
         inProgress: false,
-        error: null,
+        errors,
         user,
       },
     };
@@ -55,116 +62,134 @@ describe('firebaseReducer reducer', () => {
       appState: appStates.READY,
       auth: {
         inProgress: false,
-        error: null,
+        errors,
         user: null,
       },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.SIGN_IN_REQUESTED, () => {
-    const action = actions.signInRequested('email', 'password');
+  test(actionTypes.AUTH_ACTION_REQUESTED, () => {
+    const action = {
+      type: actionTypes.AUTH_ACTION_REQUESTED,
+      payload: { email: 'test@example.com', password: 'test123' },
+      meta: { type: authTypes.signIn },
+    };
     const expectedState = {
       ...sampleState,
       auth: {
+        ...sampleState.auth,
         inProgress: true,
-        error: null,
-        user: null,
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(`${actionTypes.SIGN_IN_REQUESTED} after an error`, () => {
-    sampleState.auth = { inProgress: false, error: 'some error' };
+  test(`${actionTypes.AUTH_ACTION_REQUESTED} after an error`, () => {
+    const {
+      auth: { errors },
+    } = sampleState;
+    sampleState.auth = {
+      inProgress: false,
+      errors: { ...errors, signIn: 'Error from before' },
+      user: null,
+    };
 
-    const action = actions.signInRequested('email', 'password');
+    const action = {
+      type: actionTypes.AUTH_ACTION_REQUESTED,
+      payload: { email: 'test@example.com', password: 'test123' },
+      meta: { type: authTypes.signIn },
+    };
     const expectedState = {
       ...sampleState,
       auth: {
+        ...sampleState.auth,
         inProgress: true,
-        error: null,
-        user: null,
+        errors,
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.SIGN_IN_FULFILLED, () => {
-    sampleState.auth = { inProgress: true, error: null, user: { uid: '123' } };
-    const action = { type: actionTypes.SIGN_IN_FULFILLED };
+  test(actionTypes.AUTH_ACTION_FULFILLED, () => {
+    const { auth: { errors } } = sampleState;
+    sampleState.auth = { inProgress: true, errors, user: { uid: '123' } };
+    const action = { type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: authTypes.signIn } };
     const expectedState = {
       ...sampleState,
       auth: {
         inProgress: false,
-        error: null,
+        errors,
         user: { uid: '123' },
       },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.RESET_PASSWORD_REQUESTED, () => {
-    const action = {
-      type: actionTypes.RESET_PASSWORD_REQUESTED,
-      payload: { email: 'test@example.com' },
-    };
-    const expectedState = {
-      ...sampleState,
-      auth: {
-        inProgress: true,
-        error: null,
-        user: null,
-      },
-    };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
-  });
+  // test(actionTypes.RESET_PASSWORD_REQUESTED, () => {
+  //   const action = {
+  //     type: actionTypes.RESET_PASSWORD_REQUESTED,
+  //     payload: { email: 'test@example.com' },
+  //   };
+  //   const expectedState = {
+  //     ...sampleState,
+  //     auth: {
+  //       inProgress: true,
+  //       error: null,
+  //       user: null,
+  //     },
+  //   };
+  //   expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  // });
 
-  test(`${actionTypes.RESET_PASSWORD_REQUESTED} after an error`, () => {
-    sampleState.auth = { inProgress: false, error: 'some error' };
+  // test(`${actionTypes.RESET_PASSWORD_REQUESTED} after an error`, () => {
+  //   sampleState.auth = { inProgress: false, error: 'some error' };
 
-    const action = {
-      type: actionTypes.RESET_PASSWORD_REQUESTED,
-      payload: { email: 'test@example.com' },
-    };
-    const expectedState = {
-      ...sampleState,
-      auth: {
-        inProgress: true,
-        error: null,
-        user: null,
-      },
-    };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
-  });
+  //   const action = {
+  //     type: actionTypes.RESET_PASSWORD_REQUESTED,
+  //     payload: { email: 'test@example.com' },
+  //   };
+  //   const expectedState = {
+  //     ...sampleState,
+  //     auth: {
+  //       inProgress: true,
+  //       error: null,
+  //       user: null,
+  //     },
+  //   };
+  //   expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  // });
 
-  test(actionTypes.RESET_PASSWORD_FULFILLED, () => {
-    sampleState.auth = { inProgress: true, error: null, user: null };
-    const action = { type: actionTypes.RESET_PASSWORD_FULFILLED };
-    const expectedState = {
-      ...sampleState,
-      auth: {
-        inProgress: false,
-        error: null,
-        user: null,
-      },
-    };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
-  });
+  // test(actionTypes.RESET_PASSWORD_FULFILLED, () => {
+  //   sampleState.auth = { inProgress: true, error: null, user: null };
+  //   const action = { type: actionTypes.RESET_PASSWORD_FULFILLED };
+  //   const expectedState = {
+  //     ...sampleState,
+  //     auth: {
+  //       inProgress: false,
+  //       error: null,
+  //       user: null,
+  //     },
+  //   };
+  //   expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  // });
 
-  test(actionTypes.RESET_PASSWORD_REJECTED, () => {
-    sampleState.auth = { inProgress: true, error: null };
-    const error = new Error('Some error occurred');
-    const action = { type: actionTypes.SIGN_IN_REJECTED, payload: { error } };
-    const expectedState = {
-      ...sampleState,
-      auth: {
-        inProgress: false,
-        error: error.message,
-        user: null,
-      },
-    };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  test(actionTypes.AUTH_ACTION_REJECTED, () => {
+    const { auth: { errors } } = sampleState;
+    Object.keys(authTypes).forEach((authType) => {
+      sampleState.auth = { inProgress: true, errors, user: null };
+      const error = new Error('Some error occurred');
+      const action = { type: actionTypes.AUTH_ACTION_REJECTED, payload: { error }, meta: { type: authType } };
+      const expectedState = {
+        ...sampleState,
+        auth: {
+          inProgress: false,
+          errors: { ...errors, [action.meta.type]: error.message },
+          user: null,
+        },
+      };
+      expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+    });
   });
 
   test(actionTypes.CLEAR_FLOCK, () => {
@@ -236,6 +261,25 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       userSettings: { ...propertyState, error: null },
+    };
+    expect(firebaseReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.CLEAR_AUTH_ERROR, () => {
+    const action = {
+      type: actionTypes.CLEAR_AUTH_ERROR,
+    };
+    const { auth } = sampleState;
+    const initialState = {
+      ...sampleState,
+      auth: {
+        ...sampleState.auth,
+        errors: { ...auth.errors, signIn: 'Some error occurred' },
+      },
+    };
+    const expectedState = {
+      ...sampleState,
+      auth,
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });

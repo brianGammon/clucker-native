@@ -8,7 +8,11 @@ Object {
   },
   "appState": "READY",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": Object {
       "email": "test@example.com",
@@ -47,7 +51,11 @@ Object {
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": null,
   },
@@ -85,7 +93,11 @@ Object {
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": null,
   },
@@ -127,7 +139,11 @@ Object {
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": null,
   },
@@ -165,7 +181,11 @@ Object {
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": null,
   },
@@ -198,7 +218,11 @@ Object {
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": null,
   },
@@ -246,7 +270,11 @@ Object {
   },
   "appState": "STARTING",
   "auth": Object {
-    "error": null,
+    "errors": Object {
+      "resetPassword": null,
+      "signIn": null,
+      "signUp": null,
+    },
     "inProgress": false,
     "user": null,
   },

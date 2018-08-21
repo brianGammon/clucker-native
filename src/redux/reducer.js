@@ -1,4 +1,14 @@
-import { metaTypes, actionTypes as a, appStates } from './constants';
+import {
+  metaTypes, authTypes, actionTypes as a, appStates,
+} from './constants';
+
+const getAuthErrorsInitialState = () => {
+  const errors = {};
+  Object.keys(authTypes).forEach((key) => {
+    errors[key] = null;
+  });
+  return errors;
+};
 
 const getInitialState = () => {
   const state = {
@@ -6,7 +16,6 @@ const getInitialState = () => {
     initialUrl: null,
     auth: {
       inProgress: false,
-      error: null,
       user: null,
     },
     joinForm: {
@@ -34,6 +43,7 @@ const getInitialState = () => {
     };
     state[key] = subState;
   });
+  state.auth.errors = getAuthErrorsInitialState();
   return state;
 };
 
@@ -41,61 +51,47 @@ const initialState = getInitialState();
 
 const handlers = {
   [a.AUTH_STATUS_LOGGED_IN](state, action) {
+    const errors = getAuthErrorsInitialState();
     const newState = {
       ...state,
       appState: appStates.READY,
       auth: {
         inProgress: false,
-        error: null,
+        errors,
         user: action.payload,
       },
     };
     return newState;
   },
   [a.AUTH_STATUS_LOGGED_OUT](state) {
+    const errors = getAuthErrorsInitialState();
     const newState = {
       ...state,
       appState: appStates.READY,
-      auth: { inProgress: false, error: null, user: null },
+      auth: { inProgress: false, errors, user: null },
     };
     return newState;
   },
-  [a.SIGN_IN_REQUESTED](state) {
-    const auth = { inProgress: true, error: null, user: null };
+  [a.AUTH_ACTION_REQUESTED](state) {
+    const errors = getAuthErrorsInitialState();
+    const auth = { inProgress: true, errors, user: null };
     const newState = { ...state, auth };
     return newState;
   },
-  [a.SIGN_IN_FULFILLED](state) {
-    const currentUser = state.auth.user;
-    const auth = { inProgress: false, error: null, user: currentUser };
+  [a.AUTH_ACTION_FULFILLED](state) {
+    const errors = getAuthErrorsInitialState();
+    const { user } = state.auth;
+    const auth = { inProgress: false, errors, user };
     const newState = { ...state, auth };
     return newState;
   },
-  [a.SIGN_IN_REJECTED](state, action) {
+  [a.AUTH_ACTION_REJECTED](state, action) {
     const { error } = action.payload;
+    const errorType = action.meta.type;
+    const errors = { ...getAuthErrorsInitialState(), [errorType]: error.message };
     const auth = {
       inProgress: false,
-      error: error.message,
-      user: null,
-    };
-    const newState = { ...state, auth };
-    return newState;
-  },
-  [a.RESET_PASSWORD_REQUESTED](state) {
-    const auth = { inProgress: true, error: null, user: null };
-    const newState = { ...state, auth };
-    return newState;
-  },
-  [a.RESET_PASSWORD_FULFILLED](state) {
-    const auth = { inProgress: false, error: null, user: null };
-    const newState = { ...state, auth };
-    return newState;
-  },
-  [a.RESET_PASSWORD_REJECTED](state, action) {
-    const { error } = action.payload;
-    const auth = {
-      inProgress: false,
-      error: error.message,
+      errors,
       user: null,
     };
     const newState = { ...state, auth };
@@ -126,6 +122,14 @@ const handlers = {
     const newState = {
       ...state,
       [property]: { ...propertyState, error: null },
+    };
+    return newState;
+  },
+  [a.CLEAR_AUTH_ERROR](state) {
+    const errors = getAuthErrorsInitialState();
+    const newState = {
+      ...state,
+      auth: { ...state.auth, errors },
     };
     return newState;
   },

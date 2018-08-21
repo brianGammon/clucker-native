@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { actionTypes } from '../../redux/constants';
+import { resetPasswordRequested } from '../../redux/actions';
 import ResetPasswordRenderer from './ResetPasswordRenderer';
 
 type Props = {
@@ -66,17 +67,14 @@ class ResetPassword extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ auth: { error, inProgress } }) => ({
-  error,
+const mapStateToProps = ({ auth: { errors, inProgress } }) => ({
+  error: errors.resetPassword,
   inProgress,
 });
 
 const mapDispatchToProps = dispatch => ({
-  sendPasswordResetEmail: (email: string) => dispatch({
-    type: actionTypes.RESET_PASSWORD_REQUESTED,
-    payload: { email },
-  }),
-  clearError: () => dispatch({ type: actionTypes.CLEAR_ERROR, meta: { type: 'auth' } }),
+  sendPasswordResetEmail: (email: string) => dispatch(resetPasswordRequested(email)),
+  clearError: () => dispatch({ type: actionTypes.CLEAR_AUTH_ERROR }),
 });
 
 export default connect(

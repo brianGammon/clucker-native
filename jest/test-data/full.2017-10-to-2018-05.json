@@ -1,6 +1,10 @@
 {
   "auth": {
-    "error": "",
+    "errors": {
+      "signIn": null,
+      "signUp": null,
+      "resetPassword": null
+    },
     "inProgress": false,
     "user": {
       "uid": "user1",

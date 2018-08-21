@@ -2,8 +2,9 @@
 
 exports[`SignUp component: Should render 1`] = `
 <SignUpRenderer
+  confirmPassword=""
   email=""
-  error=""
+  error={null}
   handleChangeText={[Function]}
   handleSignUp={[Function]}
   password=""
@@ -42,7 +43,6 @@ exports[`SignUp component: SignUpRenderer renders when no error message 1`] = `
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
-      placeholder="email"
       style={
         Object {
           "borderColor": "grey",
@@ -74,7 +74,6 @@ exports[`SignUp component: SignUpRenderer renders when no error message 1`] = `
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
-      placeholder="Password"
       secureTextEntry={true}
       style={
         Object {
@@ -107,7 +106,6 @@ exports[`SignUp component: SignUpRenderer renders when no error message 1`] = `
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
-      placeholder="Re-type Password"
       secureTextEntry={true}
       style={
         Object {
@@ -117,7 +115,6 @@ exports[`SignUp component: SignUpRenderer renders when no error message 1`] = `
         }
       }
       underlineColorAndroid="transparent"
-      value=""
     />
   </Component>
   <Button
@@ -172,7 +169,6 @@ exports[`SignUp component: SignUpRenderer renders with error message 1`] = `
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
-      placeholder="email"
       style={
         Object {
           "borderColor": "grey",
@@ -204,7 +200,6 @@ exports[`SignUp component: SignUpRenderer renders with error message 1`] = `
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
-      placeholder="Password"
       secureTextEntry={true}
       style={
         Object {
@@ -237,7 +232,6 @@ exports[`SignUp component: SignUpRenderer renders with error message 1`] = `
       allowFontScaling={true}
       autoCapitalize="none"
       onChangeText={[Function]}
-      placeholder="Re-type Password"
       secureTextEntry={true}
       style={
         Object {
@@ -247,7 +241,6 @@ exports[`SignUp component: SignUpRenderer renders with error message 1`] = `
         }
       }
       underlineColorAndroid="transparent"
-      value=""
     />
   </Component>
   <Button
