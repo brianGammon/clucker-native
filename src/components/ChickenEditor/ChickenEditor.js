@@ -9,6 +9,7 @@ import { actionTypes, metaTypes } from '../../redux/constants';
 
 type Props = {
   navigation: any,
+  userId: string,
   chicken: Chicken,
   chickenId: string,
   flockId: string,
@@ -121,7 +122,7 @@ class ChickenEditor extends React.Component<Props, State> {
 
   onSaveForm = () => {
     const {
-      chicken, chickenId, flockId, saveForm,
+      chicken, chickenId, flockId, saveForm, userId,
     } = this.props;
     const { newImage, ...rest } = this.state;
     const data = { ...chicken, ...rest };
@@ -129,6 +130,7 @@ class ChickenEditor extends React.Component<Props, State> {
       flockId,
       chickenId,
       data,
+      userId,
       newImage,
     };
     saveForm(payload);
@@ -154,7 +156,10 @@ class ChickenEditor extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ chickens, userSettings }, { navigation }) => {
+const mapStateToProps = (
+  { chickens, userSettings, auth: { user } },
+  { navigation },
+) => {
   const chickenId = navigation.getParam('chickenId', null);
   let chickenData = { chicken: {} };
   if (chickenId) {
@@ -165,6 +170,7 @@ const mapStateToProps = ({ chickens, userSettings }, { navigation }) => {
     flockId: userSettings.data.currentFlockId,
     inProgress: chickens.inProgress,
     error: chickens.error,
+    userId: user.uid,
   };
 };
 

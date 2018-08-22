@@ -14,11 +14,15 @@ import {
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
-import ImagePicker from 'react-native-image-crop-picker';
+// eslint-disable-next-line
+import ImageResizer from 'react-native-image-resizer';
 import eggsByChickenSelector from '../selectors/eggsByChickenSelector';
 import NavigationService from '../navigation/NavigationService';
 import {
-  actionTypes as a, metaTypes, eventTypes as e, authTypes,
+  actionTypes as a,
+  metaTypes,
+  eventTypes as e,
+  authTypes,
 } from './constants';
 import * as actions from './actions';
 
@@ -246,9 +250,16 @@ export function* performAuthAction(action) {
   }
   try {
     yield call([auth, func], ...action.payload);
-    yield put({ type: a.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } });
+    yield put({
+      type: a.AUTH_ACTION_FULFILLED,
+      meta: { type: action.meta.type },
+    });
   } catch (error) {
-    yield put({ type: a.AUTH_ACTION_REJECTED, payload: { error }, meta: { type: action.meta.type } });
+    yield put({
+      type: a.AUTH_ACTION_REJECTED,
+      payload: { error },
+      meta: { type: action.meta.type },
+    });
   }
 }
 
@@ -520,24 +531,34 @@ export function* deleteFromStorage(paths) {
 
 export function* addToStorage(userId, flockId, image) {
   const ref = firebase.storage().ref();
+  const thumbnail = { height: 128, width: 128, path: null };
+
   // Generate a thumbnail
-  // const thumbnail = { path: '' };
-  // putBothFiles
-  const images = [image];
-  console.log('HERE1');
+  const resizedImage = yield call(
+    [ImageResizer, ImageResizer.createResizedImage],
+    image.path,
+    thumbnail.width,
+    thumbnail.height,
+    'PNG',
+    100,
+    0,
+  );
+  thumbnail.path = resizedImage.path;
+
+  const images = [image, thumbnail];
+  const id = Math.floor(Date.now() / 1000).toString();
   try {
-    yield all(
+    const results = yield all(
       images.map((img) => {
-        const id = Math.floor(Date.now() / 1000).toString();
         const fileName = `${id}-${img.width}x${img.height}`;
-        const putRef = ref.child(`uploads/user:${userId}/flock:${flockId}/${fileName}`);
+        const putRef = ref.child(
+          `uploads/user:${userId}/flock:${flockId}/${fileName}`,
+        );
         return call([putRef, putRef.putFile], img.path);
       }),
     );
-    console.log('HERE2');
-    yield put({ type: 'STORAGE_UPLOAD_FULFILLED' });
+    yield put({ type: 'STORAGE_UPLOAD_FULFILLED', payload: results });
   } catch (error) {
-    console.log('HERE3');
     yield put({ type: 'STORAGE_UPLOAD_REJECTED', payload: { error } });
   }
 }
@@ -594,23 +615,39 @@ export function* resetNavigation(action) {
 }
 
 export function* watchFlockActionsComplete() {
-  yield takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], resetNavigation);
+  yield takeLatest(
+    [a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED],
+    resetNavigation,
+  );
 }
 
 export function* saveChicken(action) {
   const {
-    flockId, chickenId, data: chicken, newImage,
+    flockId,
+    chickenId,
+    data: chicken,
+    newImage,
+    userId,
   } = action.payload;
 
   // pull in previous chicken state
-  const prevChickenState = yield select(state => state.chickens.data[chickenId]);
+  const prevChickenState = yield select(
+    state => state.chickens.data[chickenId],
+  );
 
   try {
     // Figure out if there are images to remove
-    if (prevChickenState && prevChickenState.photoPath && prevChickenState.photoPath !== '') {
+    if (
+      prevChickenState
+      && prevChickenState.photoPath
+      && prevChickenState.photoPath !== ''
+    ) {
       // updated chicken doesn't have a photo (removed by user), or a new image was selected
-      if ((!chicken.photoPath || chicken.photoPath === '') || newImage) {
-        const task = yield fork(deleteFromStorage, [prevChickenState.photoPath, prevChickenState.thumbnailPath]);
+      if (!chicken.photoPath || chicken.photoPath === '' || newImage) {
+        const task = yield fork(deleteFromStorage, [
+          prevChickenState.photoPath,
+          prevChickenState.thumbnailPath,
+        ]);
         const { errorResult } = yield race({
           successResult: take('STORAGE_DELETE_FULFILLED'),
           errorResult: take('STORAGE_DELETE_REJECTED'),
@@ -625,10 +662,8 @@ export function* saveChicken(action) {
 
     // Figure out if there is a new image to process
     if (newImage) {
-      console.log('PROCESSING NEW IMAGE');
-      // Generate thumbnail
-      const task = yield fork(addToStorage, 'qAH4NkA1LhagqnHNFZQ1UULkbeJ2', flockId, newImage);
-      const { errorResult } = yield race({
+      const task = yield fork(addToStorage, userId, flockId, newImage);
+      const { successResult, errorResult } = yield race({
         successResult: take('STORAGE_UPLOAD_FULFILLED'),
         errorResult: take('STORAGE_UPLOAD_REJECTED'),
       });
@@ -637,6 +672,8 @@ export function* saveChicken(action) {
         yield cancel(task);
         throw errorResult.payload.error;
       }
+
+      console.log(successResult);
 
       // Set image properties on new chicken
     }
@@ -648,7 +685,9 @@ export function* saveChicken(action) {
       firebaseAction = actions.firebaseUpdateRequested;
     }
     // yield call([console, console.log], { flockId, chickenId, data: chicken });
-    yield put(firebaseAction({ flockId, chickenId, data: chicken }, metaTypes.chickens));
+    yield put(
+      firebaseAction({ flockId, chickenId, data: chicken }, metaTypes.chickens),
+    );
   } catch (error) {
     yield put(actions.firebaseUpdateRejected(error, metaTypes.chickens));
   }

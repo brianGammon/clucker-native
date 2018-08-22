@@ -28,6 +28,8 @@ target 'clucker' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
 
+  pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
+
   target 'cluckerTests' do
     inherit! :search_paths
     # Pods for testing

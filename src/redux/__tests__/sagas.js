@@ -1244,7 +1244,12 @@ describe('saga tests', () => {
           photoPath: '',
           thumbnailPath: '',
         },
-        newImage: 'image1',
+        newImage: {
+          path: 'path3',
+          width: 480,
+          height: 480,
+        },
+        userId: 'user1',
       },
     };
     const generator = cloneableGenerator(sagas.saveChicken)(action);
@@ -1260,18 +1265,41 @@ describe('saga tests', () => {
       successResult: take('STORAGE_DELETE_FULFILLED'),
       errorResult: take('STORAGE_DELETE_REJECTED'),
     }));
-    const errorGenerator = generator.clone();
+    const deleteErrorGenerator = generator.clone();
     const result = {
       successResult: { type: 'STORAGE_DELETE_FULFILLED' },
     };
+    expect(generator.next(result).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
+
+    expect(generator.next(task).value).toEqual(race({
+      successResult: take('STORAGE_UPLOAD_FULFILLED'),
+      errorResult: take('STORAGE_UPLOAD_REJECTED'),
+    }));
+    const uploadErrorGenerator = generator.clone();
+    result.successResult = {
+      type: 'STORAGE_UPLOAD_FULFILLED',
+      payload: [
+        { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
+        { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
+      ],
+    };
     expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+
     expect(generator.next().done).toEqual(true);
 
-    // error flow
+    // storage delete error flow
     const error = new Error('A storage error has occurred');
     result.errorResult = { type: 'STORAGE_DELETE_REJECTED', payload: { error } };
-    expect(errorGenerator.next(result).value).toEqual(cancel(task));
-    expect(errorGenerator.throw(error).value).toEqual(put(actions.firebaseUpdateRejected(error, metaTypes.chickens)));
+    expect(deleteErrorGenerator.next(result).value).toEqual(cancel(task));
+    expect(deleteErrorGenerator.throw(error).value).toEqual(put(actions.firebaseUpdateRejected(error, metaTypes.chickens)));
+    expect(deleteErrorGenerator.next().done).toEqual(true);
+
+    // storage upload error flow
+    const error2 = new Error('A storage error has occurred');
+    result.errorResult = { type: 'STORAGE_UPLOAD_REJECTED', payload: { error2 } };
+    expect(uploadErrorGenerator.next(result).value).toEqual(cancel(task));
+    expect(uploadErrorGenerator.throw(error).value).toEqual(put(actions.firebaseUpdateRejected(error, metaTypes.chickens)));
+    expect(uploadErrorGenerator.next().done).toEqual(true);
   });
 
   test('saveChicken - update, no prev photo, new photo', () => {
@@ -1286,6 +1314,7 @@ describe('saga tests', () => {
           thumbnailPath: '',
         },
         newImage: 'image1',
+        userId: 'user1',
       },
     };
     const generator = sagas.saveChicken(action);
@@ -1294,8 +1323,23 @@ describe('saga tests', () => {
       photoPath: '',
       thumbnailPath: '',
     };
+    const task = createMockTask();
     expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
-    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
+    expect(generator.next(task).value).toEqual(race({
+      successResult: take('STORAGE_UPLOAD_FULFILLED'),
+      errorResult: take('STORAGE_UPLOAD_REJECTED'),
+    }));
+    const result = {
+      successResult: {
+        type: 'STORAGE_UPLOAD_FULFILLED',
+        payload: [
+          { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
+          { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
+        ],
+      },
+    };
+    expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -1310,12 +1354,29 @@ describe('saga tests', () => {
           thumbnailPath: '',
         },
         newImage: 'image1',
+        userId: 'user1',
       },
     };
     const generator = sagas.saveChicken(action);
     const prevChickenState = null;
+    const task = createMockTask();
     expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
-    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseCreateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
+
+    expect(generator.next(task).value).toEqual(race({
+      successResult: take('STORAGE_UPLOAD_FULFILLED'),
+      errorResult: take('STORAGE_UPLOAD_REJECTED'),
+    }));
+    const result = {
+      successResult: {
+        type: 'STORAGE_UPLOAD_FULFILLED',
+        payload: [
+          { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
+          { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
+        ],
+      },
+    };
+    expect(generator.next(result).value).toEqual(put(actions.firebaseCreateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
     expect(generator.next().done).toEqual(true);
   });
 

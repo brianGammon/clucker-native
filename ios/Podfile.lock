@@ -69,6 +69,10 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - QBImagePickerController (3.4.0)
+  - React (0.56.0):
+    - React/Core (= 0.56.0)
+  - react-native-image-resizer (1.0.0):
+    - React
   - React/Core (0.56.0):
     - yoga (= 0.56.0.React)
   - React/fishhook (0.56.0)
@@ -109,6 +113,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
@@ -144,6 +149,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
+  react-native-image-resizer:
+    :path: "../node_modules/react-native-image-resizer"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   yoga:
@@ -165,10 +172,11 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  react-native-image-resizer: 04a3409e7d4ad646c4468671c69dec490def139c
   RNImageCropPicker: 32ca4b9fef4e1b7b85ba69494242122948117e06
   RSKImageCropper: 0d0c6d8525a2381f03fde32a47c6703817a2feed
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: ec67d39c20a3c135e58d4d97d5c43c648c8efe34
+PODFILE CHECKSUM: 9b3654e6afe8c7d514caabe2d270dddf8548e373
 
 COCOAPODS: 1.5.0
