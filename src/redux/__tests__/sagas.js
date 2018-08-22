@@ -10,6 +10,7 @@ import {
   all,
   select,
   takeLatest,
+  race,
 } from 'redux-saga/effects';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
@@ -1127,16 +1128,45 @@ describe('saga tests', () => {
     );
   });
 
+  test('deleteFromStorage', () => {
+    const paths = ['path1', 'path2'];
+    const ref = firebase.storage().ref();
+    const path1Ref = ref.child('path1');
+    const path2Ref = ref.child('path2');
+    const generator = sagas.deleteFromStorage(paths);
+    expect(generator.next().value).toEqual(all([
+      call([path1Ref, path1Ref.delete]),
+      call([path2Ref, path2Ref.delete]),
+    ]));
+    expect(generator.next().value).toEqual(put({ type: 'STORAGE_DELETE_FULFILLED' }));
+  });
+
+  test('deleteFromStorage with errors', () => {
+    const paths = ['path1', 'path2'];
+    const ref = firebase.storage().ref();
+    const path1Ref = ref.child('path1');
+    const path2Ref = ref.child('path2');
+    const generator = cloneableGenerator(sagas.deleteFromStorage)(paths);
+    expect(generator.next().value).toEqual(all([
+      call([path1Ref, path1Ref.delete]),
+      call([path2Ref, path2Ref.delete]),
+    ]));
+    const otherCaseGenerator = generator.clone();
+    const error = new Error('Storage Error.');
+    expect(generator.throw(error).value).toEqual(put({ type: 'STORAGE_DELETE_REJECTED', payload: { error } }));
+
+    const notFoundError = new Error('Not Found Error');
+    notFoundError.code = 'storage/object-not-found';
+    expect(otherCaseGenerator.throw(notFoundError).value).toEqual(put({ type: 'STORAGE_DELETE_FULFILLED' }));
+  });
+
   test('deleteChicken', () => {
     const action = {
       type: actionTypes.DELETE_CHICKEN_REQUESTED,
       payload: {
         chickenId: 'chicken1',
-        // chicken: {
-        //   photoPath: 'photoPath1',
-        //   thumbnailPath: 'thumbnailPath1',
-        // },
         flockId: 'flock1',
+        paths: ['path1', 'path2'],
       },
     };
     const eggs = {
@@ -1152,8 +1182,19 @@ describe('saga tests', () => {
       egg2: null,
       egg3: null,
     };
-    expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => eggsByChickenSelector(state.eggs.data, action.payload.chickenId))));
+    expect(generator.next().value).toEqual(fork(sagas.deleteFromStorage, action.payload.paths));
+    const task = createMockTask();
+    expect(generator.next(task).value).toEqual(
+      race({
+        successResult: take('STORAGE_DELETE_FULFILLED'),
+        errorResult: take('STORAGE_DELETE_REJECTED'),
+      }),
+    );
     const errorGenerator = generator.clone();
+    const result = {
+      successResult: { type: 'STORAGE_DELETE_FULFILLED' },
+    };
+    expect(JSON.stringify(generator.next(result).value)).toEqual(JSON.stringify(select(state => eggsByChickenSelector(state.eggs.data, action.payload.chickenId))));
     expect(generator.next(eggs).value).toEqual(
       call([eggsRef, eggsRef.update], updates),
     );
@@ -1164,7 +1205,9 @@ describe('saga tests', () => {
     expect(generator.next().done).toEqual(true);
 
     // error flow
-    const error = new Error('An error has occurred');
+    const error = new Error('A storage error has occurred');
+    result.errorResult = { type: 'STORAGE_DELETE_REJECTED', payload: { error } };
+    expect(errorGenerator.next(result).value).toEqual(cancel(task));
     expect(errorGenerator.throw(error).value).toEqual(put({ type: actionTypes.DELETE_CHICKEN_REJECTED, payload: { error } }));
   });
 
@@ -1188,6 +1231,116 @@ describe('saga tests', () => {
   test('watchFlockActionsComplete', () => {
     const generator = sagas.watchFlockActionsComplete();
     expect(generator.next().value).toEqual(takeLatest([actionTypes.DELETE_FLOCK_FULFILLED, actionTypes.UNLINK_FLOCK_FULFILLED], sagas.resetNavigation));
+  });
+
+  test('saveChicken - update, remove photo, new photo', () => {
+    const action = {
+      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      payload: {
+        flockId: 'flock1',
+        chickenId: 'chicken1',
+        data: {
+          name: 'Test',
+          photoPath: '',
+          thumbnailPath: '',
+        },
+        newImage: 'image1',
+      },
+    };
+    const generator = cloneableGenerator(sagas.saveChicken)(action);
+    const prevChickenState = {
+      name: 'Test',
+      photoPath: 'path1',
+      thumbnailPath: 'path2',
+    };
+    expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
+    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.deleteFromStorage, [prevChickenState.photoPath, prevChickenState.thumbnailPath]));
+    const task = createMockTask();
+    expect(generator.next(task).value).toEqual(race({
+      successResult: take('STORAGE_DELETE_FULFILLED'),
+      errorResult: take('STORAGE_DELETE_REJECTED'),
+    }));
+    const errorGenerator = generator.clone();
+    const result = {
+      successResult: { type: 'STORAGE_DELETE_FULFILLED' },
+    };
+    expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next().done).toEqual(true);
+
+    // error flow
+    const error = new Error('A storage error has occurred');
+    result.errorResult = { type: 'STORAGE_DELETE_REJECTED', payload: { error } };
+    expect(errorGenerator.next(result).value).toEqual(cancel(task));
+    expect(errorGenerator.throw(error).value).toEqual(put(actions.firebaseUpdateRejected(error, metaTypes.chickens)));
+  });
+
+  test('saveChicken - update, no prev photo, new photo', () => {
+    const action = {
+      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      payload: {
+        flockId: 'flock1',
+        chickenId: 'chicken1',
+        data: {
+          name: 'Test',
+          photoPath: '',
+          thumbnailPath: '',
+        },
+        newImage: 'image1',
+      },
+    };
+    const generator = sagas.saveChicken(action);
+    const prevChickenState = {
+      name: 'Test',
+      photoPath: '',
+      thumbnailPath: '',
+    };
+    expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
+    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('saveChicken - create, new photo', () => {
+    const action = {
+      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      payload: {
+        flockId: 'flock1',
+        data: {
+          name: 'Test',
+          photoPath: '',
+          thumbnailPath: '',
+        },
+        newImage: 'image1',
+      },
+    };
+    const generator = sagas.saveChicken(action);
+    const prevChickenState = null;
+    expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
+    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseCreateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('saveChicken - create, no photo', () => {
+    const action = {
+      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      payload: {
+        flockId: 'flock1',
+        data: {
+          name: 'Test',
+          photoPath: '',
+          thumbnailPath: '',
+        },
+      },
+    };
+    const generator = sagas.saveChicken(action);
+    const prevChickenState = null;
+    expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
+    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseCreateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next().done).toEqual(true);
+  });
+
+  test('watchSaveChickenRequested', () => {
+    const generator = sagas.watchSaveChickenRequested();
+    expect(generator.next().value).toEqual(takeLatest(actionTypes.SAVE_CHICKEN_REQUESTED, sagas.saveChicken));
   });
 
   test('root Saga', () => {

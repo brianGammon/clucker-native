@@ -9,6 +9,7 @@ target 'clucker' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
   target 'cluckerTests' do
     inherit! :search_paths

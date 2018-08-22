@@ -10,8 +10,11 @@ type Props = {
   hatched: string,
   photoUrl: string,
   onFieldChanged: (fieldName: string, text: string) => void,
+  onRemoveProfilePhoto: () => void,
+  onResetProfilePhoto: () => void,
   onSaveForm: () => void,
   error: string,
+  originalPhotoUrl: string,
 };
 
 const ChickenEditorRenderer = ({
@@ -20,8 +23,11 @@ const ChickenEditorRenderer = ({
   hatched,
   photoUrl,
   onFieldChanged,
+  onRemoveProfilePhoto,
+  onResetProfilePhoto,
   onSaveForm,
   error,
+  originalPhotoUrl,
 }: Props) => (
   <View style={styles.container}>
     {error && <Text>{error}</Text>}
@@ -60,6 +66,13 @@ const ChickenEditorRenderer = ({
             : require('../../assets/default-profile-photo.png')
         }
       />
+      {photoUrl !== '' && (
+        <Button onPress={onRemoveProfilePhoto} title="Remove Photo" />
+      )}
+      {originalPhotoUrl !== ''
+        && photoUrl === '' && (
+          <Button onPress={onResetProfilePhoto} title="Reset Photo" />
+      )}
     </View>
     <Button onPress={onSaveForm} title="Save" />
   </View>

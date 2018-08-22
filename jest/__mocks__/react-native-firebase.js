@@ -70,6 +70,12 @@ export class Reference {
     return promise;
   });
 
+  delete = jest.fn(() => {
+    const promise = Promise.resolve();
+    RNFirebase.promises.push(promise);
+    return promise;
+  });
+
   set = jest.fn(() => {
     const promise = Promise.resolve();
     RNFirebase.promises.push(promise);
@@ -100,6 +106,15 @@ export class Auth {
   sendPasswordResetEmail = () => {};
 }
 
+export class Storage {
+  ref = (path) => {
+    if (!this[path]) {
+      this[path] = new Reference(path);
+    }
+    return this[path];
+  };
+}
+
 export class MockFirebase {
   constructor() {
     this.database = () => {
@@ -113,6 +128,12 @@ export class MockFirebase {
         this.authInstance = new Auth();
       }
       return this.authInstance;
+    };
+    this.storage = () => {
+      if (!this.storageInstance) {
+        this.storageInstance = new Storage();
+      }
+      return this.storageInstance;
     };
   }
 }

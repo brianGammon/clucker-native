@@ -30,6 +30,7 @@ Object {
     "context": Reference {
       "child": [Function],
       "data": null,
+      "delete": [MockFunction],
       "equalTo": [Function],
       "key": "key1",
       "off": [MockFunction],
@@ -111,6 +112,9 @@ exports[`saga tests root Saga 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "ALL": Array [
+    GeneratorFunctionPrototype {
+      "_invoke": [Function],
+    },
     GeneratorFunctionPrototype {
       "_invoke": [Function],
     },

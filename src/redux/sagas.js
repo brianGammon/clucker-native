@@ -10,6 +10,7 @@ import {
   takeEvery,
   takeLatest,
   select,
+  race,
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
@@ -497,10 +498,41 @@ export function* watchDeleteFlockRequested() {
   yield takeLatest(a.DELETE_FLOCK_REQUESTED, deleteFlock);
 }
 
+export function* deleteFromStorage(paths) {
+  const ref = firebase.storage().ref();
+  try {
+    yield all(
+      paths.map((path) => {
+        const deleteRef = ref.child(path);
+        return call([deleteRef, deleteRef.delete]);
+      }),
+    );
+    yield put({ type: 'STORAGE_DELETE_FULFILLED' });
+  } catch (error) {
+    if (error.code && error.code === 'storage/object-not-found') {
+      yield put({ type: 'STORAGE_DELETE_FULFILLED' });
+    } else {
+      yield put({ type: 'STORAGE_DELETE_REJECTED', payload: { error } });
+    }
+  }
+}
+
 export function* deleteChicken(action) {
-  const { chickenId, flockId } = action.payload;
+  const { chickenId, flockId, paths } = action.payload;
 
   try {
+    // remove the chicken's images from storage
+    const task = yield fork(deleteFromStorage, paths);
+    const { errorResult } = yield race({
+      successResult: take('STORAGE_DELETE_FULFILLED'),
+      errorResult: take('STORAGE_DELETE_REJECTED'),
+    });
+
+    if (errorResult) {
+      yield cancel(task);
+      throw errorResult.payload.error;
+    }
+
     // run the egg selector for the chickenId
     const eggs = yield select(state => eggsByChickenSelector(state.eggs.data, chickenId));
 
@@ -514,9 +546,6 @@ export function* deleteChicken(action) {
     const ref = firebase.database().ref();
     const eggsRef = ref.child(`/eggs/${flockId}`);
     yield call([eggsRef, eggsRef.update], updates);
-
-    // remove the chicken's images from storage
-    // TBD
 
     // delete the chicken
     const chickensRef = ref.child(`/chickens/${flockId}/${chickenId}`);
@@ -543,6 +572,61 @@ export function* watchFlockActionsComplete() {
   yield takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], resetNavigation);
 }
 
+export function* saveChicken(action) {
+  const {
+    flockId, chickenId, data: chicken, newImageUri,
+  } = action.payload;
+
+  // pull in previous chicken state
+  const prevChickenState = yield select(state => state.chickens.data[chickenId]);
+
+  try {
+    // Figure out if there are images to remove
+    if (prevChickenState && prevChickenState.photoPath && prevChickenState.photoPath !== '') {
+      // updated chicken doesn't have a photo (removed by user), or a new image was selected
+      if ((!chicken.photoPath || chicken.photoPath === '') || newImageUri) {
+        const task = yield fork(deleteFromStorage, [prevChickenState.photoPath, prevChickenState.thumbnailPath]);
+        const { errorResult } = yield race({
+          successResult: take('STORAGE_DELETE_FULFILLED'),
+          errorResult: take('STORAGE_DELETE_REJECTED'),
+        });
+
+        if (errorResult) {
+          yield cancel(task);
+          throw errorResult.payload.error;
+        }
+      }
+    }
+
+    // Figure out if there is a new image to process
+    if (newImageUri) {
+      console.log('PROCESSING NEW IMAGE');
+      // Generate thumbnail
+
+      // Upload main to storage
+
+      // Upload thumb to storage
+
+      // Set image properties on new chicken
+    }
+
+    // Default to create action
+    let firebaseAction = actions.firebaseCreateRequested;
+    if (chickenId) {
+      // Updating chicken
+      firebaseAction = actions.firebaseUpdateRequested;
+    }
+    // yield call([console, console.log], { flockId, chickenId, data: chicken });
+    yield put(firebaseAction({ flockId, chickenId, data: chicken }, metaTypes.chickens));
+  } catch (error) {
+    yield put(actions.firebaseUpdateRejected(error, metaTypes.chickens));
+  }
+}
+
+export function* watchSaveChickenRequested() {
+  yield takeLatest(a.SAVE_CHICKEN_REQUESTED, saveChicken);
+}
+
 export default function* rootSaga() {
   yield all([
     watchAuthChanged(),
@@ -561,5 +645,6 @@ export default function* rootSaga() {
     watchDeleteFlockRequested(),
     watchDeleteChickenRequested(),
     watchFlockActionsComplete(),
+    watchSaveChickenRequested(),
   ]);
 }

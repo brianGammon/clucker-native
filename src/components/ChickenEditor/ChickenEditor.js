@@ -3,10 +3,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import chickenSelector from '../../selectors/chickenSelector';
 import ChickenEditorRenderer from './ChickenEditorRenderer';
-import {
-  firebaseUpdateRequested,
-  firebaseCreateRequested,
-} from '../../redux/actions';
 import { type Chicken } from '../../types';
 import { actionTypes, metaTypes } from '../../redux/constants';
 
@@ -74,6 +70,29 @@ class ChickenEditor extends React.Component<Props, State> {
     this.setState({ [name]: text });
   };
 
+  onRemoveProfilePhoto = () => {
+    this.setState({
+      photoPath: '',
+      photoUrl: '',
+      thumbnailPath: '',
+      thumbnailUrl: '',
+    });
+  };
+
+  onResetProfilePhoto = () => {
+    const {
+      chicken: {
+        photoPath, photoUrl, thumbnailPath, thumbnailUrl,
+      },
+    } = this.props;
+    this.setState({
+      photoPath,
+      photoUrl,
+      thumbnailPath,
+      thumbnailUrl,
+    });
+  };
+
   onSaveForm = () => {
     const {
       chicken, chickenId, flockId, saveForm,
@@ -84,13 +103,19 @@ class ChickenEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const { error } = this.props;
+    const {
+      error,
+      chicken: { photoUrl },
+    } = this.props;
     return (
       <ChickenEditorRenderer
         {...this.state}
         onFieldChanged={this.onFieldChanged}
+        onRemoveProfilePhoto={this.onRemoveProfilePhoto}
+        onResetProfilePhoto={this.onResetProfilePhoto}
         onSaveForm={this.onSaveForm}
         error={error}
+        originalPhotoUrl={photoUrl}
       />
     );
   }
@@ -111,12 +136,7 @@ const mapStateToProps = ({ chickens, userSettings }, { navigation }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  saveForm: (payload) => {
-    if (payload.chickenId) {
-      return dispatch(firebaseUpdateRequested(payload, metaTypes.chickens));
-    }
-    return dispatch(firebaseCreateRequested(payload, metaTypes.chickens));
-  },
+  saveForm: payload => dispatch({ type: actionTypes.SAVE_CHICKEN_REQUESTED, payload }),
   clearError: () => dispatch({
     type: actionTypes.CLEAR_ERROR,
     meta: { type: metaTypes.chickens },
