@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import ImagePicker from 'react-native-image-crop-picker';
 import chickenSelector from '../../selectors/chickenSelector';
 import ChickenEditorRenderer from './ChickenEditorRenderer';
 import { type Chicken } from '../../types';
@@ -25,6 +26,7 @@ type State = {
   photoPath: string,
   thumbnailUrl: string,
   thumbnailPath: string,
+  newImage: any,
 };
 
 class ChickenEditor extends React.Component<Props, State> {
@@ -40,6 +42,7 @@ class ChickenEditor extends React.Component<Props, State> {
     photoPath: '',
     thumbnailUrl: '',
     thumbnailPath: '',
+    newImage: null,
   };
 
   componentDidMount() {
@@ -90,15 +93,44 @@ class ChickenEditor extends React.Component<Props, State> {
       photoUrl,
       thumbnailPath,
       thumbnailUrl,
+      newImage: null,
     });
+  };
+
+  onSelectPhoto = (withCamera: boolean) => {
+    const options = {
+      width: 480,
+      height: 480,
+      cropping: true,
+      includeBase64: true,
+    };
+    let picker = ImagePicker.openPicker;
+    if (withCamera) {
+      picker = ImagePicker.openCamera;
+    }
+    picker(options)
+      .then((image) => {
+        this.setState({ newImage: image });
+      })
+      .catch((error) => {
+        if (error.code !== 'E_PICKER_CANCELLED') {
+          console.log(error);
+        }
+      });
   };
 
   onSaveForm = () => {
     const {
       chicken, chickenId, flockId, saveForm,
     } = this.props;
-    const data = { ...chicken, ...this.state };
-    const payload = { flockId, chickenId, data };
+    const { newImage, ...rest } = this.state;
+    const data = { ...chicken, ...rest };
+    const payload = {
+      flockId,
+      chickenId,
+      data,
+      newImage,
+    };
     saveForm(payload);
   };
 
@@ -116,6 +148,7 @@ class ChickenEditor extends React.Component<Props, State> {
         onSaveForm={this.onSaveForm}
         error={error}
         originalPhotoUrl={photoUrl}
+        onSelectPhoto={this.onSelectPhoto}
       />
     );
   }

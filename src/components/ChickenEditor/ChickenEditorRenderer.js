@@ -13,8 +13,10 @@ type Props = {
   onRemoveProfilePhoto: () => void,
   onResetProfilePhoto: () => void,
   onSaveForm: () => void,
+  onSelectPhoto: (withCamera: boolean) => void,
   error: string,
   originalPhotoUrl: string,
+  newImage: any,
 };
 
 const ChickenEditorRenderer = ({
@@ -28,54 +30,62 @@ const ChickenEditorRenderer = ({
   onSaveForm,
   error,
   originalPhotoUrl,
-}: Props) => (
-  <View style={styles.container}>
-    {error && <Text>{error}</Text>}
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Name:</Text>
-      <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={text => onFieldChanged('name', text)}
-        autoFocus
-      />
+  onSelectPhoto,
+  newImage,
+}: Props) => {
+  let imageSource = require('../../assets/default-profile-photo.png');
+  if (photoUrl !== '') {
+    imageSource = { uri: photoUrl };
+  } else if (newImage) {
+    imageSource = {
+      uri: `data:${newImage.mime};base64,${newImage.data}`,
+    };
+  }
+
+  return (
+    <View style={styles.container}>
+      {error && <Text>{error}</Text>}
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Name:</Text>
+        <TextInput
+          style={styles.input}
+          value={name}
+          onChangeText={text => onFieldChanged('name', text)}
+          autoFocus
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Breed:</Text>
+        <TextInput
+          style={styles.input}
+          value={breed}
+          onChangeText={text => onFieldChanged('breed', text)}
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Hatched On:</Text>
+        <TextInput
+          style={styles.input}
+          value={hatched}
+          onChangeText={text => onFieldChanged('hatched', text)}
+        />
+      </View>
+      <View style={styles.formGroup}>
+        <Text style={styles.label}>Profile Photo:</Text>
+        <Image style={{ width: 200, height: 200 }} source={imageSource} />
+        {photoUrl !== '' && (
+          <Button onPress={onRemoveProfilePhoto} title="Remove Photo" />
+        )}
+        {(newImage || originalPhotoUrl !== '')
+          && photoUrl === '' && (
+            <Button onPress={onResetProfilePhoto} title="Reset Photo" />
+        )}
+        <Button onPress={() => onSelectPhoto(false)} title="Select Photo" />
+        <Button onPress={() => onSelectPhoto(true)} title="Take Photo" />
+      </View>
+      <Button onPress={onSaveForm} title="Save" />
     </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Breed:</Text>
-      <TextInput
-        style={styles.input}
-        value={breed}
-        onChangeText={text => onFieldChanged('breed', text)}
-      />
-    </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Hatched On:</Text>
-      <TextInput
-        style={styles.input}
-        value={hatched}
-        onChangeText={text => onFieldChanged('hatched', text)}
-      />
-    </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Profile Photo:</Text>
-      <Image
-        style={{ width: 200, height: 200 }}
-        source={
-          photoUrl
-            ? { uri: photoUrl }
-            : require('../../assets/default-profile-photo.png')
-        }
-      />
-      {photoUrl !== '' && (
-        <Button onPress={onRemoveProfilePhoto} title="Remove Photo" />
-      )}
-      {originalPhotoUrl !== ''
-        && photoUrl === '' && (
-          <Button onPress={onResetProfilePhoto} title="Reset Photo" />
-      )}
-    </View>
-    <Button onPress={onSaveForm} title="Save" />
-  </View>
-);
+  );
+};
 
 export default ChickenEditorRenderer;

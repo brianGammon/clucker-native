@@ -14,6 +14,7 @@ import {
 } from 'redux-saga/effects';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
+import ImagePicker from 'react-native-image-crop-picker';
 import eggsByChickenSelector from '../selectors/eggsByChickenSelector';
 import NavigationService from '../navigation/NavigationService';
 import {
@@ -517,6 +518,30 @@ export function* deleteFromStorage(paths) {
   }
 }
 
+export function* addToStorage(userId, flockId, image) {
+  const ref = firebase.storage().ref();
+  // Generate a thumbnail
+  // const thumbnail = { path: '' };
+  // putBothFiles
+  const images = [image];
+  console.log('HERE1');
+  try {
+    yield all(
+      images.map((img) => {
+        const id = Math.floor(Date.now() / 1000).toString();
+        const fileName = `${id}-${img.width}x${img.height}`;
+        const putRef = ref.child(`uploads/user:${userId}/flock:${flockId}/${fileName}`);
+        return call([putRef, putRef.putFile], img.path);
+      }),
+    );
+    console.log('HERE2');
+    yield put({ type: 'STORAGE_UPLOAD_FULFILLED' });
+  } catch (error) {
+    console.log('HERE3');
+    yield put({ type: 'STORAGE_UPLOAD_REJECTED', payload: { error } });
+  }
+}
+
 export function* deleteChicken(action) {
   const { chickenId, flockId, paths } = action.payload;
 
@@ -574,7 +599,7 @@ export function* watchFlockActionsComplete() {
 
 export function* saveChicken(action) {
   const {
-    flockId, chickenId, data: chicken, newImageUri,
+    flockId, chickenId, data: chicken, newImage,
   } = action.payload;
 
   // pull in previous chicken state
@@ -584,7 +609,7 @@ export function* saveChicken(action) {
     // Figure out if there are images to remove
     if (prevChickenState && prevChickenState.photoPath && prevChickenState.photoPath !== '') {
       // updated chicken doesn't have a photo (removed by user), or a new image was selected
-      if ((!chicken.photoPath || chicken.photoPath === '') || newImageUri) {
+      if ((!chicken.photoPath || chicken.photoPath === '') || newImage) {
         const task = yield fork(deleteFromStorage, [prevChickenState.photoPath, prevChickenState.thumbnailPath]);
         const { errorResult } = yield race({
           successResult: take('STORAGE_DELETE_FULFILLED'),
@@ -599,13 +624,19 @@ export function* saveChicken(action) {
     }
 
     // Figure out if there is a new image to process
-    if (newImageUri) {
+    if (newImage) {
       console.log('PROCESSING NEW IMAGE');
       // Generate thumbnail
+      const task = yield fork(addToStorage, 'qAH4NkA1LhagqnHNFZQ1UULkbeJ2', flockId, newImage);
+      const { errorResult } = yield race({
+        successResult: take('STORAGE_UPLOAD_FULFILLED'),
+        errorResult: take('STORAGE_UPLOAD_REJECTED'),
+      });
 
-      // Upload main to storage
-
-      // Upload thumb to storage
+      if (errorResult) {
+        yield cancel(task);
+        throw errorResult.payload.error;
+      }
 
       // Set image properties on new chicken
     }
