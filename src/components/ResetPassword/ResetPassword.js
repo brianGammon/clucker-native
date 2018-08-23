@@ -5,6 +5,7 @@ import { resetPasswordRequested } from '../../redux/actions';
 import ResetPasswordRenderer from './ResetPasswordRenderer';
 
 type Props = {
+  navigation: any,
   error: string,
   inProgress: boolean,
   sendPasswordResetEmail: (email: string) => void,
@@ -53,10 +54,11 @@ class ResetPassword extends React.Component<Props, State> {
   };
 
   render() {
-    const { error } = this.props;
+    const { navigation, error } = this.props;
     const { email, successMessage } = this.state;
     return (
       <ResetPasswordRenderer
+        navigation={navigation}
         email={email}
         successMessage={successMessage}
         error={error}

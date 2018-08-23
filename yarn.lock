@@ -5520,6 +5520,10 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
+react-reactive-form@^1.0.28:
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/react-reactive-form/-/react-reactive-form-1.0.28.tgz#bdf0a2257528d1a918d68586ae7e67d21f28aa8d"
+
 react-reconciler@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"

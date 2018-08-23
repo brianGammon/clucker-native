@@ -2,11 +2,156 @@
 
 exports[`SignIn component: Should render 1`] = `
 <SignInRenderer
-  email=""
   error={null}
-  handleChangeText={[Function]}
-  handleSignIn={[Function]}
-  password=""
+  handleReset={[Function]}
+  handleSubmit={[Function]}
+  loginForm={
+    FormGroup {
+      "_onDisabledChange": Array [],
+      "_pendingChange": false,
+      "_pendingDirty": false,
+      "_pendingTouched": false,
+      "asyncValidator": null,
+      "controls": Object {
+        "email": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "",
+          "active": false,
+          "asyncValidator": null,
+          "errors": Object {
+            "required": true,
+          },
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "INVALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": [Function],
+          },
+          "value": "",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "password": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "",
+          "active": false,
+          "asyncValidator": null,
+          "errors": Object {
+            "required": true,
+          },
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "INVALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": [Function],
+          },
+          "value": "",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+      },
+      "errors": null,
+      "get": [Function],
+      "getError": [Function],
+      "handleSubmit": [Function],
+      "hasError": [Function],
+      "meta": Object {},
+      "patchValue": [Function],
+      "pristine": true,
+      "reset": [Function],
+      "setValue": [Function],
+      "stateChanges": Observable {
+        "observers": Array [],
+      },
+      "status": "INVALID",
+      "statusChanges": Observable {
+        "observers": Array [],
+      },
+      "submitted": false,
+      "touched": false,
+      "validator": null,
+      "validatorOrOpts": Object {
+        "asyncValidators": null,
+        "updateOn": null,
+        "validators": null,
+      },
+      "value": Object {
+        "email": "",
+        "password": "",
+      },
+      "valueChanges": Observable {
+        "observers": Array [],
+      },
+    }
+  }
 />
 `;
 
@@ -20,61 +165,9 @@ exports[`SignIn component: SignInRenderer renders when no error message 1`] = `
     }
   }
 >
-  <Component
-    style={
-      Object {
-        "fontSize": 30,
-      }
-    }
-  >
-    Sign In
-  </Component>
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    onChangeText={[Function]}
-    placeholder="email"
-    style={
-      Object {
-        "borderColor": "gray",
-        "borderWidth": 1,
-        "height": 40,
-        "marginTop": 8,
-        "width": "90%",
-      }
-    }
-    underlineColorAndroid="transparent"
-    value=""
-  />
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    onChangeText={[Function]}
-    placeholder="Password"
-    secureTextEntry={true}
-    style={
-      Object {
-        "borderColor": "gray",
-        "borderWidth": 1,
-        "height": 40,
-        "marginTop": 8,
-        "width": "90%",
-      }
-    }
-    underlineColorAndroid="transparent"
-    value=""
-  />
-  <Button
-    onPress={[Function]}
-    title="Submit"
-  />
-  <Button
-    onPress={[Function]}
-    title="Don't have an account? Sign Up"
-  />
-  <Button
-    onPress={[Function]}
-    title="Reset Password"
+  <FieldGroup
+    render={[Function]}
+    strict={true}
   />
 </Component>
 `;
@@ -92,67 +185,15 @@ exports[`SignIn component: SignInRenderer renders with error message 1`] = `
   <Component
     style={
       Object {
-        "fontSize": 30,
-      }
-    }
-  >
-    Sign In
-  </Component>
-  <Component
-    style={
-      Object {
         "color": "red",
       }
     }
   >
     Some error occurred
   </Component>
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    onChangeText={[Function]}
-    placeholder="email"
-    style={
-      Object {
-        "borderColor": "gray",
-        "borderWidth": 1,
-        "height": 40,
-        "marginTop": 8,
-        "width": "90%",
-      }
-    }
-    underlineColorAndroid="transparent"
-    value=""
-  />
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    onChangeText={[Function]}
-    placeholder="Password"
-    secureTextEntry={true}
-    style={
-      Object {
-        "borderColor": "gray",
-        "borderWidth": 1,
-        "height": 40,
-        "marginTop": 8,
-        "width": "90%",
-      }
-    }
-    underlineColorAndroid="transparent"
-    value=""
-  />
-  <Button
-    onPress={[Function]}
-    title="Submit"
-  />
-  <Button
-    onPress={[Function]}
-    title="Don't have an account? Sign Up"
-  />
-  <Button
-    onPress={[Function]}
-    title="Reset Password"
+  <FieldGroup
+    render={[Function]}
+    strict={true}
   />
 </Component>
 `;

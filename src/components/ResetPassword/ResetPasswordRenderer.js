@@ -5,6 +5,7 @@ import {
 import styles from './styles';
 
 type Props = {
+  navigation: any,
   email: string,
   error: string,
   successMessage: string,
@@ -19,6 +20,7 @@ export default class ResetPassword extends React.Component<Props> {
 
   render() {
     const {
+      navigation,
       email,
       error,
       successMessage,
@@ -41,6 +43,7 @@ export default class ResetPassword extends React.Component<Props> {
           />
         </View>
         <Button onPress={handleSendPasswordResetEmail} title="Send Email" />
+        <Button onPress={() => navigation.goBack()} title="Back To Sign In" />
       </View>
     );
   }

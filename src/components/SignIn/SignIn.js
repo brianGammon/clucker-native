@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { FormBuilder, Validators } from 'react-reactive-form';
 import SignInRenderer from './SignInRenderer';
 import { signInRequested } from '../../redux/actions';
 import { actionTypes } from '../../redux/constants';
@@ -11,20 +12,15 @@ type Props = {
   clearError: () => void,
 };
 
-type State = {
-  email: string,
-  password: string,
-};
-
-class SignIn extends React.Component<Props, State> {
+class SignIn extends React.Component<Props> {
   static navigationOptions = {
     title: 'Sign In',
   };
 
-  state = {
-    email: '',
-    password: '',
-  };
+  loginForm = FormBuilder.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+  });
 
   componentWillUnmount() {
     const { error, clearError } = this.props;
@@ -33,27 +29,25 @@ class SignIn extends React.Component<Props, State> {
     }
   }
 
-  handleSignIn = async () => {
-    const { email, password } = this.state;
+  handleReset = () => {
+    this.loginForm.reset();
+  };
+
+  handleSubmit = () => {
+    const { email, password } = this.loginForm.value;
     const { signIn } = this.props;
     signIn(email, password);
   };
 
-  handleChangeText = (field: string, text: string) => {
-    this.setState({ [field]: text });
-  };
-
   render() {
     const { navigation, error } = this.props;
-    const { email, password } = this.state;
     return (
       <SignInRenderer
-        email={email}
-        password={password}
-        error={error}
         navigation={navigation}
-        handleSignIn={this.handleSignIn}
-        handleChangeText={this.handleChangeText}
+        error={error}
+        loginForm={this.loginForm}
+        handleReset={this.handleReset}
+        handleSubmit={this.handleSubmit}
       />
     );
   }

@@ -6,14 +6,20 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  formContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
   textInput: {
     height: 40,
-    width: '90%',
     borderColor: 'gray',
     borderWidth: 1,
     marginTop: 8,
   },
   text: {
     fontSize: 30,
+  },
+  error: {
+    color: 'red',
   },
 });
