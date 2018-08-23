@@ -12,10 +12,12 @@ import {
   takeLatest,
   race,
 } from 'redux-saga/effects';
+// eslint-disable-next-line
+import ImageResizer from 'react-native-image-resizer';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
 import NavigationService from '../../navigation/NavigationService';
-import { metaTypes, eventTypes, actionTypes } from '../constants';
+import { metaTypes, eventTypes, actionTypes as a } from '../constants';
 import eggsByChickenSelector from '../../selectors/eggsByChickenSelector';
 
 describe('saga tests', () => {
@@ -174,7 +176,7 @@ describe('saga tests', () => {
     const action = actions.firebaseCreateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensPath;
     const result = selector(payload);
-    expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.CREATE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -198,7 +200,7 @@ describe('saga tests', () => {
     const action = actions.firebaseCreateRequested(payload, metaTypes.eggs);
     const selector = sagas.getEggsPath;
     const result = selector(payload);
-    expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.CREATE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -211,9 +213,9 @@ describe('saga tests', () => {
     const generator = sagas.watchCreateRequested();
 
     // test non function case
-    expect(generator.next().value).toEqual(take(actionTypes.CREATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.CREATE_REQUESTED));
     expect(generator.next({ meta: { type: 'unknownType' } }).value).toEqual(
-      take(actionTypes.CREATE_REQUESTED),
+      take(a.CREATE_REQUESTED),
     );
   });
 
@@ -239,7 +241,7 @@ describe('saga tests', () => {
     const selector = sagas.getUserSettingsUpdate;
 
     const result = selector(payload);
-    expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -265,7 +267,7 @@ describe('saga tests', () => {
     const action = actions.firebaseUpdateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensUpdate;
     const result = selector(payload);
-    expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -291,7 +293,7 @@ describe('saga tests', () => {
     const action = actions.firebaseUpdateRequested(payload, metaTypes.eggs);
     const selector = sagas.getEggsUpdate;
     const result = selector(payload);
-    expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -304,9 +306,9 @@ describe('saga tests', () => {
     const generator = sagas.watchUpdateRequested();
 
     // test non function case
-    expect(generator.next().value).toEqual(take(actionTypes.UPDATE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
     expect(generator.next({ meta: { type: 'unknownType' } }).value).toEqual(
-      take(actionTypes.UPDATE_REQUESTED),
+      take(a.UPDATE_REQUESTED),
     );
   });
 
@@ -317,7 +319,7 @@ describe('saga tests', () => {
     const action = actions.removeUserSettingsRequested('user1');
     const selector = sagas.getUserSettingsPath;
 
-    expect(generator.next().value).toEqual(take(actionTypes.REMOVE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.REMOVE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -336,7 +338,7 @@ describe('saga tests', () => {
     );
     const selector = sagas.getChickensPath;
 
-    expect(generator.next().value).toEqual(take(actionTypes.REMOVE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.REMOVE_REQUESTED));
     expect(generator.next(action).value).toEqual(
       call(selector, action.payload),
     );
@@ -349,9 +351,9 @@ describe('saga tests', () => {
     const generator = sagas.watchRemoveRequested();
 
     // test non function case
-    expect(generator.next().value).toEqual(take(actionTypes.REMOVE_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.REMOVE_REQUESTED));
     expect(generator.next({ meta: { type: 'unknownType' } }).value).toEqual(
-      take(actionTypes.REMOVE_REQUESTED),
+      take(a.REMOVE_REQUESTED),
     );
   });
 
@@ -392,12 +394,12 @@ describe('saga tests', () => {
     const auth = firebase.auth();
     const generator = sagas.watchSignOutRequested();
     expect(generator.next().value).toEqual(
-      take(actionTypes.SIGN_OUT_REQUESTED),
+      take(a.SIGN_OUT_REQUESTED),
     );
     expect(generator.next().value).toEqual(
       all([
         put(actions.firebaseRemoveAllListenersRequested()),
-        put({ type: actionTypes.CLEAR_ALL_FLOCKS }),
+        put({ type: a.CLEAR_ALL_FLOCKS }),
       ]),
     );
     expect(generator.next().value).toEqual(call([auth, auth.signOut]));
@@ -418,13 +420,13 @@ describe('saga tests', () => {
     const errorGenerator = generator.clone();
 
     expect(generator.next().value).toEqual(
-      put({ type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
+      put({ type: a.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
     );
     expect(generator.next().done).toEqual(true);
 
     const error = new Error('some error signing in');
     expect(errorGenerator.throw(error).value).toEqual(
-      put({ type: actionTypes.AUTH_ACTION_REJECTED, payload: { error }, meta: { type: action.meta.type } }),
+      put({ type: a.AUTH_ACTION_REJECTED, payload: { error }, meta: { type: action.meta.type } }),
     );
     expect(generator.next().done).toEqual(true);
   });
@@ -441,7 +443,7 @@ describe('saga tests', () => {
     );
 
     expect(generator.next().value).toEqual(
-      put({ type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
+      put({ type: a.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
     );
     expect(generator.next().done).toEqual(true);
   });
@@ -458,14 +460,14 @@ describe('saga tests', () => {
     );
 
     expect(generator.next().value).toEqual(
-      put({ type: actionTypes.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
+      put({ type: a.AUTH_ACTION_FULFILLED, meta: { type: action.meta.type } }),
     );
     expect(generator.next().done).toEqual(true);
   });
 
   test('watchAuthActionRequested', () => {
     const generator = sagas.watchAuthActionRequested();
-    expect(generator.next().value).toEqual(takeLatest(actionTypes.AUTH_ACTION_REQUESTED, sagas.performAuthAction));
+    expect(generator.next().value).toEqual(takeLatest(a.AUTH_ACTION_REQUESTED, sagas.performAuthAction));
   });
 
   test('getUpdateAction CHILD_ADDED_EVENT', () => {
@@ -610,7 +612,7 @@ describe('saga tests', () => {
 
     const generator = cloneableGenerator(sagas.watchListener)(checkedMetaType);
 
-    expect(generator.next().value).toEqual(take(actionTypes.LISTEN_REQUESTED));
+    expect(generator.next().value).toEqual(take(a.LISTEN_REQUESTED));
 
     const regularGenerator = generator.clone();
     const checkedListenRequestAction = actions.listenToUserSettings('userId1');
@@ -633,9 +635,9 @@ describe('saga tests', () => {
     const theTask = regularGenerator.next(mockTask).value;
     expect(theTask).toEqual(
       take([
-        actionTypes.REMOVE_LISTENER_REQUESTED,
-        actionTypes.LISTEN_REQUESTED,
-        actionTypes.REMOVE_ALL_LISTENERS_REQUESTED,
+        a.REMOVE_LISTENER_REQUESTED,
+        a.LISTEN_REQUESTED,
+        a.REMOVE_ALL_LISTENERS_REQUESTED,
       ]),
     );
 
@@ -656,7 +658,7 @@ describe('saga tests', () => {
     );
     // back to start
     expect(regularGenerator.next().value).toEqual(
-      take(actionTypes.LISTEN_REQUESTED),
+      take(a.LISTEN_REQUESTED),
     );
 
     // unwanted listen request flow
@@ -664,16 +666,16 @@ describe('saga tests', () => {
     expect(
       unwantedListenRequestActionGenerator.next(unwantedListenRequestAction)
         .value,
-    ).toEqual(take(actionTypes.LISTEN_REQUESTED)); // unwatned action - go to start
+    ).toEqual(take(a.LISTEN_REQUESTED)); // unwatned action - go to start
 
     // unwanted remove request while waiting to specifig cancel request
     expect(
       regularWithUnwantedRemoveMetaType.next(unwantedListenRemoveAction).value,
     ).toEqual(
       take([
-        actionTypes.REMOVE_LISTENER_REQUESTED,
-        actionTypes.LISTEN_REQUESTED,
-        actionTypes.REMOVE_ALL_LISTENERS_REQUESTED,
+        a.REMOVE_LISTENER_REQUESTED,
+        a.LISTEN_REQUESTED,
+        a.REMOVE_ALL_LISTENERS_REQUESTED,
       ]),
     ); // contintue to wait
 
@@ -694,9 +696,9 @@ describe('saga tests', () => {
 
     expect(regularWithListenActionGenerator.next().value).toEqual(
       take([
-        actionTypes.REMOVE_LISTENER_REQUESTED,
-        actionTypes.LISTEN_REQUESTED,
-        actionTypes.REMOVE_ALL_LISTENERS_REQUESTED,
+        a.REMOVE_LISTENER_REQUESTED,
+        a.LISTEN_REQUESTED,
+        a.REMOVE_ALL_LISTENERS_REQUESTED,
       ]),
     ); // contintue to wait
   });
@@ -743,7 +745,7 @@ describe('saga tests', () => {
     };
 
     const action = {
-      type: actionTypes.JOIN_FLOCK_REQUESTED,
+      type: a.JOIN_FLOCK_REQUESTED,
       payload: {
         userId: 'user1',
         flockId: 'flock1',
@@ -781,7 +783,7 @@ describe('saga tests', () => {
       ),
     );
     expect(generator.next().value).toEqual(
-      put({ type: actionTypes.JOIN_FLOCK_FULFILLED }),
+      put({ type: a.JOIN_FLOCK_FULFILLED }),
     );
     expect(generator.next().done).toEqual(true);
 
@@ -790,7 +792,7 @@ describe('saga tests', () => {
     const error = new Error(`Flock ID '${action.payload.flockId}' not found`);
     expect(errorGenerator.next(snapshot).value).toEqual(
       put({
-        type: actionTypes.JOIN_FLOCK_REJECTED,
+        type: a.JOIN_FLOCK_REJECTED,
         payload: { error },
       }),
     );
@@ -800,7 +802,7 @@ describe('saga tests', () => {
   test('watchJoinFlockRequested', () => {
     const generator = sagas.watchJoinFlockRequested();
     expect(generator.next().value).toEqual(
-      takeLatest(actionTypes.JOIN_FLOCK_REQUESTED, sagas.joinFlock),
+      takeLatest(a.JOIN_FLOCK_REQUESTED, sagas.joinFlock),
     );
   });
 
@@ -813,7 +815,7 @@ describe('saga tests', () => {
     };
 
     const action = {
-      type: actionTypes.ADD_FLOCK_REQUESTED,
+      type: a.ADD_FLOCK_REQUESTED,
       payload: {
         userId: 'user1',
         name: 'Test Flock 1',
@@ -856,14 +858,14 @@ describe('saga tests', () => {
       ),
     );
     expect(generator.next().value).toEqual(
-      put({ type: actionTypes.ADD_FLOCK_FULFILLED }),
+      put({ type: a.ADD_FLOCK_FULFILLED }),
     );
     expect(generator.next().done).toEqual(true);
 
     // Error flow
     expect(errorGenerator.throw(new Error('Error saving item')).value).toEqual(
       put({
-        type: actionTypes.ADD_FLOCK_REJECTED,
+        type: a.ADD_FLOCK_REJECTED,
         payload: { error: new Error('Error saving item') },
       }),
     );
@@ -873,7 +875,7 @@ describe('saga tests', () => {
   test('watchAddFlockRequested', () => {
     const generator = sagas.watchAddFlockRequested();
     expect(generator.next().value).toEqual(
-      takeLatest(actionTypes.ADD_FLOCK_REQUESTED, sagas.addFlock),
+      takeLatest(a.ADD_FLOCK_REQUESTED, sagas.addFlock),
     );
   });
 
@@ -888,7 +890,7 @@ describe('saga tests', () => {
     };
     const flockId = 'flock1';
     const action = {
-      type: actionTypes.UNLINK_FLOCK_REQUESTED,
+      type: a.UNLINK_FLOCK_REQUESTED,
       payload: { userId, userSettings, flockId },
     };
     const generator = sagas.unlinkFlock(action);
@@ -912,7 +914,7 @@ describe('saga tests', () => {
         ),
       ),
     );
-    expect(generator.next().value).toEqual(put({ type: actionTypes.UNLINK_FLOCK_FULFILLED, resetStack: true }));
+    expect(generator.next().value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: true }));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -927,7 +929,7 @@ describe('saga tests', () => {
     };
     const flockId = 'flock2';
     const action = {
-      type: actionTypes.UNLINK_FLOCK_REQUESTED,
+      type: a.UNLINK_FLOCK_REQUESTED,
       payload: { userId, userSettings, flockId },
     };
     const generator = sagas.unlinkFlock(action);
@@ -945,14 +947,14 @@ describe('saga tests', () => {
         ),
       ),
     );
-    expect(generator.next().value).toEqual(put({ type: actionTypes.UNLINK_FLOCK_FULFILLED, resetStack: false }));
+    expect(generator.next().value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: false }));
     expect(generator.next().done).toEqual(true);
   });
 
   test('watchUnlinkFlockRequested', () => {
     const generator = sagas.watchUnlinkFlockRequested();
     expect(generator.next().value).toEqual(
-      takeLatest(actionTypes.UNLINK_FLOCK_REQUESTED, sagas.unlinkFlock),
+      takeLatest(a.UNLINK_FLOCK_REQUESTED, sagas.unlinkFlock),
     );
   });
 
@@ -967,7 +969,7 @@ describe('saga tests', () => {
     };
     const flockId = 'flock1';
     const action = {
-      type: actionTypes.DELETE_FLOCK_REQUESTED,
+      type: a.DELETE_FLOCK_REQUESTED,
       payload: { userId, userSettings, flockId },
     };
 
@@ -1069,13 +1071,13 @@ describe('saga tests', () => {
         call([deletedFlocksRef, deletedFlocksRef.set], true),
       );
 
-      expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: true }));
+      expect(generator.next().value).toEqual(put({ type: a.DELETE_FLOCK_FULFILLED, resetStack: true }));
       expect(generator.next().done).toEqual(true);
 
       // Error path
       const error = new Error('An error occured');
       expect(errorGenerator.throw(error).value).toEqual(
-        put({ type: actionTypes.DELETE_FLOCK_REJECTED, payload: { error } }),
+        put({ type: a.DELETE_FLOCK_REJECTED, payload: { error } }),
       );
     });
 
@@ -1083,7 +1085,7 @@ describe('saga tests', () => {
       // When no current flock is set at all
       const { currentFlockId, ...rest } = userSettings;
       const action2 = {
-        type: actionTypes.DELETE_FLOCK_REQUESTED,
+        type: a.DELETE_FLOCK_REQUESTED,
         payload: { userId, userSettings: rest, flockId },
       };
 
@@ -1116,7 +1118,7 @@ describe('saga tests', () => {
         call([deletedFlocksRef, deletedFlocksRef.set], true),
       );
 
-      expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: false }));
+      expect(generator.next().value).toEqual(put({ type: a.DELETE_FLOCK_FULFILLED, resetStack: false }));
       expect(generator.next().done).toEqual(true);
     });
   });
@@ -1124,7 +1126,7 @@ describe('saga tests', () => {
   test('watchDeleteFlockRequested', () => {
     const generator = sagas.watchDeleteFlockRequested();
     expect(generator.next().value).toEqual(
-      takeLatest(actionTypes.DELETE_FLOCK_REQUESTED, sagas.deleteFlock),
+      takeLatest(a.DELETE_FLOCK_REQUESTED, sagas.deleteFlock),
     );
   });
 
@@ -1134,11 +1136,12 @@ describe('saga tests', () => {
     const path1Ref = ref.child('path1');
     const path2Ref = ref.child('path2');
     const generator = sagas.deleteFromStorage(paths);
+    expect(generator.next().value).toEqual(put({ type: a.STORAGE_DELETE_REQUESTED }));
     expect(generator.next().value).toEqual(all([
       call([path1Ref, path1Ref.delete]),
       call([path2Ref, path2Ref.delete]),
     ]));
-    expect(generator.next().value).toEqual(put({ type: 'STORAGE_DELETE_FULFILLED' }));
+    expect(generator.next().value).toEqual(put({ type: a.STORAGE_DELETE_FULFILLED }));
   });
 
   test('deleteFromStorage with errors', () => {
@@ -1147,22 +1150,66 @@ describe('saga tests', () => {
     const path1Ref = ref.child('path1');
     const path2Ref = ref.child('path2');
     const generator = cloneableGenerator(sagas.deleteFromStorage)(paths);
+    expect(generator.next().value).toEqual(put({ type: a.STORAGE_DELETE_REQUESTED }));
     expect(generator.next().value).toEqual(all([
       call([path1Ref, path1Ref.delete]),
       call([path2Ref, path2Ref.delete]),
     ]));
     const otherCaseGenerator = generator.clone();
     const error = new Error('Storage Error.');
-    expect(generator.throw(error).value).toEqual(put({ type: 'STORAGE_DELETE_REJECTED', payload: { error } }));
+    expect(generator.throw(error).value).toEqual(put({ type: a.STORAGE_DELETE_REJECTED, payload: { error } }));
 
     const notFoundError = new Error('Not Found Error');
     notFoundError.code = 'storage/object-not-found';
-    expect(otherCaseGenerator.throw(notFoundError).value).toEqual(put({ type: 'STORAGE_DELETE_FULFILLED' }));
+    expect(otherCaseGenerator.throw(notFoundError).value).toEqual(put({ type: a.STORAGE_DELETE_FULFILLED }));
+  });
+
+  test('addToStorage', () => {
+    const userId = 'user1';
+    const flockId = 'flock1';
+    const image = {
+      path: 'tmp/path1',
+      width: 480,
+      height: 480,
+    };
+    const resizedImage = {
+      path: 'tmp/thumbPath1',
+    };
+    const ref = firebase.storage().ref();
+    const photoRef = ref.child(`uploads/user:${userId}/flock:${flockId}/123456789-480x480`);
+    const thumbRef = ref.child(`uploads/user:${userId}/flock:${flockId}/123456789-128x128`);
+    const generator = cloneableGenerator(sagas.addToStorage)(userId, flockId, image);
+    expect(generator.next().value).toEqual(put({ type: a.STORAGE_UPLOAD_REQUESTED }));
+    expect(generator.next().value).toEqual(call(
+      [ImageResizer, ImageResizer.createResizedImage],
+      image.path,
+      128,
+      128,
+      'JPEG',
+      100,
+      0,
+    ));
+    expect(generator.next(resizedImage).value).toEqual(all([
+      call([photoRef, photoRef.putFile], 'tmp/path1'),
+      call([thumbRef, thumbRef.putFile], 'tmp/thumbPath1'),
+    ]));
+    const errorGenerator = generator.clone();
+    const results = [
+      { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
+      { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
+    ];
+    expect(generator.next(results).value).toEqual(put({ type: a.STORAGE_UPLOAD_FULFILLED, payload: results }));
+    expect(generator.next().done).toEqual(true);
+
+    // Error flow
+    const error = new Error('Upload error occurred.');
+    expect(errorGenerator.throw(error).value).toEqual(put({ type: a.STORAGE_UPLOAD_REJECTED, payload: { error } }));
+    expect(generator.next().done).toEqual(true);
   });
 
   test('deleteChicken', () => {
     const action = {
-      type: actionTypes.DELETE_CHICKEN_REQUESTED,
+      type: a.DELETE_CHICKEN_REQUESTED,
       payload: {
         chickenId: 'chicken1',
         flockId: 'flock1',
@@ -1186,13 +1233,13 @@ describe('saga tests', () => {
     const task = createMockTask();
     expect(generator.next(task).value).toEqual(
       race({
-        successResult: take('STORAGE_DELETE_FULFILLED'),
-        errorResult: take('STORAGE_DELETE_REJECTED'),
+        successResult: take(a.STORAGE_DELETE_FULFILLED),
+        errorResult: take(a.STORAGE_DELETE_REJECTED),
       }),
     );
     const errorGenerator = generator.clone();
     const result = {
-      successResult: { type: 'STORAGE_DELETE_FULFILLED' },
+      successResult: { type: a.STORAGE_DELETE_FULFILLED },
     };
     expect(JSON.stringify(generator.next(result).value)).toEqual(JSON.stringify(select(state => eggsByChickenSelector(state.eggs.data, action.payload.chickenId))));
     expect(generator.next(eggs).value).toEqual(
@@ -1201,41 +1248,41 @@ describe('saga tests', () => {
 
     const chickensRef = ref.child('/chickens/flock1/chicken1');
     expect(generator.next().value).toEqual(call([chickensRef, chickensRef.remove]));
-    expect(generator.next().value).toEqual(put({ type: actionTypes.DELETE_CHICKEN_FULFILLED }));
+    expect(generator.next().value).toEqual(put({ type: a.DELETE_CHICKEN_FULFILLED }));
     expect(generator.next().done).toEqual(true);
 
     // error flow
     const error = new Error('A storage error has occurred');
-    result.errorResult = { type: 'STORAGE_DELETE_REJECTED', payload: { error } };
+    result.errorResult = { type: a.STORAGE_DELETE_REJECTED, payload: { error } };
     expect(errorGenerator.next(result).value).toEqual(cancel(task));
-    expect(errorGenerator.throw(error).value).toEqual(put({ type: actionTypes.DELETE_CHICKEN_REJECTED, payload: { error } }));
+    expect(errorGenerator.throw(error).value).toEqual(put({ type: a.DELETE_CHICKEN_REJECTED, payload: { error } }));
   });
 
   test('watchDeleteChickenRequested', () => {
     const generator = sagas.watchDeleteChickenRequested();
-    expect(generator.next().value).toEqual(takeLatest(actionTypes.DELETE_CHICKEN_REQUESTED, sagas.deleteChicken));
+    expect(generator.next().value).toEqual(takeLatest(a.DELETE_CHICKEN_REQUESTED, sagas.deleteChicken));
   });
 
   test('resetNavigation with resetStack = true', () => {
-    const action = { type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: true };
+    const action = { type: a.DELETE_FLOCK_FULFILLED, resetStack: true };
     const generator = sagas.resetNavigation(action);
     expect(generator.next().value).toEqual(call([NavigationService, NavigationService.resetTabs]));
   });
 
   test('resetNavigation with resetStack = false', () => {
-    const action = { type: actionTypes.DELETE_FLOCK_FULFILLED, resetStack: false };
+    const action = { type: a.DELETE_FLOCK_FULFILLED, resetStack: false };
     const generator = sagas.resetNavigation(action);
     expect(generator.next().done).toEqual(true);
   });
 
   test('watchFlockActionsComplete', () => {
     const generator = sagas.watchFlockActionsComplete();
-    expect(generator.next().value).toEqual(takeLatest([actionTypes.DELETE_FLOCK_FULFILLED, actionTypes.UNLINK_FLOCK_FULFILLED], sagas.resetNavigation));
+    expect(generator.next().value).toEqual(takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], sagas.resetNavigation));
   });
 
   test('saveChicken - update, remove photo, new photo', () => {
     const action = {
-      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      type: a.SAVE_CHICKEN_REQUESTED,
       payload: {
         flockId: 'flock1',
         chickenId: 'chicken1',
@@ -1245,7 +1292,7 @@ describe('saga tests', () => {
           thumbnailPath: '',
         },
         newImage: {
-          path: 'path3',
+          path: 'tmp/path3',
           width: 480,
           height: 480,
         },
@@ -1262,25 +1309,25 @@ describe('saga tests', () => {
     expect(generator.next(prevChickenState).value).toEqual(fork(sagas.deleteFromStorage, [prevChickenState.photoPath, prevChickenState.thumbnailPath]));
     const task = createMockTask();
     expect(generator.next(task).value).toEqual(race({
-      successResult: take('STORAGE_DELETE_FULFILLED'),
-      errorResult: take('STORAGE_DELETE_REJECTED'),
+      successResult: take(a.STORAGE_DELETE_FULFILLED),
+      errorResult: take(a.STORAGE_DELETE_REJECTED),
     }));
     const deleteErrorGenerator = generator.clone();
     const result = {
-      successResult: { type: 'STORAGE_DELETE_FULFILLED' },
+      successResult: { type: a.STORAGE_DELETE_FULFILLED },
     };
     expect(generator.next(result).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
 
     expect(generator.next(task).value).toEqual(race({
-      successResult: take('STORAGE_UPLOAD_FULFILLED'),
-      errorResult: take('STORAGE_UPLOAD_REJECTED'),
+      successResult: take(a.STORAGE_UPLOAD_FULFILLED),
+      errorResult: take(a.STORAGE_UPLOAD_REJECTED),
     }));
     const uploadErrorGenerator = generator.clone();
     result.successResult = {
-      type: 'STORAGE_UPLOAD_FULFILLED',
+      type: a.STORAGE_UPLOAD_FULFILLED,
       payload: [
-        { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
-        { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
+        { downloadURL: 'http://test.example.com/1', ref: 'path3' },
+        { downloadURL: 'http://test.example.com/2', ref: 'path4' },
       ],
     };
     expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
@@ -1289,14 +1336,14 @@ describe('saga tests', () => {
 
     // storage delete error flow
     const error = new Error('A storage error has occurred');
-    result.errorResult = { type: 'STORAGE_DELETE_REJECTED', payload: { error } };
+    result.errorResult = { type: a.STORAGE_DELETE_REJECTED, payload: { error } };
     expect(deleteErrorGenerator.next(result).value).toEqual(cancel(task));
     expect(deleteErrorGenerator.throw(error).value).toEqual(put(actions.firebaseUpdateRejected(error, metaTypes.chickens)));
     expect(deleteErrorGenerator.next().done).toEqual(true);
 
     // storage upload error flow
     const error2 = new Error('A storage error has occurred');
-    result.errorResult = { type: 'STORAGE_UPLOAD_REJECTED', payload: { error2 } };
+    result.errorResult = { type: a.STORAGE_UPLOAD_REJECTED, payload: { error2 } };
     expect(uploadErrorGenerator.next(result).value).toEqual(cancel(task));
     expect(uploadErrorGenerator.throw(error).value).toEqual(put(actions.firebaseUpdateRejected(error, metaTypes.chickens)));
     expect(uploadErrorGenerator.next().done).toEqual(true);
@@ -1304,7 +1351,7 @@ describe('saga tests', () => {
 
   test('saveChicken - update, no prev photo, new photo', () => {
     const action = {
-      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      type: a.SAVE_CHICKEN_REQUESTED,
       payload: {
         flockId: 'flock1',
         chickenId: 'chicken1',
@@ -1327,12 +1374,12 @@ describe('saga tests', () => {
     expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
     expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
     expect(generator.next(task).value).toEqual(race({
-      successResult: take('STORAGE_UPLOAD_FULFILLED'),
-      errorResult: take('STORAGE_UPLOAD_REJECTED'),
+      successResult: take(a.STORAGE_UPLOAD_FULFILLED),
+      errorResult: take(a.STORAGE_UPLOAD_REJECTED),
     }));
     const result = {
       successResult: {
-        type: 'STORAGE_UPLOAD_FULFILLED',
+        type: a.STORAGE_UPLOAD_FULFILLED,
         payload: [
           { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
           { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
@@ -1345,7 +1392,7 @@ describe('saga tests', () => {
 
   test('saveChicken - create, new photo', () => {
     const action = {
-      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      type: a.SAVE_CHICKEN_REQUESTED,
       payload: {
         flockId: 'flock1',
         data: {
@@ -1364,12 +1411,12 @@ describe('saga tests', () => {
     expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
 
     expect(generator.next(task).value).toEqual(race({
-      successResult: take('STORAGE_UPLOAD_FULFILLED'),
-      errorResult: take('STORAGE_UPLOAD_REJECTED'),
+      successResult: take(a.STORAGE_UPLOAD_FULFILLED),
+      errorResult: take(a.STORAGE_UPLOAD_REJECTED),
     }));
     const result = {
       successResult: {
-        type: 'STORAGE_UPLOAD_FULFILLED',
+        type: a.STORAGE_UPLOAD_FULFILLED,
         payload: [
           { downloadUrl: 'http://test.example.com/1', ref: 'path3' },
           { downloadUrl: 'http://test.example.com/2', ref: 'path4' },
@@ -1382,7 +1429,7 @@ describe('saga tests', () => {
 
   test('saveChicken - create, no photo', () => {
     const action = {
-      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+      type: a.SAVE_CHICKEN_REQUESTED,
       payload: {
         flockId: 'flock1',
         data: {
@@ -1401,7 +1448,7 @@ describe('saga tests', () => {
 
   test('watchSaveChickenRequested', () => {
     const generator = sagas.watchSaveChickenRequested();
-    expect(generator.next().value).toEqual(takeLatest(actionTypes.SAVE_CHICKEN_REQUESTED, sagas.saveChicken));
+    expect(generator.next().value).toEqual(takeLatest(a.SAVE_CHICKEN_REQUESTED, sagas.saveChicken));
   });
 
   test('root Saga', () => {

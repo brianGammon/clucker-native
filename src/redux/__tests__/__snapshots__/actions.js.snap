@@ -130,6 +130,7 @@ Object {
       "orderByChild": [Function],
       "path": "someRef",
       "push": [MockFunction],
+      "putFile": [MockFunction],
       "remove": [MockFunction],
       "set": [MockFunction],
       "snap": Object {
@@ -263,6 +264,7 @@ Object {
       "orderByChild": [Function],
       "path": "flocks/flockId1",
       "push": [MockFunction],
+      "putFile": [MockFunction],
       "remove": [MockFunction],
       "set": [MockFunction],
       "snap": Object {
@@ -319,6 +321,7 @@ Object {
       "orderByChild": [Function],
       "path": "chickens/flockId1",
       "push": [MockFunction],
+      "putFile": [MockFunction],
       "remove": [MockFunction],
       "set": [MockFunction],
       "snap": Object {
@@ -350,6 +353,7 @@ Object {
       "orderByChild": [Function],
       "path": "eggs/flockId1",
       "push": [MockFunction],
+      "putFile": [MockFunction],
       "remove": [MockFunction],
       "set": [MockFunction],
       "snap": Object {
@@ -381,6 +385,7 @@ Object {
       "orderByChild": [Function],
       "path": "userSettings/userId1",
       "push": [MockFunction],
+      "putFile": [MockFunction],
       "remove": [MockFunction],
       "set": [MockFunction],
       "snap": Object {

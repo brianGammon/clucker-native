@@ -81,6 +81,12 @@ export class Reference {
     RNFirebase.promises.push(promise);
     return promise;
   });
+
+  putFile = jest.fn(() => {
+    const promise = Promise.resolve();
+    RNFirebase.promises.push(promise);
+    return promise;
+  });
 }
 
 export class Database {

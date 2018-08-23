@@ -36,7 +36,8 @@ const ChickenEditorRenderer = ({
   let imageSource = require('../../assets/default-profile-photo.png');
   if (photoUrl !== '') {
     imageSource = { uri: photoUrl };
-  } else if (newImage) {
+  }
+  if (newImage) {
     imageSource = {
       uri: `data:${newImage.mime};base64,${newImage.data}`,
     };
@@ -73,12 +74,12 @@ const ChickenEditorRenderer = ({
       <View style={styles.formGroup}>
         <Text style={styles.label}>Profile Photo:</Text>
         <Image style={{ width: 200, height: 200 }} source={imageSource} />
-        {photoUrl !== '' && (
-          <Button onPress={onRemoveProfilePhoto} title="Remove Photo" />
+        {photoUrl !== ''
+          && !newImage && (
+            <Button onPress={onRemoveProfilePhoto} title="Remove Photo" />
         )}
-        {(newImage || originalPhotoUrl !== '')
-          && photoUrl === '' && (
-            <Button onPress={onResetProfilePhoto} title="Reset Photo" />
+        {((originalPhotoUrl !== '' && photoUrl === '') || newImage) && (
+          <Button onPress={onResetProfilePhoto} title="Reset Photo" />
         )}
         <Button onPress={() => onSelectPhoto(false)} title="Select Photo" />
         <Button onPress={() => onSelectPhoto(true)} title="Take Photo" />

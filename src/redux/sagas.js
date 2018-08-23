@@ -511,6 +511,7 @@ export function* watchDeleteFlockRequested() {
 }
 
 export function* deleteFromStorage(paths) {
+  yield put({ type: a.STORAGE_DELETE_REQUESTED });
   const ref = firebase.storage().ref();
   try {
     yield all(
@@ -519,17 +520,18 @@ export function* deleteFromStorage(paths) {
         return call([deleteRef, deleteRef.delete]);
       }),
     );
-    yield put({ type: 'STORAGE_DELETE_FULFILLED' });
+    yield put({ type: a.STORAGE_DELETE_FULFILLED });
   } catch (error) {
     if (error.code && error.code === 'storage/object-not-found') {
-      yield put({ type: 'STORAGE_DELETE_FULFILLED' });
+      yield put({ type: a.STORAGE_DELETE_FULFILLED });
     } else {
-      yield put({ type: 'STORAGE_DELETE_REJECTED', payload: { error } });
+      yield put({ type: a.STORAGE_DELETE_REJECTED, payload: { error } });
     }
   }
 }
 
 export function* addToStorage(userId, flockId, image) {
+  yield put({ type: a.STORAGE_UPLOAD_REQUESTED });
   const ref = firebase.storage().ref();
   const thumbnail = { height: 128, width: 128, path: null };
 
@@ -539,7 +541,7 @@ export function* addToStorage(userId, flockId, image) {
     image.path,
     thumbnail.width,
     thumbnail.height,
-    'PNG',
+    'JPEG',
     100,
     0,
   );
@@ -557,9 +559,9 @@ export function* addToStorage(userId, flockId, image) {
         return call([putRef, putRef.putFile], img.path);
       }),
     );
-    yield put({ type: 'STORAGE_UPLOAD_FULFILLED', payload: results });
+    yield put({ type: a.STORAGE_UPLOAD_FULFILLED, payload: results });
   } catch (error) {
-    yield put({ type: 'STORAGE_UPLOAD_REJECTED', payload: { error } });
+    yield put({ type: a.STORAGE_UPLOAD_REJECTED, payload: { error } });
   }
 }
 
@@ -570,8 +572,8 @@ export function* deleteChicken(action) {
     // remove the chicken's images from storage
     const task = yield fork(deleteFromStorage, paths);
     const { errorResult } = yield race({
-      successResult: take('STORAGE_DELETE_FULFILLED'),
-      errorResult: take('STORAGE_DELETE_REJECTED'),
+      successResult: take(a.STORAGE_DELETE_FULFILLED),
+      errorResult: take(a.STORAGE_DELETE_REJECTED),
     });
 
     if (errorResult) {
@@ -649,8 +651,8 @@ export function* saveChicken(action) {
           prevChickenState.thumbnailPath,
         ]);
         const { errorResult } = yield race({
-          successResult: take('STORAGE_DELETE_FULFILLED'),
-          errorResult: take('STORAGE_DELETE_REJECTED'),
+          successResult: take(a.STORAGE_DELETE_FULFILLED),
+          errorResult: take(a.STORAGE_DELETE_REJECTED),
         });
 
         if (errorResult) {
@@ -664,18 +666,19 @@ export function* saveChicken(action) {
     if (newImage) {
       const task = yield fork(addToStorage, userId, flockId, newImage);
       const { successResult, errorResult } = yield race({
-        successResult: take('STORAGE_UPLOAD_FULFILLED'),
-        errorResult: take('STORAGE_UPLOAD_REJECTED'),
+        successResult: take(a.STORAGE_UPLOAD_FULFILLED),
+        errorResult: take(a.STORAGE_UPLOAD_REJECTED),
       });
 
       if (errorResult) {
         yield cancel(task);
         throw errorResult.payload.error;
       }
-
-      console.log(successResult);
-
-      // Set image properties on new chicken
+      const images = successResult.payload;
+      chicken.photoPath = images[0].ref;
+      chicken.photoUrl = images[0].downloadURL;
+      chicken.thumbnailPath = images[1].ref;
+      chicken.thumbnailUrl = images[1].downloadURL;
     }
 
     // Default to create action

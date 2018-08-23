@@ -39,6 +39,7 @@ Object {
       "orderByChild": [Function],
       "path": "flocks/flockId1",
       "push": [MockFunction],
+      "putFile": [MockFunction],
       "remove": [MockFunction],
       "set": [MockFunction],
       "snap": Object {
