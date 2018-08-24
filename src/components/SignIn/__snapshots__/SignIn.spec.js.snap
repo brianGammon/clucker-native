@@ -58,7 +58,10 @@ exports[`SignIn component: Should render 1`] = `
           "validatorsOrOpts": Object {
             "asyncValidators": null,
             "updateOn": null,
-            "validators": [Function],
+            "validators": Array [
+              [Function],
+              [Function],
+            ],
           },
           "value": "",
           "valueChanges": Observable {
@@ -156,44 +159,127 @@ exports[`SignIn component: Should render 1`] = `
 `;
 
 exports[`SignIn component: SignInRenderer renders when no error message 1`] = `
-<Component
+<ImageBackground
+  source={
+    Object {
+      "testUri": "../../../src/assets/rays.jpg",
+    }
+  }
   style={
     Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
+      "height": "100%",
+      "width": "100%",
     }
   }
 >
-  <FieldGroup
-    render={[Function]}
-    strict={true}
-  />
-</Component>
-`;
-
-exports[`SignIn component: SignInRenderer renders with error message 1`] = `
-<Component
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
->
-  <Component
+  <KeyboardAvoidingView
+    behavior="padding"
+    enabled={true}
+    keyboardVerticalOffset={0}
     style={
       Object {
-        "color": "red",
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       }
     }
   >
-    Some error occurred
-  </Component>
-  <FieldGroup
-    render={[Function]}
-    strict={true}
-  />
-</Component>
+    <Component
+      style={
+        Object {
+          "backgroundColor": "rgba(255, 255, 255, .85)",
+          "borderRadius": 20,
+          "padding": 20,
+          "width": "90%",
+        }
+      }
+    >
+      <Component>
+        <Component
+          style={
+            Object {
+              "alignSelf": "center",
+              "fontSize": 40,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Clucker
+        </Component>
+      </Component>
+      <FieldGroup
+        render={[Function]}
+        strict={true}
+      />
+    </Component>
+  </KeyboardAvoidingView>
+</ImageBackground>
+`;
+
+exports[`SignIn component: SignInRenderer renders with error message 1`] = `
+<ImageBackground
+  source={
+    Object {
+      "testUri": "../../../src/assets/rays.jpg",
+    }
+  }
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <KeyboardAvoidingView
+    behavior="padding"
+    enabled={true}
+    keyboardVerticalOffset={0}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "backgroundColor": "rgba(255, 255, 255, .85)",
+          "borderRadius": 20,
+          "padding": 20,
+          "width": "90%",
+        }
+      }
+    >
+      <Component>
+        <Component
+          style={
+            Object {
+              "alignSelf": "center",
+              "fontSize": 40,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Clucker
+        </Component>
+      </Component>
+      <Component
+        style={
+          Object {
+            "color": "red",
+            "padding": 20,
+          }
+        }
+      >
+        Some error occurred
+      </Component>
+      <FieldGroup
+        render={[Function]}
+        strict={true}
+      />
+    </Component>
+  </KeyboardAvoidingView>
+</ImageBackground>
 `;

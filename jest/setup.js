@@ -4,6 +4,12 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
+// ReferenceError: window is not defined caused by react-reactive-form
+// https://github.com/algolia/react-instantsearch/issues/609
+if (typeof window !== 'object') {
+  global.window = global;
+}
+
 global.shallow = shallow;
 global.mount = mount;
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { FormBuilder, Validators } from 'react-reactive-form';
 import SignUpRenderer from './SignUpRenderer';
 import { signUpRequested } from '../../redux/actions';
 import { actionTypes } from '../../redux/constants';
@@ -11,22 +12,30 @@ type Props = {
   clearError: () => void,
 };
 
-type State = {
-  email: string,
-  password: string,
-  confirmPassword: string,
+const mustMatchValidator = (target: string, compareTo: string) => (group) => {
+  const targetControl = group.controls[target];
+  const compareToControl = group.controls[compareTo];
+  if (targetControl.value !== compareToControl.value) {
+    targetControl.setErrors({ mustMatch: true });
+  } else {
+    targetControl.setErrors(null);
+  }
+  return null;
 };
 
-class SignUp extends React.Component<Props, State> {
+class SignUp extends React.Component<Props> {
   static navigationOptions = {
-    title: 'Sign Up',
+    title: 'Sign In',
   };
 
-  state = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
+  loginForm = FormBuilder.group(
+    {
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+    },
+    { validators: mustMatchValidator('confirmPassword', 'password') },
+  );
 
   componentWillUnmount() {
     const { error, clearError } = this.props;
@@ -35,28 +44,27 @@ class SignUp extends React.Component<Props, State> {
     }
   }
 
-  handleSignUp = async () => {
-    const { email, password } = this.state;
+  handleReset = () => {
+    const { clearError } = this.props;
+    this.loginForm.reset();
+    clearError();
+  };
+
+  handleSubmit = () => {
+    const { email, password } = this.loginForm.value;
     const { signUp } = this.props;
     signUp(email, password);
   };
 
-  handleChangeText = (field: string, text: string) => {
-    this.setState({ [field]: text });
-  };
-
   render() {
     const { navigation, error } = this.props;
-    const { email, password, confirmPassword } = this.state;
     return (
       <SignUpRenderer
-        email={email}
-        password={password}
-        confirmPassword={confirmPassword}
-        error={error}
         navigation={navigation}
-        handleSignUp={this.handleSignUp}
-        handleChangeText={this.handleChangeText}
+        error={error}
+        loginForm={this.loginForm}
+        handleReset={this.handleReset}
+        handleSubmit={this.handleSubmit}
       />
     );
   }

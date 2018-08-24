@@ -2,254 +2,338 @@
 
 exports[`SignUp component: Should render 1`] = `
 <SignUpRenderer
-  confirmPassword=""
-  email=""
   error={null}
-  handleChangeText={[Function]}
-  handleSignUp={[Function]}
-  password=""
+  handleReset={[Function]}
+  handleSubmit={[Function]}
+  loginForm={
+    FormGroup {
+      "_onDisabledChange": Array [],
+      "_pendingChange": false,
+      "_pendingDirty": false,
+      "_pendingTouched": false,
+      "asyncValidator": null,
+      "controls": Object {
+        "confirmPassword": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": [Function],
+          },
+          "value": "",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "email": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "",
+          "active": false,
+          "asyncValidator": null,
+          "errors": Object {
+            "required": true,
+          },
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "INVALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": Array [
+              [Function],
+              [Function],
+            ],
+          },
+          "value": "",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "password": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "",
+          "active": false,
+          "asyncValidator": null,
+          "errors": Object {
+            "required": true,
+          },
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "INVALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": Array [
+              [Function],
+              [Function],
+            ],
+          },
+          "value": "",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+      },
+      "errors": null,
+      "get": [Function],
+      "getError": [Function],
+      "handleSubmit": [Function],
+      "hasError": [Function],
+      "meta": Object {},
+      "patchValue": [Function],
+      "pristine": true,
+      "reset": [Function],
+      "setValue": [Function],
+      "stateChanges": Observable {
+        "observers": Array [],
+      },
+      "status": "INVALID",
+      "statusChanges": Observable {
+        "observers": Array [],
+      },
+      "submitted": false,
+      "touched": false,
+      "validator": [Function],
+      "validatorOrOpts": Object {
+        "asyncValidators": undefined,
+        "updateOn": undefined,
+        "validators": [Function],
+      },
+      "value": Object {
+        "confirmPassword": "",
+        "email": "",
+        "password": "",
+      },
+      "valueChanges": Observable {
+        "observers": Array [],
+      },
+    }
+  }
 />
 `;
 
 exports[`SignUp component: SignUpRenderer renders when no error message 1`] = `
-<Component
+<ImageBackground
+  source={
+    Object {
+      "testUri": "../../../src/assets/rays.jpg",
+    }
+  }
   style={
     Object {
-      "flex": 1,
-      "padding": 20,
+      "height": "100%",
+      "width": "100%",
     }
   }
 >
-  <Component>
-    Sign Up
-  </Component>
-  <Component
+  <KeyboardAvoidingView
+    behavior="padding"
+    enabled={true}
+    keyboardVerticalOffset={0}
     style={
       Object {
-        "marginTop": 20,
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       }
     }
   >
     <Component
       style={
         Object {
-          "fontWeight": "bold",
+          "backgroundColor": "rgba(255, 255, 255, .85)",
+          "borderRadius": 20,
+          "padding": 20,
+          "width": "90%",
         }
       }
     >
-      Email:
+      <Component>
+        <Component
+          style={
+            Object {
+              "alignSelf": "center",
+              "fontSize": 40,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Clucker
+        </Component>
+      </Component>
+      <FieldGroup
+        render={[Function]}
+        strict={true}
+      />
     </Component>
-    <TextInput
-      allowFontScaling={true}
-      autoCapitalize="none"
-      onChangeText={[Function]}
-      style={
-        Object {
-          "borderColor": "grey",
-          "borderWidth": 1,
-          "fontSize": 16,
-        }
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "marginTop": 20,
-      }
-    }
-  >
-    <Component
-      style={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Password:
-    </Component>
-    <TextInput
-      allowFontScaling={true}
-      autoCapitalize="none"
-      onChangeText={[Function]}
-      secureTextEntry={true}
-      style={
-        Object {
-          "borderColor": "grey",
-          "borderWidth": 1,
-          "fontSize": 16,
-        }
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "marginTop": 20,
-      }
-    }
-  >
-    <Component
-      style={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Confirm Password:
-    </Component>
-    <TextInput
-      allowFontScaling={true}
-      autoCapitalize="none"
-      onChangeText={[Function]}
-      secureTextEntry={true}
-      style={
-        Object {
-          "borderColor": "grey",
-          "borderWidth": 1,
-          "fontSize": 16,
-        }
-      }
-      underlineColorAndroid="transparent"
-    />
-  </Component>
-  <Button
-    onPress={[Function]}
-    title="Submit"
-  />
-  <Button
-    onPress={[Function]}
-    title="Already have an account? Sign In"
-  />
-</Component>
+  </KeyboardAvoidingView>
+</ImageBackground>
 `;
 
 exports[`SignUp component: SignUpRenderer renders with error message 1`] = `
-<Component
+<ImageBackground
+  source={
+    Object {
+      "testUri": "../../../src/assets/rays.jpg",
+    }
+  }
   style={
     Object {
-      "flex": 1,
-      "padding": 20,
+      "height": "100%",
+      "width": "100%",
     }
   }
 >
-  <Component>
-    Sign Up
-  </Component>
-  <Component
+  <KeyboardAvoidingView
+    behavior="padding"
+    enabled={true}
+    keyboardVerticalOffset={0}
     style={
       Object {
-        "color": "red",
-      }
-    }
-  >
-    Some error occurred
-  </Component>
-  <Component
-    style={
-      Object {
-        "marginTop": 20,
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       }
     }
   >
     <Component
       style={
         Object {
-          "fontWeight": "bold",
+          "backgroundColor": "rgba(255, 255, 255, .85)",
+          "borderRadius": 20,
+          "padding": 20,
+          "width": "90%",
         }
       }
     >
-      Email:
+      <Component>
+        <Component
+          style={
+            Object {
+              "alignSelf": "center",
+              "fontSize": 40,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Clucker
+        </Component>
+      </Component>
+      <Component
+        style={
+          Object {
+            "color": "red",
+            "padding": 20,
+          }
+        }
+      >
+        Some error occurred
+      </Component>
+      <FieldGroup
+        render={[Function]}
+        strict={true}
+      />
     </Component>
-    <TextInput
-      allowFontScaling={true}
-      autoCapitalize="none"
-      onChangeText={[Function]}
-      style={
-        Object {
-          "borderColor": "grey",
-          "borderWidth": 1,
-          "fontSize": 16,
-        }
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "marginTop": 20,
-      }
-    }
-  >
-    <Component
-      style={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Password:
-    </Component>
-    <TextInput
-      allowFontScaling={true}
-      autoCapitalize="none"
-      onChangeText={[Function]}
-      secureTextEntry={true}
-      style={
-        Object {
-          "borderColor": "grey",
-          "borderWidth": 1,
-          "fontSize": 16,
-        }
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "marginTop": 20,
-      }
-    }
-  >
-    <Component
-      style={
-        Object {
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Confirm Password:
-    </Component>
-    <TextInput
-      allowFontScaling={true}
-      autoCapitalize="none"
-      onChangeText={[Function]}
-      secureTextEntry={true}
-      style={
-        Object {
-          "borderColor": "grey",
-          "borderWidth": 1,
-          "fontSize": 16,
-        }
-      }
-      underlineColorAndroid="transparent"
-    />
-  </Component>
-  <Button
-    onPress={[Function]}
-    title="Submit"
-  />
-  <Button
-    onPress={[Function]}
-    title="Already have an account? Sign In"
-  />
-</Component>
+  </KeyboardAvoidingView>
+</ImageBackground>
 `;

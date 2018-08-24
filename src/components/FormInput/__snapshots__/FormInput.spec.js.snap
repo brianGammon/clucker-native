@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInput renders - error, not touched yet 1`] = `
+<Component
+  style={
+    Object {
+      "width": "90%",
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    placeholder="Enter thisField"
+    secureTextEntry={true}
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "height": 40,
+        "marginTop": 8,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Component
+    style={
+      Object {
+        "height": 20,
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "color": "red",
+        }
+      }
+    />
+  </Component>
+</Component>
+`;
+
+exports[`FormInput renders - errors, touched 1`] = `
+<Component
+  style={
+    Object {
+      "width": "90%",
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    placeholder="Enter thisField"
+    secureTextEntry={true}
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "height": 40,
+        "marginTop": 8,
+        "padding": 5,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+  <Component
+    style={
+      Object {
+        "height": 20,
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "color": "red",
+        }
+      }
+    >
+      Enter a valid email address.
+    </Component>
+  </Component>
+</Component>
+`;

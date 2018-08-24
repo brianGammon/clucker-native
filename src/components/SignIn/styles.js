@@ -10,16 +10,19 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8,
-  },
-  text: {
-    fontSize: 30,
-  },
   error: {
     color: 'red',
+    padding: 20,
+  },
+  signInContainer: {
+    backgroundColor: 'rgba(255, 255, 255, .85)',
+    width: '90%',
+    padding: 20,
+    borderRadius: 20,
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
 });

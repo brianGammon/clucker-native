@@ -18,7 +18,7 @@ class SignIn extends React.Component<Props> {
   };
 
   loginForm = FormBuilder.group({
-    email: ['', Validators.required],
+    email: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required],
   });
 
@@ -30,7 +30,9 @@ class SignIn extends React.Component<Props> {
   }
 
   handleReset = () => {
+    const { clearError } = this.props;
     this.loginForm.reset();
+    clearError();
   };
 
   handleSubmit = () => {
