@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { FormBuilder, Validators } from 'react-reactive-form';
 import { actionTypes } from '../../redux/constants';
 import { resetPasswordRequested } from '../../redux/actions';
 import ResetPasswordRenderer from './ResetPasswordRenderer';
@@ -13,7 +14,6 @@ type Props = {
 };
 
 type State = {
-  email: string,
   successMessage: string,
 };
 
@@ -22,7 +22,11 @@ class ResetPassword extends React.Component<Props, State> {
     title: 'Reset Password',
   };
 
-  state = { email: '', successMessage: null };
+  form = FormBuilder.group({
+    email: ['', [Validators.email, Validators.required]],
+  });
+
+  state = { successMessage: null };
 
   componentDidUpdate(prevProps) {
     const { inProgress: prevInProgress } = prevProps;
@@ -43,27 +47,23 @@ class ResetPassword extends React.Component<Props, State> {
     this.setState({ successMessage: 'Check your inbox for an email.' });
   };
 
-  handleChangeText = (text: string) => {
-    this.setState({ email: text });
-  };
-
-  handleSendPasswordResetEmail = () => {
+  handleSubmit = () => {
+    const { email } = this.form.value;
     const { sendPasswordResetEmail } = this.props;
-    const { email } = this.state;
+    console.log(email);
     sendPasswordResetEmail(email);
   };
 
   render() {
     const { navigation, error } = this.props;
-    const { email, successMessage } = this.state;
+    const { successMessage } = this.state;
     return (
       <ResetPasswordRenderer
         navigation={navigation}
-        email={email}
+        form={this.form}
         successMessage={successMessage}
         error={error}
-        handleChangeText={this.handleChangeText}
-        handleSendPasswordResetEmail={this.handleSendPasswordResetEmail}
+        handleSubmit={this.handleSubmit}
       />
     );
   }

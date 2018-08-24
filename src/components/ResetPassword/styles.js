@@ -3,18 +3,30 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  formContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  error: {
+    color: 'red',
     padding: 20,
-    // alignItems: 'center',
   },
-  formGroup: {
-    marginTop: 20,
+  success: {
+    color: 'green',
+    padding: 20,
   },
-  label: {
+  signInContainer: {
+    backgroundColor: 'rgba(255, 255, 255, .85)',
+    width: '90%',
+    padding: 20,
+    borderRadius: 20,
+  },
+  title: {
+    fontSize: 40,
     fontWeight: 'bold',
-  },
-  input: {
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: 'grey',
+    alignSelf: 'center',
   },
 });
