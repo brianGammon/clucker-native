@@ -1,92 +1,136 @@
 import React from 'react';
 import {
-  View, Text, TextInput, Button, Image,
+  View,
+  Text,
+  Button,
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
 } from 'react-native';
+import { FieldGroup, FieldControl } from 'react-reactive-form';
+import FormInput from '../FormInput';
 import styles from './styles';
 
 type Props = {
-  name: string,
-  breed: string,
-  hatched: string,
-  photoUrl: string,
-  onFieldChanged: (fieldName: string, text: string) => void,
+  form: any,
   onRemoveProfilePhoto: () => void,
   onResetProfilePhoto: () => void,
-  onSaveForm: () => void,
+  handleSubmit: () => void,
   onSelectPhoto: (withCamera: boolean) => void,
   error: string,
   originalPhotoUrl: string,
-  newImage: any,
+  // newImage: any,
 };
 
 const ChickenEditorRenderer = ({
-  name,
-  breed,
-  hatched,
-  photoUrl,
-  onFieldChanged,
+  form,
   onRemoveProfilePhoto,
   onResetProfilePhoto,
-  onSaveForm,
+  handleSubmit,
   error,
   originalPhotoUrl,
   onSelectPhoto,
-  newImage,
-}: Props) => {
-  let imageSource = require('../../assets/default-profile-photo.png');
-  if (photoUrl !== '') {
-    imageSource = { uri: photoUrl };
-  }
-  if (newImage) {
-    imageSource = {
-      uri: `data:${newImage.mime};base64,${newImage.data}`,
-    };
-  }
+}: // newImage,
+Props) => (
+  <ScrollView>
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <View style={styles.signUpContainer}>
+        <View>
+          <Text style={styles.title}>Clucker</Text>
+        </View>
+        {error && <Text style={styles.error}>{error}</Text>}
+        <FieldGroup
+          control={form}
+          render={({ invalid }) => (
+            <View style={styles.formContainer}>
+              <FieldControl
+                name="name"
+                render={FormInput}
+                meta={{ label: 'Name' }}
+              />
 
-  return (
-    <View style={styles.container}>
-      {error && <Text>{error}</Text>}
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Name:</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={text => onFieldChanged('name', text)}
-          autoFocus
+              <FieldControl
+                name="breed"
+                render={FormInput}
+                meta={{
+                  label: 'Breed',
+                }}
+              />
+
+              <FieldControl
+                name="hatched"
+                render={FormInput}
+                meta={{
+                  label: 'Hatched On',
+                }}
+              />
+
+              <FieldControl
+                name="photoUrl"
+                strict={false}
+                render={({ handler }) => {
+                  const { newImage } = form.value;
+                  const { value: photoUrl } = handler();
+                  let imageSource = require('../../assets/default-profile-photo.png');
+                  if (photoUrl !== '') {
+                    imageSource = { uri: photoUrl };
+                  }
+                  if (newImage) {
+                    imageSource = {
+                      uri: `data:${newImage.mime};base64,${newImage.data}`,
+                    };
+                  }
+                  return (
+                    <View>
+                      <Text style={styles.label}>Profile Photo:</Text>
+                      <View style={{ flexDirection: 'row' }}>
+                        <Image
+                          style={{ width: 200, height: 200 }}
+                          source={imageSource}
+                        />
+                        <View>
+                          {photoUrl !== ''
+                              && !newImage && (
+                                <Button
+                                  onPress={onRemoveProfilePhoto}
+                                  title="Remove"
+                                />
+                          )}
+                          {((originalPhotoUrl !== '' && photoUrl === '')
+                              || newImage) && (
+                              <Button
+                                onPress={onResetProfilePhoto}
+                                title="Reset"
+                              />
+                          )}
+                          <Button
+                            onPress={() => onSelectPhoto(false)}
+                            title="Select Photo"
+                          />
+                          <Button
+                            onPress={() => onSelectPhoto(true)}
+                            title="Take Photo"
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  );
+                }}
+                meta={{
+                  label: 'Photo URL',
+                }}
+              />
+              <Button
+                disabled={invalid}
+                onPress={handleSubmit}
+                title="Save"
+              />
+            </View>
+          )}
         />
       </View>
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Breed:</Text>
-        <TextInput
-          style={styles.input}
-          value={breed}
-          onChangeText={text => onFieldChanged('breed', text)}
-        />
-      </View>
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Hatched On:</Text>
-        <TextInput
-          style={styles.input}
-          value={hatched}
-          onChangeText={text => onFieldChanged('hatched', text)}
-        />
-      </View>
-      <View style={styles.formGroup}>
-        <Text style={styles.label}>Profile Photo:</Text>
-        <Image style={{ width: 200, height: 200 }} source={imageSource} />
-        {photoUrl !== ''
-          && !newImage && (
-            <Button onPress={onRemoveProfilePhoto} title="Remove Photo" />
-        )}
-        {((originalPhotoUrl !== '' && photoUrl === '') || newImage) && (
-          <Button onPress={onResetProfilePhoto} title="Reset Photo" />
-        )}
-        <Button onPress={() => onSelectPhoto(false)} title="Select Photo" />
-        <Button onPress={() => onSelectPhoto(true)} title="Take Photo" />
-      </View>
-      <Button onPress={onSaveForm} title="Save" />
-    </View>
-  );
-};
+    </KeyboardAvoidingView>
+  </ScrollView>
+);
 
 export default ChickenEditorRenderer;

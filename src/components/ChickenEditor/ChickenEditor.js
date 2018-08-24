@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-crop-picker';
+import { FormBuilder, Validators } from 'react-reactive-form';
 import chickenSelector from '../../selectors/chickenSelector';
 import ChickenEditorRenderer from './ChickenEditorRenderer';
 import { type Chicken } from '../../types';
@@ -19,39 +20,43 @@ type Props = {
   clearError: () => void,
 };
 
-type State = {
-  name: string,
-  breed: string,
-  hatched: string,
-  photoUrl: string,
-  photoPath: string,
-  thumbnailUrl: string,
-  thumbnailPath: string,
-  newImage: any,
-};
-
-class ChickenEditor extends React.Component<Props, State> {
+class ChickenEditor extends React.Component<Props> {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.getParam('chickenId', null) ? 'Edit' : 'Add'} Chicken`,
   });
 
-  state = {
-    name: '',
-    breed: '',
-    hatched: '',
-    photoUrl: '',
-    photoPath: '',
-    thumbnailUrl: '',
-    thumbnailPath: '',
-    newImage: null,
-  };
+  form = FormBuilder.group({
+    name: ['', Validators.required],
+    breed: [''],
+    hatched: [''],
+    photoUrl: [''],
+    photoPath: [''],
+    thumbnailUrl: [''],
+    thumbnailPath: [''],
+    newImage: [null],
+  });
 
   componentDidMount() {
-    const { chicken, chickenId } = this.props;
+    const {
+      chicken: {
+        name,
+        breed,
+        hatched,
+        photoPath,
+        photoUrl,
+        thumbnailPath,
+        thumbnailUrl,
+      },
+      chickenId,
+    } = this.props;
     if (chickenId) {
-      this.setState({
-        ...chicken,
-      });
+      this.form.controls.name.setValue(name);
+      this.form.controls.breed.setValue(breed);
+      this.form.controls.hatched.setValue(hatched);
+      this.form.controls.photoUrl.setValue(photoUrl);
+      this.form.controls.photoPath.setValue(photoPath);
+      this.form.controls.thumbnailUrl.setValue(thumbnailUrl);
+      this.form.controls.thumbnailPath.setValue(thumbnailPath);
     }
   }
 
@@ -70,17 +75,11 @@ class ChickenEditor extends React.Component<Props, State> {
     }
   }
 
-  onFieldChanged = (name, text) => {
-    this.setState({ [name]: text });
-  };
-
   onRemoveProfilePhoto = () => {
-    this.setState({
-      photoPath: '',
-      photoUrl: '',
-      thumbnailPath: '',
-      thumbnailUrl: '',
-    });
+    this.form.controls.photoUrl.setValue('');
+    this.form.controls.photoPath.setValue('');
+    this.form.controls.thumbnailUrl.setValue('');
+    this.form.controls.thumbnailPath.setValue('');
   };
 
   onResetProfilePhoto = () => {
@@ -89,13 +88,11 @@ class ChickenEditor extends React.Component<Props, State> {
         photoPath, photoUrl, thumbnailPath, thumbnailUrl,
       },
     } = this.props;
-    this.setState({
-      photoPath,
-      photoUrl,
-      thumbnailPath,
-      thumbnailUrl,
-      newImage: null,
-    });
+    this.form.controls.photoUrl.setValue(photoUrl);
+    this.form.controls.photoPath.setValue(photoPath);
+    this.form.controls.thumbnailUrl.setValue(thumbnailUrl);
+    this.form.controls.thumbnailPath.setValue(thumbnailPath);
+    this.form.controls.newImage.setValue(null);
   };
 
   onSelectPhoto = (withCamera: boolean) => {
@@ -111,7 +108,7 @@ class ChickenEditor extends React.Component<Props, State> {
     }
     picker(options)
       .then((image) => {
-        this.setState({ newImage: image });
+        this.form.controls.newImage.setValue(image);
       })
       .catch((error) => {
         if (error.code !== 'E_PICKER_CANCELLED') {
@@ -124,7 +121,7 @@ class ChickenEditor extends React.Component<Props, State> {
     const {
       chicken, chickenId, flockId, saveForm, userId,
     } = this.props;
-    const { newImage, ...rest } = this.state;
+    const { newImage, ...rest } = this.form.value;
     const data = { ...chicken, ...rest };
     const payload = {
       flockId,
@@ -143,11 +140,10 @@ class ChickenEditor extends React.Component<Props, State> {
     } = this.props;
     return (
       <ChickenEditorRenderer
-        {...this.state}
-        onFieldChanged={this.onFieldChanged}
+        form={this.form}
         onRemoveProfilePhoto={this.onRemoveProfilePhoto}
         onResetProfilePhoto={this.onResetProfilePhoto}
-        onSaveForm={this.onSaveForm}
+        handleSubmit={this.onSaveForm}
         error={error}
         originalPhotoUrl={photoUrl}
         onSelectPhoto={this.onSelectPhoto}
