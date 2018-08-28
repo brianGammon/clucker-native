@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import { FieldGroup, FieldControl } from 'react-reactive-form';
+import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
 import styles from './styles';
 
@@ -34,10 +34,7 @@ const ChickenEditorRenderer = ({
 Props) => (
   <ScrollView>
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-      <View style={styles.signUpContainer}>
-        <View>
-          <Text style={styles.title}>Clucker</Text>
-        </View>
+      <View style={styles.editorContainer}>
         {error && <Text style={styles.error}>{error}</Text>}
         <FieldGroup
           control={form}
@@ -46,7 +43,7 @@ Props) => (
               <FieldControl
                 name="name"
                 render={FormInput}
-                meta={{ label: 'Name' }}
+                meta={{ label: 'Name', maxLength: 25 }}
               />
 
               <FieldControl
@@ -54,6 +51,7 @@ Props) => (
                 render={FormInput}
                 meta={{
                   label: 'Breed',
+                  maxLength: 25,
                 }}
               />
 
@@ -65,12 +63,10 @@ Props) => (
                 }}
               />
 
-              <FieldControl
-                name="photoUrl"
-                strict={false}
-                render={({ handler }) => {
+              <Field
+                control={form.get('photoUrl')}
+                render={({ value: photoUrl }) => {
                   const { newImage } = form.value;
-                  const { value: photoUrl } = handler();
                   let imageSource = require('../../assets/default-profile-photo.png');
                   if (photoUrl !== '') {
                     imageSource = { uri: photoUrl };
@@ -90,18 +86,18 @@ Props) => (
                         />
                         <View>
                           {photoUrl !== ''
-                              && !newImage && (
-                                <Button
-                                  onPress={onRemoveProfilePhoto}
-                                  title="Remove"
-                                />
+                            && !newImage && (
+                              <Button
+                                onPress={onRemoveProfilePhoto}
+                                title="Remove"
+                              />
                           )}
                           {((originalPhotoUrl !== '' && photoUrl === '')
-                              || newImage) && (
-                              <Button
-                                onPress={onResetProfilePhoto}
-                                title="Reset"
-                              />
+                            || newImage) && (
+                            <Button
+                              onPress={onResetProfilePhoto}
+                              title="Reset"
+                            />
                           )}
                           <Button
                             onPress={() => onSelectPhoto(false)}
@@ -120,11 +116,7 @@ Props) => (
                   label: 'Photo URL',
                 }}
               />
-              <Button
-                disabled={invalid}
-                onPress={handleSubmit}
-                title="Save"
-              />
+              <Button disabled={invalid} onPress={handleSubmit} title="Save" />
             </View>
           )}
         />

@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
+import errorMapper from '../../utils/errorMapper';
 import styles from './styles';
 
 type Props = {
@@ -14,25 +15,11 @@ type Props = {
     mustMatchLabel: string,
     label: string,
     secureTextEntry: boolean,
+    multiline: boolean,
+    maxLength: number,
+    numberOfLines: number,
+    keyboardType: any,
   },
-};
-
-const errorMapper = (errors, meta) => {
-  const errorMap = {
-    email: 'Enter a valid email address.',
-    required: `${meta.label} is required.`,
-    minLength:
-      errors && errors.minLength
-        ? `Must be at least ${errors.minLength.requiredLength} characters.`
-        : 'Not long enough.',
-    mustMatch: `Must match ${meta.mustMatchLabel || 'the other field'}.`,
-  };
-  if (errors) {
-    const result = Object.keys(errorMap).filter(k => k in errors);
-    return errorMap[result[0]];
-  }
-
-  return null;
 };
 
 const FormInput = ({
@@ -42,7 +29,11 @@ const FormInput = ({
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.textInput}
+        keyboardType={meta.keyboardType || null}
+        maxLength={meta.maxLength || null}
+        numberOfLines={meta.numberOfLines || null}
+        multiline={meta.multiline}
+        style={[styles.textInput, meta.multiline ? { height: 125 } : {}]}
         placeholder={`Enter ${meta.label}`}
         autoCapitalize={meta.autoCapitalize}
         secureTextEntry={meta.secureTextEntry}

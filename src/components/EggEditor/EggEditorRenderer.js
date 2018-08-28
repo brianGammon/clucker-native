@@ -1,23 +1,24 @@
 /* @flow */
 import React from 'react';
 import {
-  Text, TextInput, View, Button, Switch, Picker,
+  View,
+  Text,
+  Button,
+  KeyboardAvoidingView,
+  Switch,
+  Picker,
 } from 'react-native';
+import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import { type Navigation, type Chicken } from '../../types';
+import FormInput from '../FormInput';
 import styles from './styles';
 
 type Props = {
   navigation: Navigation,
-  damaged: boolean,
-  chickenId: string,
-  date: string,
-  notes: string,
-  weight: string | number,
+  form: any,
   chickens: {
     [string]: Chicken,
   },
-  onFieldChanged: (field: string, value: string) => void,
-  handleToggleSwitch: (state: boolean) => void,
   handlePickItem: (itemValue: string) => void,
   onSaveForm: () => void,
   error: string,
@@ -25,74 +26,96 @@ type Props = {
 
 const EggEditorRenderer = ({
   navigation,
-  damaged,
-  chickenId,
-  date,
-  notes,
-  weight,
+  form,
   chickens,
-  onFieldChanged,
-  handleToggleSwitch,
   handlePickItem,
   onSaveForm,
   error,
 }: Props) => (
-  <View style={styles.container}>
-    {error && <Text>{error}</Text>}
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Date:</Text>
-      <TextInput
-        style={styles.input}
-        value={date}
-        onChangeText={text => onFieldChanged('date', text)}
-        autoFocus
-      />
-    </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Chicken:</Text>
-      <Picker
-        selectedValue={chickenId || 'unknown'}
-        style={{ borderWidth: 1 }}
-        onValueChange={handlePickItem}
-      >
-        <Picker.Item label="I'm not sure" value="unknown" />
-        {Object.keys(chickens || {}).map(key => (
-          <Picker.Item key={key} label={chickens[key].name} value={key} />
-        ))}
-      </Picker>
-    </View>
+  <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+    <View style={styles.editorContainer}>
+      {error && <Text style={styles.error}>{error}</Text>}
 
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Chicken:</Text>
-      <TextInput
-        style={styles.input}
-        value={chickenId}
-        onChangeText={text => onFieldChanged('chickenId', text)}
+      <FieldGroup
+        control={form}
+        render={({ invalid }) => (
+          <View style={styles.formContainer}>
+            <FieldControl
+              name="date"
+              render={FormInput}
+              meta={{ label: 'Date' }}
+            />
+
+            <Field
+              control={form.get('chickenId')}
+              render={({ value: chickenId, errors, touched }) => (
+                <View style={{ width: '90%' }}>
+                  <Text style={styles.label}>Chicken:</Text>
+                  {errors
+                    && touched && (
+                      <Text style={styles.error}>
+                        Select a chicken or &quot;I&apos;m not sure&quot;
+                      </Text>
+                  )}
+                  <Picker
+                    selectedValue={chickenId || ''}
+                    style={{ borderWidth: 1 }}
+                    onValueChange={handlePickItem}
+                  >
+                    <Picker.Item label="Select a chicken" value="" />
+                    <Picker.Item label="I'm not sure" value="unknown" />
+                    {Object.keys(chickens || {}).map(key => (
+                      <Picker.Item
+                        key={key}
+                        label={chickens[key].name}
+                        value={key}
+                      />
+                    ))}
+                  </Picker>
+                </View>
+              )}
+            />
+
+            <FieldControl
+              name="weight"
+              render={FormInput}
+              meta={{
+                label: 'Weight',
+                keyboardType: 'decimal-pad',
+              }}
+            />
+
+            <FieldControl
+              name="damaged"
+              render={({ handler }) => (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Switch
+                    style={{ marginRight: 10, tintColor: 'grey' }}
+                    {...handler('switch')}
+                  />
+                  <Text>This egg was damaged</Text>
+                </View>
+              )}
+            />
+
+            <FieldControl
+              name="notes"
+              render={FormInput}
+              meta={{
+                label: 'Notes',
+                multiline: true,
+                // numberOfLines: 4,
+                maxLength: 250,
+              }}
+            />
+
+            <Button disabled={invalid} onPress={onSaveForm} title="Save" />
+            <Button onPress={() => navigation.goBack()} title="Cancel" />
+          </View>
+        )}
       />
     </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Weight:</Text>
-      <TextInput
-        style={styles.input}
-        value={weight.toString()}
-        onChangeText={text => onFieldChanged('weight', text)}
-      />
-    </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Damaged?:</Text>
-      <Switch value={damaged} onValueChange={handleToggleSwitch} />
-    </View>
-    <View style={styles.formGroup}>
-      <Text style={styles.label}>Notes:</Text>
-      <TextInput
-        style={styles.input}
-        value={notes}
-        onChangeText={text => onFieldChanged('notes', text)}
-      />
-    </View>
-    <Button onPress={onSaveForm} title="Save" />
-    <Button onPress={() => navigation.goBack()} title="Cancel" />
-  </View>
+  </KeyboardAvoidingView>
 );
 
 export default EggEditorRenderer;

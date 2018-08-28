@@ -1,26 +1,17 @@
+/* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormBuilder, Validators } from 'react-reactive-form';
 import SignUpRenderer from './SignUpRenderer';
 import { signUpRequested } from '../../redux/actions';
 import { actionTypes } from '../../redux/constants';
+import { mustMatchValidator } from '../../utils/validators';
 
 type Props = {
   navigation: any,
   error: string,
   signUp: (email: string, password: string) => void,
   clearError: () => void,
-};
-
-const mustMatchValidator = (target: string, compareTo: string) => (group) => {
-  const targetControl = group.controls[target];
-  const compareToControl = group.controls[compareTo];
-  if (targetControl.value !== compareToControl.value) {
-    targetControl.setErrors({ mustMatch: true });
-  } else {
-    targetControl.setErrors(null);
-  }
-  return null;
 };
 
 class SignUp extends React.Component<Props> {

@@ -11,17 +11,23 @@ exports[`FormInput renders - error, not touched yet 1`] = `
   <TextInput
     allowFontScaling={true}
     autoCapitalize="none"
+    keyboardType={null}
+    maxLength={null}
+    numberOfLines={null}
     placeholder="Enter thisField"
     secureTextEntry={true}
     style={
-      Object {
-        "borderColor": "gray",
-        "borderRadius": 10,
-        "borderWidth": 1,
-        "height": 40,
-        "marginTop": 8,
-        "padding": 5,
-      }
+      Array [
+        Object {
+          "borderColor": "gray",
+          "borderRadius": 10,
+          "borderWidth": 1,
+          "height": 40,
+          "marginTop": 8,
+          "padding": 5,
+        },
+        Object {},
+      ]
     }
     underlineColorAndroid="transparent"
   />
@@ -54,17 +60,23 @@ exports[`FormInput renders - errors, touched 1`] = `
   <TextInput
     allowFontScaling={true}
     autoCapitalize="none"
+    keyboardType={null}
+    maxLength={null}
+    numberOfLines={null}
     placeholder="Enter thisField"
     secureTextEntry={true}
     style={
-      Object {
-        "borderColor": "gray",
-        "borderRadius": 10,
-        "borderWidth": 1,
-        "height": 40,
-        "marginTop": 8,
-        "padding": 5,
-      }
+      Array [
+        Object {
+          "borderColor": "gray",
+          "borderRadius": 10,
+          "borderWidth": 1,
+          "height": 40,
+          "marginTop": 8,
+          "padding": 5,
+        },
+        Object {},
+      ]
     }
     underlineColorAndroid="transparent"
   />

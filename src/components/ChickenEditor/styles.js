@@ -12,6 +12,11 @@ export default StyleSheet.create({
   label: {
     fontWeight: 'bold',
   },
+  editorContainer: {
+    width: '90%',
+    padding: 20,
+    borderRadius: 20,
+  },
   input: {
     fontSize: 16,
     borderWidth: 1,

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { FormBuilder, Validators } from 'react-reactive-form';
 import EggEditorRenderer from './EggEditorRenderer';
 import { nowAsMoment } from '../../utils/dateHelper';
 import { type Chicken, type Egg, type Navigation } from '../../types';
@@ -10,6 +11,10 @@ import {
   firebaseUpdateRequested,
   firebaseCreateRequested,
 } from '../../redux/actions';
+import {
+  dateInRangeValidator,
+  weightRangeValidator,
+} from '../../utils/validators';
 
 type Props = {
   inProgress: boolean,
@@ -28,32 +33,26 @@ type Props = {
   clearError: () => void,
 };
 
-type State = {
-  damaged: boolean,
-  chickenId: string,
-  chickenName: string,
-  date: string,
-  notes: string,
-  weight: string | number,
-};
-
-class EggEditor extends React.Component<Props, State> {
-  state = {
-    damaged: false,
-    chickenId: '',
-    chickenName: '',
-    date: '',
-    notes: '',
-    weight: '',
-  };
+class EggEditor extends React.Component<Props> {
+  form = FormBuilder.group({
+    damaged: [false],
+    chickenId: ['', Validators.required],
+    chickenName: [''],
+    date: ['', [Validators.required, dateInRangeValidator]],
+    notes: [''],
+    weight: [
+      '',
+      [Validators.pattern(/^\d+([.]\d{0,1})?$/), weightRangeValidator],
+    ],
+  });
 
   componentDidMount() {
     const {
       chickenId, defaultDate, egg, chickens,
     } = this.props;
     let defaultState = {
-      ...this.state,
-      chickenId: chickenId || 'unknown',
+      ...this.form.value,
+      chickenId: chickenId || '',
       chickenName: chickenId ? chickens[chickenId].name : '',
       date: defaultDate,
     };
@@ -62,7 +61,12 @@ class EggEditor extends React.Component<Props, State> {
       const { userId, modified, ...rest } = egg;
       defaultState = { ...defaultState, ...rest };
     }
-    this.setState({ ...defaultState });
+    this.form.controls.damaged.setValue(defaultState.damaged);
+    this.form.controls.chickenId.setValue(defaultState.chickenId);
+    this.form.controls.chickenName.setValue(defaultState.chickenName);
+    this.form.controls.date.setValue(defaultState.date);
+    this.form.controls.notes.setValue(defaultState.notes);
+    this.form.controls.weight.setValue(defaultState.weight);
   }
 
   componentDidUpdate(prevProps) {
@@ -86,7 +90,7 @@ class EggEditor extends React.Component<Props, State> {
     } = this.props;
     const data = {
       ...egg,
-      ...this.state,
+      ...this.form.value,
       modified: moment().toISOString(),
       userId,
     };
@@ -94,21 +98,16 @@ class EggEditor extends React.Component<Props, State> {
     saveForm(payload);
   };
 
-  onFieldChanged = (fieldName, value) => {
-    this.setState({ [fieldName]: value });
-  };
-
   handlePickItem = (itemValue) => {
     const { chickens } = this.props;
-    this.setState({
-      chickenId: itemValue,
-      chickenName: chickens[itemValue] ? chickens[itemValue].name : 'Unknown',
-    });
-  };
+    const { chickenId: control } = this.form.controls;
+    control.setValue(itemValue);
+    control.markAsTouched();
 
-  handleToggleSwitch = () => this.setState(state => ({
-    damaged: !state.damaged,
-  }));
+    this.form.controls.chickenName.setValue(
+      chickens[itemValue] ? chickens[itemValue].name : 'Unknown',
+    );
+  };
 
   render() {
     const { navigation, chickens, error } = this.props;
@@ -117,9 +116,7 @@ class EggEditor extends React.Component<Props, State> {
       <EggEditorRenderer
         navigation={navigation}
         chickens={chickens}
-        {...this.state}
-        onFieldChanged={this.onFieldChanged}
-        handleToggleSwitch={this.handleToggleSwitch}
+        form={this.form}
         handlePickItem={this.handlePickItem}
         onSaveForm={this.onSaveForm}
         error={error}
