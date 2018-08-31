@@ -65,6 +65,7 @@ Props) => (
 
               <Field
                 control={form.get('photoUrl')}
+                strict={false}
                 render={({ value: photoUrl }) => {
                   const { newImage } = form.value;
                   let imageSource = require('../../assets/default-profile-photo.png');

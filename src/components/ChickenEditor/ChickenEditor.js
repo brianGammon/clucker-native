@@ -88,10 +88,10 @@ class ChickenEditor extends React.Component<Props> {
         photoPath, photoUrl, thumbnailPath, thumbnailUrl,
       },
     } = this.props;
-    this.form.controls.photoUrl.setValue(photoUrl);
-    this.form.controls.photoPath.setValue(photoPath);
-    this.form.controls.thumbnailUrl.setValue(thumbnailUrl);
-    this.form.controls.thumbnailPath.setValue(thumbnailPath);
+    this.form.controls.photoUrl.setValue(photoUrl || '');
+    this.form.controls.photoPath.setValue(photoPath || '');
+    this.form.controls.thumbnailUrl.setValue(thumbnailUrl || '');
+    this.form.controls.thumbnailPath.setValue(thumbnailPath || '');
     this.form.controls.newImage.setValue(null);
   };
 
@@ -145,7 +145,7 @@ class ChickenEditor extends React.Component<Props> {
         onResetProfilePhoto={this.onResetProfilePhoto}
         handleSubmit={this.onSaveForm}
         error={error}
-        originalPhotoUrl={photoUrl}
+        originalPhotoUrl={photoUrl || ''}
         onSelectPhoto={this.onSelectPhoto}
       />
     );
