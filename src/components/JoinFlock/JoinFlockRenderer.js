@@ -5,15 +5,17 @@ import {
 import styles from './styles';
 
 type Props = {
-  flockId: string,
-  error: string,
+  value: string,
+  error: string | null,
+  touched: boolean,
   handleJoinFlock: () => void,
   handleChangeText: (text: string) => void,
 };
 
 const JoinFlockRenderer = ({
-  flockId,
+  value,
   error,
+  touched,
   handleJoinFlock,
   handleChangeText,
 }: Props) => (
@@ -22,12 +24,12 @@ const JoinFlockRenderer = ({
     <View style={styles.rowContainer}>
       <TextInput
         style={styles.input}
-        value={flockId}
+        value={value}
         onChangeText={text => handleChangeText(text)}
       />
       <Button title="Join" onPress={handleJoinFlock} />
     </View>
-    {error && <Text>{error}</Text>}
+    {error && touched && <Text>{error}</Text>}
   </View>
 );
 

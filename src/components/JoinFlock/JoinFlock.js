@@ -12,43 +12,57 @@ type Props = {
 };
 
 type State = {
-  flockId: string,
+  value: string,
+  error: string | null,
+  touched: boolean,
+};
+
+const initialState = {
+  value: '',
+  error: null,
+  touched: false,
 };
 
 class JoinFlock extends React.Component<Props, State> {
-  state = { flockId: '' };
+  state = initialState;
 
   componentDidUpdate(prevProps) {
     const { inProgress, error } = this.props;
+    if (!prevProps.error && error) {
+      this.setError(error);
+    }
     if (prevProps.inProgress && !inProgress && !error) {
       this.resetForm();
     }
   }
 
+  setError = (error: string) => this.setState({ error, touched: true });
+
   resetForm = () => {
-    this.setState({ flockId: '' });
+    this.setState(initialState);
   };
 
   handleChangeText = (text: string) => {
-    this.setState({ flockId: text });
+    this.setState({ value: text, error: null, touched: true });
   };
 
   handleJoinFlock = () => {
     const { userId, joinFlock } = this.props;
-    const { flockId } = this.state;
-    joinFlock(userId, flockId);
+    const { value } = this.state;
+    if (!value || value.trim() === '') {
+      return this.setError('Please enter a flock ID.');
+    }
+    return joinFlock(userId, value);
   };
 
   render() {
-    const { userId, error } = this.props;
-    const { flockId } = this.state;
+    const { userId } = this.props;
     return (
       <JoinFlockRenderer
         userId={userId}
         handleJoinFlock={this.handleJoinFlock}
         handleChangeText={this.handleChangeText}
-        flockId={flockId}
-        error={error}
+        {...this.state}
       />
     );
   }

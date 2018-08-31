@@ -12,43 +12,62 @@ type Props = {
 };
 
 type State = {
-  name: string,
+  value: string,
+  error: string | null,
+  touched: boolean,
+};
+
+const initialState = {
+  value: '',
+  error: null,
+  touched: false,
 };
 
 class AddFlock extends React.Component<Props, State> {
-  state = { name: '' };
+  state = initialState;
 
   componentDidUpdate(prevProps) {
     const { inProgress, error } = this.props;
+    if (!prevProps.error && error) {
+      this.setError(error);
+    }
     if (prevProps.inProgress && !inProgress && !error) {
       this.resetForm();
     }
   }
 
+  setError = (error: string) => this.setState({ error, touched: true });
+
   resetForm = () => {
-    this.setState({ name: '' });
+    this.setState(initialState);
   };
 
   handleChangeText = (text: string) => {
-    this.setState({ name: text });
+    this.setState({ value: text, error: null, touched: true });
   };
 
   handleAddFlock = () => {
     const { userId, addFlock } = this.props;
-    const { name } = this.state;
-    addFlock(userId, name);
+    const { value } = this.state;
+    if (!value || value.trim() === '') {
+      return this.setError('Please enter a flock name.');
+    }
+    if (!/^[A-Za-z0-9 _-]+$/.test(value)) {
+      return this.setError(
+        'Only use letters, numbers, spaces, underscores, or dashes.',
+      );
+    }
+    return addFlock(userId, value);
   };
 
   render() {
-    const { userId, error } = this.props;
-    const { name } = this.state;
+    const { userId } = this.props;
     return (
       <AddFlockRenderer
         userId={userId}
         handleAddFlock={this.handleAddFlock}
         handleChangeText={this.handleChangeText}
-        name={name}
-        error={error}
+        {...this.state}
       />
     );
   }

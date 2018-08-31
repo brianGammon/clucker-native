@@ -2,10 +2,11 @@
 
 exports[`JoinFlock component: Should render 1`] = `
 <JoinFlockRenderer
-  error=""
-  flockId=""
+  error={null}
   handleChangeText={[Function]}
   handleJoinFlock={[Function]}
+  touched={false}
   userId="user1"
+  value=""
 />
 `;

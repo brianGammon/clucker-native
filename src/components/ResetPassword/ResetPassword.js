@@ -50,7 +50,6 @@ class ResetPassword extends React.Component<Props, State> {
   handleSubmit = () => {
     const { email } = this.form.value;
     const { sendPasswordResetEmail } = this.props;
-    console.log(email);
     sendPasswordResetEmail(email);
   };
 

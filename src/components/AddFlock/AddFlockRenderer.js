@@ -5,15 +5,17 @@ import {
 import styles from './styles';
 
 type Props = {
-  name: string,
-  error: string,
+  value: string,
+  error: string | null,
+  touched: boolean,
   handleAddFlock: () => void,
   handleChangeText: (text: string) => void,
 };
 
 const AddFlockRenderer = ({
-  name,
+  value,
   error,
+  touched,
   handleAddFlock,
   handleChangeText,
 }: Props) => (
@@ -22,12 +24,13 @@ const AddFlockRenderer = ({
     <View style={styles.rowContainer}>
       <TextInput
         style={styles.input}
-        value={name}
+        maxLength={25}
+        value={value}
         onChangeText={text => handleChangeText(text)}
       />
       <Button title="Add" onPress={handleAddFlock} />
     </View>
-    {error && <Text>{error}</Text>}
+    {error && touched && <Text>{error}</Text>}
   </View>
 );
 

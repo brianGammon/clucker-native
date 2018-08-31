@@ -2,10 +2,11 @@
 
 exports[`AddFlock component: Should render 1`] = `
 <AddFlockRenderer
-  error=""
+  error={null}
   handleAddFlock={[Function]}
   handleChangeText={[Function]}
-  name=""
+  touched={false}
   userId="user1"
+  value=""
 />
 `;
