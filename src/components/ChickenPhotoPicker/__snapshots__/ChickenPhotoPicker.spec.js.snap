@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
+<Component>
+  <Component
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Profile Photo:
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/default-profile-photo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Component>
+      <Button
+        onPress={[Function]}
+        title="Reset"
+      />
+      <Button
+        onPress={[Function]}
+        title="Select Photo"
+      />
+      <Button
+        onPress={[Function]}
+        title="Take Photo"
+      />
+    </Component>
+  </Component>
+</Component>
+`;
+
+exports[`ChickenPhotoPicker renders when no previous photo and no new photo selected 1`] = `
+<Component>
+  <Component
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Profile Photo:
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/default-profile-photo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Component>
+      <Button
+        onPress={[Function]}
+        title="Select Photo"
+      />
+      <Button
+        onPress={[Function]}
+        title="Take Photo"
+      />
+    </Component>
+  </Component>
+</Component>
+`;
+
+exports[`ChickenPhotoPicker renders when original photo exists, new photo selected 1`] = `
+<Component>
+  <Component
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Profile Photo:
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "data:jpeg;base64,testdata",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Component>
+      <Button
+        onPress={[Function]}
+        title="Reset"
+      />
+      <Button
+        onPress={[Function]}
+        title="Select Photo"
+      />
+      <Button
+        onPress={[Function]}
+        title="Take Photo"
+      />
+    </Component>
+  </Component>
+</Component>
+`;
+
+exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image not selected 1`] = `
+<Component>
+  <Component
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Profile Photo:
+  </Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "/test",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+    <Component>
+      <Button
+        onPress={[Function]}
+        title="Remove"
+      />
+      <Button
+        onPress={[Function]}
+        title="Select Photo"
+      />
+      <Button
+        onPress={[Function]}
+        title="Take Photo"
+      />
+    </Component>
+  </Component>
+</Component>
+`;

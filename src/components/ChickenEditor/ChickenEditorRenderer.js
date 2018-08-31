@@ -3,12 +3,12 @@ import {
   View,
   Text,
   Button,
-  Image,
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
+import ChickenPhotoPicker from '../ChickenPhotoPicker';
 import styles from './styles';
 
 type Props = {
@@ -19,7 +19,6 @@ type Props = {
   onSelectPhoto: (withCamera: boolean) => void,
   error: string,
   originalPhotoUrl: string,
-  // newImage: any,
 };
 
 const ChickenEditorRenderer = ({
@@ -30,8 +29,7 @@ const ChickenEditorRenderer = ({
   error,
   originalPhotoUrl,
   onSelectPhoto,
-}: // newImage,
-Props) => (
+}: Props) => (
   <ScrollView>
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <View style={styles.editorContainer}>
@@ -68,53 +66,16 @@ Props) => (
                 strict={false}
                 render={({ value: photoUrl }) => {
                   const { newImage } = form.value;
-                  let imageSource = require('../../assets/default-profile-photo.png');
-                  if (photoUrl !== '') {
-                    imageSource = { uri: photoUrl };
-                  }
-                  if (newImage) {
-                    imageSource = {
-                      uri: `data:${newImage.mime};base64,${newImage.data}`,
-                    };
-                  }
                   return (
-                    <View>
-                      <Text style={styles.label}>Profile Photo:</Text>
-                      <View style={{ flexDirection: 'row' }}>
-                        <Image
-                          style={{ width: 200, height: 200 }}
-                          source={imageSource}
-                        />
-                        <View>
-                          {photoUrl !== ''
-                            && !newImage && (
-                              <Button
-                                onPress={onRemoveProfilePhoto}
-                                title="Remove"
-                              />
-                          )}
-                          {((originalPhotoUrl !== '' && photoUrl === '')
-                            || newImage) && (
-                            <Button
-                              onPress={onResetProfilePhoto}
-                              title="Reset"
-                            />
-                          )}
-                          <Button
-                            onPress={() => onSelectPhoto(false)}
-                            title="Select Photo"
-                          />
-                          <Button
-                            onPress={() => onSelectPhoto(true)}
-                            title="Take Photo"
-                          />
-                        </View>
-                      </View>
-                    </View>
+                    <ChickenPhotoPicker
+                      photoUrl={photoUrl}
+                      newImage={newImage}
+                      originalPhotoUrl={originalPhotoUrl}
+                      onRemoveProfilePhoto={onRemoveProfilePhoto}
+                      onResetProfilePhoto={onResetProfilePhoto}
+                      onSelectPhoto={onSelectPhoto}
+                    />
                   );
-                }}
-                meta={{
-                  label: 'Photo URL',
                 }}
               />
               <Button disabled={invalid} onPress={handleSubmit} title="Save" />

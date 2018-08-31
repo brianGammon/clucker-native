@@ -47,6 +47,15 @@ class Chicken extends React.Component<Props, State> {
 
   handleDeleteChicken = (chickenId) => {
     const { flockId, deleteChicken, chicken } = this.props;
+
+    const paths = [];
+    if (chicken.photoPath && chicken.photoPath !== '') {
+      paths.push(chicken.photoPath);
+    }
+    if (chicken.thumbnailPath && chicken.thumbnailPath !== '') {
+      paths.push(chicken.thumbnailPath);
+    }
+
     Alert.alert(
       'Are you sure?',
       `This will delete ${chicken.name} and all her eggs.`,
@@ -56,7 +65,7 @@ class Chicken extends React.Component<Props, State> {
         },
         {
           text: 'Delete',
-          onPress: () => deleteChicken(flockId, chickenId, [chicken.photoPath, chicken.thumbnailPath]),
+          onPress: () => deleteChicken(flockId, chickenId, paths),
           style: 'destructive',
         },
       ],
