@@ -455,6 +455,32 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
     }
   }
   handleSubmit={[Function]}
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "chickenId",
+            null,
+          ],
+          Array [
+            "chickenId",
+            null,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "chicken1",
+          },
+          Object {
+            "isThrow": false,
+            "value": null,
+          },
+        ],
+      },
+    }
+  }
   onRemoveProfilePhoto={[Function]}
   onResetProfilePhoto={[Function]}
   onSelectPhoto={[Function]}
@@ -915,6 +941,24 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
     }
   }
   handleSubmit={[Function]}
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "chickenId",
+            null,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "chicken1",
+          },
+        ],
+      },
+    }
+  }
   onRemoveProfilePhoto={[Function]}
   onResetProfilePhoto={[Function]}
   onSelectPhoto={[Function]}

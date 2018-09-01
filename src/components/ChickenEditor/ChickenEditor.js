@@ -135,11 +135,13 @@ class ChickenEditor extends React.Component<Props> {
 
   render() {
     const {
+      navigation,
       error,
       chicken: { photoUrl },
     } = this.props;
     return (
       <ChickenEditorRenderer
+        navigation={navigation}
         form={this.form}
         onRemoveProfilePhoto={this.onRemoveProfilePhoto}
         onResetProfilePhoto={this.onResetProfilePhoto}

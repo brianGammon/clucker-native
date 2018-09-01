@@ -5,6 +5,11 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    marginTop: 20,
+  },
   formContainer: {
     width: '100%',
     alignItems: 'center',

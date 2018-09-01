@@ -53,7 +53,7 @@ const CalendarDayRenderer = ({
             <View>
               <Button
                 title="Edit"
-                onPress={() => navigation.navigate('EggModal', { eggId: key })}
+                onPress={() => navigation.navigate('EggEditor', { eggId: key })}
               />
               <Button title="Delete" onPress={() => onDeleteEgg(key)} />
             </View>

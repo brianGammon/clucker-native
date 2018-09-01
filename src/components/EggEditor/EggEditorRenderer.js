@@ -33,6 +33,9 @@ const EggEditorRenderer = ({
   error,
 }: Props) => (
   <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+    <View style={styles.header}>
+      <Button onPress={() => navigation.goBack()} title="Cancel" />
+    </View>
     <View style={styles.editorContainer}>
       {error && <Text style={styles.error}>{error}</Text>}
 
@@ -110,7 +113,6 @@ const EggEditorRenderer = ({
             />
 
             <Button disabled={invalid} onPress={onSaveForm} title="Save" />
-            <Button onPress={() => navigation.goBack()} title="Cancel" />
           </View>
         )}
       />

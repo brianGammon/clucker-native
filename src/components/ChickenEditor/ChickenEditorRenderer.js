@@ -9,9 +9,11 @@ import {
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
 import ChickenPhotoPicker from '../ChickenPhotoPicker';
+import { type Navigation } from '../../types';
 import styles from './styles';
 
 type Props = {
+  navigation: Navigation,
   form: any,
   onRemoveProfilePhoto: () => void,
   onResetProfilePhoto: () => void,
@@ -22,6 +24,7 @@ type Props = {
 };
 
 const ChickenEditorRenderer = ({
+  navigation,
   form,
   onRemoveProfilePhoto,
   onResetProfilePhoto,
@@ -32,6 +35,9 @@ const ChickenEditorRenderer = ({
 }: Props) => (
   <ScrollView>
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <View style={styles.header}>
+        <Button onPress={() => navigation.goBack()} title="Cancel" />
+      </View>
       <View style={styles.editorContainer}>
         {error && <Text style={styles.error}>{error}</Text>}
         <FieldGroup

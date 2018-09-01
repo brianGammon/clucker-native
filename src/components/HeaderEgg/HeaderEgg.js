@@ -19,7 +19,7 @@ export default ({ navigation }: { navigation: Props.navigation }) => {
   }
   return (
     <Text
-      onPress={() => navigation.navigate('EggModal', options)}
+      onPress={() => navigation.navigate('EggEditor', options)}
       style={styles.text}
     >
       +

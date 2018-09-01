@@ -3,8 +3,12 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    // alignItems: 'center',
+    alignItems: 'center',
+  },
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    marginTop: 20,
   },
   formGroup: {
     marginTop: 20,
