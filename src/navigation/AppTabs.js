@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import StatsStack from './StatsStack';
 import FlockStack from './FlockStack';
 import CalendarStack from './CalendarStack';
 import SettingsStack from './SettingsStack';
@@ -14,6 +15,10 @@ type TabBarIconProps = {
 
 export const Tabs = createBottomTabNavigator(
   {
+    Stats: {
+      screen: StatsStack,
+      path: 'stats',
+    },
     Flock: {
       screen: FlockStack,
       path: 'flock',
@@ -35,8 +40,10 @@ export const Tabs = createBottomTabNavigator(
       }) => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === 'Flock') {
-          iconName = `ios-home${focused ? '' : '-outline'}`;
+        if (routeName === 'Stats') {
+          iconName = `ios-stats${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Flock') {
+          iconName = `ios-list-box${focused ? '' : '-outline'}`;
         } else if (routeName === 'Settings') {
           iconName = `ios-settings${focused ? '' : '-outline'}`;
         } else if (routeName === 'Calendar') {

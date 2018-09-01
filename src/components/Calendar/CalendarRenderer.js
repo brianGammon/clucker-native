@@ -39,17 +39,17 @@ const CalendarRenderer = ({
     <Text style={{ fontSize: 18 }}>Month Calendar</Text>
     <View>
       {stats
-        && Object.keys(stats.eggsPerDay || {}).map(key => (
+        && Object.keys(stats.eggsPerPeriod || {}).map(key => (
           <View key={key} style={styles.dayContainer}>
             <View style={styles.dayContainerRow}>
               <Text>{key}</Text>
-              <Text>{stats.eggsPerDay[key].total}</Text>
+              <Text>{stats.eggsPerPeriod[key].total}</Text>
               <Button
                 title="View Day"
                 onPress={() => navigation.navigate('Day', { date: key })}
               />
             </View>
-            {Object.keys(stats.eggsPerDay[key].byChicken || {}).map(
+            {Object.keys(stats.eggsPerPeriod[key].byChicken || {}).map(
               chickenId => (
                 <Text key={chickenId}>
                   {(chickens[chickenId] && chickens[chickenId].name)

@@ -54,6 +54,14 @@ export type FlockStats = {
   eggsPerChicken: {
     [chickenId: string]: number,
   },
+  eggsPerPeriod: {
+    [period: string]: {
+      total: number,
+      byChicken: {
+        [chickenId: string]: number,
+      },
+    },
+  },
 };
 
 export type UserSettings = {

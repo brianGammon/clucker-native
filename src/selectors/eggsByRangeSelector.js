@@ -9,6 +9,9 @@ const eggsSelector = createCachedSelector(
   (eggs, date) => {
     // eslint-disable-next-line no-console
     console.log(`Running eggs selector for range: ${date}`);
+    if (date === 'allTime') {
+      return eggs;
+    }
     const eggsForRange = reduce(
       eggs,
       (accumulator, value, key) => {
@@ -21,7 +24,6 @@ const eggsSelector = createCachedSelector(
       {},
     );
 
-    // returns a lost of eggs sorted by the month requests, or all
     return eggsForRange;
   },
 )(getMonth);

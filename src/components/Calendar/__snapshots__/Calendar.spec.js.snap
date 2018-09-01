@@ -76,7 +76,7 @@ exports[`Calender component: Should render 1`] = `
         "chicken2": 8,
         "chicken4": 8,
       },
-      "eggsPerDay": Object {
+      "eggsPerPeriod": Object {
         "2018-05-01": Object {
           "byChicken": Object {
             "chicken1": 1,

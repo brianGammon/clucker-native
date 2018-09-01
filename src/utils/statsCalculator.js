@@ -11,11 +11,11 @@ export default (eggs, range) => {
   let rangeCount = 0;
   let daysBackForAvg = 30;
   const now = nowAsMoment();
-  const thirtyDaysAgo = now;
+  const thirtyDaysAgo = now.clone().subtract(daysBackForAvg - 1, 'day');
   const firstOfMonth = range === 'allTime' ? null : moment.utc(`${range}-01`);
   const startofRange = range === 'allTime' ? thirtyDaysAgo : firstOfMonth;
   const eggsPerChicken = {};
-  const eggsPerDay = {};
+  const eggsPerPeriod = {};
 
   if (range !== 'allTime') {
     if (now.format('YYYY-MM') === range) {
@@ -33,7 +33,7 @@ export default (eggs, range) => {
   }
 
   sortedEggs.forEach((egg) => {
-    const thisEgg = moment(egg.date);
+    const thisEggDate = moment(egg.date);
 
     if (!earliestDate) {
       earliestDate = egg.date;
@@ -54,16 +54,17 @@ export default (eggs, range) => {
         highestWeight = egg.weight;
       }
     }
-    // Build a running total for the past 30 days
-    if (thisEgg.isAfter(startofRange)) {
-      rangeCount += 1;
 
-      if (!eggsPerDay[egg.date]) {
-        eggsPerDay[egg.date] = { total: 0, byChicken: {} };
+    if (range === 'allTime' || thisEggDate.isAfter(startofRange)) {
+      rangeCount += 1;
+      const rollupPeriod = range === 'allTime' ? egg.date.substring(0, 7) : egg.date;
+
+      if (!eggsPerPeriod[rollupPeriod]) {
+        eggsPerPeriod[rollupPeriod] = { total: 0, byChicken: {} };
       }
 
-      eggsPerDay[egg.date].total += 1;
-      eggsPerDay[egg.date].byChicken[egg.chickenId] = eggsPerDay[egg.date].byChicken[egg.chickenId] || 0 + 1;
+      eggsPerPeriod[rollupPeriod].total += 1;
+      eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0) + 1;
     }
   });
 
@@ -94,7 +95,7 @@ export default (eggs, range) => {
     firstEgg: earliestDate,
     mostEggs: topProducer,
     eggsPerChicken,
-    eggsPerDay,
+    eggsPerPeriod,
   };
   return stats;
 };
