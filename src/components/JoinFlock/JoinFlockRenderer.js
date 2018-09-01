@@ -19,7 +19,7 @@ const JoinFlockRenderer = ({
   handleJoinFlock,
   handleChangeText,
 }: Props) => (
-  <View style={{ marginTop: 20 }}>
+  <View style={{ marginTop: 20, marginBottom: 30 }}>
     <Text style={styles.label}>Join Flock</Text>
     <View style={styles.rowContainer}>
       <TextInput

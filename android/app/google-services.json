@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "484678615994",
+    "firebase_url": "https://cluckrdev.firebaseio.com",
+    "project_id": "cluckrdev",
+    "storage_bucket": "cluckrdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484678615994:android:f519feaef8465f25",
+        "android_client_info": {
+          "package_name": "com.clucker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484678615994-5eb5mv5713r03b1mqfpb10skee3t29ai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHn7k0DWyH6SstCh-srz-DP0E0cCM5ei0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

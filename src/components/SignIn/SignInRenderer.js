@@ -6,6 +6,7 @@ import {
   Text,
   KeyboardAvoidingView,
   ImageBackground,
+  Platform,
 } from 'react-native';
 import FormInput from '../FormInput';
 import styles from './styles';
@@ -29,7 +30,11 @@ const SignInRenderer = ({
     source={require('../../assets/rays.jpg')}
     style={{ width: '100%', height: '100%' }}
   >
-    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      enabled
+    >
       <View style={styles.signInContainer}>
         <View>
           <Text style={styles.title}>Clucker</Text>

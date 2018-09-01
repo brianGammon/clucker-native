@@ -5,6 +5,7 @@ import {
   Button,
   KeyboardAvoidingView,
   ScrollView,
+  Platform,
 } from 'react-native';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
@@ -34,7 +35,11 @@ const ChickenEditorRenderer = ({
   onSelectPhoto,
 }: Props) => (
   <ScrollView>
-    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      enabled
+    >
       <View style={styles.header}>
         <Button onPress={() => navigation.goBack()} title="Cancel" />
       </View>

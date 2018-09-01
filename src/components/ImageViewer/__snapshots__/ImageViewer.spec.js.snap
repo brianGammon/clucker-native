@@ -5,6 +5,7 @@ exports[`ImageViewer renders properly showModal set to false 1`] = `
   animationType="fade"
   hardwareAccelerated={false}
   onOrientationChange={[Function]}
+  onRequestClose={[Function]}
   supportedOrientations={
     Array [
       "portrait",
@@ -70,6 +71,7 @@ exports[`ImageViewer renders properly with image URL 1`] = `
   animationType="fade"
   hardwareAccelerated={false}
   onOrientationChange={[Function]}
+  onRequestClose={[Function]}
   supportedOrientations={
     Array [
       "portrait",
@@ -135,6 +137,7 @@ exports[`ImageViewer renders properly with no image URL provided 1`] = `
   animationType="fade"
   hardwareAccelerated={false}
   onOrientationChange={[Function]}
+  onRequestClose={[Function]}
   supportedOrientations={
     Array [
       "portrait",

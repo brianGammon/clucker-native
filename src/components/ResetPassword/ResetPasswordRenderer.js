@@ -19,23 +19,6 @@ const ResetPasswordRenderer = ({
   successMessage,
   handleSubmit,
 }: Props) => (
-  // <View style={styles.container}>
-  //   {error && <Text>{error}</Text>}
-  //   {successMessage && !error && <Text>{successMessage}</Text>}
-  //   <Text>Reset your password</Text>
-  //   <View style={styles.formGroup}>
-  //     <Text style={styles.label}>Email:</Text>
-  //     <TextInput
-  //       style={styles.input}
-  //       value={email}
-  //       autoCapitalize="none"
-  //       onChangeText={handleChangeText}
-  //       autoFocus
-  //     />
-  //   </View>
-  //   <Button onPress={handleSendPasswordResetEmail} title="Send Email" />
-  //   <Button onPress={() => navigation.goBack()} title="Back To Sign In" />
-  // </View>
   <View style={styles.container}>
     <View style={styles.signInContainer}>
       <View>

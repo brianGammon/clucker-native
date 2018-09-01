@@ -21,9 +21,11 @@ const ImageViewer = ({ url, showModal, toggleModal }: Props) => {
       visible={showModal}
       supportedOrientations={['portrait', 'landscape']}
       onOrientationChange={() => {
-        height = Dimensions.get('window').height;
-        width = Dimensions.get('window').width;
+        const { height: newHeight, width: newWidth } = Dimensions.get('window');
+        height = newHeight;
+        width = newWidth;
       }}
+      onRequestClose={() => {}}
     >
       <View style={styles.modalContainer}>
         <TouchableOpacity

@@ -35,12 +35,15 @@ export default (
     static router = router;
 
     componentDidMount() {
-      const { initialUrl, removeInitialUrl } = this.props;
-      if (initialUrl) {
-        this.handleOpenURL({ url: initialUrl });
-        removeInitialUrl();
-      }
+      this.processInitialUrl();
       Linking.addEventListener('url', this.handleOpenURL);
+    }
+
+    componentDidUpdate(prevProps) {
+      const { initialUrl } = this.props;
+      if (initialUrl && !prevProps.initialUrl) {
+        this.processInitialUrl();
+      }
     }
 
     componentWillUnmount() {
@@ -64,6 +67,14 @@ export default (
         }
       }
     };
+
+    processInitialUrl() {
+      const { initialUrl, removeInitialUrl } = this.props;
+      if (initialUrl) {
+        this.handleOpenURL({ url: initialUrl });
+        removeInitialUrl();
+      }
+    }
 
     render() {
       const { navigation } = this.props;
