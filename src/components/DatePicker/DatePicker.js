@@ -3,6 +3,7 @@ import moment from 'moment';
 import {
   DatePicker as NBDatePicker, View, Button, Icon,
 } from 'native-base';
+import styles from './styles';
 
 type Props = {
   clearable: boolean,
@@ -25,27 +26,19 @@ class DatePicker extends React.Component<Props> {
       clearable, value, onDateChange, maximumDate,
     } = this.props;
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          borderBottomWidth: 1,
-          borderBottomColor: '#D9D5DC',
-        }}
-      >
-        <View style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <View style={styles.datePickerField}>
           <NBDatePicker
             ref={this.datePickerRef}
             defaultDate={value}
             // minimumDate={new Date(2018, 1, 1)}
             maximumDate={maximumDate}
             locale="en"
-            // timeZoneOffsetInMinutes={value.getTimezoneOffset()}
             modalTransparent
             animationType="fade"
             androidMode="default"
             placeHolderText="Hatched On"
-            // textStyle={{ color: 'green' }}
-            placeHolderTextStyle={{ color: 'grey' }}
+            placeHolderTextStyle={styles.placeHolderTextStyle}
             onDateChange={onDateChange}
             formatChosenDate={date => moment(date).format('MMM DD, YYYY')}
           />
