@@ -1,13 +1,16 @@
 import React from 'react';
 import {
+  Button,
+  Container,
+  Content,
   View,
   Text,
-  Button as Btn,
-  KeyboardAvoidingView,
-  ScrollView,
-  Platform,
-} from 'react-native';
-import { Button } from 'native-base';
+  Header,
+  Left,
+  Body,
+  Right,
+  Form,
+} from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
@@ -17,6 +20,7 @@ import { type Navigation } from '../../types';
 import styles from './styles';
 
 type Props = {
+  mode: 'Edit' | 'Add',
   navigation: Navigation,
   form: any,
   onRemoveProfilePhoto: () => void,
@@ -29,6 +33,7 @@ type Props = {
 };
 
 const ChickenEditorRenderer = ({
+  mode,
   navigation,
   form,
   onRemoveProfilePhoto,
@@ -39,21 +44,25 @@ const ChickenEditorRenderer = ({
   onSelectPhoto,
   onDateChange,
 }: Props) => (
-  <ScrollView>
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
-      enabled
-    >
-      <View style={styles.header}>
-        <Button onPress={() => navigation.goBack()} title="Cancel" />
-      </View>
-      <View style={styles.editorContainer}>
+  <Container>
+    <Header>
+      <Left>
+        <Button transparent onPress={() => navigation.goBack()}>
+          <Text>Cancel</Text>
+        </Button>
+      </Left>
+      <Body>
+        <Text>{`${mode} Chicken`}</Text>
+      </Body>
+      <Right />
+    </Header>
+    <Content>
+      <View padder>
         {error && <Text style={styles.error}>{error}</Text>}
         <FieldGroup
           control={form}
           render={({ invalid }) => (
-            <View style={styles.formContainer}>
+            <Form>
               <FieldControl
                 name="name"
                 render={FormInput}
@@ -70,7 +79,7 @@ const ChickenEditorRenderer = ({
               />
 
               <Field
-                control={form.get('dateTest')}
+                control={form.get('hatched')}
                 strict={false}
                 render={({ value }) => (
                   <DatePicker
@@ -100,13 +109,20 @@ const ChickenEditorRenderer = ({
                 }}
               />
 
-              <Btn disabled={invalid} onPress={handleSubmit} title="Save" />
-            </View>
+              <Button
+                block
+                disabled={invalid}
+                onPress={handleSubmit}
+                style={styles.submit}
+              >
+                <Text>Save</Text>
+              </Button>
+            </Form>
           )}
         />
       </View>
-    </KeyboardAvoidingView>
-  </ScrollView>
+    </Content>
+  </Container>
 );
 
 export default ChickenEditorRenderer;

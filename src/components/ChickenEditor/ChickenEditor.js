@@ -5,6 +5,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { FormBuilder, Validators } from 'react-reactive-form';
 import chickenSelector from '../../selectors/chickenSelector';
 import ChickenEditorRenderer from './ChickenEditorRenderer';
+import Loading from '../Loading';
 import { type Chicken } from '../../types';
 import { actionTypes, metaTypes } from '../../redux/constants';
 
@@ -20,7 +21,11 @@ type Props = {
   clearError: () => void,
 };
 
-class ChickenEditor extends React.Component<Props> {
+type State = {
+  formReady: boolean,
+};
+
+class ChickenEditor extends React.Component<Props, State> {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.getParam('chickenId', null) ? 'Edit' : 'Add'} Chicken`,
   });
@@ -34,8 +39,9 @@ class ChickenEditor extends React.Component<Props> {
     thumbnailUrl: [''],
     thumbnailPath: [''],
     newImage: [null],
-    dateTest: [null],
   });
+
+  state = { formReady: false };
 
   componentDidMount() {
     const {
@@ -59,6 +65,7 @@ class ChickenEditor extends React.Component<Props> {
       this.form.controls.thumbnailUrl.setValue(thumbnailUrl);
       this.form.controls.thumbnailPath.setValue(thumbnailPath);
     }
+    this.setState({ formReady: true });
   }
 
   componentDidUpdate(prevProps) {
@@ -76,8 +83,8 @@ class ChickenEditor extends React.Component<Props> {
     }
   }
 
-  onDateChange = (data) => {
-    this.form.controls.dateTest.setValue(data);
+  onDateChange = (dateString: string) => {
+    this.form.controls.hatched.setValue(dateString);
   };
 
   onRemoveProfilePhoto = () => {
@@ -142,10 +149,16 @@ class ChickenEditor extends React.Component<Props> {
     const {
       navigation,
       error,
+      chickenId,
       chicken: { photoUrl },
     } = this.props;
+    const { formReady } = this.state;
+    if (!formReady) {
+      return <Loading />;
+    }
     return (
       <ChickenEditorRenderer
+        mode={chickenId ? 'Edit' : 'Add'}
         navigation={navigation}
         form={this.form}
         onRemoveProfilePhoto={this.onRemoveProfilePhoto}

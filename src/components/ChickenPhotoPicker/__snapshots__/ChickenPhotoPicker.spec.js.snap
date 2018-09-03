@@ -1,11 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
-<Component>
+<Component
+  style={
+    Object {
+      "marginTop": 20,
+      "padding": 10,
+    }
+  }
+>
   <Component
     style={
       Object {
-        "fontWeight": "bold",
+        "color": "#575757",
+        "fontSize": 17,
+        "paddingBottom": 10,
       }
     }
   >
@@ -31,7 +40,13 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
         }
       }
     />
-    <Component>
+    <Component
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
       <Button
         onPress={[Function]}
         title="Reset"
@@ -50,11 +65,20 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
 `;
 
 exports[`ChickenPhotoPicker renders when no previous photo and no new photo selected 1`] = `
-<Component>
+<Component
+  style={
+    Object {
+      "marginTop": 20,
+      "padding": 10,
+    }
+  }
+>
   <Component
     style={
       Object {
-        "fontWeight": "bold",
+        "color": "#575757",
+        "fontSize": 17,
+        "paddingBottom": 10,
       }
     }
   >
@@ -80,7 +104,13 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
         }
       }
     />
-    <Component>
+    <Component
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
       <Button
         onPress={[Function]}
         title="Select Photo"
@@ -95,11 +125,20 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
 `;
 
 exports[`ChickenPhotoPicker renders when original photo exists, new photo selected 1`] = `
-<Component>
+<Component
+  style={
+    Object {
+      "marginTop": 20,
+      "padding": 10,
+    }
+  }
+>
   <Component
     style={
       Object {
-        "fontWeight": "bold",
+        "color": "#575757",
+        "fontSize": 17,
+        "paddingBottom": 10,
       }
     }
   >
@@ -125,7 +164,13 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
         }
       }
     />
-    <Component>
+    <Component
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
       <Button
         onPress={[Function]}
         title="Reset"
@@ -144,11 +189,20 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
 `;
 
 exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image not selected 1`] = `
-<Component>
+<Component
+  style={
+    Object {
+      "marginTop": 20,
+      "padding": 10,
+    }
+  }
+>
   <Component
     style={
       Object {
-        "fontWeight": "bold",
+        "color": "#575757",
+        "fontSize": 17,
+        "paddingBottom": 10,
       }
     }
   >
@@ -174,7 +228,13 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
         }
       }
     />
-    <Component>
+    <Component
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
       <Button
         onPress={[Function]}
         title="Remove"

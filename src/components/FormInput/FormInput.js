@@ -41,7 +41,7 @@ const FormInput = ({
           secureTextEntry={meta.secureTextEntry}
           {...handler()}
         />
-        {touched && error !== null && <Icon name="close-circle" />}
+        {touched && error !== null && <Icon name="alert" />}
       </Item>
       <View style={styles.errorContainer}>
         <Text style={styles.error}>{touched && error}</Text>

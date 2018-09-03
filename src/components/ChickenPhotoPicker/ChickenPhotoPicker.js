@@ -35,11 +35,11 @@ const ChickenPhotoPicker = ({
     };
   }
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.label}>Profile Photo:</Text>
       <View style={{ flexDirection: 'row' }}>
         <Image style={{ width: 200, height: 200 }} source={imageSource} />
-        <View>
+        <View style={styles.photoControls}>
           {photoUrl !== ''
             && !newImage && (
               <Button onPress={onRemoveProfilePhoto} title="Remove" />

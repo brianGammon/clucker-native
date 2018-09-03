@@ -55,7 +55,7 @@ exports[`FormInput renders - errors, touched 1`] = `
       secureTextEntry={true}
     />
     <Styled(Icon)
-      name="close-circle"
+      name="alert"
     />
   </Styled(Item)>
   <Styled(ViewNB)>

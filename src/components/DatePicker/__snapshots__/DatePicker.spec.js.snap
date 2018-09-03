@@ -24,12 +24,12 @@ exports[`DatePicker renders with all props supplied 1`] = `
       formatChosenDate={[Function]}
       locale="en"
       maximumDate={2018-12-31T05:00:00.000Z}
-      modalTransparent={true}
+      modalTransparent={false}
       onDateChange={[Function]}
-      placeHolderText="Hatched On"
       placeHolderTextStyle={
         Object {
-          "color": "grey",
+          "color": "#575757",
+          "fontSize": 17,
         }
       }
     />
@@ -40,6 +40,11 @@ exports[`DatePicker renders with all props supplied 1`] = `
   >
     <Styled(Icon)
       name="close-circle"
+      style={
+        Object {
+          "color": "#575757",
+        }
+      }
     />
   </Styled(Button)>
 </Styled(ViewNB)>

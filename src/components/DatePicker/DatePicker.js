@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import moment from 'moment';
 import {
@@ -9,44 +10,56 @@ type Props = {
   clearable: boolean,
   value: Date | null,
   maximumDate: Date | null,
-  onDateChange: (date: Date) => void,
+  onDateChange: (date: string) => void,
 };
 
 class DatePicker extends React.Component<Props> {
-  datePickerRef = React.createRef();
+  datePickerRef: { current: null | NBDatePicker } = React.createRef();
 
   handleClearDate = () => {
-    this.datePickerRef.current.setState({ chosenDate: undefined }, () => {
-      this.datePickerRef.current.props.onDateChange(null);
-    });
+    if (this.datePickerRef.current) {
+      this.datePickerRef.current.setState({ chosenDate: undefined }, () => {
+        if (this.datePickerRef.current) {
+          this.datePickerRef.current.props.onDateChange(null);
+        }
+      });
+    }
+  };
+
+  handleChangeDate = (date: Date | null) => {
+    const { onDateChange } = this.props;
+    let dateAsString = '';
+    if (date) {
+      dateAsString = moment(date).format('YYYY-MM-DD');
+    }
+    onDateChange(dateAsString);
   };
 
   render() {
-    const {
-      clearable, value, onDateChange, maximumDate,
-    } = this.props;
+    const { clearable, value, maximumDate } = this.props;
+    const valueAsDate = value && value !== '' ? new Date(moment(value).valueOf()) : null;
     return (
       <View style={styles.container}>
         <View style={styles.datePickerField}>
           <NBDatePicker
             ref={this.datePickerRef}
-            defaultDate={value}
+            defaultDate={valueAsDate}
             // minimumDate={new Date(2018, 1, 1)}
             maximumDate={maximumDate}
             locale="en"
-            modalTransparent
+            modalTransparent={false}
             animationType="fade"
             androidMode="default"
-            placeHolderText="Hatched On"
+            placeHolderText={valueAsDate ? null : 'Hatched On'}
             placeHolderTextStyle={styles.placeHolderTextStyle}
-            onDateChange={onDateChange}
+            onDateChange={this.handleChangeDate}
             formatChosenDate={date => moment(date).format('MMM DD, YYYY')}
           />
         </View>
-        {value
+        {valueAsDate
           && clearable && (
             <Button transparent onPress={this.handleClearDate}>
-              <Icon name="close-circle" />
+              <Icon style={styles.clearDateIcon} name="close-circle" />
             </Button>
         )}
       </View>
