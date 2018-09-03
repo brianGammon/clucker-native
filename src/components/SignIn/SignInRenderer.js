@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FieldGroup, FieldControl } from 'react-reactive-form';
-import { View, Text, Button } from 'native-base';
+import { Text, Button, Form } from 'native-base';
 import FormInput from '../FormInput';
 import AuthContainer from '../Auth/AuthContainer';
 import AuthExtraLink from '../Auth/AuthExtraLink';
@@ -39,7 +39,7 @@ const SignInRenderer = ({
     <FieldGroup
       control={loginForm}
       render={({ invalid }) => (
-        <View>
+        <Form>
           <FieldControl
             name="email"
             render={FormInput}
@@ -57,7 +57,6 @@ const SignInRenderer = ({
               label: 'Password',
               autoCapitalize: 'none',
               secureTextEntry: true,
-              mustMatchLabel: 'Password',
             }}
           />
           <Button
@@ -68,7 +67,7 @@ const SignInRenderer = ({
           >
             <Text>Submit</Text>
           </Button>
-        </View>
+        </Form>
       )}
     />
   </AuthContainer>

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { FieldGroup, FieldControl } from 'react-reactive-form';
-import { View, Button, Text } from 'react-native';
+import { Text, Button, Form } from 'native-base';
 import FormInput from '../FormInput';
+import AuthContainer from '../Auth/AuthContainer';
+import AuthExtraLink from '../Auth/AuthExtraLink';
 import styles from './styles';
 
 type Props = {
@@ -19,38 +21,52 @@ const ResetPasswordRenderer = ({
   successMessage,
   handleSubmit,
 }: Props) => (
-  <View style={styles.container}>
-    <View style={styles.signInContainer}>
-      <View>
-        <Text style={styles.title}>Clucker</Text>
-      </View>
-      {error && <Text style={styles.error}>{error}</Text>}
-      {successMessage
-        && !error && <Text style={styles.success}>{successMessage}</Text>}
-      <FieldGroup
-        control={form}
-        render={({ invalid }) => (
-          <View style={styles.formContainer}>
-            <FieldControl
-              name="email"
-              render={FormInput}
-              meta={{ label: 'Email Addess', autoCapitalize: 'none' }}
-            />
+  <AuthContainer
+    title="Reset Password"
+    error={error}
+    extraLinks={[
+      <AuthExtraLink
+        key={0}
+        message="Return to Sign In?"
+        buttonText="Go Back"
+        handlePress={() => navigation.goBack()}
+      />,
+    ]}
+  >
+    {!error
+      && !successMessage && (
+        <Text style={styles.message}>
+          Enter your email address to receive a password reset email.
+        </Text>
+    )}
+    {successMessage
+      && !error && <Text style={styles.success}>{successMessage}</Text>}
+    <FieldGroup
+      control={form}
+      render={({ invalid }) => (
+        <Form>
+          <FieldControl
+            name="email"
+            render={FormInput}
+            meta={{
+              label: 'Email Addess',
+              autoCapitalize: 'none',
+              keyboardType: 'email-address',
+            }}
+          />
 
-            <Button
-              disabled={invalid}
-              onPress={handleSubmit}
-              title="Send Email"
-            />
-            <Button
-              onPress={() => navigation.goBack()}
-              title="Back To Sign In"
-            />
-          </View>
-        )}
-      />
-    </View>
-  </View>
+          <Button
+            style={{ marginTop: 10 }}
+            block
+            onPress={handleSubmit}
+            disabled={invalid}
+          >
+            <Text>Send Email</Text>
+          </Button>
+        </Form>
+      )}
+    />
+  </AuthContainer>
 );
 
 export default ResetPasswordRenderer;
