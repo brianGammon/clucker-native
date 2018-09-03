@@ -29,12 +29,6 @@ class SignIn extends React.Component<Props> {
     }
   }
 
-  handleReset = () => {
-    const { clearError } = this.props;
-    this.loginForm.reset();
-    clearError();
-  };
-
   handleSubmit = () => {
     const { email, password } = this.loginForm.value;
     const { signIn } = this.props;
@@ -48,7 +42,6 @@ class SignIn extends React.Component<Props> {
         navigation={navigation}
         error={error}
         loginForm={this.loginForm}
-        handleReset={this.handleReset}
         handleSubmit={this.handleSubmit}
       />
     );

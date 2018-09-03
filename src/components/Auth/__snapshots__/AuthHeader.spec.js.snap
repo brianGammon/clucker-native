@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthHeader renders 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/assets/chicken-sm.png",
+      }
+    }
+    style={
+      Object {
+        "height": 80,
+        "width": 80,
+      }
+    }
+  />
+  <Styled(ViewNB)
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Styled(H1)
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Clucker
+    </Styled(H1)>
+    <Styled(Text)
+      style={
+        Object {
+          "color": "grey",
+        }
+      }
+    >
+      Your Backyard Chicken Egg Tracker
+    </Styled(Text)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
+`;

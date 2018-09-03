@@ -15,6 +15,7 @@
   "dependencies": {
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
+    "native-base": "^2.8.0",
     "re-reselect": "^2.1.0",
     "react": "16.4.1",
     "react-native": "0.56.0",
@@ -64,7 +65,7 @@
       "<rootDir>/jest/setup.js"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation)"
+      "node_modules/(?!(jest-)?react-native|react-navigation|native-base)"
     ]
   }
 }

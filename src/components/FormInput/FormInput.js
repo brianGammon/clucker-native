@@ -1,6 +1,8 @@
 /* @flow */
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import {
+  View, Input, Item, Icon, Text,
+} from 'native-base';
 import errorMapper from '../../utils/errorMapper';
 import styles from './styles';
 
@@ -28,18 +30,20 @@ const FormInput = ({
   const error = errorMapper(errors, meta);
   return (
     <View style={styles.container}>
-      <TextInput
-        keyboardType={meta.keyboardType || null}
-        maxLength={meta.maxLength || null}
-        numberOfLines={meta.numberOfLines || null}
-        multiline={meta.multiline}
-        style={[styles.textInput, meta.multiline ? { height: 125 } : {}]}
-        placeholder={`Enter ${meta.label}`}
-        autoCapitalize={meta.autoCapitalize}
-        secureTextEntry={meta.secureTextEntry}
-        {...handler()}
-      />
-      <View style={{ height: 20 }}>
+      <Item error={touched && error !== null}>
+        <Input
+          keyboardType={meta.keyboardType || null}
+          maxLength={meta.maxLength || null}
+          numberOfLines={meta.numberOfLines || null}
+          multiline={meta.multiline}
+          placeholder={meta.label}
+          autoCapitalize={meta.autoCapitalize}
+          secureTextEntry={meta.secureTextEntry}
+          {...handler()}
+        />
+        {touched && error !== null && <Icon name="close-circle" />}
+      </Item>
+      <View style={styles.errorContainer}>
         <Text style={styles.error}>{touched && error}</Text>
       </View>
     </View>

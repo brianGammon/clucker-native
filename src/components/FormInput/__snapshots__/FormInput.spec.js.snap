@@ -1,101 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FormInput renders - error, not touched yet 1`] = `
-<Component
+<Styled(ViewNB)
   style={
     Object {
-      "width": "90%",
+      "width": "100%",
     }
   }
 >
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    keyboardType={null}
-    maxLength={null}
-    numberOfLines={null}
-    placeholder="Enter thisField"
-    secureTextEntry={true}
-    style={
-      Array [
-        Object {
-          "borderColor": "gray",
-          "borderRadius": 10,
-          "borderWidth": 1,
-          "height": 40,
-          "marginTop": 8,
-          "padding": 5,
-        },
-        Object {},
-      ]
-    }
-    underlineColorAndroid="transparent"
-  />
-  <Component
-    style={
-      Object {
-        "height": 20,
-      }
-    }
+  <Styled(Item)
+    error={false}
   >
-    <Component
+    <Styled(Input)
+      autoCapitalize="none"
+      keyboardType={null}
+      maxLength={null}
+      numberOfLines={null}
+      placeholder="thisField"
+      secureTextEntry={true}
+    />
+  </Styled(Item)>
+  <Styled(ViewNB)>
+    <Styled(Text)
       style={
         Object {
           "color": "red",
+          "fontSize": 14,
+          "paddingLeft": 4,
+          "paddingTop": 2,
         }
       }
     />
-  </Component>
-</Component>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
 `;
 
 exports[`FormInput renders - errors, touched 1`] = `
-<Component
+<Styled(ViewNB)
   style={
     Object {
-      "width": "90%",
+      "width": "100%",
     }
   }
 >
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    keyboardType={null}
-    maxLength={null}
-    numberOfLines={null}
-    placeholder="Enter thisField"
-    secureTextEntry={true}
-    style={
-      Array [
-        Object {
-          "borderColor": "gray",
-          "borderRadius": 10,
-          "borderWidth": 1,
-          "height": 40,
-          "marginTop": 8,
-          "padding": 5,
-        },
-        Object {},
-      ]
-    }
-    underlineColorAndroid="transparent"
-  />
-  <Component
-    style={
-      Object {
-        "height": 20,
-      }
-    }
+  <Styled(Item)
+    error={true}
   >
-    <Component
+    <Styled(Input)
+      autoCapitalize="none"
+      keyboardType={null}
+      maxLength={null}
+      numberOfLines={null}
+      placeholder="thisField"
+      secureTextEntry={true}
+    />
+    <Styled(Icon)
+      name="close-circle"
+    />
+  </Styled(Item)>
+  <Styled(ViewNB)>
+    <Styled(Text)
       style={
         Object {
           "color": "red",
+          "fontSize": 14,
+          "paddingLeft": 4,
+          "paddingTop": 2,
         }
       }
     >
       Enter a valid email address.
-    </Component>
-  </Component>
-</Component>
+    </Styled(Text)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
 `;

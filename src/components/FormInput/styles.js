@@ -2,20 +2,15 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
   },
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8,
-    padding: 5,
-    borderRadius: 10,
-  },
-  text: {
-    fontSize: 30,
+  errorContainter: {
+    height: 20,
   },
   error: {
     color: 'red',
+    paddingTop: 2,
+    paddingLeft: 4,
+    fontSize: 14,
   },
 });

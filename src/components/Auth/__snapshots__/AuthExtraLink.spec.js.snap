@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthExtraLink renders 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <Styled(Text)
+    style={
+      Object {
+        "color": "grey",
+      }
+    }
+  >
+    test message
+  </Styled(Text)>
+  <Styled(Button)
+    onPress={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+      }
+    }
+    transparent={true}
+  >
+    <Styled(Text)>
+      some text
+    </Styled(Text)>
+  </Styled(Button)>
+</Styled(ViewNB)>
+`;

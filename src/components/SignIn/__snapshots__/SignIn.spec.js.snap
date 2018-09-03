@@ -3,7 +3,6 @@
 exports[`SignIn component: Should render 1`] = `
 <SignInRenderer
   error={null}
-  handleReset={[Function]}
   handleSubmit={[Function]}
   loginForm={
     FormGroup {
@@ -159,127 +158,53 @@ exports[`SignIn component: Should render 1`] = `
 `;
 
 exports[`SignIn component: SignInRenderer renders when no error message 1`] = `
-<ImageBackground
-  source={
-    Object {
-      "testUri": "../../../src/assets/rays.jpg",
-    }
+<AuthBase
+  error=""
+  extraLinks={
+    Array [
+      <AuthExtraLink
+        buttonText="Sign Up"
+        handlePress={[Function]}
+        message="No account yet?"
+      />,
+      <AuthExtraLink
+        buttonText="Reset"
+        handlePress={[Function]}
+        message="Forgot your password?"
+      />,
+    ]
   }
-  style={
-    Object {
-      "height": "100%",
-      "width": "100%",
-    }
-  }
+  title="Sign In"
 >
-  <KeyboardAvoidingView
-    behavior="padding"
-    enabled={true}
-    keyboardVerticalOffset={0}
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <Component
-      style={
-        Object {
-          "backgroundColor": "rgba(255, 255, 255, .85)",
-          "borderRadius": 20,
-          "padding": 20,
-          "width": "90%",
-        }
-      }
-    >
-      <Component>
-        <Component
-          style={
-            Object {
-              "alignSelf": "center",
-              "fontSize": 40,
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Clucker
-        </Component>
-      </Component>
-      <FieldGroup
-        render={[Function]}
-        strict={true}
-      />
-    </Component>
-  </KeyboardAvoidingView>
-</ImageBackground>
+  <FieldGroup
+    render={[Function]}
+    strict={true}
+  />
+</AuthBase>
 `;
 
 exports[`SignIn component: SignInRenderer renders with error message 1`] = `
-<ImageBackground
-  source={
-    Object {
-      "testUri": "../../../src/assets/rays.jpg",
-    }
+<AuthBase
+  error="Some error occurred"
+  extraLinks={
+    Array [
+      <AuthExtraLink
+        buttonText="Sign Up"
+        handlePress={[Function]}
+        message="No account yet?"
+      />,
+      <AuthExtraLink
+        buttonText="Reset"
+        handlePress={[Function]}
+        message="Forgot your password?"
+      />,
+    ]
   }
-  style={
-    Object {
-      "height": "100%",
-      "width": "100%",
-    }
-  }
+  title="Sign In"
 >
-  <KeyboardAvoidingView
-    behavior="padding"
-    enabled={true}
-    keyboardVerticalOffset={0}
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <Component
-      style={
-        Object {
-          "backgroundColor": "rgba(255, 255, 255, .85)",
-          "borderRadius": 20,
-          "padding": 20,
-          "width": "90%",
-        }
-      }
-    >
-      <Component>
-        <Component
-          style={
-            Object {
-              "alignSelf": "center",
-              "fontSize": 40,
-              "fontWeight": "bold",
-            }
-          }
-        >
-          Clucker
-        </Component>
-      </Component>
-      <Component
-        style={
-          Object {
-            "color": "red",
-            "padding": 20,
-          }
-        }
-      >
-        Some error occurred
-      </Component>
-      <FieldGroup
-        render={[Function]}
-        strict={true}
-      />
-    </Component>
-  </KeyboardAvoidingView>
-</ImageBackground>
+  <FieldGroup
+    render={[Function]}
+    strict={true}
+  />
+</AuthBase>
 `;
