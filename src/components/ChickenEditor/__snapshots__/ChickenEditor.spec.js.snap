@@ -61,6 +61,56 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
             "observers": Array [],
           },
         },
+        "dateTest": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": null,
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": null,
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": null,
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": null,
+          },
+          "value": null,
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
         "hatched": FormControl {
           "_onCollectionChange": [Function],
           "_onDisabledChange": Array [],
@@ -441,6 +491,7 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
       },
       "value": Object {
         "breed": "",
+        "dateTest": null,
         "hatched": "",
         "name": "",
         "newImage": null,
@@ -481,6 +532,7 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
       },
     }
   }
+  onDateChange={[Function]}
   onRemoveProfilePhoto={[Function]}
   onResetProfilePhoto={[Function]}
   onSelectPhoto={[Function]}
@@ -545,6 +597,56 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
             "validators": null,
           },
           "value": "Cuckoo Maran",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "dateTest": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": null,
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": null,
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": null,
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": null,
+          },
+          "value": null,
           "valueChanges": Observable {
             "observers": Array [],
           },
@@ -927,6 +1029,7 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
       },
       "value": Object {
         "breed": "Cuckoo Maran",
+        "dateTest": null,
         "hatched": "2016-10-05",
         "name": "Chicken1",
         "newImage": null,
@@ -959,6 +1062,7 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
       },
     }
   }
+  onDateChange={[Function]}
   onRemoveProfilePhoto={[Function]}
   onResetProfilePhoto={[Function]}
   onSelectPhoto={[Function]}

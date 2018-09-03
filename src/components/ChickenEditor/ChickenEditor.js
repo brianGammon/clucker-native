@@ -34,6 +34,7 @@ class ChickenEditor extends React.Component<Props> {
     thumbnailUrl: [''],
     thumbnailPath: [''],
     newImage: [null],
+    dateTest: [null],
   });
 
   componentDidMount() {
@@ -74,6 +75,10 @@ class ChickenEditor extends React.Component<Props> {
       clearError();
     }
   }
+
+  onDateChange = (data) => {
+    this.form.controls.dateTest.setValue(data);
+  };
 
   onRemoveProfilePhoto = () => {
     this.form.controls.photoUrl.setValue('');
@@ -149,6 +154,7 @@ class ChickenEditor extends React.Component<Props> {
         error={error}
         originalPhotoUrl={photoUrl || ''}
         onSelectPhoto={this.onSelectPhoto}
+        onDateChange={this.onDateChange}
       />
     );
   }

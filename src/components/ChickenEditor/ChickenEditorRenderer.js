@@ -2,14 +2,17 @@ import React from 'react';
 import {
   View,
   Text,
-  Button,
+  Button as Btn,
   KeyboardAvoidingView,
   ScrollView,
   Platform,
 } from 'react-native';
+import { Button } from 'native-base';
+import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
 import ChickenPhotoPicker from '../ChickenPhotoPicker';
+import DatePicker from '../DatePicker';
 import { type Navigation } from '../../types';
 import styles from './styles';
 
@@ -22,6 +25,7 @@ type Props = {
   onSelectPhoto: (withCamera: boolean) => void,
   error: string,
   originalPhotoUrl: string,
+  onDateChange: () => void,
 };
 
 const ChickenEditorRenderer = ({
@@ -33,6 +37,7 @@ const ChickenEditorRenderer = ({
   error,
   originalPhotoUrl,
   onSelectPhoto,
+  onDateChange,
 }: Props) => (
   <ScrollView>
     <KeyboardAvoidingView
@@ -64,12 +69,17 @@ const ChickenEditorRenderer = ({
                 }}
               />
 
-              <FieldControl
-                name="hatched"
-                render={FormInput}
-                meta={{
-                  label: 'Hatched On',
-                }}
+              <Field
+                control={form.get('dateTest')}
+                strict={false}
+                render={({ value }) => (
+                  <DatePicker
+                    value={value}
+                    onDateChange={onDateChange}
+                    clearable
+                    maximumDate={new Date(moment().valueOf())}
+                  />
+                )}
               />
 
               <Field
@@ -89,7 +99,8 @@ const ChickenEditorRenderer = ({
                   );
                 }}
               />
-              <Button disabled={invalid} onPress={handleSubmit} title="Save" />
+
+              <Btn disabled={invalid} onPress={handleSubmit} title="Save" />
             </View>
           )}
         />

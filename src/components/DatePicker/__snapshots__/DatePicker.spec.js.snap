@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker renders with all props supplied 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "borderBottomColor": "#D9D5DC",
+      "borderBottomWidth": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <DatePicker
+      androidMode="default"
+      animationType="fade"
+      defaultDate={2018-08-31T04:00:00.000Z}
+      formatChosenDate={[Function]}
+      locale="en"
+      maximumDate={2018-12-31T05:00:00.000Z}
+      modalTransparent={true}
+      onDateChange={[Function]}
+      placeHolderText="Hatched On"
+      placeHolderTextStyle={
+        Object {
+          "color": "grey",
+        }
+      }
+    />
+  </Styled(ViewNB)>
+  <Styled(Button)
+    onPress={[Function]}
+    transparent={true}
+  >
+    <Styled(Icon)
+      name="close-circle"
+    />
+  </Styled(Button)>
+</Styled(ViewNB)>
+`;
