@@ -1,87 +1,121 @@
 /* @flow */
 import React from 'react';
 import {
+  Button,
+  Container,
+  Content,
   View,
   Text,
-  Button,
-  KeyboardAvoidingView,
-  ScrollView,
-  Switch,
+  Header,
+  Left,
+  Body,
+  Right,
+  Form,
+  CheckBox,
   Picker,
-  Platform,
-} from 'react-native';
+  Label,
+  Item,
+  Icon,
+} from 'native-base';
+import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
+import DatePicker from '../DatePicker';
 import { type Navigation, type Chicken } from '../../types';
 import FormInput from '../FormInput';
 import styles from './styles';
 
 type Props = {
+  mode: 'Edit' | 'Add',
   navigation: Navigation,
   form: any,
   chickens: {
     [string]: Chicken,
   },
   handlePickItem: (itemValue: string) => void,
+  toggleDamaged: (damaged: boolean) => void,
   onSaveForm: () => void,
+  onDateChange: (dateString: string) => void,
   error: string,
 };
 
 const EggEditorRenderer = ({
+  mode,
   navigation,
   form,
   chickens,
   handlePickItem,
+  onDateChange,
+  toggleDamaged,
   onSaveForm,
   error,
 }: Props) => (
-  <ScrollView>
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : null}
-      enabled
-    >
-      <View style={styles.header}>
-        <Button onPress={() => navigation.goBack()} title="Cancel" />
-      </View>
-      <View style={styles.editorContainer}>
+  <Container>
+    <Header>
+      <Left>
+        <Button transparent onPress={() => navigation.goBack()}>
+          <Text>Cancel</Text>
+        </Button>
+      </Left>
+      <Body>
+        <Text>{`${mode} Egg`}</Text>
+      </Body>
+      <Right />
+    </Header>
+    <Content>
+      <View padder>
         {error && <Text style={styles.error}>{error}</Text>}
-
         <FieldGroup
           control={form}
           render={({ invalid }) => (
-            <View style={styles.formContainer}>
-              <FieldControl
-                name="date"
-                render={formProps => <FormInput {...formProps} />}
-                meta={{ label: 'Date' }}
+            <Form>
+              <Field
+                control={form.get('date')}
+                strict={false}
+                render={({ value }) => (
+                  <DatePicker
+                    label="Date"
+                    value={value}
+                    onDateChange={onDateChange}
+                    maximumDate={new Date(moment().valueOf())}
+                  />
+                )}
               />
 
               <Field
                 control={form.get('chickenId')}
                 render={({ value: chickenId, errors, touched }) => (
-                  <View style={{ width: '90%' }}>
-                    <Text style={styles.label}>Chicken:</Text>
+                  <View style={styles.pickerContainer}>
+                    <Item inlineLabel error={touched && errors !== null}>
+                      <Label style={styles.label}>Chicken:</Label>
+                      <View style={{ flex: 1 }}>
+                        <Picker
+                          note
+                          mode="dropdown"
+                          textStyle={
+                            chickenId !== '' ? styles.pickerText : null
+                          }
+                          selectedValue={chickenId || ''}
+                          onValueChange={handlePickItem}
+                        >
+                          <Picker.Item label="Select a chicken" value="" />
+                          <Picker.Item label="I'm not sure" value="unknown" />
+                          {Object.keys(chickens || {}).map(key => (
+                            <Picker.Item
+                              key={key}
+                              label={chickens[key].name}
+                              value={key}
+                            />
+                          ))}
+                        </Picker>
+                      </View>
+                      {touched && errors && <Icon name="alert" />}
+                    </Item>
                     {errors
                       && touched && (
                         <Text style={styles.error}>
                           Select a chicken or &quot;I&apos;m not sure&quot;
                         </Text>
                     )}
-                    <Picker
-                      selectedValue={chickenId || ''}
-                      style={{ borderWidth: 1 }}
-                      onValueChange={handlePickItem}
-                    >
-                      <Picker.Item label="Select a chicken" value="" />
-                      <Picker.Item label="I'm not sure" value="unknown" />
-                      {Object.keys(chickens || {}).map(key => (
-                        <Picker.Item
-                          key={key}
-                          label={chickens[key].name}
-                          value={key}
-                        />
-                      ))}
-                    </Picker>
                   </View>
                 )}
               />
@@ -90,20 +124,22 @@ const EggEditorRenderer = ({
                 name="weight"
                 render={formProps => <FormInput {...formProps} />}
                 meta={{
-                  label: 'Weight',
+                  label: 'Weight (g)',
                   keyboardType: 'decimal-pad',
                 }}
               />
 
               <FieldControl
                 name="damaged"
-                render={({ handler }) => (
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Switch
-                      style={{ marginRight: 10, tintColor: 'grey' }}
-                      {...handler('switch')}
+                render={({ value }) => (
+                  <View style={styles.checkboxContainer}>
+                    <CheckBox
+                      onPress={() => toggleDamaged(!value)}
+                      checked={value}
                     />
-                    <Text>This egg was damaged</Text>
+                    <Text style={styles.checkboxLabel}>
+                      Egg was damaged or broken
+                    </Text>
                   </View>
                 )}
               />
@@ -114,18 +150,25 @@ const EggEditorRenderer = ({
                 meta={{
                   label: 'Notes',
                   multiline: true,
-                  numberOfLines: 4,
+                  numberOfLines: 5,
                   maxLength: 250,
                 }}
               />
 
-              <Button disabled={invalid} onPress={onSaveForm} title="Save" />
-            </View>
+              <Button
+                block
+                disabled={invalid}
+                onPress={onSaveForm}
+                style={styles.submit}
+              >
+                <Text>Save</Text>
+              </Button>
+            </Form>
           )}
         />
       </View>
-    </KeyboardAvoidingView>
-  </ScrollView>
+    </Content>
+  </Container>
 );
 
 export default EggEditorRenderer;

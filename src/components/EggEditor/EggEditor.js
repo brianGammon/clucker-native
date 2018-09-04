@@ -7,6 +7,7 @@ import EggEditorRenderer from './EggEditorRenderer';
 import { nowAsMoment } from '../../utils/dateHelper';
 import { type Chicken, type Egg, type Navigation } from '../../types';
 import { metaTypes, actionTypes } from '../../redux/constants';
+import Loading from '../Loading';
 import {
   firebaseUpdateRequested,
   firebaseCreateRequested,
@@ -33,7 +34,11 @@ type Props = {
   clearError: () => void,
 };
 
-class EggEditor extends React.Component<Props> {
+type State = {
+  formReady: boolean,
+};
+
+class EggEditor extends React.Component<Props, State> {
   form = FormBuilder.group({
     damaged: [false],
     chickenId: ['', Validators.required],
@@ -45,6 +50,8 @@ class EggEditor extends React.Component<Props> {
       [Validators.pattern(/^\d+([.]\d{0,1})?$/), weightRangeValidator],
     ],
   });
+
+  state = { formReady: false };
 
   componentDidMount() {
     const {
@@ -67,6 +74,7 @@ class EggEditor extends React.Component<Props> {
     this.form.controls.date.setValue(defaultState.date);
     this.form.controls.notes.setValue(defaultState.notes);
     this.form.controls.weight.setValue(defaultState.weight);
+    this.setState({ formReady: true });
   }
 
   componentDidUpdate(prevProps) {
@@ -98,6 +106,10 @@ class EggEditor extends React.Component<Props> {
     saveForm(payload);
   };
 
+  onDateChange = (dateString: string) => {
+    this.form.controls.date.setValue(dateString);
+  };
+
   handlePickItem = (itemValue) => {
     const { chickens } = this.props;
     const { chickenId: control } = this.form.controls;
@@ -109,17 +121,29 @@ class EggEditor extends React.Component<Props> {
     );
   };
 
-  render() {
-    const { navigation, chickens, error } = this.props;
+  toggleDamaged = (damaged: boolean) => {
+    this.form.controls.damaged.setValue(damaged);
+  }
 
+  render() {
+    const {
+      navigation, chickens, error, eggId,
+    } = this.props;
+    const { formReady } = this.state;
+    if (!formReady) {
+      return <Loading />;
+    }
     return (
       <EggEditorRenderer
+        mode={eggId ? 'Edit' : 'Add'}
         navigation={navigation}
         chickens={chickens}
         form={this.form}
         handlePickItem={this.handlePickItem}
+        toggleDamaged={this.toggleDamaged}
         onSaveForm={this.onSaveForm}
         error={error}
+        onDateChange={this.onDateChange}
       />
     );
   }

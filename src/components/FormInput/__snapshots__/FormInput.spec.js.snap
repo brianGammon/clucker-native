@@ -9,6 +9,7 @@ exports[`FormInput renders - error, not touched yet 1`] = `
     <Styled(Label)
       style={
         Object {
+          "color": "#575757",
           "fontWeight": "bold",
         }
       }
@@ -40,7 +41,13 @@ exports[`FormInput renders - error, not touched yet 1`] = `
       />
     </Styled(Button)>
   </Styled(Item)>
-  <Styled(ViewNB)>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "height": 20,
+      }
+    }
+  >
     <Styled(Text)
       style={
         Object {
@@ -64,6 +71,7 @@ exports[`FormInput renders - errors, touched 1`] = `
     <Styled(Label)
       style={
         Object {
+          "color": "#575757",
           "fontWeight": "bold",
         }
       }
@@ -98,7 +106,13 @@ exports[`FormInput renders - errors, touched 1`] = `
       />
     </Styled(Button)>
   </Styled(Item)>
-  <Styled(ViewNB)>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "height": 20,
+      }
+    }
+  >
     <Styled(Text)
       style={
         Object {

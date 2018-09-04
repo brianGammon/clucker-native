@@ -397,6 +397,7 @@ exports[`EggEditor component: Should render connected EggEditor with default chi
     }
   }
   handlePickItem={[Function]}
+  mode="Edit"
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -431,7 +432,9 @@ exports[`EggEditor component: Should render connected EggEditor with default chi
       },
     }
   }
+  onDateChange={[Function]}
   onSaveForm={[Function]}
+  toggleDamaged={[Function]}
 />
 `;
 
@@ -834,6 +837,7 @@ exports[`EggEditor component: Should render connected EggEditor with no defaults
     }
   }
   handlePickItem={[Function]}
+  mode="Add"
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -868,6 +872,8 @@ exports[`EggEditor component: Should render connected EggEditor with no defaults
       },
     }
   }
+  onDateChange={[Function]}
   onSaveForm={[Function]}
+  toggleDamaged={[Function]}
 />
 `;

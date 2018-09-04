@@ -1,29 +1,38 @@
 import { StyleSheet } from 'react-native';
+import variables from 'native-base/dist/src/theme/variables/platform';
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  header: {
-    width: '100%',
-    flexDirection: 'row',
+  submit: {
     marginTop: 20,
   },
-  formContainer: {
-    width: '100%',
-    alignItems: 'center',
+  errorContainer: {
+    height: 20,
   },
   error: {
-    color: 'red',
-    padding: 20,
+    color: variables.inputErrorBorderColor,
+    paddingTop: 2,
+    paddingLeft: 4,
+    fontSize: 14,
   },
-  editorContainer: {
-    width: '90%',
-    padding: 20,
-    borderRadius: 20,
+  pickerContainer: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  pickerText: {
+    color: variables.textColor,
   },
   label: {
     fontWeight: 'bold',
+  },
+  checkboxContainer: {
+    marginLeft: -10,
+    marginTop: 20,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  checkboxLabel: {
+    marginLeft: 20,
   },
 });

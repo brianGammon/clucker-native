@@ -1,7 +1,14 @@
 /* @flow */
 import React from 'react';
 import {
-  View, Input, Item, Icon, Text, Label, Button,
+  View,
+  Input,
+  Item,
+  Icon,
+  Text,
+  Label,
+  Button,
+  Textarea,
 } from 'native-base';
 import errorMapper from '../../utils/errorMapper';
 import styles from './styles';
@@ -40,16 +47,28 @@ class FormInput extends React.Component<Props, State> {
     } = this.props;
     const { hidePassword } = this.state;
     const error = errorMapper(errors, meta);
+    if (meta.multiline) {
+      return (
+        <View>
+          <Label style={styles.label}>{meta.label}:</Label>
+          <Textarea
+            {...handler()}
+            rowSpan={meta.numberOfLines || 5}
+            bordered
+            placeholder="Notes"
+            maxLength={meta.maxLength || null}
+          />
+        </View>
+      );
+    }
     return (
-      <View style={styles.container}>
+      <View>
         <Item inlineLabel error={touched && error !== null}>
           <Label style={styles.label}>{meta.label}:</Label>
           <Input
             keyboardType={meta.keyboardType || null}
             maxLength={meta.maxLength || null}
             numberOfLines={meta.numberOfLines || null}
-            multiline={meta.multiline}
-            // placeholder={meta.label}
             autoCapitalize={meta.autoCapitalize}
             secureTextEntry={hidePassword && meta.secureTextEntry}
             {...handler()}
