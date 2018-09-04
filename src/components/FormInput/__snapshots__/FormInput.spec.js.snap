@@ -1,24 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FormInput renders - error, not touched yet 1`] = `
-<Styled(ViewNB)
-  style={
-    Object {
-      "width": "100%",
-    }
-  }
->
+<Styled(ViewNB)>
   <Styled(Item)
     error={false}
+    inlineLabel={true}
   >
+    <Styled(Label)
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      thisField
+      :
+    </Styled(Label)>
     <Styled(Input)
       autoCapitalize="none"
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
-      placeholder="thisField"
       secureTextEntry={true}
     />
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="eye"
+        style={
+          Object {
+            "color": "grey",
+            "fontSize": 32,
+            "marginLeft": 5,
+            "marginRight": 5,
+          }
+        }
+      />
+    </Styled(Button)>
   </Styled(Item)>
   <Styled(ViewNB)>
     <Styled(Text)
@@ -36,27 +56,47 @@ exports[`FormInput renders - error, not touched yet 1`] = `
 `;
 
 exports[`FormInput renders - errors, touched 1`] = `
-<Styled(ViewNB)
-  style={
-    Object {
-      "width": "100%",
-    }
-  }
->
+<Styled(ViewNB)>
   <Styled(Item)
     error={true}
+    inlineLabel={true}
   >
+    <Styled(Label)
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      thisField
+      :
+    </Styled(Label)>
     <Styled(Input)
       autoCapitalize="none"
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
-      placeholder="thisField"
       secureTextEntry={true}
     />
     <Styled(Icon)
       name="alert"
     />
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="eye"
+        style={
+          Object {
+            "color": "grey",
+            "fontSize": 32,
+            "marginLeft": 5,
+            "marginRight": 5,
+          }
+        }
+      />
+    </Styled(Button)>
   </Styled(Item)>
   <Styled(ViewNB)>
     <Styled(Text)

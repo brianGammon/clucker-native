@@ -5,7 +5,6 @@ import { FormBuilder, Validators } from 'react-reactive-form';
 import SignUpRenderer from './SignUpRenderer';
 import { signUpRequested } from '../../redux/actions';
 import { actionTypes } from '../../redux/constants';
-import { mustMatchValidator } from '../../utils/validators';
 
 type Props = {
   navigation: any,
@@ -15,18 +14,10 @@ type Props = {
 };
 
 class SignUp extends React.Component<Props> {
-  static navigationOptions = {
-    title: 'Sign In',
-  };
-
-  loginForm = FormBuilder.group(
-    {
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-    },
-    { validators: mustMatchValidator('confirmPassword', 'password') },
-  );
+  loginForm = FormBuilder.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
   componentWillUnmount() {
     const { error, clearError } = this.props;

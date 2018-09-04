@@ -18,10 +18,6 @@ type State = {
 };
 
 class ResetPassword extends React.Component<Props, State> {
-  static navigationOptions = {
-    title: 'Reset Password',
-  };
-
   form = FormBuilder.group({
     email: ['', [Validators.email, Validators.required]],
   });

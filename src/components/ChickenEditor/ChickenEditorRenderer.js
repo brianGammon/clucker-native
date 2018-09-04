@@ -65,13 +65,13 @@ const ChickenEditorRenderer = ({
             <Form>
               <FieldControl
                 name="name"
-                render={FormInput}
+                render={formProps => <FormInput {...formProps} />}
                 meta={{ label: 'Name', maxLength: 25 }}
               />
 
               <FieldControl
                 name="breed"
-                render={FormInput}
+                render={formProps => <FormInput {...formProps} />}
                 meta={{
                   label: 'Breed',
                   maxLength: 25,
@@ -83,6 +83,7 @@ const ChickenEditorRenderer = ({
                 strict={false}
                 render={({ value }) => (
                   <DatePicker
+                    label="Hatched On"
                     value={value}
                     onDateChange={onDateChange}
                     clearable

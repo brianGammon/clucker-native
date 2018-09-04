@@ -52,7 +52,7 @@ const EggEditorRenderer = ({
             <View style={styles.formContainer}>
               <FieldControl
                 name="date"
-                render={FormInput}
+                render={formProps => <FormInput {...formProps} />}
                 meta={{ label: 'Date' }}
               />
 
@@ -88,7 +88,7 @@ const EggEditorRenderer = ({
 
               <FieldControl
                 name="weight"
-                render={FormInput}
+                render={formProps => <FormInput {...formProps} />}
                 meta={{
                   label: 'Weight',
                   keyboardType: 'decimal-pad',
@@ -110,7 +110,7 @@ const EggEditorRenderer = ({
 
               <FieldControl
                 name="notes"
-                render={FormInput}
+                render={formProps => <FormInput {...formProps} />}
                 meta={{
                   label: 'Notes',
                   multiline: true,

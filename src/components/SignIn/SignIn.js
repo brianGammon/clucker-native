@@ -13,10 +13,6 @@ type Props = {
 };
 
 class SignIn extends React.Component<Props> {
-  static navigationOptions = {
-    title: 'Sign In',
-  };
-
   loginForm = FormBuilder.group({
     email: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required],

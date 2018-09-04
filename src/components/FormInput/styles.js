@@ -1,8 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
-    width: '100%',
+  label: {
+    fontWeight: 'bold',
+  },
+  revealPassword: {
+    marginLeft: 5,
+    marginRight: 5,
+    color: 'grey',
+    fontSize: 32,
   },
   errorContainter: {
     height: 20,

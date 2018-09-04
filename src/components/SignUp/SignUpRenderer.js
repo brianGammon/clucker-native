@@ -36,9 +36,9 @@ const SignUpRenderer = ({
         <Form>
           <FieldControl
             name="email"
-            render={FormInput}
+            render={formProps => <FormInput {...formProps} />}
             meta={{
-              label: 'Email Addess',
+              label: 'Email',
               autoCapitalize: 'none',
               keyboardType: 'email-address',
             }}
@@ -46,22 +46,11 @@ const SignUpRenderer = ({
 
           <FieldControl
             name="password"
-            render={FormInput}
+            render={formProps => <FormInput {...formProps} />}
             meta={{
               label: 'Password',
               autoCapitalize: 'none',
               secureTextEntry: true,
-            }}
-          />
-
-          <FieldControl
-            name="confirmPassword"
-            render={FormInput}
-            meta={{
-              label: 'Confirm Password',
-              autoCapitalize: 'none',
-              secureTextEntry: true,
-              mustMatchLabel: 'Password',
             }}
           />
 

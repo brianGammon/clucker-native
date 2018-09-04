@@ -4,8 +4,7 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
 <Component
   style={
     Object {
-      "marginTop": 20,
-      "padding": 10,
+      "marginTop": 30,
     }
   }
 >
@@ -14,6 +13,7 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
       Object {
         "color": "#575757",
         "fontSize": 17,
+        "fontWeight": "bold",
         "paddingBottom": 10,
       }
     }
@@ -68,8 +68,7 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
 <Component
   style={
     Object {
-      "marginTop": 20,
-      "padding": 10,
+      "marginTop": 30,
     }
   }
 >
@@ -78,6 +77,7 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
       Object {
         "color": "#575757",
         "fontSize": 17,
+        "fontWeight": "bold",
         "paddingBottom": 10,
       }
     }
@@ -128,8 +128,7 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
 <Component
   style={
     Object {
-      "marginTop": 20,
-      "padding": 10,
+      "marginTop": 30,
     }
   }
 >
@@ -138,6 +137,7 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
       Object {
         "color": "#575757",
         "fontSize": 17,
+        "fontWeight": "bold",
         "paddingBottom": 10,
       }
     }
@@ -192,8 +192,7 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
 <Component
   style={
     Object {
-      "marginTop": 20,
-      "padding": 10,
+      "marginTop": 30,
     }
   }
 >
@@ -202,6 +201,7 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
       Object {
         "color": "#575757",
         "fontSize": 17,
+        "fontWeight": "bold",
         "paddingBottom": 10,
       }
     }

@@ -3,7 +3,6 @@ type Args = {
     [errorKey: string]: any,
   } | null,
   meta: {
-    mustMatchLabel: string,
     label: string,
   },
 };
@@ -16,7 +15,6 @@ const errorMapper = (errors: Args.errors, meta: Args.meta) => {
       errors && errors.minLength
         ? `Must be at least ${errors.minLength.requiredLength} characters.`
         : 'Not long enough.',
-    mustMatch: `Must match ${meta.mustMatchLabel || 'the other field'}.`,
     weightRange: 'Weight must be between 10 and 110 grams.',
     pattern: 'Use number format "0.0".',
     dateInFuture: 'Date cannot be in future.',

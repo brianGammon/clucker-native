@@ -47,9 +47,9 @@ const ResetPasswordRenderer = ({
         <Form>
           <FieldControl
             name="email"
-            render={FormInput}
+            render={formProps => <FormInput {...formProps} />}
             meta={{
-              label: 'Email Addess',
+              label: 'Email',
               autoCapitalize: 'none',
               keyboardType: 'email-address',
             }}

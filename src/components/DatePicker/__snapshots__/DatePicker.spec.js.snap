@@ -4,12 +4,24 @@ exports[`DatePicker renders with all props supplied 1`] = `
 <Styled(ViewNB)
   style={
     Object {
+      "alignItems": "center",
       "borderBottomColor": "#D9D5DC",
       "borderBottomWidth": 1,
       "flexDirection": "row",
     }
   }
 >
+  <Styled(Label)
+    style={
+      Object {
+        "color": "#575757",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Date
+    :
+  </Styled(Label)>
   <Styled(ViewNB)
     style={
       Object {
@@ -29,7 +41,6 @@ exports[`DatePicker renders with all props supplied 1`] = `
       placeHolderTextStyle={
         Object {
           "color": "#575757",
-          "fontSize": 17,
         }
       }
     />
@@ -42,7 +53,7 @@ exports[`DatePicker renders with all props supplied 1`] = `
       name="close-circle"
       style={
         Object {
-          "color": "#575757",
+          "color": "#000",
         }
       }
     />

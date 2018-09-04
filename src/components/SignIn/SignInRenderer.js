@@ -42,9 +42,9 @@ const SignInRenderer = ({
         <Form>
           <FieldControl
             name="email"
-            render={FormInput}
+            render={fieldProps => <FormInput {...fieldProps} />}
             meta={{
-              label: 'Email Addess',
+              label: 'Email',
               autoCapitalize: 'none',
               keyboardType: 'email-address',
             }}
@@ -52,7 +52,7 @@ const SignInRenderer = ({
 
           <FieldControl
             name="password"
-            render={FormInput}
+            render={fieldProps => <FormInput {...fieldProps} />}
             meta={{
               label: 'Password',
               autoCapitalize: 'none',

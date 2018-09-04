@@ -2,12 +2,17 @@
 import React from 'react';
 import moment from 'moment';
 import {
-  DatePicker as NBDatePicker, View, Button, Icon,
+  DatePicker as NBDatePicker,
+  View,
+  Button,
+  Icon,
+  Label,
 } from 'native-base';
 import styles from './styles';
 
 type Props = {
   clearable: boolean,
+  label: string,
   value: Date | null,
   maximumDate: Date | null,
   onDateChange: (date: string) => void,
@@ -36,10 +41,13 @@ class DatePicker extends React.Component<Props> {
   };
 
   render() {
-    const { clearable, value, maximumDate } = this.props;
+    const {
+      clearable, value, maximumDate, label,
+    } = this.props;
     const valueAsDate = value && value !== '' ? new Date(moment(value).valueOf()) : null;
     return (
       <View style={styles.container}>
+        <Label style={styles.label}>{label || 'Date'}:</Label>
         <View style={styles.datePickerField}>
           <NBDatePicker
             ref={this.datePickerRef}
@@ -50,7 +58,6 @@ class DatePicker extends React.Component<Props> {
             modalTransparent={false}
             animationType="fade"
             androidMode="default"
-            placeHolderText={valueAsDate ? null : 'Hatched On'}
             placeHolderTextStyle={styles.placeHolderTextStyle}
             onDateChange={this.handleChangeDate}
             formatChosenDate={date => moment(date).format('MMM DD, YYYY')}
