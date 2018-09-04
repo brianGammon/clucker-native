@@ -10,7 +10,7 @@ export default StyleSheet.create({
     color: 'grey',
     fontSize: 32,
   },
-  errorContainter: {
+  errorContainer: {
     height: 20,
   },
   error: {
