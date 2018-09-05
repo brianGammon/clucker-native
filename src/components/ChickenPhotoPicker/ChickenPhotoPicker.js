@@ -1,8 +1,7 @@
 /* @flow */
 import React from 'react';
-import {
-  View, Button, Text, Image,
-} from 'react-native';
+import { View, Button, Text } from 'native-base';
+import { Image } from 'react-native';
 import styles from './styles';
 
 type Props = {
@@ -47,8 +46,12 @@ const ChickenPhotoPicker = ({
           {((originalPhotoUrl !== '' && photoUrl === '') || newImage) && (
             <Button onPress={onResetProfilePhoto} title="Reset" />
           )}
-          <Button onPress={() => onSelectPhoto(false)} title="Select Photo" />
-          <Button onPress={() => onSelectPhoto(true)} title="Take Photo" />
+          <Button transparent onPress={() => onSelectPhoto(false)}>
+            <Text>Select Photo</Text>
+          </Button>
+          <Button transparent onPress={() => onSelectPhoto(true)}>
+            <Text>Take Photo</Text>
+          </Button>
         </View>
       </View>
     </View>

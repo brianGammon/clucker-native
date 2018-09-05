@@ -16,6 +16,7 @@ import {
   Label,
   Item,
   Icon,
+  Title,
 } from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
@@ -51,15 +52,15 @@ const EggEditorRenderer = ({
 }: Props) => (
   <Container>
     <Header>
-      <Left>
+      <Left />
+      <Body>
+        <Title>{`${mode} Egg`}</Title>
+      </Body>
+      <Right>
         <Button transparent onPress={() => navigation.goBack()}>
           <Text>Cancel</Text>
         </Button>
-      </Left>
-      <Body>
-        <Text>{`${mode} Egg`}</Text>
-      </Body>
-      <Right />
+      </Right>
     </Header>
     <Content>
       <View padder>

@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
-<Component
+<Styled(ViewNB)
   style={
     Object {
       "marginTop": 30,
     }
   }
 >
-  <Component
+  <Styled(Text)
     style={
       Object {
         "color": "#575757",
@@ -19,8 +19,8 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
     }
   >
     Profile Photo:
-  </Component>
-  <Component
+  </Styled(Text)>
+  <Styled(ViewNB)
     style={
       Object {
         "flexDirection": "row",
@@ -40,39 +40,47 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
         }
       }
     />
-    <Component
+    <Styled(ViewNB)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <Button
+      <Styled(Button)
         onPress={[Function]}
         title="Reset"
       />
-      <Button
+      <Styled(Button)
         onPress={[Function]}
-        title="Select Photo"
-      />
-      <Button
+        transparent={true}
+      >
+        <Styled(Text)>
+          Select Photo
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
         onPress={[Function]}
-        title="Take Photo"
-      />
-    </Component>
-  </Component>
-</Component>
+        transparent={true}
+      >
+        <Styled(Text)>
+          Take Photo
+        </Styled(Text)>
+      </Styled(Button)>
+    </Styled(ViewNB)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
 `;
 
 exports[`ChickenPhotoPicker renders when no previous photo and no new photo selected 1`] = `
-<Component
+<Styled(ViewNB)
   style={
     Object {
       "marginTop": 30,
     }
   }
 >
-  <Component
+  <Styled(Text)
     style={
       Object {
         "color": "#575757",
@@ -83,8 +91,8 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
     }
   >
     Profile Photo:
-  </Component>
-  <Component
+  </Styled(Text)>
+  <Styled(ViewNB)
     style={
       Object {
         "flexDirection": "row",
@@ -104,35 +112,43 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
         }
       }
     />
-    <Component
+    <Styled(ViewNB)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <Button
+      <Styled(Button)
         onPress={[Function]}
-        title="Select Photo"
-      />
-      <Button
+        transparent={true}
+      >
+        <Styled(Text)>
+          Select Photo
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
         onPress={[Function]}
-        title="Take Photo"
-      />
-    </Component>
-  </Component>
-</Component>
+        transparent={true}
+      >
+        <Styled(Text)>
+          Take Photo
+        </Styled(Text)>
+      </Styled(Button)>
+    </Styled(ViewNB)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
 `;
 
 exports[`ChickenPhotoPicker renders when original photo exists, new photo selected 1`] = `
-<Component
+<Styled(ViewNB)
   style={
     Object {
       "marginTop": 30,
     }
   }
 >
-  <Component
+  <Styled(Text)
     style={
       Object {
         "color": "#575757",
@@ -143,8 +159,8 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
     }
   >
     Profile Photo:
-  </Component>
-  <Component
+  </Styled(Text)>
+  <Styled(ViewNB)
     style={
       Object {
         "flexDirection": "row",
@@ -164,39 +180,47 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
         }
       }
     />
-    <Component
+    <Styled(ViewNB)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <Button
+      <Styled(Button)
         onPress={[Function]}
         title="Reset"
       />
-      <Button
+      <Styled(Button)
         onPress={[Function]}
-        title="Select Photo"
-      />
-      <Button
+        transparent={true}
+      >
+        <Styled(Text)>
+          Select Photo
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
         onPress={[Function]}
-        title="Take Photo"
-      />
-    </Component>
-  </Component>
-</Component>
+        transparent={true}
+      >
+        <Styled(Text)>
+          Take Photo
+        </Styled(Text)>
+      </Styled(Button)>
+    </Styled(ViewNB)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
 `;
 
 exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image not selected 1`] = `
-<Component
+<Styled(ViewNB)
   style={
     Object {
       "marginTop": 30,
     }
   }
 >
-  <Component
+  <Styled(Text)
     style={
       Object {
         "color": "#575757",
@@ -207,8 +231,8 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
     }
   >
     Profile Photo:
-  </Component>
-  <Component
+  </Styled(Text)>
+  <Styled(ViewNB)
     style={
       Object {
         "flexDirection": "row",
@@ -228,26 +252,34 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
         }
       }
     />
-    <Component
+    <Styled(ViewNB)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <Button
+      <Styled(Button)
         onPress={[Function]}
         title="Remove"
       />
-      <Button
+      <Styled(Button)
         onPress={[Function]}
-        title="Select Photo"
-      />
-      <Button
+        transparent={true}
+      >
+        <Styled(Text)>
+          Select Photo
+        </Styled(Text)>
+      </Styled(Button)>
+      <Styled(Button)
         onPress={[Function]}
-        title="Take Photo"
-      />
-    </Component>
-  </Component>
-</Component>
+        transparent={true}
+      >
+        <Styled(Text)>
+          Take Photo
+        </Styled(Text)>
+      </Styled(Button)>
+    </Styled(ViewNB)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
 `;
