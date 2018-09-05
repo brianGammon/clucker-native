@@ -1,28 +1,17 @@
 import React from 'react';
 import {
-  Button,
-  Container,
-  Content,
-  View,
-  Text,
-  Header,
-  Left,
-  Body,
-  Right,
-  Form,
-  Title,
+  Button, Container, Content, View, Text, Form,
 } from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
 import ChickenPhotoPicker from '../ChickenPhotoPicker';
 import DatePicker from '../DatePicker';
-import { type Navigation } from '../../types';
+import Header from '../Header';
 import styles from './styles';
 
 type Props = {
   mode: 'Edit' | 'Add',
-  navigation: Navigation,
   form: any,
   onRemoveProfilePhoto: () => void,
   onResetProfilePhoto: () => void,
@@ -35,7 +24,6 @@ type Props = {
 
 const ChickenEditorRenderer = ({
   mode,
-  navigation,
   form,
   onRemoveProfilePhoto,
   onResetProfilePhoto,
@@ -46,17 +34,7 @@ const ChickenEditorRenderer = ({
   onDateChange,
 }: Props) => (
   <Container>
-    <Header>
-      <Left />
-      <Body>
-        <Title>{`${mode} Chicken`}</Title>
-      </Body>
-      <Right>
-        <Button transparent onPress={() => navigation.goBack()}>
-          <Text>Cancel</Text>
-        </Button>
-      </Right>
-    </Header>
+    <Header title={`${mode} Chicken`} cancelButton />
     <Content>
       <View padder>
         {error && <Text style={styles.error}>{error}</Text>}

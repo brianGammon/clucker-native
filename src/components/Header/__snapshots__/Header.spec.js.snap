@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders with default title, eggButton and goBack button 1`] = `
+<Styled(Header)>
+  <Styled(Left)>
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        active={true}
+        name="arrow-back"
+      />
+      <Styled(Text)>
+        Go Back
+      </Styled(Text)>
+    </Styled(Button)>
+  </Styled(Left)>
+  <Styled(Body)>
+    <Styled(Title)>
+      Default Title
+    </Styled(Title)>
+  </Styled(Body)>
+  <Styled(Right)>
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        active={true}
+        name="add-circle"
+      />
+      <Styled(Text)>
+        Egg
+      </Styled(Text)>
+    </Styled(Button)>
+  </Styled(Right)>
+</Styled(Header)>
+`;
+
+exports[`Header renders with title set, and cancel button 1`] = `
+<Styled(Header)>
+  <Styled(Left) />
+  <Styled(Body)>
+    <Styled(Title)>
+      Test Title
+    </Styled(Title)>
+  </Styled(Body)>
+  <Styled(Right)>
+    <Styled(Button)
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Text)>
+        Cancel
+      </Styled(Text)>
+    </Styled(Button)>
+  </Styled(Right)>
+</Styled(Header)>
+`;
