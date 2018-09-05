@@ -1,13 +1,23 @@
 import React from 'react';
 import {
-  Text,
-  Button,
+  Container,
   View,
-  FlatList,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+  Text,
+  Content,
+  ListItem,
+  Thumbnail,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+} from 'native-base';
+import { FlatList } from 'react-native';
+import FlockItem from './FlockItem';
+import NoChickens from './NoChickens';
+import FlockHeader from './FlockHeader';
 import { type Chicken, type Navigation, type Flock } from '../../types';
+import styles from './styles';
 
 type Props = {
   navigation: Navigation,
@@ -16,6 +26,7 @@ type Props = {
   },
   flock: Flock,
   isFlockOwner: boolean,
+  topProducer: string,
 };
 
 const FlockRenderer = ({
@@ -23,47 +34,33 @@ const FlockRenderer = ({
   chickens,
   flock,
   isFlockOwner,
+  topProducer,
 }: Props) => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Flock Name: {flock && flock.name}</Text>
-    <FlatList
-      style={{ width: '100%' }}
-      data={Object.keys(chickens || {})}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            borderBottomWidth: 1,
-            borderBottomColor: 'grey',
-            padding: 10,
-          }}
-          onPress={() => navigation.navigate('Chicken', { chickenId: item })}
-        >
-          <View>
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={
-                chickens[item].thumbnailUrl
-                  ? { uri: chickens[item].thumbnailUrl }
-                  : require('../../assets/default-profile-photo_thumb.png')
-              }
-            />
-          </View>
-          <View style={{ flex: 1, paddingLeft: 10 }}>
-            <Text>Name: {chickens[item].name}</Text>
-          </View>
-        </TouchableOpacity>
+  <Container>
+    <FlockHeader flock={flock} chickens={chickens} />
+    <Content>
+      {Object.keys(chickens || {}).length === 0 && (
+        <NoChickens navigation={navigation} />
       )}
-    />
-    {isFlockOwner && (
-      <Button
-        onPress={() => navigation.navigate('ChickenEditor')}
-        title="Add a Chicken"
+      <FlatList
+        data={Object.keys(chickens || {})}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <FlockItem
+            item={item}
+            navigation={navigation}
+            topProducer={topProducer}
+            chickens={chickens}
+          />
+        )}
       />
-    )}
-  </View>
+      {/* {isFlockOwner && (
+        <Button onPress={() => navigation.navigate('ChickenEditor')}>
+          <Text>Add a Chicken</Text>
+        </Button>
+      )} */}
+    </Content>
+  </Container>
 );
 
 export default FlockRenderer;
