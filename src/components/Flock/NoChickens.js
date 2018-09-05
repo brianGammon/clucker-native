@@ -6,14 +6,17 @@ import styles from './styles';
 
 type Props = {
   navigation: Navigation,
+  isFlockOwner: boolean,
 };
 
-const NoChickens = ({ navigation }: Props) => (
+const NoChickens = ({ navigation, isFlockOwner }: Props) => (
   <View padder style={styles.noChickens}>
     <Text style={styles.noChickensText}>No Chickens Yet</Text>
-    <Button transparent onPress={() => navigation.navigate('ChickenEditor')}>
-      <Text>Add One?</Text>
-    </Button>
+    {isFlockOwner && (
+      <Button transparent onPress={() => navigation.navigate('ChickenEditor')}>
+        <Text>Add One?</Text>
+      </Button>
+    )}
   </View>
 );
 

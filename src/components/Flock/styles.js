@@ -13,6 +13,10 @@ export default StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  headerBlock: {
+    alignItems: 'center',
   },
   headerCell: {
     flex: 1,
@@ -34,15 +38,16 @@ export default StyleSheet.create({
   },
   trophyCell: {
     alignItems: 'center',
+    marginRight: 14,
   },
   trophyCellText: {
     fontSize: 12,
-    color: 'black',
-    // color: variables.inputColorPlaceholder,
   },
   trophyIcon: {
-    fontSize: 18,
-    color: 'black',
-    // color: variables.inputColorPlaceholder,
+    fontSize: 24,
+  },
+  addText: {
+    paddingLeft: 8,
+    color: variables.inputColorPlaceholder,
   },
 });

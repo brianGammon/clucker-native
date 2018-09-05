@@ -1,23 +1,10 @@
 import React from 'react';
-import {
-  Container,
-  View,
-  Text,
-  Content,
-  ListItem,
-  Thumbnail,
-  Left,
-  Body,
-  Right,
-  Button,
-  Icon,
-} from 'native-base';
+import { Container, Content } from 'native-base';
 import { FlatList } from 'react-native';
 import FlockItem from './FlockItem';
 import NoChickens from './NoChickens';
 import FlockHeader from './FlockHeader';
 import { type Chicken, type Navigation, type Flock } from '../../types';
-import styles from './styles';
 
 type Props = {
   navigation: Navigation,
@@ -37,10 +24,15 @@ const FlockRenderer = ({
   topProducer,
 }: Props) => (
   <Container>
-    <FlockHeader flock={flock} chickens={chickens} />
+    <FlockHeader
+      flock={flock}
+      chickens={chickens}
+      isFlockOwner={isFlockOwner}
+      navigation={navigation}
+    />
     <Content>
       {Object.keys(chickens || {}).length === 0 && (
-        <NoChickens navigation={navigation} />
+        <NoChickens navigation={navigation} isFlockOwner={isFlockOwner} />
       )}
       <FlatList
         data={Object.keys(chickens || {})}
@@ -54,11 +46,6 @@ const FlockRenderer = ({
           />
         )}
       />
-      {/* {isFlockOwner && (
-        <Button onPress={() => navigation.navigate('ChickenEditor')}>
-          <Text>Add a Chicken</Text>
-        </Button>
-      )} */}
     </Content>
   </Container>
 );

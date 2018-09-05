@@ -49,12 +49,8 @@ const FlockItem = ({
         </View>
         {topProducer
           && topProducer === item && (
-            <View style={[styles.bodyCell, styles.trophyCell]}>
-              <Icon
-                style={styles.trophyIcon}
-                type="FontAwesome"
-                name="trophy"
-              />
+            <View style={[styles.trophyCell]}>
+              <Icon style={styles.trophyIcon} active name="trophy" />
               <Text style={styles.trophyCellText}>Top Producer</Text>
             </View>
         )}

@@ -49,6 +49,8 @@ exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
         "ownedBy": "user1",
       }
     }
+    isFlockOwner={true}
+    navigation={[MockFunction]}
   />
   <Styled(Content)>
     <FlatList
@@ -125,6 +127,8 @@ exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
         "ownedBy": "user1",
       }
     }
+    isFlockOwner={false}
+    navigation={[MockFunction]}
   />
   <Styled(Content)>
     <FlatList
