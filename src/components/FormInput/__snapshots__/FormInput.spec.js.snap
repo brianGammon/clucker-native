@@ -22,6 +22,7 @@ exports[`FormInput renders - error, not touched yet 1`] = `
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
+      returnKeyType="done"
       secureTextEntry={true}
     />
     <Styled(Button)
@@ -84,6 +85,7 @@ exports[`FormInput renders - errors, touched 1`] = `
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
+      returnKeyType="done"
       secureTextEntry={true}
     />
     <Styled(Icon)

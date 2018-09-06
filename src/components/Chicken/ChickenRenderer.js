@@ -68,10 +68,10 @@ const ChickenRenderer = ({
 
         <View style={{ flex: 1 }}>
           <H2 style={{ fontWeight: 'bold', fontSize: 20 }}>{chicken.name}</H2>
-          <Text style={{ height: 18, fontSize: 16, color: 'grey' }}>
+          <Text style={{ height: 20, fontSize: 16, color: 'grey' }}>
             {chicken.breed}
           </Text>
-          <Text style={{ height: 18, fontSize: 16, color: 'grey' }}>
+          <Text style={{ height: 20, fontSize: 16, color: 'grey' }}>
             {!!chicken.hatched
               && chicken.hatched !== ''
               && `${moment(chicken.hatched).format('MMM D, YYYY')} (${calculateAge(
@@ -80,12 +80,9 @@ const ChickenRenderer = ({
           </Text>
         </View>
         <View style={styles.rowContainer}>
-          <Button active transparent onPress={handleMoreOptions}>
+          <Button active transparent dark onPress={handleMoreOptions}>
             <Icon name="more" />
           </Button>
-          {/* <Button transparent onPress={() => handleDeleteChicken(chickenId)}>
-            <Text>Delete</Text>
-          </Button> */}
         </View>
         <View>
           <Button

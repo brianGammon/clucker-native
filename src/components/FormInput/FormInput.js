@@ -57,6 +57,8 @@ class FormInput extends React.Component<Props, State> {
             bordered
             placeholder="Notes"
             maxLength={meta.maxLength || null}
+            blurOnSubmit
+            returnKeyType="done"
           />
         </View>
       );
@@ -71,6 +73,7 @@ class FormInput extends React.Component<Props, State> {
             numberOfLines={meta.numberOfLines || null}
             autoCapitalize={meta.autoCapitalize}
             secureTextEntry={hidePassword && meta.secureTextEntry}
+            returnKeyType="done"
             {...handler()}
           />
           {touched && error !== null && <Icon name="alert" />}
