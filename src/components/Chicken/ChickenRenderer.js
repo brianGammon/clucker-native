@@ -1,133 +1,204 @@
 /* @flow */
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import moment from 'moment';
+import { Image, TouchableOpacity } from 'react-native';
 import {
-  Text,
-  Button,
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+  Container, Content, Text, View, Button, H2, Icon,
+} from 'native-base';
 import ImageViewer from '../ImageViewer';
+import Header from '../Header';
+import Line from '../Line';
 import { type Chicken, type ChickenStats } from '../../types';
 import styles from './styles';
 
 type Props = {
   navigation: any,
-  chickenId: string,
   prevChickenId: string,
   nextChickenId: string,
   chicken: Chicken,
   stats: ChickenStats,
-  handleDeleteChicken: (chickenId: string) => void,
   showModal: boolean,
   toggleModal: boolean => void,
+  handleMoreOptions: () => void,
+};
+
+const calculateAge = (hatched: string) => {
+  const hatchedAsMoment = moment(hatched);
+  const now = moment();
+  const months = now.diff(hatchedAsMoment, 'months');
+  const years = Math.floor(months / 12);
+  if (years === 0) {
+    return `${months}m`;
+  }
+  const remainingMonths = months - years * 12;
+  return `${years}y ${remainingMonths}m`;
 };
 
 const ChickenRenderer = ({
   navigation,
   chicken,
   stats,
-  chickenId,
   prevChickenId,
   nextChickenId,
-  handleDeleteChicken,
+  handleMoreOptions,
   showModal,
   toggleModal,
 }: Props) => (
-  <ScrollView>
-    <ImageViewer
-      toggleModal={toggleModal}
-      showModal={showModal}
-      url={chicken.photoUrl}
-    />
-    <View style={styles.rowContainer}>
-      <Button
-        onPress={() => navigation.navigate('ChickenEditor', { chickenId })}
-        title="Edit"
+  <Container>
+    <Header title="Chicken" eggButton goBackButton="Flock" />
+    <Content>
+      <ImageViewer
+        toggleModal={toggleModal}
+        showModal={showModal}
+        url={chicken.photoUrl}
       />
-      <Button onPress={() => handleDeleteChicken(chickenId)} title="Delete" />
-    </View>
-    <View
-      style={{
-        marginTop: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}
-    >
-      <Ionicons
-        onPress={() => (prevChickenId
-          ? navigation.replace('Chicken', { chickenId: prevChickenId })
-          : null)
-        }
-        name="ios-arrow-back"
-        color={prevChickenId ? 'grey' : 'lightgrey'}
-        style={styles.iconLeft}
-      />
-      <TouchableOpacity onPress={() => toggleModal(!showModal)}>
-        <Image
-          style={{ width: 200, height: 200 }}
-          source={
-            chicken.photoUrl
-              ? { uri: chicken.photoUrl }
-              : require('../../assets/default-profile-photo.png')
-          }
-        />
-      </TouchableOpacity>
-
-      <Ionicons
-        onPress={() => (nextChickenId
-          ? navigation.replace('Chicken', { chickenId: nextChickenId })
-          : null)
-        }
-        name="ios-arrow-forward"
-        color={nextChickenId ? 'grey' : 'lightgrey'}
-        style={styles.iconRight}
-      />
-    </View>
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        padding: 10,
-      }}
-    >
-      <View>
-        <Text style={styles.label}>Name:</Text>
-        <Text style={styles.text}>{chicken.name}</Text>
-        <Text style={[styles.label, { paddingTop: 10 }]}>Hatched On:</Text>
-        <Text style={styles.text}>{chicken.hatched}</Text>
-      </View>
-      <View>
-        <Text style={styles.label}>Breed:</Text>
-        <Text style={styles.text}>{chicken.breed}</Text>
-      </View>
-    </View>
-    {stats
-      && stats.total > 0 && (
+      <View padder style={styles.rowContainer}>
         <View>
-          <Text style={styles.label}>Total Eggs:</Text>
-          <Text style={styles.text}>{stats.total}</Text>
-          <Text style={[styles.label, { paddingTop: 10 }]}>Heaviest Egg:</Text>
-          <Text style={styles.text}>
-            {stats.heaviest && stats.heaviest.weight}
+          <Button
+            transparent
+            disabled={prevChickenId === null}
+            onPress={() => (prevChickenId
+              ? navigation.replace('Chicken', { chickenId: prevChickenId })
+              : null)
+            }
+          >
+            <Icon name="arrow-back" />
+          </Button>
+        </View>
+
+        <View style={{ flex: 1 }}>
+          <H2 style={{ fontWeight: 'bold', fontSize: 20 }}>{chicken.name}</H2>
+          <Text style={{ height: 18, fontSize: 16, color: 'grey' }}>
+            {chicken.breed}
           </Text>
-          <Text style={styles.text}>
-            {stats.heaviest && stats.heaviest.date}
-          </Text>
-          <Text style={[styles.label, { paddingTop: 10 }]}>
-            Longest Streak:
-          </Text>
-          <Text style={styles.text}>{stats.longestStreak}</Text>
-          <Text style={[styles.label, { paddingTop: 10 }]}>Last 7 Days:</Text>
-          <Text style={styles.text}>
-            {JSON.stringify(stats.lastSevenDays, null, 2)}
+          <Text style={{ height: 18, fontSize: 16, color: 'grey' }}>
+            {!!chicken.hatched
+              && chicken.hatched !== ''
+              && `${moment(chicken.hatched).format('MMM D, YYYY')} (${calculateAge(
+                chicken.hatched,
+              )})`}
           </Text>
         </View>
-    )}
-  </ScrollView>
+        <View style={styles.rowContainer}>
+          <Button active transparent onPress={handleMoreOptions}>
+            <Icon name="more" />
+          </Button>
+          {/* <Button transparent onPress={() => handleDeleteChicken(chickenId)}>
+            <Text>Delete</Text>
+          </Button> */}
+        </View>
+        <View>
+          <Button
+            transparent
+            disabled={nextChickenId === null}
+            onPress={() => (nextChickenId
+              ? navigation.replace('Chicken', { chickenId: nextChickenId })
+              : null)
+            }
+          >
+            <Icon name="arrow-forward" />
+          </Button>
+        </View>
+      </View>
+      <View padder style={{ alignItems: 'center' }}>
+        <TouchableOpacity onPress={() => toggleModal(!showModal)}>
+          <Image
+            style={{ width: 200, height: 200 }}
+            source={
+              chicken.photoUrl
+                ? { uri: chicken.photoUrl }
+                : require('../../assets/default-profile-photo.png')
+            }
+          />
+        </TouchableOpacity>
+      </View>
+
+      {stats
+        && stats.total > 0 && (
+          <View padder>
+            <Line />
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: 10,
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                }}
+              >
+                <Text style={styles.label}>Total Eggs</Text>
+                <H2 style={styles.h2}>{stats.total}</H2>
+                <Text style={styles.text} />
+              </View>
+              {stats.heaviest && (
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                  <Text style={[styles.label]}>Heaviest Egg</Text>
+                  <H2 style={styles.h2}>
+                    {stats.heaviest && stats.heaviest.weight}
+                  </H2>
+                  <Text style={styles.text}>
+                    {stats.heaviest
+                      && moment(stats.heaviest.date).format('MMM D, YYYY')}
+                  </Text>
+                </View>
+              )}
+              <View style={{ flex: 1, alignItems: 'center' }}>
+                <Text style={[styles.label]}>Best Streak</Text>
+                <H2 style={styles.h2}>{stats.longestStreak}</H2>
+                <Text style={styles.text}>Days</Text>
+              </View>
+            </View>
+            <Line />
+
+            <View style={{ alignItems: 'center' }}>
+              <Text style={[styles.label, { marginBottom: 10 }]}>
+                Last Week
+              </Text>
+              <View style={styles.dateScroll}>
+                <View style={{ flexDirection: 'row' }}>
+                  {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
+                    <View
+                      key={key}
+                      style={[
+                        styles.dateCell,
+                        stats.lastSevenDays[key] > 0
+                          ? { backgroundColor: 'lightgreen' }
+                          : null,
+                        index === Object.keys(stats.lastSevenDays).length - 1
+                          ? styles.lastCell
+                          : null,
+                      ]}
+                    >
+                      <Text style={styles.dateCellLabel}>
+                        {moment(key).format('MMM')}
+                      </Text>
+                      <Text style={styles.dateCellLabel}>
+                        {moment(key).format('D')}
+                      </Text>
+                      <View>
+                        <Icon
+                          style={styles.dateCellIcon}
+                          name={
+                            stats.lastSevenDays[key] > 0
+                              ? 'checkmark-circle'
+                              : 'close'
+                          }
+                        />
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            </View>
+          </View>
+      )}
+    </Content>
+  </Container>
 );
 
 export default ChickenRenderer;

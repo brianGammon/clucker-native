@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { ActionSheet } from 'native-base';
 import { Text, Alert } from 'react-native';
 import ChickenRenderer from './ChickenRenderer';
 import chickenSelector from '../../selectors/chickenSelector';
@@ -45,7 +46,31 @@ class Chicken extends React.Component<Props, State> {
     this.setState({ showModal: visible });
   };
 
-  handleDeleteChicken = (chickenId) => {
+  handleMoreOptions = () => {
+    const { navigation, chickenId } = this.props;
+    const BUTTONS = ['Edit Chicken', 'Delete Chicken', 'Cancel'];
+    const ACTIONS = [
+      () => navigation.navigate('ChickenEditor', { chickenId }),
+      () => this.deleteChicken(chickenId),
+      () => {},
+    ];
+    const DESTRUCTIVE_INDEX = 1;
+    const CANCEL_INDEX = 2;
+    ActionSheet.show(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: CANCEL_INDEX,
+        destructiveButtonIndex: DESTRUCTIVE_INDEX,
+        title: 'Additonal Actions',
+      },
+      (buttonIndex) => {
+        // console.log(BUTTONS[buttonIndex]);
+        ACTIONS[buttonIndex]();
+      },
+    );
+  };
+
+  deleteChicken = (chickenId) => {
     const { flockId, deleteChicken, chicken } = this.props;
 
     const paths = [];
@@ -100,9 +125,9 @@ class Chicken extends React.Component<Props, State> {
         stats={stats}
         prevChickenId={prevChickenId}
         nextChickenId={nextChickenId}
-        handleDeleteChicken={this.handleDeleteChicken}
         showModal={showModal}
         toggleModal={this.toggleModal}
+        handleMoreOptions={this.handleMoreOptions}
       />
     );
   }

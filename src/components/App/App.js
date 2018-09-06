@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Linking } from 'react-native';
-
+import { Root } from 'native-base';
 import Splash from '../Splash';
 import RootNavigator from '../../navigation/RootNavigator';
 import NavigationService from '../../navigation/NavigationService';
@@ -78,9 +78,11 @@ class App extends React.Component<Props> {
       return <Splash />;
     }
     return (
-      <RootNavigator
-        ref={nav => NavigationService.setTopLevelNavigator(nav)}
-      />
+      <Root>
+        <RootNavigator
+          ref={nav => NavigationService.setTopLevelNavigator(nav)}
+        />
+      </Root>
     );
   }
 }

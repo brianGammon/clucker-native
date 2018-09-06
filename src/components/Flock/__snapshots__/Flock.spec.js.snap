@@ -2,6 +2,10 @@
 
 exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
 <Styled(Container)>
+  <withNavigation(Header)
+    eggButton={true}
+    title="Flock"
+  />
   <FlockHeader
     chickens={
       Object {
@@ -52,6 +56,7 @@ exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
     isFlockOwner={true}
     navigation={[MockFunction]}
   />
+  <Line />
   <Styled(Content)>
     <FlatList
       data={
@@ -80,6 +85,10 @@ exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
 
 exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
 <Styled(Container)>
+  <withNavigation(Header)
+    eggButton={true}
+    title="Flock"
+  />
   <FlockHeader
     chickens={
       Object {
@@ -130,6 +139,7 @@ exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
     isFlockOwner={false}
     navigation={[MockFunction]}
   />
+  <Line />
   <Styled(Content)>
     <FlatList
       data={

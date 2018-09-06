@@ -23,10 +23,8 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   headerCellLabel: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: 'bold',
-  },
-  headerCellText: {
     color: variables.inputColorPlaceholder,
   },
   last: {

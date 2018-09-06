@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 
 const iconSize = 50;
 const iconPadding = 10;
-const fontSize = 16;
 
 export default StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   iconLeft: {
     fontSize: iconSize,
@@ -18,10 +18,37 @@ export default StyleSheet.create({
     paddingRight: iconPadding,
   },
   label: {
-    fontSize,
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'grey',
+  },
+  h2: {
     fontWeight: 'bold',
   },
   text: {
-    fontSize,
+    height: 20,
+  },
+  dateScroll: {
+    // borderWidth: 1,
+  },
+  dateCell: {
+    alignItems: 'center',
+    padding: 10,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: 'grey',
+  },
+  lastCell: {
+    borderRightWidth: 1,
+    borderColor: 'grey',
+  },
+  dateCellLabel: {
+    color: 'grey',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  dateCellIcon: {
+    fontSize: 20,
   },
 });

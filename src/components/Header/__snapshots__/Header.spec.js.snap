@@ -11,7 +11,13 @@ exports[`Header renders with default title, eggButton and goBack button 1`] = `
         active={true}
         name="arrow-back"
       />
-      <Styled(Text)>
+      <Styled(Text)
+        style={
+          Object {
+            "paddingLeft": 8,
+          }
+        }
+      >
         Go Back
       </Styled(Text)>
     </Styled(Button)>
@@ -29,8 +35,19 @@ exports[`Header renders with default title, eggButton and goBack button 1`] = `
       <Styled(Icon)
         active={true}
         name="add-circle"
+        style={
+          Object {
+            "fontSize": 24,
+          }
+        }
       />
-      <Styled(Text)>
+      <Styled(Text)
+        style={
+          Object {
+            "paddingLeft": 5,
+          }
+        }
+      >
         Egg
       </Styled(Text)>
     </Styled(Button)>

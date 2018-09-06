@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import {
-  View, Text, Button, Icon,
+  View, Text, Button, Icon, H2,
 } from 'native-base';
 import styles from './styles';
 import { type Flock, type Chicken, type Navigation } from '../../types';
@@ -21,19 +21,18 @@ const FlockHeader = ({
   <View padder style={styles.header}>
     <View style={styles.headerCell}>
       <Text style={styles.headerCellLabel}>Flock Name</Text>
-      <Text style={styles.headerCellText}>{flock && flock.name}</Text>
+      <H2>{flock && flock.name}</H2>
     </View>
     <View style={[styles.header, styles.headerCell, styles.last]}>
       <View style={styles.headerBlock}>
         <Text style={styles.headerCellLabel}>Chickens</Text>
-        <Text style={styles.headerCellText}>
-          {Object.keys(chickens || {}).length}
-        </Text>
+        <H2>{Object.keys(chickens || {}).length}</H2>
       </View>
       {isFlockOwner && (
         <View>
           <Button
             transparent
+            dark
             onPress={() => navigation.navigate('ChickenEditor')}
           >
             <Icon active name="add-circle" />

@@ -1,681 +1,816 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no stats yet 1`] = `
-<ScrollView>
-  <ImageViewer
-    showModal={true}
-    toggleModal={[Function]}
-    url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+<Styled(Container)>
+  <withNavigation(Header)
+    eggButton={true}
+    goBackButton="Flock"
+    title="Chicken"
   />
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-      }
-    }
-  >
-    <Button
-      onPress={[Function]}
-      title="Edit"
+  <Styled(Content)>
+    <ImageViewer
+      showModal={true}
+      toggleModal={[Function]}
+      url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
     />
-    <Button
-      onPress={[Function]}
-      title="Delete"
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginTop": 20,
-      }
-    }
-  >
-    <Icon
-      allowFontScaling={false}
-      color="lightgrey"
-      name="ios-arrow-back"
-      onPress={[Function]}
-      size={12}
+    <Styled(ViewNB)
+      padder={true}
       style={
         Object {
-          "fontSize": 50,
-          "paddingLeft": 10,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
         }
       }
-    />
-    <TouchableOpacity
-      activeOpacity={0.2}
-      onPress={[Function]}
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
-          }
-        }
+      <Styled(ViewNB)>
+        <Styled(Button)
+          disabled={true}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-back"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)
         style={
           Object {
-            "height": 200,
-            "width": 200,
+            "flex": 1,
           }
         }
-      />
-    </TouchableOpacity>
-    <Icon
-      allowFontScaling={false}
-      color="grey"
-      name="ios-arrow-forward"
-      onPress={[Function]}
-      size={12}
+      >
+        <Styled(H2)
+          style={
+            Object {
+              "fontSize": 20,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Chicken1
+        </Styled(H2)>
+        <Styled(Text)
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 16,
+              "height": 18,
+            }
+          }
+        >
+          Cuckoo Maran
+        </Styled(Text)>
+        <Styled(Text)
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 16,
+              "height": 18,
+            }
+          }
+        >
+          Oct 5, 2016 (1y 11m)
+        </Styled(Text)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Styled(Button)
+          active={true}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="more"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          disabled={false}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-forward"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      padder={true}
       style={
         Object {
-          "fontSize": 50,
-          "paddingRight": 10,
+          "alignItems": "center",
         }
       }
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-evenly",
-        "padding": 10,
-      }
-    }
-  >
-    <Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          }
-        }
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
       >
-        Name:
-      </Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-          }
-        }
-      >
-        Chicken1
-      </Component>
-      <Component
-        style={
-          Array [
+        <Image
+          source={
             Object {
-              "fontSize": 16,
-              "fontWeight": "bold",
-            },
+              "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+            }
+          }
+          style={
             Object {
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        Hatched On:
-      </Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
+              "height": 200,
+              "width": 200,
+            }
           }
-        }
-      >
-        2016-10-05
-      </Component>
-    </Component>
-    <Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          }
-        }
-      >
-        Breed:
-      </Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-          }
-        }
-      >
-        Cuckoo Maran
-      </Component>
-    </Component>
-  </Component>
-</ScrollView>
+        />
+      </TouchableOpacity>
+    </Styled(ViewNB)>
+  </Styled(Content)>
+</Styled(Container)>
 `;
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly when no weight yet 1`] = `
-<ScrollView>
-  <ImageViewer
-    showModal={true}
-    toggleModal={[Function]}
-    url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+<Styled(Container)>
+  <withNavigation(Header)
+    eggButton={true}
+    goBackButton="Flock"
+    title="Chicken"
   />
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-      }
-    }
-  >
-    <Button
-      onPress={[Function]}
-      title="Edit"
+  <Styled(Content)>
+    <ImageViewer
+      showModal={true}
+      toggleModal={[Function]}
+      url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
     />
-    <Button
-      onPress={[Function]}
-      title="Delete"
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginTop": 20,
-      }
-    }
-  >
-    <Icon
-      allowFontScaling={false}
-      color="lightgrey"
-      name="ios-arrow-back"
-      onPress={[Function]}
-      size={12}
+    <Styled(ViewNB)
+      padder={true}
       style={
         Object {
-          "fontSize": 50,
-          "paddingLeft": 10,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
         }
       }
-    />
-    <TouchableOpacity
-      activeOpacity={0.2}
-      onPress={[Function]}
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
-          }
-        }
+      <Styled(ViewNB)>
+        <Styled(Button)
+          disabled={true}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-back"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)
         style={
           Object {
-            "height": 200,
-            "width": 200,
-          }
-        }
-      />
-    </TouchableOpacity>
-    <Icon
-      allowFontScaling={false}
-      color="grey"
-      name="ios-arrow-forward"
-      onPress={[Function]}
-      size={12}
-      style={
-        Object {
-          "fontSize": 50,
-          "paddingRight": 10,
-        }
-      }
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-evenly",
-        "padding": 10,
-      }
-    }
-  >
-    <Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "flex": 1,
           }
         }
       >
-        Name:
-      </Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-          }
-        }
-      >
-        Chicken1
-      </Component>
-      <Component
-        style={
-          Array [
+        <Styled(H2)
+          style={
             Object {
-              "fontSize": 16,
+              "fontSize": 20,
               "fontWeight": "bold",
-            },
+            }
+          }
+        >
+          Chicken1
+        </Styled(H2)>
+        <Styled(Text)
+          style={
             Object {
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        Hatched On:
-      </Component>
-      <Component
+              "color": "grey",
+              "fontSize": 16,
+              "height": 18,
+            }
+          }
+        >
+          Cuckoo Maran
+        </Styled(Text)>
+        <Styled(Text)
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 16,
+              "height": 18,
+            }
+          }
+        >
+          Oct 5, 2016 (1y 11m)
+        </Styled(Text)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)
         style={
           Object {
-            "fontSize": 16,
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
           }
         }
       >
-        2016-10-05
-      </Component>
-    </Component>
-    <Component>
-      <Component
+        <Styled(Button)
+          active={true}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="more"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          disabled={false}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-forward"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      padder={true}
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+            }
+          }
+          style={
+            Object {
+              "height": 200,
+              "width": 200,
+            }
+          }
+        />
+      </TouchableOpacity>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      padder={true}
+    >
+      <Line />
+      <Styled(ViewNB)
         style={
           Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 10,
           }
         }
       >
-        Breed:
-      </Component>
-      <Component
+        <Styled(ViewNB)
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "grey",
+                "fontSize": 17,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Total Eggs
+          </Styled(Text)>
+          <Styled(H2)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            1
+          </Styled(H2)>
+          <Styled(Text)
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+          />
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Array [
+                Object {
+                  "color": "grey",
+                  "fontSize": 17,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Best Streak
+          </Styled(Text)>
+          <Styled(H2)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            0
+          </Styled(H2)>
+          <Styled(Text)
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+          >
+            Days
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+      <Line />
+      <Styled(ViewNB)
         style={
           Object {
-            "fontSize": 16,
+            "alignItems": "center",
           }
         }
       >
-        Cuckoo Maran
-      </Component>
-    </Component>
-  </Component>
-  <Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Total Eggs:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      1
-    </Component>
-    <Component
-      style={
-        Array [
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          },
-          Object {
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      Heaviest Egg:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    />
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    />
-    <Component
-      style={
-        Array [
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          },
-          Object {
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      Longest Streak:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      0
-    </Component>
-    <Component
-      style={
-        Array [
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          },
-          Object {
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      Last 7 Days:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      {
-  "2018-10-06": 1
-}
-    </Component>
-  </Component>
-</ScrollView>
+        <Styled(Text)
+          style={
+            Array [
+              Object {
+                "color": "grey",
+                "fontSize": 17,
+                "fontWeight": "bold",
+              },
+              Object {
+                "marginBottom": 10,
+              },
+            ]
+          }
+        >
+          Last Week
+        </Styled(Text)>
+        <Styled(ViewNB)
+          style={Object {}}
+        >
+          <Styled(ViewNB)
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Styled(ViewNB)
+              key="2018-10-06"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderBottomWidth": 1,
+                    "borderColor": "grey",
+                    "borderLeftWidth": 1,
+                    "borderTopWidth": 1,
+                    "padding": 10,
+                  },
+                  Object {
+                    "backgroundColor": "lightgreen",
+                  },
+                  Object {
+                    "borderColor": "grey",
+                    "borderRightWidth": 1,
+                  },
+                ]
+              }
+            >
+              <Styled(Text)
+                style={
+                  Object {
+                    "color": "grey",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Oct
+              </Styled(Text)>
+              <Styled(Text)
+                style={
+                  Object {
+                    "color": "grey",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                6
+              </Styled(Text)>
+              <Styled(ViewNB)>
+                <Styled(Icon)
+                  name="checkmark-circle"
+                  style={
+                    Object {
+                      "fontSize": 20,
+                    }
+                  }
+                />
+              </Styled(ViewNB)>
+            </Styled(ViewNB)>
+          </Styled(ViewNB)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+  </Styled(Content)>
+</Styled(Container)>
 `;
 
 exports[`Chicken component: ChickenRenderer test ChickenRenderer should render correctly with all stats available 1`] = `
-<ScrollView>
-  <ImageViewer
-    showModal={true}
-    toggleModal={[Function]}
-    url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
+<Styled(Container)>
+  <withNavigation(Header)
+    eggButton={true}
+    goBackButton="Flock"
+    title="Chicken"
   />
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-      }
-    }
-  >
-    <Button
-      onPress={[Function]}
-      title="Edit"
+  <Styled(Content)>
+    <ImageViewer
+      showModal={true}
+      toggleModal={[Function]}
+      url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
     />
-    <Button
-      onPress={[Function]}
-      title="Delete"
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginTop": 20,
-      }
-    }
-  >
-    <Icon
-      allowFontScaling={false}
-      color="lightgrey"
-      name="ios-arrow-back"
-      onPress={[Function]}
-      size={12}
+    <Styled(ViewNB)
+      padder={true}
       style={
         Object {
-          "fontSize": 50,
-          "paddingLeft": 10,
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
         }
       }
-    />
-    <TouchableOpacity
-      activeOpacity={0.2}
-      onPress={[Function]}
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
-          }
-        }
+      <Styled(ViewNB)>
+        <Styled(Button)
+          disabled={true}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-back"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)
         style={
           Object {
-            "height": 200,
-            "width": 200,
-          }
-        }
-      />
-    </TouchableOpacity>
-    <Icon
-      allowFontScaling={false}
-      color="grey"
-      name="ios-arrow-forward"
-      onPress={[Function]}
-      size={12}
-      style={
-        Object {
-          "fontSize": 50,
-          "paddingRight": 10,
-        }
-      }
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-evenly",
-        "padding": 10,
-      }
-    }
-  >
-    <Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "flex": 1,
           }
         }
       >
-        Name:
-      </Component>
-      <Component
-        style={
-          Object {
-            "fontSize": 16,
-          }
-        }
-      >
-        Chicken1
-      </Component>
-      <Component
-        style={
-          Array [
+        <Styled(H2)
+          style={
             Object {
-              "fontSize": 16,
+              "fontSize": 20,
               "fontWeight": "bold",
-            },
+            }
+          }
+        >
+          Chicken1
+        </Styled(H2)>
+        <Styled(Text)
+          style={
             Object {
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        Hatched On:
-      </Component>
-      <Component
+              "color": "grey",
+              "fontSize": 16,
+              "height": 18,
+            }
+          }
+        >
+          Cuckoo Maran
+        </Styled(Text)>
+        <Styled(Text)
+          style={
+            Object {
+              "color": "grey",
+              "fontSize": 16,
+              "height": 18,
+            }
+          }
+        >
+          Oct 5, 2016 (1y 11m)
+        </Styled(Text)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)
         style={
           Object {
-            "fontSize": 16,
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
           }
         }
       >
-        2016-10-05
-      </Component>
-    </Component>
-    <Component>
-      <Component
+        <Styled(Button)
+          active={true}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="more"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          disabled={false}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-forward"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      padder={true}
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180",
+            }
+          }
+          style={
+            Object {
+              "height": 200,
+              "width": 200,
+            }
+          }
+        />
+      </TouchableOpacity>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)
+      padder={true}
+    >
+      <Line />
+      <Styled(ViewNB)
         style={
           Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginBottom": 10,
           }
         }
       >
-        Breed:
-      </Component>
-      <Component
+        <Styled(ViewNB)
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Object {
+                "color": "grey",
+                "fontSize": 17,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Total Eggs
+          </Styled(Text)>
+          <Styled(H2)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            1
+          </Styled(H2)>
+          <Styled(Text)
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+          />
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Array [
+                Object {
+                  "color": "grey",
+                  "fontSize": 17,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Heaviest Egg
+          </Styled(Text)>
+          <Styled(H2)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            88.1
+          </Styled(H2)>
+          <Styled(Text)
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+          >
+            Apr 2, 2017
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)
+            style={
+              Array [
+                Object {
+                  "color": "grey",
+                  "fontSize": 17,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Best Streak
+          </Styled(Text)>
+          <Styled(H2)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            0
+          </Styled(H2)>
+          <Styled(Text)
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+          >
+            Days
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+      <Line />
+      <Styled(ViewNB)
         style={
           Object {
-            "fontSize": 16,
+            "alignItems": "center",
           }
         }
       >
-        Cuckoo Maran
-      </Component>
-    </Component>
-  </Component>
-  <Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Total Eggs:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      1
-    </Component>
-    <Component
-      style={
-        Array [
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          },
-          Object {
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      Heaviest Egg:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      88.1
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      2017-04-02
-    </Component>
-    <Component
-      style={
-        Array [
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          },
-          Object {
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      Longest Streak:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      0
-    </Component>
-    <Component
-      style={
-        Array [
-          Object {
-            "fontSize": 16,
-            "fontWeight": "bold",
-          },
-          Object {
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      Last 7 Days:
-    </Component>
-    <Component
-      style={
-        Object {
-          "fontSize": 16,
-        }
-      }
-    >
-      {
-  "2018-10-06": 1
-}
-    </Component>
-  </Component>
-</ScrollView>
+        <Styled(Text)
+          style={
+            Array [
+              Object {
+                "color": "grey",
+                "fontSize": 17,
+                "fontWeight": "bold",
+              },
+              Object {
+                "marginBottom": 10,
+              },
+            ]
+          }
+        >
+          Last Week
+        </Styled(Text)>
+        <Styled(ViewNB)
+          style={Object {}}
+        >
+          <Styled(ViewNB)
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Styled(ViewNB)
+              key="2018-10-06"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderBottomWidth": 1,
+                    "borderColor": "grey",
+                    "borderLeftWidth": 1,
+                    "borderTopWidth": 1,
+                    "padding": 10,
+                  },
+                  Object {
+                    "backgroundColor": "lightgreen",
+                  },
+                  Object {
+                    "borderColor": "grey",
+                    "borderRightWidth": 1,
+                  },
+                ]
+              }
+            >
+              <Styled(Text)
+                style={
+                  Object {
+                    "color": "grey",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Oct
+              </Styled(Text)>
+              <Styled(Text)
+                style={
+                  Object {
+                    "color": "grey",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                6
+              </Styled(Text)>
+              <Styled(ViewNB)>
+                <Styled(Icon)
+                  name="checkmark-circle"
+                  style={
+                    Object {
+                      "fontSize": 20,
+                    }
+                  }
+                />
+              </Styled(ViewNB)>
+            </Styled(ViewNB)>
+          </Styled(ViewNB)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+  </Styled(Content)>
+</Styled(Container)>
 `;
 
 exports[`Chicken component: Should render correctly when chicken ID passed in 1`] = `
@@ -692,7 +827,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
     }
   }
   chickenId="chicken1"
-  handleDeleteChicken={[Function]}
+  handleMoreOptions={[Function]}
   navigation={
     Object {
       "getParam": [MockFunction] {
