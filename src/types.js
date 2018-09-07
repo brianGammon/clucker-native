@@ -70,4 +70,13 @@ export type UserSettings = {
   flocks: { [string]: boolean },
 };
 
+export type CalendarData = {
+  [date: string]: {
+    total: number,
+    byChicken: {
+      [chickenId: string]: number,
+    },
+  },
+};
+
 export type Navigation = NavigationScreenProp<NavigationStateRoute>;

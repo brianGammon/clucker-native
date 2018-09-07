@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Alert } from 'react-native';
 import CalendarDayRenderer from './CalendarDayRenderer';
 import { nowAsMoment, dateSwitcher } from '../../utils/dateHelper';
-import eggsByDaySelector from '../../selectors/eggsByDaySelector';
+import eggsByRangeSelector from '../../selectors/eggsByRangeSelector';
 import { metaTypes } from '../../redux/constants';
 import { firebaseRemoveRequested } from '../../redux/actions';
 import { type Egg } from '../../types';
@@ -61,7 +61,7 @@ const mapStateToProps = ({ eggs, userSettings }, { navigation }) => {
       nextDate,
     },
     flockId: userSettings.data.currentFlockId,
-    eggs: eggsByDaySelector(eggs.data, date),
+    eggs: eggsByRangeSelector(eggs.data, date),
   };
 };
 

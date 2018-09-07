@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import CalendarRenderer from './CalendarRenderer';
-import flockStatsSelector from '../../selectors/flockStatsSelector';
+import calendarDataSelector from '../../selectors/calendarDataSelector';
 import { nowAsMoment, dateSwitcher } from '../../utils/dateHelper';
-import { type Chicken } from '../../types';
+import { type Chicken, type CalendarData, type FlockStats } from '../../types';
+import flockStatsSelector from '../../selectors/flockStatsSelector';
 
 type Props = {
   navigation: any,
-  stats: any,
+  stats: FlockStats,
+  calendarData: CalendarData,
   chickens: {
     [chickenId: string]: Chicken,
   },
@@ -21,12 +23,13 @@ type Props = {
 class Calendar extends React.Component<Props> {
   render() {
     const {
-      navigation, stats, dates, chickens,
+      navigation, calendarData, dates, chickens, stats,
     } = this.props;
     return (
       <CalendarRenderer
         navigation={navigation}
         stats={stats}
+        calendarData={calendarData}
         chickens={chickens}
         dates={dates}
       />
@@ -39,6 +42,7 @@ const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
   const { previousDate, nextDate } = dateSwitcher(date, 'months', 'YYYY-MM');
   return {
     stats: flockStatsSelector(eggs.data, date),
+    calendarData: calendarDataSelector(eggs.data, date),
     chickens: chickens.data,
     dates: {
       date,
