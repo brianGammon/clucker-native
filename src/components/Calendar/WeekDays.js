@@ -29,7 +29,7 @@ const WeekDays = ({ calendarData, month, navigation }: Props) => (
         <View style={styles.innerDayCell}>
           <Text style={styles.dayLabel}>{moment(day).format('D')}</Text>
           {calendarData[day].total && (
-            <Badge primary style={styles.eggCount}>
+            <Badge success style={styles.eggCount}>
               <Text>{calendarData[day].total}</Text>
             </Badge>
           )}

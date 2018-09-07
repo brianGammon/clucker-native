@@ -1,9 +1,11 @@
 /* @flow */
 import * as React from 'react';
 import {
-  Text, Button, View, ScrollView,
-} from 'react-native';
+  Text, View, Container, Content, Button,
+} from 'native-base';
 import { type Egg } from '../../types';
+import Header from '../Header';
+import DateSwitcher from '../DateSwitcher';
 import styles from './styles';
 
 type Props = {
@@ -22,46 +24,48 @@ type Props = {
 const CalendarDayRenderer = ({
   navigation,
   eggs,
-  dates: { date, previousDate, nextDate },
+  dates,
   onDeleteEgg,
 }: Props) => (
-  <ScrollView style={styles.container}>
-    <View style={styles.dateSwitcher}>
-      <Button
-        onPress={() => navigation.replace('Day', { date: previousDate })}
-        title="Previous"
+  <Container>
+    <Header title="Eggs For Day" eggButton goBackButton="Month" />
+    <Content padder>
+      <DateSwitcher
+        mode="day"
+        navigation={navigation}
+        dates={dates}
+        eggCount={Object.keys(eggs || {}).length}
       />
-      <Text>{date}</Text>
-      <Button
-        disabled={nextDate === null}
-        onPress={() => navigation.replace('Day', { date: nextDate })}
-        title="Next"
-      />
-    </View>
-    <View>
-      {Object.keys(eggs || {}).map(key => (
-        <View key={key} style={styles.dayContainer}>
-          <View style={styles.dayContainerRow}>
-            <View style={{ flex: 1, borderWidth: 1 }}>
-              <Text>{eggs[key].chickenName}</Text>
-              <Text>{eggs[key].weight || '-- g'}</Text>
-              <Text>{eggs[key].notes}</Text>
-              <Text>
-                {eggs[key].damaged ? eggs[key].damaged.toString() : 'false'}
-              </Text>
-            </View>
-            <View>
-              <Button
-                title="Edit"
-                onPress={() => navigation.navigate('EggEditor', { eggId: key })}
-              />
-              <Button title="Delete" onPress={() => onDeleteEgg(key)} />
+      <View>
+        {Object.keys(eggs || {}).map(key => (
+          <View key={key} style={styles.dayContainer}>
+            <View style={styles.dayContainerRow}>
+              <View style={{ flex: 1, borderWidth: 1 }}>
+                <Text>{eggs[key].chickenName}</Text>
+                <Text>{eggs[key].weight || '-- g'}</Text>
+                <Text>{eggs[key].notes}</Text>
+                <Text>
+                  {eggs[key].damaged ? eggs[key].damaged.toString() : 'false'}
+                </Text>
+              </View>
+              <View>
+                <Button
+                  transparent
+                  onPress={() => navigation.navigate('EggEditor', { eggId: key })
+                  }
+                >
+                  <Text>Edit</Text>
+                </Button>
+                <Button transparent onPress={() => onDeleteEgg(key)}>
+                  <Text>Delete</Text>
+                </Button>
+              </View>
             </View>
           </View>
-        </View>
-      ))}
-    </View>
-  </ScrollView>
+        ))}
+      </View>
+    </Content>
+  </Container>
 );
 
 export default CalendarDayRenderer;

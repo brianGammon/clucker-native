@@ -11,17 +11,16 @@ const cell = {
   alignItems: 'center',
 };
 
+const rowContainer = {
+  flexDirection: 'row',
+};
+
 export default StyleSheet.create({
   section: {
     marginTop: 10,
   },
-  dateSwitcher: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
   labelContainer: {
-    flexDirection: 'row',
+    ...rowContainer,
   },
   labelCell: {
     ...cell,
@@ -32,14 +31,14 @@ export default StyleSheet.create({
   },
   label,
   calendarContainer: {
-    flexDirection: 'row',
+    ...rowContainer,
     flexWrap: 'wrap',
   },
   dayCell: {
     ...cell,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    minHeight: 75,
+    minHeight: 60,
   },
   innerDayCell: {
     padding: 2,
@@ -56,9 +55,6 @@ export default StyleSheet.create({
   },
   eggCount: {
     alignSelf: 'center',
-  },
-  monthTitle: {
-    fontWeight: 'bold',
   },
   statsLabel: {
     fontWeight: 'bold',

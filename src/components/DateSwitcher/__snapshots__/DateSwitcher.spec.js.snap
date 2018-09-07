@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateSwitcher renders in day mode 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+      }
+    }
+  >
+    <Styled(Button)
+      dark={true}
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="arrow-back"
+      />
+    </Styled(Button)>
+    <Styled(H2)
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      May 5
+    </Styled(H2)>
+    <Styled(Button)
+      dark={true}
+      disabled={false}
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="arrow-forward"
+      />
+    </Styled(Button)>
+  </Styled(ViewNB)>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "alignItems": "center",
+        "paddingLeft": 20,
+        "paddingRight": 20,
+      }
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "fontSize": 17,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Eggs
+    </Styled(Text)>
+    <Styled(H3)>
+      20
+    </Styled(H3)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
+`;
+
+exports[`DateSwitcher renders in month mode 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-around",
+      }
+    }
+  >
+    <Styled(Button)
+      dark={true}
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="arrow-back"
+      />
+    </Styled(Button)>
+    <Styled(H2)
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
+    >
+      May 2018
+    </Styled(H2)>
+    <Styled(Button)
+      dark={true}
+      disabled={false}
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="arrow-forward"
+      />
+    </Styled(Button)>
+  </Styled(ViewNB)>
+  <Styled(ViewNB)
+    style={
+      Object {
+        "alignItems": "center",
+        "paddingLeft": 20,
+        "paddingRight": 20,
+      }
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "fontSize": 17,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Eggs
+    </Styled(Text)>
+    <Styled(H3)>
+      20
+    </Styled(H3)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
+`;

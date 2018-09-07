@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react';
+import moment from 'moment';
 import { withNavigation } from 'react-navigation';
 import {
   Header as NBHeader,
@@ -12,6 +13,7 @@ import {
   Icon,
 } from 'native-base';
 import { type Navigation } from '../../types';
+import { nowAsMoment } from '../../utils/dateHelper';
 import styles from './styles';
 
 type Props = {
@@ -33,8 +35,16 @@ export const Header = ({
   if (chickenId) {
     options.chickenId = chickenId;
   }
-  const date = navigation.getParam('date', null);
+  let date = navigation.getParam('date', null);
   if (date) {
+    if (date.length === 7) {
+      const now = nowAsMoment();
+      if (now.month() === moment(date).month()) {
+        date = now.format('YYYY-MM-DD');
+      } else {
+        date += '-01';
+      }
+    }
     options.date = date;
   }
   return (
