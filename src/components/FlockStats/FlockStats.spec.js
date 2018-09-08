@@ -37,7 +37,13 @@ describe('FlockStats component:', () => {
         },
       },
     };
-    const wrapper = shallow(<FlockStatsRenderer stats={mockStats} />);
+    const wrapper = shallow(
+      <FlockStatsRenderer
+        stats={mockStats}
+        flock={sampleData.flocks.data.flock1}
+        chickens={sampleData.chickens.data}
+      />,
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });
