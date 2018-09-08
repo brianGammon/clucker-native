@@ -1,14 +1,15 @@
 /* @flow */
 import * as React from 'react';
-import {
-  View, Text, Container, Content, H3,
-} from 'native-base';
+import { View, Container, Content } from 'native-base';
 import { type Chicken, type CalendarData, type FlockStats } from '../../types';
 import Header from '../Header';
 import styles from './styles';
 import WeekDayLabels from './WeekDayLabels';
 import DateSwitcher from '../DateSwitcher';
+import Line from '../Line';
 import WeekDays from './WeekDays';
+import Leaderboard from '../Leaderboard';
+import HeaviestEgg from '../HeaviestEgg';
 
 type Props = {
   navigation: any,
@@ -50,32 +51,13 @@ const CalendarRenderer = ({
         />
       </View>
 
-      {stats && (
-        <View
-          style={[
-            styles.section,
-            { flexDirection: 'row', justifyContent: 'space-around' },
-          ]}
-        >
-          {chickens[stats.mostEggs] && (
-            <View style={{ alignItems: 'center' }}>
-              <Text style={styles.statsLabel}>Top Producer</Text>
-              <H3>
-                {`${chickens[stats.mostEggs].name} (${
-                  stats.eggsPerChicken[stats.mostEggs]
-                })`}
-              </H3>
-            </View>
-          )}
-          {stats.heaviest && (
-            <View style={{ alignItems: 'center' }}>
-              <Text style={styles.statsLabel}>Heaviest</Text>
-              <H3>{stats.heaviest.chickenName}</H3>
-              <Text>{`${stats.heaviest.weight}g`}</Text>
-            </View>
-          )}
-        </View>
-      )}
+      <Line />
+
+      {stats && <Leaderboard stats={stats} chickens={chickens} mode="month" />}
+
+      <Line />
+
+      {stats.heaviest && <HeaviestEgg heaviest={stats.heaviest} />}
     </Content>
   </Container>
 );

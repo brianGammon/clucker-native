@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Leaderboard renders 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+    }
+  }
+>
+  <Styled(Text)
+    style={
+      Object {
+        "fontSize": 17,
+        "fontWeight": "bold",
+      }
+    }
+  >
+     Leaderboard
+  </Styled(Text)>
+  <Styled(ViewNB)
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "padding": 4,
+        },
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#eee",
+          "flexDirection": "row",
+          "padding": 4,
+        },
+      ]
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "color": "grey",
+          "flex": 1,
+          "fontWeight": "bold",
+          "width": 40,
+        }
+      }
+    >
+      Chicken
+    </Styled(Text)>
+    <Styled(ViewNB)>
+      <Styled(Text)
+        style={
+          Object {
+            "color": "grey",
+            "fontWeight": "bold",
+            "width": 40,
+          }
+        }
+      >
+        Eggs
+      </Styled(Text)>
+    </Styled(ViewNB)>
+  </Styled(ViewNB)>
+  <Styled(ViewNB)
+    key="chicken1"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "padding": 4,
+      }
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      Chicken1
+    </Styled(Text)>
+    <Styled(Text)
+      style={
+        Object {
+          "width": 40,
+        }
+      }
+    >
+      3
+    </Styled(Text)>
+  </Styled(ViewNB)>
+  <Styled(ViewNB)
+    key="chicken2"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "padding": 4,
+      }
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      Chicken2
+    </Styled(Text)>
+    <Styled(Text)
+      style={
+        Object {
+          "width": 40,
+        }
+      }
+    >
+      2
+    </Styled(Text)>
+  </Styled(ViewNB)>
+  <Styled(ViewNB)
+    key="unknown"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "padding": 4,
+      }
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      Unknown
+    </Styled(Text)>
+    <Styled(Text)
+      style={
+        Object {
+          "width": 40,
+        }
+      }
+    >
+      2
+    </Styled(Text)>
+  </Styled(ViewNB)>
+  <Styled(ViewNB)
+    key="chicken3"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "padding": 4,
+      }
+    }
+  >
+    <Styled(Text)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      Chicken3
+    </Styled(Text)>
+    <Styled(Text)
+      style={
+        Object {
+          "width": 40,
+        }
+      }
+    >
+      1
+    </Styled(Text)>
+  </Styled(ViewNB)>
+</Styled(ViewNB)>
+`;

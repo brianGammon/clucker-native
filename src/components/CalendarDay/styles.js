@@ -1,17 +1,38 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  dateSwitcher: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
-  dayContainer: {
-    borderBottomWidth: 1,
+  details: {
+    flex: 1,
   },
-  dayContainerRow: {
+  badgeContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  badgeText: {
+    fontSize: 12,
+  },
+  notesContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  label: {
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+  eggNote: {
+    fontStyle: 'italic',
+    color: 'grey',
+    marginLeft: 10,
+    padding: 5,
+  },
+  moreButton: {
+    alignSelf: 'center',
+  },
+  moreIcon: {
+    fontSize: 30,
   },
 });

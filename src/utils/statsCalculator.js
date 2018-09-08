@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { forEach, sortBy } from 'lodash';
+import { sortBy, toPairs, fromPairs } from 'lodash';
 import { dateStringAsMoment, nowAsMoment } from './dateHelper';
 
 export default (eggs, range) => {
@@ -14,7 +14,7 @@ export default (eggs, range) => {
   const thirtyDaysAgo = now.clone().subtract(daysBackForAvg - 1, 'day');
   const firstOfMonth = range === 'allTime' ? null : moment.utc(`${range}-01`);
   const startofRange = range === 'allTime' ? thirtyDaysAgo : firstOfMonth;
-  const eggsPerChicken = {};
+  let eggsPerChicken = {};
   const eggsPerPeriod = {};
 
   if (range !== 'allTime') {
@@ -68,16 +68,6 @@ export default (eggs, range) => {
     }
   });
 
-  // Figure out who laid the most eggs
-  let topProducer = '';
-  let most = 0;
-  forEach(Object.keys(eggsPerChicken), (key) => {
-    if (eggsPerChicken[key] > most) {
-      topProducer = key;
-      most = eggsPerChicken[key];
-    }
-  });
-
   const earliest = dateStringAsMoment(earliestDate);
   let daysToGoBack = daysBackForAvg;
 
@@ -86,6 +76,12 @@ export default (eggs, range) => {
     daysToGoBack = daysBackForAvg - daysAfter;
   }
   const averageNumber = rangeCount > 0 ? rangeCount / daysToGoBack : 0;
+
+  // sort the eggPerPeriod by most eggs
+  const array = toPairs(eggsPerChicken);
+  const sortedArray = array.sort((a, b) => b[1] - a[1]);
+  const topProducer = sortedArray[0][0];
+  eggsPerChicken = fromPairs(sortedArray);
 
   const stats = {
     total: sortedEggs.length,

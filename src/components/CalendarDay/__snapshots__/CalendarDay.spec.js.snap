@@ -37,6 +37,7 @@ exports[`CalendarDay component: Should render correctly 1`] = `
       },
     }
   }
+  handleMoreOptions={[Function]}
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -55,6 +56,5 @@ exports[`CalendarDay component: Should render correctly 1`] = `
       },
     }
   }
-  onDeleteEgg={[Function]}
 />
 `;

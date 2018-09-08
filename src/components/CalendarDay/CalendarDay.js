@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { ActionSheet } from 'native-base';
 import { Alert } from 'react-native';
 import CalendarDayRenderer from './CalendarDayRenderer';
 import { nowAsMoment, dateSwitcher } from '../../utils/dateHelper';
@@ -24,7 +25,7 @@ type Props = {
 };
 
 class CalendarDay extends React.Component<Props> {
-  onDeleteEgg = (eggId) => {
+  deleteEgg = (eggId) => {
     const { flockId, deleteEgg } = this.props;
     Alert.alert('Are you sure you want to delete this egg?', null, [
       {
@@ -38,6 +39,29 @@ class CalendarDay extends React.Component<Props> {
     ]);
   };
 
+  handleMoreOptions = (eggId: string) => {
+    const { navigation } = this.props;
+    const BUTTONS = ['Edit Details', 'Delete Egg', 'Cancel'];
+    const ACTIONS = [
+      () => navigation.navigate('EggEditor', { eggId }),
+      () => this.deleteEgg(eggId),
+      () => {},
+    ];
+    const DESTRUCTIVE_INDEX = 1;
+    const CANCEL_INDEX = 2;
+    ActionSheet.show(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: CANCEL_INDEX,
+        destructiveButtonIndex: DESTRUCTIVE_INDEX,
+        title: 'Additonal Actions',
+      },
+      (buttonIndex) => {
+        ACTIONS[buttonIndex]();
+      },
+    );
+  };
+
   render() {
     const { navigation, dates, eggs } = this.props;
     return (
@@ -45,7 +69,7 @@ class CalendarDay extends React.Component<Props> {
         navigation={navigation}
         dates={dates}
         eggs={eggs}
-        onDeleteEgg={this.onDeleteEgg}
+        handleMoreOptions={this.handleMoreOptions}
       />
     );
   }

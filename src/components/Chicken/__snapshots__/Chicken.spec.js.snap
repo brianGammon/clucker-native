@@ -84,12 +84,17 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       >
         <Styled(Button)
-          active={true}
           dark={true}
           transparent={true}
         >
           <Styled(Icon)
+            active={true}
             name="more"
+            style={
+              Object {
+                "fontSize": 30,
+              }
+            }
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -220,12 +225,17 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       >
         <Styled(Button)
-          active={true}
           dark={true}
           transparent={true}
         >
           <Styled(Icon)
+            active={true}
             name="more"
+            style={
+              Object {
+                "fontSize": 30,
+              }
+            }
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -540,12 +550,17 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       >
         <Styled(Button)
-          active={true}
           dark={true}
           transparent={true}
         >
           <Styled(Icon)
+            active={true}
             name="more"
+            style={
+              Object {
+                "fontSize": 30,
+              }
+            }
           />
         </Styled(Button)>
       </Styled(ViewNB)>

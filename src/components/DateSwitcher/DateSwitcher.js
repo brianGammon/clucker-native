@@ -33,7 +33,7 @@ const DateSwitcher = ({
         <Icon name="arrow-back" />
       </Button>
       <H2 style={styles.monthTitle}>
-        {moment(dates.date).format(mode === 'month' ? 'MMMM YYYY' : 'MMM D')}
+        {moment(dates.date).format(mode === 'month' ? 'MMMM YYYY' : 'MMMM D')}
       </H2>
       <Button
         transparent

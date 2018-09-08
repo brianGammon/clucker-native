@@ -1,12 +1,12 @@
 /* @flow */
 import * as React from 'react';
-import {
-  Text, View, Container, Content, Button,
-} from 'native-base';
+import { Container, Content } from 'native-base';
+import { FlatList } from 'react-native';
 import { type Egg } from '../../types';
 import Header from '../Header';
 import DateSwitcher from '../DateSwitcher';
-import styles from './styles';
+import Line from '../Line';
+import EggItem from './EggItem';
 
 type Props = {
   navigation: any,
@@ -18,17 +18,17 @@ type Props = {
   eggs: {
     [eggId: string]: Egg,
   },
-  onDeleteEgg: (eggId: string) => void,
+  handleMoreOptions: (eggId: string) => void,
 };
 
 const CalendarDayRenderer = ({
   navigation,
   eggs,
   dates,
-  onDeleteEgg,
+  handleMoreOptions,
 }: Props) => (
   <Container>
-    <Header title="Eggs For Day" eggButton goBackButton="Month" />
+    <Header title="Egg List" eggButton goBackButton="Month" />
     <Content padder>
       <DateSwitcher
         mode="day"
@@ -36,34 +36,18 @@ const CalendarDayRenderer = ({
         dates={dates}
         eggCount={Object.keys(eggs || {}).length}
       />
-      <View>
-        {Object.keys(eggs || {}).map(key => (
-          <View key={key} style={styles.dayContainer}>
-            <View style={styles.dayContainerRow}>
-              <View style={{ flex: 1, borderWidth: 1 }}>
-                <Text>{eggs[key].chickenName}</Text>
-                <Text>{eggs[key].weight || '-- g'}</Text>
-                <Text>{eggs[key].notes}</Text>
-                <Text>
-                  {eggs[key].damaged ? eggs[key].damaged.toString() : 'false'}
-                </Text>
-              </View>
-              <View>
-                <Button
-                  transparent
-                  onPress={() => navigation.navigate('EggEditor', { eggId: key })
-                  }
-                >
-                  <Text>Edit</Text>
-                </Button>
-                <Button transparent onPress={() => onDeleteEgg(key)}>
-                  <Text>Delete</Text>
-                </Button>
-              </View>
-            </View>
-          </View>
-        ))}
-      </View>
+      <Line />
+      <FlatList
+        data={Object.keys(eggs || {})}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <EggItem
+            item={item}
+            eggs={eggs}
+            handleMoreOptions={handleMoreOptions}
+          />
+        )}
+      />
     </Content>
   </Container>
 );
