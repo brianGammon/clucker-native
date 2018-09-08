@@ -20,6 +20,9 @@ export default StyleSheet.create({
   eggStatsCell: {
     alignItems: 'center',
   },
+  eggStatsValue: {
+    fontWeight: 'bold',
+  },
   label: {
     ...label,
     color: variables.inputColorPlaceholder,
