@@ -33,6 +33,7 @@ export default StyleSheet.create({
   },
   value: {
     width: 40,
+    textAlign: 'center',
   },
   wideValue: {
     flex: 1,

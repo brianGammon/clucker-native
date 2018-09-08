@@ -26,6 +26,7 @@ export default StyleSheet.create({
   },
   medLabel: {
     ...label,
+    textAlign: 'center',
     width: 100,
   },
   wideLabel: {
@@ -34,6 +35,7 @@ export default StyleSheet.create({
   },
   value: {
     width: 100,
+    textAlign: 'center',
   },
   wideValue: {
     flex: 1,

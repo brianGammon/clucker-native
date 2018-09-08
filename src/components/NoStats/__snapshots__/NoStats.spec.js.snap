@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoStats renders with default message 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "alignItems": "center",
+    }
+  }
+>
+  <Line />
+  <Styled(Text)
+    style={
+      Object {
+        "fontSize": 17,
+        "fontStyle": "italic",
+      }
+    }
+  >
+    No stats available for this period
+  </Styled(Text)>
+</Styled(ViewNB)>
+`;
+
+exports[`NoStats renders with message prop 1`] = `
+<Styled(ViewNB)
+  style={
+    Object {
+      "alignItems": "center",
+    }
+  }
+>
+  <Line />
+  <Styled(Text)
+    style={
+      Object {
+        "fontSize": 17,
+        "fontStyle": "italic",
+      }
+    }
+  >
+    Passed in message
+  </Styled(Text)>
+</Styled(ViewNB)>
+`;

@@ -10,6 +10,7 @@ import Line from '../Line';
 import WeekDays from './WeekDays';
 import Leaderboard from '../Leaderboard';
 import HeaviestEgg from '../HeaviestEgg';
+import NoStats from '../NoStats';
 
 type Props = {
   navigation: any,
@@ -51,13 +52,15 @@ const CalendarRenderer = ({
         />
       </View>
 
-      <Line />
-
-      {stats && <Leaderboard stats={stats} chickens={chickens} mode="month" />}
-
-      <Line />
-
-      {stats.heaviest && <HeaviestEgg heaviest={stats.heaviest} />}
+      {stats && (
+        <View>
+          <Line />
+          <Leaderboard stats={stats} chickens={chickens} mode="month" />
+          <Line />
+          {stats.heaviest && <HeaviestEgg heaviest={stats.heaviest} />}
+        </View>
+      )}
+      {!stats && <NoStats />}
     </Content>
   </Container>
 );
