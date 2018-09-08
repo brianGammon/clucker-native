@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'native-base';
 import { connect } from 'react-redux';
 import FlockStatsRenderer from './FlockStatsRenderer';
 import flockStatsSelector from '../../selectors/flockStatsSelector';
@@ -7,35 +8,33 @@ import {
   type Navigation,
   type Flock,
   type FlockStats as FlockStatsType,
+  type Chicken,
 } from '../../types';
 
 type Props = {
   navigation: Navigation,
   flock: Flock,
+  chickens: {
+    [chickenId: string]: Chicken,
+  },
   stats: FlockStatsType,
 };
 
 class FlockStats extends React.Component<Props> {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam('title', 'Flock Stats'),
-  });
-
-  componentDidUpdate() {
-    const { flock, navigation } = this.props;
-    if (flock && flock.name) {
-      if (navigation.getParam('title', 'default') !== flock.name) {
-        navigation.setParams({ title: flock.name });
-      }
-    }
-  }
-
   render() {
-    const { stats } = this.props;
-    return <FlockStatsRenderer stats={stats} />;
+    const { stats, chickens, flock } = this.props;
+    if (!stats || !flock) {
+      return <Text>No Stats Yet</Text>;
+    }
+    return (
+      <FlockStatsRenderer stats={stats} chickens={chickens} flock={flock} />
+    );
   }
 }
 
-const mapStateToProps = ({ userSettings, eggs, flocks }) => {
+const mapStateToProps = ({
+  userSettings, eggs, flocks, chickens,
+}) => {
   let flock = {};
   if (userSettings.data.currentFlockId) {
     flock = currentFlockSelector(flocks.data, userSettings);
@@ -43,6 +42,7 @@ const mapStateToProps = ({ userSettings, eggs, flocks }) => {
   return {
     flock,
     stats: flockStatsSelector(eggs.data),
+    chickens: chickens.data,
   };
 };
 

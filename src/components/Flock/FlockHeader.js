@@ -36,7 +36,6 @@ const FlockHeader = ({
             onPress={() => navigation.navigate('ChickenEditor')}
           >
             <Icon active name="add-circle" />
-            {/* <Text style={styles.addText}>Chicken</Text> */}
           </Button>
         </View>
       )}

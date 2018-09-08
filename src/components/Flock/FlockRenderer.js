@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Content, View } from 'native-base';
+import { Container, Content } from 'native-base';
 import { FlatList } from 'react-native';
 import FlockItem from './FlockItem';
 import NoChickens from './NoChickens';
@@ -7,7 +7,6 @@ import FlockHeader from './FlockHeader';
 import Header from '../Header';
 import Line from '../Line';
 import { type Chicken, type Navigation, type Flock } from '../../types';
-import styles from './styles';
 
 type Props = {
   navigation: Navigation,

@@ -1,17 +1,11 @@
-import * as React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import HeaderEgg from '../components/HeaderEgg';
 import FlockStats from '../components/FlockStats';
 
 export default createStackNavigator(
   {
-    FlockStats: {
-      screen: FlockStats,
-    },
+    FlockStats,
   },
   {
-    navigationOptions: ({ navigation }) => ({
-      headerRight: <HeaderEgg navigation={navigation} />,
-    }),
+    headerMode: 'none',
   },
 );

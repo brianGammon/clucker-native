@@ -8,6 +8,7 @@ import {
   Right,
   Body,
   Title,
+  Subtitle,
   Button,
   Text,
   Icon,
@@ -19,6 +20,7 @@ import styles from './styles';
 type Props = {
   navigation: Navigation,
   title: string,
+  subTitle: string | null,
   goBackButton: string,
   cancelButton: boolean,
   eggButton: boolean,
@@ -26,6 +28,7 @@ type Props = {
 export const Header = ({
   navigation,
   title,
+  subTitle,
   goBackButton,
   eggButton,
   cancelButton,
@@ -61,6 +64,7 @@ export const Header = ({
       </Left>
       <Body>
         <Title>{title || 'Default Title'}</Title>
+        {subTitle && subTitle !== '' && <Subtitle>{subTitle}</Subtitle>}
       </Body>
       <Right>
         {cancelButton && (
