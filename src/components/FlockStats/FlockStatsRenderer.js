@@ -1,6 +1,5 @@
 /* @flow */
 import React from 'react';
-import { Image } from 'react-native';
 import {
   View, Text, Container, Content, H2,
 } from 'native-base';
@@ -27,33 +26,9 @@ type Props = {
 const FlockStatsRenderer = ({ stats, chickens, flock }: Props) => (
   <Container>
     <Header title="Flock Stats" subTitle={flock.name} eggButton />
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <Image
-        style={{ width: 50, height: 50 }}
-        source={require('../../assets/logo-1200x1200.png')}
-      />
-      <View
-        style={{
-          height: 50,
-          justifyContent: 'center',
-          flex: 1,
-          paddingLeft: 10,
-          fontWeight: 'bold',
-          backgroundColor: '#f89500',
-        }}
-      >
-        <H2
-          style={{
-            fontWeight: 'bold',
-          }}
-        >
-          Clucker
-        </H2>
-      </View>
-    </View>
+
     <Content padder>
       <View>
-        <Text style={[styles.eggStatsLabel]}>Egg Stats</Text>
         <View style={styles.eggStats}>
           <View style={styles.eggStatsCell}>
             <Text style={styles.label}>Eggs Laid</Text>
@@ -78,7 +53,6 @@ const FlockStatsRenderer = ({ stats, chickens, flock }: Props) => (
 
       <Line />
 
-      <Text style={[styles.eggStatsLabel]}>Production Trend</Text>
       <Chart />
 
       <Line />

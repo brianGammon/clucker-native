@@ -1,10 +1,12 @@
 /* @flow */
 import React from 'react';
 import moment from 'moment';
+import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import flockStatsSelector from '../../selectors/flockStatsSelector';
 import { nowAsMoment } from '../../utils/dateHelper';
 import ChartRenderer from './ChartRenderer';
+import ChartLoading from './ChartLoading';
 import { type FlockStats } from '../../types';
 
 type Props = {
@@ -16,10 +18,38 @@ type Props = {
   ],
 };
 
-class Chart extends React.Component<Props> {
+type State = {
+  ready: boolean,
+};
+
+class Chart extends React.Component<Props, State> {
+  state = { ready: true };
+
+  componentDidMount() {
+    Dimensions.addEventListener('change', this.resetChart);
+  }
+
+  componentWillUnmount() {
+    Dimensions.removeEventListener('change', this.resetChart);
+  }
+
+  resetChart = () => {
+    // react-native-svg-charts has a little issue where
+    // the chat doesn't resize certain parts when orientation changes
+    // or if the data changes dramatically
+    this.setState({ ready: false });
+    setTimeout(() => {
+      this.setState({ ready: true });
+    }, 1000);
+  };
+
   render() {
     const { data } = this.props;
-    return <ChartRenderer data={data} />;
+    const { ready } = this.state;
+    if (!ready) {
+      return <ChartLoading />;
+    }
+    return <ChartRenderer data={data} onRefreshChart={this.resetChart} />;
   }
 }
 

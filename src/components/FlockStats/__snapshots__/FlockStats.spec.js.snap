@@ -125,68 +125,10 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
     subTitle="Test Flock 1"
     title="Flock Stats"
   />
-  <Styled(ViewNB)
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-      }
-    }
-  >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../src/assets/logo-1200x1200.png",
-        }
-      }
-      style={
-        Object {
-          "height": 50,
-          "width": 50,
-        }
-      }
-    />
-    <Styled(ViewNB)
-      style={
-        Object {
-          "backgroundColor": "#f89500",
-          "flex": 1,
-          "fontWeight": "bold",
-          "height": 50,
-          "justifyContent": "center",
-          "paddingLeft": 10,
-        }
-      }
-    >
-      <Styled(H2)
-        style={
-          Object {
-            "fontWeight": "bold",
-          }
-        }
-      >
-        Clucker
-      </Styled(H2)>
-    </Styled(ViewNB)>
-  </Styled(ViewNB)>
   <Styled(Content)
     padder={true}
   >
     <Styled(ViewNB)>
-      <Styled(Text)
-        style={
-          Array [
-            Object {
-              "alignSelf": "center",
-              "fontSize": 17,
-              "fontWeight": "bold",
-              "marginBottom": 8,
-            },
-          ]
-        }
-      >
-        Egg Stats
-      </Styled(Text)>
       <Styled(ViewNB)
         style={
           Object {
@@ -301,20 +243,6 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Line />
-    <Styled(Text)
-      style={
-        Array [
-          Object {
-            "alignSelf": "center",
-            "fontSize": 17,
-            "fontWeight": "bold",
-            "marginBottom": 8,
-          },
-        ]
-      }
-    >
-      Production Trend
-    </Styled(Text)>
     <Connect(Chart) />
     <Line />
     <Leaderboard
