@@ -117,7 +117,7 @@ class EggEditor extends React.Component<Props, State> {
     control.markAsTouched();
 
     this.form.controls.chickenName.setValue(
-      chickens[itemValue] ? chickens[itemValue].name : 'Unknown',
+      chickens[itemValue] ? chickens[itemValue].name : 'Unnamed Hen',
     );
   };
 

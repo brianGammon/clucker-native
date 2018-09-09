@@ -139,7 +139,7 @@ exports[`Leaderboard renders 1`] = `
         }
       }
     >
-      Unknown
+      Unnamed Hen
     </Styled(Text)>
     <Styled(Text)
       style={

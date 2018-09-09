@@ -26,7 +26,7 @@ const Leaderboard = ({ stats, chickens, mode }: Props) => (
     {Object.keys(stats.eggsPerChicken).map(key => (
       <View key={key} style={styles.row}>
         <Text style={styles.wideValue}>
-          {chickens[key] ? chickens[key].name : 'Unknown'}
+          {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
         </Text>
         <Text style={styles.value}>{stats.eggsPerChicken[key]}</Text>
       </View>
