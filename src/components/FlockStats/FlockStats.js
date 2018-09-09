@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import { Text } from 'native-base';
 import { connect } from 'react-redux';
@@ -5,14 +6,12 @@ import FlockStatsRenderer from './FlockStatsRenderer';
 import flockStatsSelector from '../../selectors/flockStatsSelector';
 import currentFlockSelector from '../../selectors/currentFlockSelector';
 import {
-  type Navigation,
   type Flock,
   type FlockStats as FlockStatsType,
   type Chicken,
 } from '../../types';
 
 type Props = {
-  navigation: Navigation,
   flock: Flock,
   chickens: {
     [chickenId: string]: Chicken,

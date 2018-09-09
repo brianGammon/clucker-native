@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import { Image } from 'react-native';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../types';
 import Leaderboard from '../Leaderboard';
 import Line from '../Line';
+import Chart from '../Chart';
 import HeaviestEgg from '../HeaviestEgg';
 import styles from './styles';
 
@@ -75,9 +77,9 @@ const FlockStatsRenderer = ({ stats, chickens, flock }: Props) => (
       </View>
 
       <Line />
-      <View style={{ alignItems: 'center' }}>
-        <Text>Chart Here</Text>
-      </View>
+
+      <Text style={[styles.eggStatsLabel]}>Production Trend</Text>
+      <Chart />
 
       <Line />
       <Leaderboard stats={stats} chickens={chickens} mode="allTime" />

@@ -301,17 +301,21 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Line />
-    <Styled(ViewNB)
+    <Styled(Text)
       style={
-        Object {
-          "alignItems": "center",
-        }
+        Array [
+          Object {
+            "alignSelf": "center",
+            "fontSize": 17,
+            "fontWeight": "bold",
+            "marginBottom": 8,
+          },
+        ]
       }
     >
-      <Styled(Text)>
-        Chart Here
-      </Styled(Text)>
-    </Styled(ViewNB)>
+      Production Trend
+    </Styled(Text)>
+    <Connect(Chart) />
     <Line />
     <Leaderboard
       chickens={
