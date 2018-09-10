@@ -70,6 +70,7 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
           }}
         >
           <Grid />
+          {/* $FlowFixMe: react-native-svg passes props into decorators */}
           <LineDecorator />
         </LineChart>
         <XAxis

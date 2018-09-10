@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import { Circle } from 'react-native-svg';
 import { type ChartData } from '../../types';

@@ -16,6 +16,7 @@ type Props = {
       count: number,
     },
   ],
+  currentFlockId: string,
 };
 
 type State = {
@@ -29,6 +30,14 @@ class Chart extends React.Component<Props, State> {
     Dimensions.addEventListener('change', this.resetChart);
   }
 
+  componentDidUpdate(prevProps) {
+    const { currentFlockId: prevCurrentFlockId } = prevProps;
+    const { currentFlockId } = this.props;
+    if (prevCurrentFlockId && prevCurrentFlockId !== currentFlockId) {
+      this.resetChart();
+    }
+  }
+
   componentWillUnmount() {
     Dimensions.removeEventListener('change', this.resetChart);
   }
@@ -40,7 +49,7 @@ class Chart extends React.Component<Props, State> {
     this.setState({ ready: false });
     setTimeout(() => {
       this.setState({ ready: true });
-    }, 1000);
+    }, 250);
   };
 
   render() {
@@ -73,12 +82,13 @@ const chartData = (stats: FlockStats) => {
   return data;
 };
 
-const mapStateToProps = ({ eggs }) => {
+const mapStateToProps = ({ eggs, userSettings: { data: userSettings } }) => {
   const stats = flockStatsSelector(eggs.data);
   const data = chartData(stats);
 
   return {
     data,
+    currentFlockId: userSettings.currentFlockId,
   };
 };
 
