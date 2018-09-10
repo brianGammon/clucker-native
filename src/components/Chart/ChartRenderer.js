@@ -7,15 +7,12 @@ import {
 import {
   View, Icon, Button, Text,
 } from 'native-base';
+import { type ChartData } from '../../types';
+import LineDecorator from './LineDecorator';
 import styles from './styles';
 
 type Props = {
-  data: [
-    {
-      date: Date,
-      count: number,
-    },
-  ],
+  data: ChartData,
   onRefreshChart: () => void,
 };
 
@@ -35,8 +32,6 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
     </View>
     <View
       style={{
-        // borderWidth: 1,
-        // borderRadius: 20,
         borderColor: 'grey',
         height: 220,
         padding: 5,
@@ -75,6 +70,7 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
           }}
         >
           <Grid />
+          <LineDecorator />
         </LineChart>
         <XAxis
           style={{
@@ -84,7 +80,7 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
           xAccessor={({ item }) => item.date}
           data={data}
           formatLabel={(value, index) => {
-            // if there's more than 12 elements, skip every other label
+            // if there's more than 24 elements, skip every other label
             if (data.length > 24) {
               if ((index / 2) % 1 !== 0) {
                 return '';

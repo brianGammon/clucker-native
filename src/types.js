@@ -79,4 +79,11 @@ export type CalendarData = {
   },
 };
 
+export type ChartData = [
+  {
+    date: Date,
+    count: number,
+  },
+];
+
 export type Navigation = NavigationScreenProp<NavigationStateRoute>;
