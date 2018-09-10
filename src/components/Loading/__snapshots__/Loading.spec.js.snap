@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loading component: Should render with message 1`] = `
-<Component
+<Styled(Container)
   style={
     Object {
       "alignItems": "center",
@@ -10,22 +10,23 @@ exports[`Loading component: Should render with message 1`] = `
     }
   }
 >
-  <Component
-    size="large"
+  <Styled(Spinner)
+    color="rgb(249, 149, 0)"
   />
-  <StatusBar
-    animated={false}
-    barStyle="default"
-    showHideTransition="fade"
-  />
-  <Component>
+  <Styled(Text)
+    style={
+      Object {
+        "color": "#575757",
+      }
+    }
+  >
     Test message
-  </Component>
-</Component>
+  </Styled(Text)>
+</Styled(Container)>
 `;
 
 exports[`Loading component: Should render without message 1`] = `
-<Component
+<Styled(Container)
   style={
     Object {
       "alignItems": "center",
@@ -34,13 +35,8 @@ exports[`Loading component: Should render without message 1`] = `
     }
   }
 >
-  <Component
-    size="large"
+  <Styled(Spinner)
+    color="rgb(249, 149, 0)"
   />
-  <StatusBar
-    animated={false}
-    barStyle="default"
-    showHideTransition="fade"
-  />
-</Component>
+</Styled(Container)>
 `;

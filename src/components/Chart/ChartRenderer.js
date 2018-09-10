@@ -25,8 +25,8 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
         alignItems: 'center',
       }}
     >
-      <Text style={styles.label}>Production Trend</Text>
-      <Button transparent onPress={onRefreshChart}>
+      <Text style={styles.label}>Egg Trendline</Text>
+      <Button dark transparent onPress={onRefreshChart}>
         <Icon active name="refresh" />
       </Button>
     </View>
@@ -93,7 +93,7 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
             top: 10,
             bottom: 10,
             left: 35,
-            right: 10,
+            right: 5,
           }}
           svg={{
             fontSize: 10,

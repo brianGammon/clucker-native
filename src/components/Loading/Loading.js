@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-  ActivityIndicator, StatusBar, View, Text,
-} from 'react-native';
+import { Spinner, Text, Container } from 'native-base';
 
 import styles from './styles';
 
@@ -10,9 +8,8 @@ type Props = {
 };
 
 export default ({ message }: { message: Props.message }) => (
-  <View style={styles.container}>
-    <ActivityIndicator size="large" />
-    <StatusBar barStyle="default" />
-    {message && <Text>{message}</Text>}
-  </View>
+  <Container style={styles.container}>
+    <Spinner color="rgb(249, 149, 0)" />
+    {message && <Text style={styles.message}>{message}</Text>}
+  </Container>
 );

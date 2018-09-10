@@ -30,4 +30,8 @@ export default StyleSheet.create({
   subText: {
     fontSize: 14,
   },
+  noEggsMessage: {
+    flex: 1,
+    alignItems: 'center',
+  },
 });
