@@ -26,19 +26,24 @@ const FlockHeader = ({
     <View style={[styles.header, styles.headerCell, styles.last]}>
       <View style={styles.headerBlock}>
         <Text style={styles.headerCellLabel}>Chickens</Text>
-        <H2>{Object.keys(chickens || {}).length}</H2>
-      </View>
-      {isFlockOwner && (
-        <View>
-          <Button
-            transparent
-            dark
-            onPress={() => navigation.navigate('ChickenEditor')}
-          >
-            <Icon active name="add-circle" />
-          </Button>
+        <View style={{ flexDirection: 'row' }}>
+          <H2>{Object.keys(chickens || {}).length}</H2>
+          {isFlockOwner && (
+            <Button
+              style={{ paddingTop: 0, paddingBottom: 0, height: 24 }}
+              transparent
+              dark
+              onPress={() => navigation.navigate('ChickenEditor')}
+            >
+              <Icon
+                style={{ marginLeft: 8, marginRight: 8 }}
+                active
+                name="add-circle"
+              />
+            </Button>
+          )}
         </View>
-      )}
+      </View>
     </View>
   </View>
 );

@@ -56,13 +56,14 @@ const ChickenRenderer = ({
         <View>
           <Button
             transparent
+            dark
             disabled={prevChickenId === null}
             onPress={() => (prevChickenId
               ? navigation.replace('Chicken', { chickenId: prevChickenId })
               : null)
             }
           >
-            <Icon name="arrow-back" />
+            <Icon name="arrow-dropleft" />
           </Button>
         </View>
 
@@ -87,13 +88,14 @@ const ChickenRenderer = ({
         <View>
           <Button
             transparent
+            dark
             disabled={nextChickenId === null}
             onPress={() => (nextChickenId
               ? navigation.replace('Chicken', { chickenId: nextChickenId })
               : null)
             }
           >
-            <Icon name="arrow-forward" />
+            <Icon name="arrow-dropright" />
           </Button>
         </View>
       </View>
