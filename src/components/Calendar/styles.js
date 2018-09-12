@@ -45,6 +45,9 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  innerDayCellSuccess: {
+    backgroundColor: 'lightgreen',
+  },
   sunday: {
     borderLeftWidth: 1,
   },
@@ -53,8 +56,16 @@ export default StyleSheet.create({
     fontWeight: 'normal',
     alignSelf: 'flex-start',
   },
+  eggCountCircle: {
+    alignSelf: 'center',
+  },
   eggCount: {
     alignSelf: 'center',
+    backgroundColor: 'lightgreen',
+    borderWidth: 1,
+  },
+  eggCountText: {
+    color: 'black',
   },
   statsLabel: {
     fontWeight: 'bold',

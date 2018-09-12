@@ -26,11 +26,16 @@ const WeekDays = ({ calendarData, month, navigation }: Props) => (
           !isInRange(day, month) && styles.outside,
         ]}
       >
-        <View style={styles.innerDayCell}>
+        <View
+          style={[
+            styles.innerDayCell,
+            calendarData[day].total ? styles.innerDayCellSuccess : null,
+          ]}
+        >
           <Text style={styles.dayLabel}>{moment(day).format('D')}</Text>
           {calendarData[day].total && (
-            <Badge success style={styles.eggCount}>
-              <Text>{calendarData[day].total}</Text>
+            <Badge style={styles.eggCount}>
+              <Text style={styles.eggCountText}>{calendarData[day].total}</Text>
             </Badge>
           )}
         </View>
