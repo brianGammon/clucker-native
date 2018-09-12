@@ -16,7 +16,6 @@ type Props = {
       count: number,
     },
   ],
-  currentFlockId: string,
 };
 
 type State = {

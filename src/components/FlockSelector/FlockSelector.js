@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { Alert } from 'react-native';
 import FlockSelectorRenderer from './FlockSelectorRenderer';
 import { type Flock, type UserSettings } from '../../types';
-import { firebaseUpdateRequested } from '../../redux/actions';
-import { actionTypes, metaTypes } from '../../redux/constants';
+import { actionTypes } from '../../redux/constants';
 
 type Props = {
   flocks: {

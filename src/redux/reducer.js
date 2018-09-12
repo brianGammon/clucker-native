@@ -89,7 +89,10 @@ const handlers = {
   [a.AUTH_ACTION_REJECTED](state, action) {
     const { error } = action.payload;
     const errorType = action.meta.type;
-    const errors = { ...getAuthErrorsInitialState(), [errorType]: error.message };
+    const errors = {
+      ...getAuthErrorsInitialState(),
+      [errorType]: error.message,
+    };
     const auth = {
       inProgress: false,
       errors,
@@ -490,7 +493,7 @@ const handlers = {
       },
     };
     return newState;
-  }
+  },
 };
 
 export default (state = initialState, action = {}) => {

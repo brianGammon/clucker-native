@@ -557,30 +557,48 @@ describe('firebaseReducer reducer', () => {
 
   test(`${actionTypes.LISTEN_REMOVED} clear data false`, () => {
     const action = actions.firebaseListenRemoved(false, metaTypes.userSettings);
+    const state = {
+      ...sampleState,
+      [metaTypes.userSettings]: {
+        initialized: true,
+        inProgress: true,
+        error: 'Some error from before',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
-        initialized: false,
-        inProgress: false,
+        initialized: true,
+        inProgress: true,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
       },
     };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
   });
 
   test(`${actionTypes.LISTEN_REMOVED} clear data true`, () => {
     const action = actions.firebaseListenRemoved(true, metaTypes.userSettings);
+    const state = {
+      ...sampleState,
+      [metaTypes.userSettings]: {
+        initialized: true,
+        inProgress: true,
+        error: 'Some error from before',
+        data: { item1: 'item1value', item2: 'item2value' },
+      },
+    };
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
-        initialized: false,
-        inProgress: false,
+        initialized: true,
+        inProgress: true,
         error: null,
         data: {},
       },
     };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
   });
 
   test(actionTypes.SYNC_FLOCKS_REQUESTED, () => {
@@ -908,6 +926,44 @@ describe('firebaseReducer reducer', () => {
       deleteChicken: { inProgress: false, error: error.message },
     };
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.SWITCH_FLOCK_REQUESTED, () => {
+    const state = {
+      ...sampleState,
+      userSettings: {
+        ...sampleState.userSettings,
+        initialized: true,
+      },
+    };
+    const expectedState = {
+      ...sampleState,
+      userSettings: {
+        ...sampleState.userSettings,
+        initialized: false,
+      },
+    };
+    const action = { type: actionTypes.SWITCH_FLOCK_REQUESTED };
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.SWITCH_FLOCK_FULFILLED, () => {
+    const state = {
+      ...sampleState,
+      userSettings: {
+        ...sampleState.userSettings,
+        initialized: false,
+      },
+    };
+    const expectedState = {
+      ...sampleState,
+      userSettings: {
+        ...sampleState.userSettings,
+        initialized: true,
+      },
+    };
+    const action = { type: actionTypes.SWITCH_FLOCK_FULFILLED };
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
   });
 
   test('bogus action does nothing', () => {

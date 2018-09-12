@@ -804,6 +804,7 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(
       put({ type: a.JOIN_FLOCK_FULFILLED }),
     );
+    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
     expect(generator.next().done).toEqual(true);
 
     // Error flow
@@ -879,6 +880,7 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(
       put({ type: a.ADD_FLOCK_FULFILLED }),
     );
+    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
     expect(generator.next().done).toEqual(true);
 
     // Error flow
@@ -895,6 +897,46 @@ describe('saga tests', () => {
     const generator = sagas.watchAddFlockRequested();
     expect(generator.next().value).toEqual(
       takeLatest(a.ADD_FLOCK_REQUESTED, sagas.addFlock),
+    );
+  });
+
+  test('switchFlock', () => {
+    const userId = 'user1';
+    const userSettings = {
+      currentFlockId: 'flock2',
+      flocks: {
+        flock1: true,
+        flock2: true,
+      },
+    };
+    const action = { type: a.SWITCH_FLOCK_REQUESTED, payload: { userId, userSettings } };
+    const generator = cloneableGenerator(sagas.switchFlock)(action);
+    expect(generator.next().value).toEqual(all([
+      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+    ]));
+    expect(generator.next().value).toEqual(put(actions.firebaseUpdateRequested({ userId, userSettings }, metaTypes.userSettings)));
+    expect(generator.next().value).toEqual(take(a.UPDATE_FULFILLED));
+    const altGenerator = generator.clone();
+
+    // Happy path
+    const updateAction = { type: a.UPDATE_FULFILLED, meta: { type: metaTypes.userSettings } };
+    expect(generator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED }));
+    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
+    expect(generator.next().done).toEqual(true);
+
+    // Alt path
+    const wrongUpdateAction = { type: a.UPDATE_FULFILLED, meta: { type: metaTypes.flocks } };
+    expect(altGenerator.next(wrongUpdateAction).value).toEqual(take(a.UPDATE_FULFILLED));
+    expect(altGenerator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED }));
+    expect(altGenerator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
+    expect(altGenerator.next().done).toEqual(true);
+  });
+
+  test('watchSwitchFlockRequested', () => {
+    const generator = sagas.watchSwitchFlockRequested();
+    expect(generator.next().value).toEqual(
+      takeLatest(a.SWITCH_FLOCK_REQUESTED, sagas.switchFlock),
     );
   });
 
