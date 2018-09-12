@@ -20,6 +20,9 @@ describe('App component:', () => {
         XYZ124: true,
       },
     },
+    flocks: {
+      initialized: true,
+    },
   };
 
   const getStore = state => mockStore(state);

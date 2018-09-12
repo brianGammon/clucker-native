@@ -28,6 +28,7 @@
     "error": null
   },
   "chickens": {
+    "initialized": true,
     "inProgress": false,
     "error": "",
     "key": "flock1",
@@ -71,6 +72,7 @@
     }
   },
   "eggs": {
+    "initialized": true,
     "inProgress": false,
     "error": "",
     "key": "flock1",
@@ -1892,6 +1894,7 @@
     }
   },
   "flocks": {
+    "initialized": true,
     "inProgress": false,
     "error": "",
     "key": "user1",
@@ -1907,6 +1910,7 @@
     }
   },
   "userSettings": {
+    "initialized": true,
     "inProgress": false,
     "error": "",
     "key": "user1",

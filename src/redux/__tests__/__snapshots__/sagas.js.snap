@@ -20,84 +20,6 @@ Object {
 }
 `;
 
-exports[`saga tests getFlock 1`] = `
-Object {
-  "@@redux-saga/IO": true,
-  "CALL": Object {
-    "args": Array [
-      "value",
-    ],
-    "context": Reference {
-      "child": [Function],
-      "data": null,
-      "delete": [MockFunction],
-      "equalTo": [Function],
-      "key": "key1",
-      "off": [MockFunction],
-      "on": [MockFunction],
-      "once": [MockFunction],
-      "orderByChild": [Function],
-      "path": "flocks/flockId1",
-      "push": [MockFunction],
-      "putFile": [MockFunction],
-      "remove": [MockFunction],
-      "set": [MockFunction],
-      "snap": Object {
-        "val": [Function],
-      },
-      "update": [MockFunction],
-      "val": [MockFunction],
-    },
-    "fn": [MockFunction],
-  },
-}
-`;
-
-exports[`saga tests getFlock 2`] = `
-Object {
-  "done": false,
-  "value": Object {
-    "@@redux-saga/IO": true,
-    "PUT": Object {
-      "action": Object {
-        "meta": Object {
-          "type": "flocks",
-        },
-        "payload": Object {
-          "flockId1": Object {
-            "name": "Flock Stars",
-            "ownedBy": "userId1",
-          },
-        },
-        "type": "GET_FLOCK_FULFILLED",
-      },
-      "channel": null,
-    },
-  },
-}
-`;
-
-exports[`saga tests getFlock with Error 1`] = `
-Object {
-  "done": false,
-  "value": Object {
-    "@@redux-saga/IO": true,
-    "PUT": Object {
-      "action": Object {
-        "meta": Object {
-          "type": "flocks",
-        },
-        "payload": Object {
-          "error": [TypeError: snap.val is not a function],
-        },
-        "type": "GET_FLOCK_REJECTED",
-      },
-      "channel": null,
-    },
-  },
-}
-`;
-
 exports[`saga tests getUserSettingsUpdate 1`] = `
 Object {
   "userSettings/userId1": Object {
@@ -168,12 +90,12 @@ Object {
 }
 `;
 
-exports[`saga tests watchGetFlock 1`] = `
+exports[`saga tests watchSyncFlocks 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "FORK": Object {
     "args": Array [
-      "GET_FLOCK_REQUESTED",
+      "SYNC_FLOCKS_REQUESTED",
       [Function],
     ],
     "context": null,

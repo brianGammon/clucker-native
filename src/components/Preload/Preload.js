@@ -15,6 +15,6 @@ export default class Preload extends React.Component<Props> {
   }
 
   render() {
-    return <Loading message="Preloading..." />;
+    return <Loading message="Checking Status..." />;
   }
 }

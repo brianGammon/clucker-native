@@ -26,6 +26,7 @@ Object {
     },
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "initialUrl": null,
   "joinForm": Object {
@@ -39,173 +40,7 @@ Object {
     },
     "error": null,
     "inProgress": false,
-  },
-}
-`;
-
-exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 1`] = `
-Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "appState": "STARTING",
-  "auth": Object {
-    "errors": Object {
-      "resetPassword": null,
-      "signIn": null,
-      "signUp": null,
-    },
-    "inProgress": false,
-    "user": null,
-  },
-  "flocks": Object {
-    "data": Object {
-      "flock1": Object {
-        "name": "Flock 1",
-        "ownedBy": "user1",
-      },
-    },
-    "error": null,
-    "inProgress": false,
-  },
-  "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
-    "data": Object {
-      "item1": "item1value",
-      "item2": "item2value",
-    },
-    "error": null,
-    "inProgress": false,
-  },
-}
-`;
-
-exports[`firebaseReducer reducer GET_FLOCK_FULFILLED 2`] = `
-Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "appState": "STARTING",
-  "auth": Object {
-    "errors": Object {
-      "resetPassword": null,
-      "signIn": null,
-      "signUp": null,
-    },
-    "inProgress": false,
-    "user": null,
-  },
-  "flocks": Object {
-    "data": Object {
-      "flock1": Object {
-        "name": "Flock 1",
-        "ownedBy": "user1",
-      },
-      "flock2": Object {
-        "name": "Flock 2",
-        "ownedBy": "user2",
-      },
-    },
-    "error": null,
-    "inProgress": false,
-  },
-  "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
-    "data": Object {
-      "item1": "item1value",
-      "item2": "item2value",
-    },
-    "error": null,
-    "inProgress": false,
-  },
-}
-`;
-
-exports[`firebaseReducer reducer GET_FLOCK_REJECTED 1`] = `
-Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "appState": "STARTING",
-  "auth": Object {
-    "errors": Object {
-      "resetPassword": null,
-      "signIn": null,
-      "signUp": null,
-    },
-    "inProgress": false,
-    "user": null,
-  },
-  "flocks": Object {
-    "data": Object {
-      "flock1": Object {
-        "name": "Flock 1",
-        "owneBy": "UserId1",
-      },
-    },
-    "error": "Error Message",
-    "inProgress": false,
-  },
-  "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
-    "data": Object {
-      "item1": "item1value",
-      "item2": "item2value",
-    },
-    "error": null,
-    "inProgress": false,
-  },
-}
-`;
-
-exports[`firebaseReducer reducer GET_FLOCK_REQUESTED 1`] = `
-Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "appState": "STARTING",
-  "auth": Object {
-    "errors": Object {
-      "resetPassword": null,
-      "signIn": null,
-      "signUp": null,
-    },
-    "inProgress": false,
-    "user": null,
-  },
-  "flocks": Object {
-    "data": Object {},
-    "error": null,
-    "inProgress": true,
-  },
-  "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
-    "data": Object {
-      "item1": "item1value",
-      "item2": "item2value",
-    },
-    "error": null,
-    "inProgress": false,
+    "initialized": false,
   },
 }
 `;
@@ -230,6 +65,7 @@ Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "deleteChicken": Object {
     "error": null,
@@ -243,11 +79,13 @@ Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "flocks": Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "initialUrl": null,
   "joinForm": Object {
@@ -258,6 +96,7 @@ Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
 }
 `;
@@ -282,6 +121,7 @@ Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "deleteChicken": Object {
     "error": null,
@@ -295,11 +135,13 @@ Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "flocks": Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
   "initialUrl": null,
   "joinForm": Object {
@@ -310,6 +152,7 @@ Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
+    "initialized": false,
   },
 }
 `;

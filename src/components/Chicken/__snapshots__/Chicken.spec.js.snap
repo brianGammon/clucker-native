@@ -25,12 +25,13 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     >
       <Styled(ViewNB)>
         <Styled(Button)
+          dark={true}
           disabled={true}
           onPress={[Function]}
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-back"
+            name="arrow-dropleft"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -100,12 +101,13 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
       <Styled(ViewNB)>
         <Styled(Button)
+          dark={true}
           disabled={false}
           onPress={[Function]}
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-forward"
+            name="arrow-dropright"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -166,12 +168,13 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     >
       <Styled(ViewNB)>
         <Styled(Button)
+          dark={true}
           disabled={true}
           onPress={[Function]}
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-back"
+            name="arrow-dropleft"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -241,12 +244,13 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
       <Styled(ViewNB)>
         <Styled(Button)
+          dark={true}
           disabled={false}
           onPress={[Function]}
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-forward"
+            name="arrow-dropright"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -491,12 +495,13 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     >
       <Styled(ViewNB)>
         <Styled(Button)
+          dark={true}
           disabled={true}
           onPress={[Function]}
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-back"
+            name="arrow-dropleft"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -566,12 +571,13 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
       <Styled(ViewNB)>
         <Styled(Button)
+          dark={true}
           disabled={false}
           onPress={[Function]}
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-forward"
+            name="arrow-dropright"
           />
         </Styled(Button)>
       </Styled(ViewNB)>

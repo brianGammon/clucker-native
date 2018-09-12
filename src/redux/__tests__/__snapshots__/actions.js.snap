@@ -246,63 +246,6 @@ Object {
 }
 `;
 
-exports[`Redux actions: getFlock 1`] = `
-Object {
-  "meta": Object {
-    "type": "flocks",
-  },
-  "payload": Object {
-    "ref": Reference {
-      "child": [Function],
-      "data": null,
-      "delete": [MockFunction],
-      "equalTo": [Function],
-      "key": "key1",
-      "off": [MockFunction],
-      "on": [MockFunction],
-      "once": [MockFunction],
-      "orderByChild": [Function],
-      "path": "flocks/flockId1",
-      "push": [MockFunction],
-      "putFile": [MockFunction],
-      "remove": [MockFunction],
-      "set": [MockFunction],
-      "snap": Object {
-        "val": [Function],
-      },
-      "update": [MockFunction],
-      "val": [MockFunction],
-    },
-  },
-  "type": "GET_FLOCK_REQUESTED",
-}
-`;
-
-exports[`Redux actions: getFlockFulfilled 1`] = `
-Object {
-  "meta": Object {
-    "type": "flocks",
-  },
-  "payload": Object {
-    "name": "Test Flock",
-    "ownedBy": "user1",
-  },
-  "type": "GET_FLOCK_FULFILLED",
-}
-`;
-
-exports[`Redux actions: getFlockRejected 1`] = `
-Object {
-  "meta": Object {
-    "type": "flocks",
-  },
-  "payload": Object {
-    "error": [Error: Error1],
-  },
-  "type": "GET_FLOCK_REJECTED",
-}
-`;
-
 exports[`Redux actions: listenToChickens 1`] = `
 Object {
   "meta": Object {

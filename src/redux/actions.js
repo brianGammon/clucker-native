@@ -199,32 +199,6 @@ export function removeUserSettingsRequested(uid) {
   return firebaseRemoveRequested({ uid }, metaTypes.userSettings);
 }
 
-// TODO: remove refs from actions module
-export function getFlock(flockId) {
-  const ref = firebase.database().ref(`flocks/${flockId}`);
-  return {
-    type: a.GET_FLOCK_REQUESTED,
-    payload: { ref },
-    meta: { type: metaTypes.flocks },
-  };
-}
-
-export function getFlockRejected(error) {
-  return {
-    type: a.GET_FLOCK_REJECTED,
-    payload: { error },
-    meta: { type: metaTypes.flocks },
-  };
-}
-
-export function getFlockFulfilled(flock) {
-  return {
-    type: a.GET_FLOCK_FULFILLED,
-    payload: flock,
-    meta: { type: metaTypes.flocks },
-  };
-}
-
 export function setInitialUrl(url) {
   return {
     type: a.SET_INITIAL_URL,

@@ -6,4 +6,8 @@ exports[`App component: Should render Root Navigator when initialized 1`] = `
 </Styled(Root)>
 `;
 
-exports[`App component: Should render Splash when not initialized 1`] = `<Splash />`;
+exports[`App component: Should render Splash when not initialized 1`] = `
+<Loading
+  message="Welcome to Clucker"
+/>
+`;

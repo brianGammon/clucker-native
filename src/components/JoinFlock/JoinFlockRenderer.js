@@ -26,6 +26,7 @@ const JoinFlockRenderer = ({
         style={styles.input}
         value={value}
         onChangeText={text => handleChangeText(text)}
+        autoCapitalize="none"
       />
       <Button title="Join" onPress={handleJoinFlock} />
     </View>

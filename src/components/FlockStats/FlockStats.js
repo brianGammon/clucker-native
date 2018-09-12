@@ -18,18 +18,19 @@ type Props = {
     [chickenId: string]: Chicken,
   },
   stats: FlockStatsType,
+  initialized: boolean,
   loading: boolean,
 };
 
 class FlockStats extends React.Component<Props> {
   render() {
     const {
-      stats, chickens, flock, loading,
+      stats, chickens, flock, loading, initialized,
     } = this.props;
-    if (loading) {
+    if (!initialized || loading) {
       return <Loading message="Loading Stats..." />;
     }
-    if (!stats || !flock) {
+    if (initialized && !loading && !stats) {
       return <NoStats flock={flock} />;
     }
     return (
@@ -41,14 +42,20 @@ class FlockStats extends React.Component<Props> {
 const mapStateToProps = ({
   userSettings, eggs, flocks, chickens,
 }) => {
-  let flock = {};
-  if (userSettings.data.currentFlockId) {
+  let flock = null;
+  let stats = null;
+  const initialized = userSettings.initialized && flocks.initialized;
+  if (userSettings.data.currentFlockId && initialized) {
     flock = currentFlockSelector(flocks.data, userSettings);
+    if (flock) {
+      stats = flockStatsSelector(eggs.data);
+    }
   }
   return {
     flock,
-    stats: flockStatsSelector(eggs.data),
+    stats,
     chickens: chickens.data,
+    initialized,
     loading: chickens.inProgress || eggs.inProgress,
   };
 };

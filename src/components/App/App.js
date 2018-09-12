@@ -3,21 +3,24 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Linking } from 'react-native';
 import { Root } from 'native-base';
-import Splash from '../Splash';
+import Loading from '../Loading';
 import RootNavigator from '../../navigation/RootNavigator';
 import NavigationService from '../../navigation/NavigationService';
 import * as actions from '../../redux/actions';
-import { metaTypes, appStates, actionTypes } from '../../redux/constants';
+import { appStates, actionTypes } from '../../redux/constants';
 import { type UserSettings } from '../../types';
 
 type Props = {
-  getFlock: (flockId: string) => void,
   listenToChickens: (flockId: string) => void,
   listenToEggs: (flockId: string) => void,
   setInitialUrl: (url: string) => void,
-  clearFlock: (flockId: string) => void,
-  userSettings: UserSettings,
+  syncFlocks: (added: string[], deleted: string[]) => void,
+  userSettings: {
+    data: UserSettings,
+    initialized: boolean,
+  },
   appState: string,
+  flocksInitialized: boolean,
 };
 
 type Event = {
@@ -40,26 +43,41 @@ class App extends React.Component<Props> {
     const {
       flocks: prevFlocks,
       currentFlockId: prevCurrentFlockId,
-    } = prevProps.userSettings;
+    } = prevProps.userSettings.data;
     const {
-      userSettings: { flocks, currentFlockId },
-      getFlock,
-      clearFlock,
+      userSettings: {
+        initialized: userSettingsInitialized,
+        data: { flocks, currentFlockId },
+      },
+      syncFlocks,
       listenToChickens,
       listenToEggs,
+      flocksInitialized,
     } = this.props;
 
+    // check if the flocks have changed
     const oldSet = new Set(Object.keys(prevFlocks || {}));
     const newSet = new Set(Object.keys(flocks || {}));
     const deleted = new Set([...oldSet].filter(key => !newSet.has(key)));
     const added = new Set([...newSet].filter(key => !oldSet.has(key)));
-    console.log({ added, deleted });
-    [...deleted].forEach(key => clearFlock(key));
-    [...added].forEach(key => getFlock(key));
 
-    if (currentFlockId && currentFlockId !== prevCurrentFlockId) {
-      listenToChickens(currentFlockId);
-      listenToEggs(currentFlockId);
+    if (userSettingsInitialized) {
+      // only need to sync flocks if userSettings has finished listening
+      let doSyncFlocks = true;
+      if (deleted.size === 0 && added.size === 0 && flocksInitialized) {
+        doSyncFlocks = false;
+      }
+
+      // Don't bother syncing if no changes have occurred
+      if (doSyncFlocks) {
+        syncFlocks([...added], [...deleted]);
+      }
+
+      // If the current flock changed, need to fetch the eggs
+      if (currentFlockId && currentFlockId !== prevCurrentFlockId) {
+        listenToChickens(currentFlockId);
+        listenToEggs(currentFlockId);
+      }
     }
   }
 
@@ -75,7 +93,7 @@ class App extends React.Component<Props> {
   render() {
     const { appState } = this.props;
     if (appState === appStates.STARTING) {
-      return <Splash />;
+      return <Loading message="Welcome to Clucker" />;
     }
     return (
       <Root>
@@ -87,16 +105,24 @@ class App extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ appState, userSettings }) => ({
+const mapStateToProps = ({
   appState,
-  userSettings: userSettings.data,
+  userSettings,
+  flocks: { initialized: flocksInitialized },
+}) => ({
+  appState,
+  userSettings,
+  flocksInitialized,
 });
+
 const mapDispatchToProps = dispatch => ({
   listenToChickens: flockId => dispatch(actions.listenToChickens(flockId)),
   listenToEggs: flockId => dispatch(actions.listenToEggs(flockId)),
-  getFlock: flockId => dispatch(actions.getFlock(flockId, metaTypes.flocks)),
   setInitialUrl: url => dispatch(actions.setInitialUrl(url)),
-  clearFlock: flockId => dispatch({ type: actionTypes.CLEAR_FLOCK, payload: flockId }),
+  syncFlocks: (added, deleted) => dispatch({
+    type: actionTypes.SYNC_FLOCKS_REQUESTED,
+    payload: { added, deleted },
+  }),
 });
 
 export default connect(

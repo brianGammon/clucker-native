@@ -703,36 +703,55 @@ describe('saga tests', () => {
     ); // contintue to wait
   });
 
-  test('getFlock', () => {
-    const snapshot = {
-      key: 'flockId1',
-      val() {
-        return {
-          name: 'Flock Stars',
-          ownedBy: 'userId1',
-        };
+  test('syncFlocks', () => {
+    const ref = firebase.database().ref();
+    const payload = {
+      added: ['flock1', 'flock2'],
+      deleted: ['flock3', 'flock4'],
+    };
+    const action = { type: a.SYNC_FLOCKS_REQUESTED, payload };
+    const generator = cloneableGenerator(sagas.syncFlocks)(action);
+    expect(generator.next().value).toEqual(all([
+      put({ type: a.CLEAR_FLOCK, payload: 'flock3' }),
+      put({ type: a.CLEAR_FLOCK, payload: 'flock4' }),
+    ]));
+    const childRef1 = ref.child('flocks/flock1');
+    const childRef2 = ref.child('flocks/flock2');
+    expect(generator.next().value).toEqual(all([
+      call([childRef1, childRef1.once], 'value'),
+      call([childRef2, childRef2.once], 'value'),
+    ]));
+    const snapshots = [
+      {
+        key: 'flock1',
+        val() {
+          return { name: 'Flock 1' };
+        },
       },
-    };
-    const action = actions.getFlock('flockId1');
-    const generator = sagas.getFlock(action);
-    expect(generator.next().value).toMatchSnapshot();
-    expect(generator.next(snapshot)).toMatchSnapshot();
-    expect(generator.next().done).toBeTruthy();
+      {
+        key: 'flock2',
+        val() {
+          return { name: 'Flock 2' };
+        },
+      },
+    ];
+    const errorGenerator = generator.clone();
+    expect(generator.next(snapshots).value).toEqual(all([
+      put({ type: a.SET_FLOCK, payload: { flock1: { name: 'Flock 1' } } }),
+      put({ type: a.SET_FLOCK, payload: { flock2: { name: 'Flock 2' } } }),
+    ]));
+
+    expect(generator.next().value).toEqual(put({ type: a.SYNC_FLOCKS_FULFILLED }));
+    expect(generator.next().done).toEqual(true);
+
+    // Error flow
+    const error = new Error('Error message');
+    expect(errorGenerator.throw(error).value).toEqual(put({ type: a.SYNC_FLOCKS_REJECTED, payload: { error } }));
+    expect(generator.next().done).toEqual(true);
   });
 
-  test('getFlock with Error', () => {
-    const snapshotWithNoValFunction = {
-      key: 'flockId1',
-    };
-    const action = actions.getFlock('flockId1');
-    const generator = sagas.getFlock(action);
-    generator.next();
-    expect(generator.next(snapshotWithNoValFunction)).toMatchSnapshot();
-    expect(generator.next().done).toBeTruthy();
-  });
-
-  test('watchGetFlock', () => {
-    const generator = sagas.watchGetFlock();
+  test('watchSyncFlocks', () => {
+    const generator = sagas.watchSyncFlocks();
     expect(generator.next().value).toMatchSnapshot();
   });
 

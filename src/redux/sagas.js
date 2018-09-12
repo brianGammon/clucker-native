@@ -344,20 +344,35 @@ export function* watchListener(metaType) {
   }
 }
 
-export function* getFlock(action) {
-  const { ref } = action.payload;
+export function* syncFlocks(action) {
+  const ref = firebase.database().ref();
+  const { added, deleted } = action.payload;
   try {
-    const snap = yield call([ref, ref.once], 'value');
-    const value = snap.val() || {};
-    const { key } = snap;
-    yield put(actions.getFlockFulfilled({ [key]: value }, metaTypes.flocks));
+    // Clear from state any flocks removed from userSettings
+    yield all(deleted.map(key => put({ type: a.CLEAR_FLOCK, payload: key })));
+
+    // Add to state any flocks added to UserSettings
+    const addResult = yield all(added.map((key) => {
+      const childRef = ref.child(`flocks/${key}`);
+      return call([childRef, ref.once], 'value');
+    }));
+
+    // Send the result of each to the reducer
+    yield all(addResult.map((snap) => {
+      const value = snap.val() || {};
+      const { key } = snap;
+      return put({ type: a.SET_FLOCK, payload: { [key]: value } });
+    }));
+
+    // Mark as initialized
+    yield put({ type: a.SYNC_FLOCKS_FULFILLED });
   } catch (error) {
-    yield put(actions.getFlockRejected(error, metaTypes.flocks));
+    yield put({ type: a.SYNC_FLOCKS_REJECTED, payload: { error } });
   }
 }
 
-export function* watchGetFlock() {
-  yield takeEvery(a.GET_FLOCK_REQUESTED, getFlock);
+export function* watchSyncFlocks() {
+  yield takeEvery(a.SYNC_FLOCKS_REQUESTED, syncFlocks);
 }
 
 export function* joinFlock(action) {
@@ -711,7 +726,7 @@ export default function* rootSaga() {
     watchCreateRequested(),
     watchUpdateRequested(),
     watchRemoveRequested(),
-    watchGetFlock(),
+    watchSyncFlocks(),
     watchJoinFlockRequested(),
     watchAddFlockRequested(),
     watchUnlinkFlockRequested(),

@@ -18,7 +18,8 @@ const NoStats = ({ flock }: Props) => (
     />
 
     <View padder style={styles.noEggsMessage}>
-      <Text>No eggs have been logged yet</Text>
+      {!flock && <Text>To Get Started, create a Flock</Text>}
+      {flock && <Text>You have not logged any eggs yet</Text>}
     </View>
   </Container>
 );

@@ -147,20 +147,6 @@ describe('Redux actions:', () => {
     expect(actions.removeUserSettingsRequested('userId1')).toMatchSnapshot();
   });
 
-  test('getFlock', () => {
-    expect(actions.getFlock('flockId1')).toMatchSnapshot();
-  });
-
-  test('getFlockRejected', () => {
-    expect(actions.getFlockRejected(new Error('Error1'))).toMatchSnapshot();
-  });
-
-  test('getFlockFulfilled', () => {
-    expect(
-      actions.getFlockFulfilled({ name: 'Test Flock', ownedBy: 'user1' }),
-    ).toMatchSnapshot();
-  });
-
   test('setInitialUrl', () => {
     expect(actions.setInitialUrl('test://test')).toMatchSnapshot();
   });

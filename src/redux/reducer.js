@@ -37,6 +37,7 @@ const getInitialState = () => {
   };
   Object.keys(metaTypes).forEach((key) => {
     const subState = {
+      initialized: false,
       inProgress: false,
       error: null,
       data: {},
@@ -95,17 +96,6 @@ const handlers = {
       user: null,
     };
     const newState = { ...state, auth };
-    return newState;
-  },
-  [a.CLEAR_FLOCK](state, action) {
-    const { flocks } = state;
-    const { [action.payload]: removed, ...rest } = flocks.data;
-    const newState = { ...state, flocks: { ...flocks, data: rest } };
-    return newState;
-  },
-  [a.CLEAR_ALL_FLOCKS](state) {
-    const { flocks } = getInitialState();
-    const newState = { ...state, flocks };
     return newState;
   },
   [a.SET_INITIAL_URL](state, action) {
@@ -236,6 +226,7 @@ const handlers = {
       ...state,
       [property]: {
         ...propertyState,
+        initialized: true,
         inProgress: false,
         error: null,
         data,
@@ -326,42 +317,69 @@ const handlers = {
     };
     return newState;
   },
-  [a.GET_FLOCK_REQUESTED](state, action) {
-    const property = action.meta.type;
-    const propertyState = state[property];
+  [a.SYNC_FLOCKS_REQUESTED](state) {
+    const propertyState = state.flocks;
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: true, error: null },
+      flocks: {
+        ...propertyState,
+        inProgress: true,
+        error: null,
+      },
     };
     return newState;
   },
-  [a.GET_FLOCK_FULFILLED](state, action) {
-    const property = action.meta.type;
-    const propertyState = state[property];
+  [a.SYNC_FLOCKS_FULFILLED](state) {
+    const propertyState = state.flocks;
+    const newState = {
+      ...state,
+      flocks: {
+        ...propertyState,
+        initialized: true,
+        inProgress: false,
+      },
+    };
+    return newState;
+  },
+  [a.SYNC_FLOCKS_REJECTED](state, action) {
+    const propertyState = state.flocks;
+    const { error } = action.payload;
+
+    const newState = {
+      ...state,
+      flocks: {
+        ...propertyState,
+        initialized: true,
+        inProgress: false,
+        error: error.message,
+      },
+    };
+    return newState;
+  },
+  [a.SET_FLOCK](state, action) {
+    const propertyState = state.flocks;
     const propertyData = propertyState.data;
     const newData = { ...propertyData, ...action.payload };
 
     const newState = {
       ...state,
-      [property]: {
+      flocks: {
         ...propertyState,
-        inProgress: false,
-        error: null,
         data: newData,
       },
     };
     return newState;
   },
-  [a.GET_FLOCK_REJECTED](state, action) {
-    const property = action.meta.type;
-    const propertyState = state[property];
-    const { error } = action.payload;
-
-    const newState = {
-      ...state,
-      [property]: { ...propertyState, inProgress: false, error: error.message },
-    };
+  [a.CLEAR_FLOCK](state, action) {
+    const { flocks } = state;
+    const { [action.payload]: removed, ...rest } = flocks.data;
+    const newState = { ...state, flocks: { ...flocks, data: rest } };
+    return newState;
+  },
+  [a.CLEAR_ALL_FLOCKS](state) {
+    const { flocks } = getInitialState();
+    const newState = { ...state, flocks };
     return newState;
   },
   [a.JOIN_FLOCK_REQUESTED](state) {

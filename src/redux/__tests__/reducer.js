@@ -28,11 +28,13 @@ describe('firebaseReducer reducer', () => {
         error: null,
       },
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
       },
       [metaTypes.flocks]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { flock1: 'item1value', flock2: 'item2value' },
@@ -192,33 +194,6 @@ describe('firebaseReducer reducer', () => {
     });
   });
 
-  test(actionTypes.CLEAR_FLOCK, () => {
-    const action = { type: actionTypes.CLEAR_FLOCK, payload: 'flock1' };
-    const expectedState = {
-      ...sampleState,
-      flocks: {
-        inProgress: false,
-        error: null,
-        data: {
-          flock2: 'item2value',
-        },
-      },
-    };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
-  });
-
-  test(actionTypes.CLEAR_ALL_FLOCKS, () => {
-    const action = { type: actionTypes.CLEAR_ALL_FLOCKS };
-    const expectedState = {
-      ...sampleState,
-      flocks: {
-        inProgress: false,
-        error: null,
-        data: {},
-      },
-    };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
-  });
   test(actionTypes.SET_INITIAL_URL, () => {
     const initialState = {
       someOtherState: 1,
@@ -288,6 +263,7 @@ describe('firebaseReducer reducer', () => {
     const initialState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: {},
@@ -301,6 +277,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...initialState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: true,
         error: null,
         data: {},
@@ -313,6 +290,7 @@ describe('firebaseReducer reducer', () => {
     const initialState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: true,
         error: null,
         data: {},
@@ -322,6 +300,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...initialState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: {},
@@ -334,6 +313,7 @@ describe('firebaseReducer reducer', () => {
     const initialState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: true,
         error: null,
         data: {},
@@ -347,6 +327,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...initialState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: error.message,
         data: {},
@@ -363,6 +344,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: true,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -382,6 +364,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: 'test error',
         data: { item1: 'item1value', item2: 'item2value' },
@@ -397,6 +380,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -413,6 +397,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: true,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -432,6 +417,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: error.message,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -447,6 +433,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -461,6 +448,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: true,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -480,6 +468,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: error.message,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -499,6 +488,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: true,
         inProgress: false,
         error: null,
         data,
@@ -518,6 +508,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item1: 'item1value', item2: 'item2value', item3: 'item3value' },
@@ -537,6 +528,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item1: 'item1value', item2: 'updatedItem2value' },
@@ -554,6 +546,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item2: 'item2value' },
@@ -567,6 +560,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: { item1: 'item1value', item2: 'item2value' },
@@ -580,6 +574,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.userSettings]: {
+        initialized: false,
         inProgress: false,
         error: null,
         data: {},
@@ -588,54 +583,73 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.GET_FLOCK_REQUESTED, () => {
+  test(actionTypes.SYNC_FLOCKS_REQUESTED, () => {
+    // Sets inProgess to true and clears any error
+    const flocksState = sampleState.flocks;
     const state = {
       ...sampleState,
-      [metaTypes.flocks]: {
+      flocks: {
+        ...flocksState,
         inProgress: false,
-        error: null,
-        data: {},
+        error: new Error('Test error'),
       },
     };
-
-    const action = actions.getFlock('flockId1');
-    expect(firebaseReducer(state, action)).toMatchSnapshot();
-  });
-
-  test(actionTypes.GET_FLOCK_FULFILLED, () => {
-    const state = {
+    const expectedState = {
       ...sampleState,
-      [metaTypes.flocks]: {
+      flocks: {
+        ...flocksState,
         inProgress: true,
         error: null,
-        data: {},
       },
     };
-    const flock = {
-      flock1: {
-        name: 'Flock 1',
-        ownedBy: 'user1',
-      },
-    };
-    let action = actions.getFlockFulfilled(flock);
-    const newState = firebaseReducer(state, action);
-    expect(newState).toMatchSnapshot();
 
-    // Add another flock since there can be multiples
-    const flock2 = {
-      flock2: {
-        name: 'Flock 2',
-        ownedBy: 'user2',
-      },
-    };
-    action = actions.getFlockFulfilled(flock2);
-    expect(firebaseReducer(newState, action)).toMatchSnapshot();
+    const action = { type: actionTypes.SYNC_FLOCKS_REQUESTED };
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
   });
 
-  test(actionTypes.GET_FLOCK_REJECTED, () => {
+  test(actionTypes.SYNC_FLOCKS_FULFILLED, () => {
+    // Simply sets initialized to true
+    const flocksState = sampleState.flocks;
     const state = {
       ...sampleState,
-      [metaTypes.flocks]: {
+      flocks: {
+        ...flocksState,
+        initialized: false,
+        inProgress: true,
+        data: {
+          flock1: {
+            name: 'Flock 1',
+            ownedBy: 'user1',
+          },
+        },
+      },
+    };
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        ...flocksState,
+        initialized: true,
+        inProgress: false,
+        data: {
+          flock1: {
+            name: 'Flock 1',
+            ownedBy: 'user1',
+          },
+        },
+      },
+    };
+    const action = { type: actionTypes.SYNC_FLOCKS_FULFILLED };
+    const newState = firebaseReducer(state, action);
+    expect(newState).toEqual(expectedState);
+  });
+
+  test(actionTypes.SYNC_FLOCKS_REJECTED, () => {
+    const flocksState = sampleState.flocks;
+    const state = {
+      ...sampleState,
+      flocks: {
+        ...flocksState,
+        initialized: false,
         inProgress: true,
         error: null,
         data: {
@@ -647,8 +661,81 @@ describe('firebaseReducer reducer', () => {
       },
     };
     const error = new Error('Error Message');
-    const action = actions.getFlockRejected(error);
-    expect(firebaseReducer(state, action)).toMatchSnapshot();
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        ...flocksState,
+        initialized: true,
+        inProgress: false,
+        error: error.message,
+        data: {
+          flock1: {
+            name: 'Flock 1',
+            owneBy: 'UserId1',
+          },
+        },
+      },
+    };
+
+    const action = { type: actionTypes.SYNC_FLOCKS_REJECTED, payload: { error } };
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.SET_FLOCK, () => {
+    const state = {
+      ...sampleState,
+      flocks: {
+        initialized: true,
+        inProgress: true,
+        error: null,
+        data: {
+          flock1: 'item1value',
+        },
+      },
+    };
+    const action = { type: actionTypes.SET_FLOCK, payload: { flock2: 'item2value' } };
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        initialized: true,
+        inProgress: true,
+        error: null,
+        data: {
+          flock1: 'item1value',
+          flock2: 'item2value',
+        },
+      },
+    };
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
+  });
+  test(actionTypes.CLEAR_FLOCK, () => {
+    const action = { type: actionTypes.CLEAR_FLOCK, payload: 'flock1' };
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        initialized: false,
+        inProgress: false,
+        error: null,
+        data: {
+          flock2: 'item2value',
+        },
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
+  test(actionTypes.CLEAR_ALL_FLOCKS, () => {
+    const action = { type: actionTypes.CLEAR_ALL_FLOCKS };
+    const expectedState = {
+      ...sampleState,
+      flocks: {
+        initialized: false,
+        inProgress: false,
+        error: null,
+        data: {},
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.JOIN_FLOCK_REQUESTED, () => {
