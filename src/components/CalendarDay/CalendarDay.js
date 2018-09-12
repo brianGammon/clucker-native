@@ -63,10 +63,13 @@ class CalendarDay extends React.Component<Props> {
   };
 
   render() {
-    const { navigation, dates, eggs } = this.props;
+    const {
+      navigation, dates, eggs, flockId,
+    } = this.props;
     return (
       <CalendarDayRenderer
         navigation={navigation}
+        currentFlockId={flockId}
         dates={dates}
         eggs={eggs}
         handleMoreOptions={this.handleMoreOptions}

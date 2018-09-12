@@ -26,7 +26,7 @@ const FlockRenderer = ({
   topProducer,
 }: Props) => (
   <Container>
-    <Header title="Flock" eggButton />
+    <Header title="Flock" eggButton={Object.keys(flock || {}).length > 0} />
     <FlockHeader
       flock={flock}
       chickens={chickens}

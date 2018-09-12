@@ -14,7 +14,7 @@ const NoStats = ({ flock }: Props) => (
     <Header
       title="Flock Stats"
       subTitle={(flock && flock.name) || 'No Active Flock'}
-      eggButton
+      eggButton={flock ? true : null}
     />
 
     <View padder style={styles.noEggsMessage}>

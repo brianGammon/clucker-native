@@ -8,6 +8,7 @@ import flockStatsSelector from '../../selectors/flockStatsSelector';
 
 type Props = {
   navigation: any,
+  currentFlockId: string,
   stats: FlockStats,
   calendarData: CalendarData,
   chickens: {
@@ -23,11 +24,17 @@ type Props = {
 class Calendar extends React.Component<Props> {
   render() {
     const {
-      navigation, calendarData, dates, chickens, stats,
+      navigation,
+      calendarData,
+      dates,
+      chickens,
+      stats,
+      currentFlockId,
     } = this.props;
     return (
       <CalendarRenderer
         navigation={navigation}
+        currentFlockId={currentFlockId}
         stats={stats}
         calendarData={calendarData}
         chickens={chickens}
@@ -37,10 +44,20 @@ class Calendar extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
+const mapStateToProps = (
+  {
+    eggs,
+    chickens,
+    userSettings: {
+      data: { currentFlockId },
+    },
+  },
+  { navigation },
+) => {
   const date = navigation.getParam('date', nowAsMoment().format('YYYY-MM'));
   const { previousDate, nextDate } = dateSwitcher(date, 'months', 'YYYY-MM');
   return {
+    currentFlockId,
     stats: flockStatsSelector(eggs.data, date),
     calendarData: calendarDataSelector(eggs.data, date),
     chickens: chickens.data,

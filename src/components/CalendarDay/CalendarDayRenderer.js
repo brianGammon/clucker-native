@@ -10,6 +10,7 @@ import EggItem from './EggItem';
 
 type Props = {
   navigation: any,
+  currentFlockId: string,
   dates: {
     date: string,
     previousDate: string,
@@ -23,12 +24,17 @@ type Props = {
 
 const CalendarDayRenderer = ({
   navigation,
+  currentFlockId,
   eggs,
   dates,
   handleMoreOptions,
 }: Props) => (
   <Container>
-    <Header title="Egg List" eggButton goBackButton="Month" />
+    <Header
+      title="Egg List"
+      eggButton={!!currentFlockId}
+      goBackButton="Month"
+    />
     <Content padder>
       <DateSwitcher
         mode="day"
