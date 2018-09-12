@@ -9,7 +9,7 @@ import {
 } from 'native-base';
 import { type ChartData } from '../../types';
 import LineDecorator from './LineDecorator';
-import styles from './styles';
+import styles, { chartSettings } from './styles';
 
 type Props = {
   data: ChartData,
@@ -18,37 +18,19 @@ type Props = {
 
 const ChartRenderer = ({ data, onRefreshChart }: Props) => (
   <View>
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <View style={styles.chartTitle}>
       <Text style={styles.label}>Egg Trendline</Text>
       <Button dark transparent onPress={onRefreshChart}>
         <Icon active name="refresh" />
       </Button>
     </View>
-    <View
-      style={{
-        borderColor: 'grey',
-        height: 220,
-        padding: 5,
-        flexDirection: 'row',
-      }}
-    >
+    <View style={styles.chartContainer}>
       <YAxis
         yAccessor={({ item }) => item.count}
         data={data}
-        style={{ marginBottom: 35 }}
-        contentInset={{
-          top: 10,
-          bottom: 10,
-          left: 10,
-          right: 10,
-        }}
-        svg={{ fontSize: 10, fill: 'black' }}
+        style={styles.yAxis}
+        contentInset={chartSettings.yAxis.contentInset}
+        svg={chartSettings.yAxis.svg}
         formatLabel={(value) => {
           if (value % 1 !== 0) {
             return '';
@@ -56,28 +38,20 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
           return value;
         }}
       />
-      <View style={{ flex: 1, marginLeft: 10 }}>
+      <View style={styles.chartBody}>
         <LineChart
-          style={{ flex: 1 }}
+          style={styles.lineChart}
           yAccessor={({ item }) => item.count}
           data={data}
-          svg={{ stroke: 'rgb(249, 149, 0)', strokeWidth: 3 }}
-          contentInset={{
-            top: 10,
-            bottom: 10,
-            left: 10,
-            right: 10,
-          }}
+          svg={chartSettings.lineChart.svg}
+          contentInset={chartSettings.lineChart.contentInset}
         >
           <Grid />
           {/* $FlowFixMe: react-native-svg passes props into decorators */}
           <LineDecorator />
         </LineChart>
         <XAxis
-          style={{
-            marginHorizontal: -10,
-            height: 35,
-          }}
+          style={styles.xAxis}
           xAccessor={({ item }) => item.date}
           data={data}
           formatLabel={(value, index) => {
@@ -89,18 +63,8 @@ const ChartRenderer = ({ data, onRefreshChart }: Props) => (
             }
             return moment(value).format('MMM-YY');
           }}
-          contentInset={{
-            top: 10,
-            bottom: 10,
-            left: 35,
-            right: 5,
-          }}
-          svg={{
-            fontSize: 10,
-            fill: 'black',
-            rotation: -90,
-            origin: '18, 18',
-          }}
+          contentInset={chartSettings.xAxis.contentInset}
+          svg={chartSettings.xAxis.svg}
         />
       </View>
     </View>
