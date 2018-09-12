@@ -72,12 +72,11 @@ class App extends React.Component<Props> {
       if (doSyncFlocks) {
         syncFlocks([...added], [...deleted]);
       }
-
-      // If the current flock changed, need to fetch the eggs
-      if (currentFlockId && currentFlockId !== prevCurrentFlockId) {
-        listenToChickens(currentFlockId);
-        listenToEggs(currentFlockId);
-      }
+    }
+    // If the current flock changed, need to fetch the eggs
+    if (currentFlockId && currentFlockId !== prevCurrentFlockId) {
+      listenToChickens(currentFlockId);
+      listenToEggs(currentFlockId);
     }
   }
 

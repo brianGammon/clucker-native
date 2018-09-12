@@ -310,7 +310,6 @@ const handlers = {
       ...state,
       [property]: {
         ...propertyState,
-        inProgress: false,
         error: null,
         data,
       },
@@ -470,6 +469,28 @@ const handlers = {
     };
     return newState;
   },
+  [a.SWITCH_FLOCK_REQUESTED](state) {
+    const { userSettings } = state;
+    const newState = {
+      ...state,
+      userSettings: {
+        ...userSettings,
+        initialized: false,
+      },
+    };
+    return newState;
+  },
+  [a.SWITCH_FLOCK_FULFILLED](state) {
+    const { userSettings } = state;
+    const newState = {
+      ...state,
+      userSettings: {
+        ...userSettings,
+        initialized: true,
+      },
+    };
+    return newState;
+  }
 };
 
 export default (state = initialState, action = {}) => {

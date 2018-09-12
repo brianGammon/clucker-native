@@ -13,7 +13,7 @@ type Props = {
   },
   userSettings: UserSettings,
   userId: string,
-  saveUserSettings: (userId: string, userSettings: UserSettings) => void,
+  switchFlocks: (userId: string, userSettings: UserSettings) => void,
   unlinkFlock: (
     userId: string,
     userSettings: UserSettings,
@@ -28,9 +28,9 @@ type Props = {
 
 class FlockSelector extends React.Component<Props> {
   handleSelectFlock = (flockId) => {
-    const { userId, userSettings, saveUserSettings } = this.props;
+    const { userId, userSettings, switchFlocks } = this.props;
     const newUserSettings = { ...userSettings, currentFlockId: flockId };
-    saveUserSettings(userId, newUserSettings);
+    switchFlocks(userId, newUserSettings);
   };
 
   handleUnlinkFlock = (flockId) => {
@@ -86,9 +86,10 @@ const mapStateToProps = ({ flocks, userSettings, auth: { user } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveUserSettings: (userId: string, userSettings: UserSettings) => dispatch(
-    firebaseUpdateRequested({ userId, userSettings }, metaTypes.userSettings),
-  ),
+  switchFlocks: (userId: string, userSettings: UserSettings) => dispatch({
+    type: actionTypes.SWITCH_FLOCK_REQUESTED,
+    payload: { userId, userSettings },
+  }),
   unlinkFlock: (userId: string, userSettings: UserSettings, flockId: string) => dispatch({
     type: actionTypes.UNLINK_FLOCK_REQUESTED,
     payload: { userId, userSettings, flockId },

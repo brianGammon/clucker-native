@@ -395,6 +395,7 @@ export function* joinFlock(action) {
       ),
     );
     yield put({ type: a.JOIN_FLOCK_FULFILLED });
+    yield call([NavigationService, NavigationService.navigate], 'Stats');
   } else {
     yield put({
       type: a.JOIN_FLOCK_REJECTED,
@@ -428,6 +429,7 @@ export function* addFlock(action) {
       ),
     );
     yield put({ type: a.ADD_FLOCK_FULFILLED });
+    yield call([NavigationService, NavigationService.navigate], 'Stats');
   } catch (error) {
     yield put({
       type: a.ADD_FLOCK_REJECTED,
@@ -438,6 +440,27 @@ export function* addFlock(action) {
 
 export function* watchAddFlockRequested() {
   yield takeLatest(a.ADD_FLOCK_REQUESTED, addFlock);
+}
+
+export function* switchFlock(action) {
+  const { userId, userSettings } = action.payload;
+  yield all([
+    put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
+    put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
+  ]);
+  yield put(actions.firebaseUpdateRequested({ userId, userSettings }, metaTypes.userSettings));
+  while (true) {
+    const updateAction = yield take(a.UPDATE_FULFILLED);
+    if (updateAction.meta.type === metaTypes.userSettings) {
+      yield put({ type: a.SWITCH_FLOCK_FULFILLED });
+      yield call([NavigationService, NavigationService.navigate], 'Stats');
+      break;
+    }
+  }
+}
+
+export function* watchSwitchFlockRequested() {
+  yield takeLatest(a.SWITCH_FLOCK_REQUESTED, switchFlock);
 }
 
 export function* unlinkFlock(action) {
@@ -734,5 +757,6 @@ export default function* rootSaga() {
     watchDeleteChickenRequested(),
     watchFlockActionsComplete(),
     watchSaveChickenRequested(),
+    watchSwitchFlockRequested(),
   ]);
 }

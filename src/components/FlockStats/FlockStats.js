@@ -56,7 +56,7 @@ const mapStateToProps = ({
     stats,
     chickens: chickens.data,
     initialized,
-    loading: chickens.inProgress || eggs.inProgress,
+    loading: chickens.inProgress || eggs.inProgress || userSettings.inProgress,
   };
 };
 
