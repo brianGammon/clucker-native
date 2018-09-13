@@ -8,7 +8,7 @@ export default (eggs, range) => {
   let totalWithWeight = 0;
   let totalWeight = 0;
   let earliestDate = null;
-  let rangeCount = 0;
+  let rangeForAverageCount = 0;
   let daysBackForAvg = 30;
   const now = nowAsMoment();
   const thirtyDaysAgo = now.clone().subtract(daysBackForAvg - 1, 'day');
@@ -56,7 +56,10 @@ export default (eggs, range) => {
     }
 
     if (range === 'allTime' || thisEggDate.isAfter(startofRange)) {
-      rangeCount += 1;
+      if (thisEggDate.isAfter(startofRange)) {
+        rangeForAverageCount += 1;
+      }
+
       const rollupPeriod = range === 'allTime' ? egg.date.substring(0, 7) : egg.date;
 
       if (!eggsPerPeriod[rollupPeriod]) {
@@ -75,7 +78,7 @@ export default (eggs, range) => {
     const daysAfter = earliest.diff(startofRange, 'days');
     daysToGoBack = daysBackForAvg - daysAfter;
   }
-  const averageNumber = rangeCount > 0 ? rangeCount / daysToGoBack : 0;
+  const averageNumber = rangeForAverageCount > 0 ? rangeForAverageCount / daysToGoBack : 0;
 
   // sort the eggPerPeriod by most eggs
   const array = toPairs(eggsPerChicken);

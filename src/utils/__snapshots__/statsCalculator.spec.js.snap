@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stats Calculator calculate for allTime, full set 1`] = `
+Object {
+  "averageNumber": 2.1333333333333333,
+  "averageWeight": 63.79381443298966,
+  "eggsPerChicken": Object {
+    "chicken1": 36,
+    "chicken2": 28,
+    "chicken3": 11,
+    "chicken4": 31,
+  },
+  "eggsPerPeriod": Object {
+    "2018-03": Object {
+      "byChicken": Object {
+        "chicken4": 1,
+      },
+      "total": 1,
+    },
+    "2018-04": Object {
+      "byChicken": Object {
+        "chicken1": 24,
+        "chicken2": 20,
+        "chicken3": 11,
+        "chicken4": 22,
+      },
+      "total": 77,
+    },
+    "2018-05": Object {
+      "byChicken": Object {
+        "chicken1": 12,
+        "chicken2": 8,
+        "chicken4": 8,
+      },
+      "total": 28,
+    },
+  },
+  "firstEgg": "2018-03-31",
+  "heaviest": Object {
+    "chickenId": "chicken1",
+    "chickenName": "Chicken1",
+    "date": "2018-04-28",
+    "modified": "2018-04-28T15:03:19.202Z",
+    "userId": "user1",
+    "weight": "71.5",
+  },
+  "mostEggs": "chicken1",
+  "total": 106,
+}
+`;

@@ -99,7 +99,7 @@ const EggEditorRenderer = ({
                           onValueChange={handlePickItem}
                         >
                           <Picker.Item label="Select a chicken" value="" />
-                          <Picker.Item label="I'm not sure" value="unknown" />
+                          <Picker.Item label="Unnamed Hen" value="unknown" />
                           {Object.keys(chickens || {}).map(key => (
                             <Picker.Item
                               key={key}
@@ -114,7 +114,7 @@ const EggEditorRenderer = ({
                     {errors
                       && touched && (
                         <Text style={styles.error}>
-                          Select a chicken or &quot;I&apos;m not sure&quot;
+                          Select a chicken
                         </Text>
                     )}
                   </View>

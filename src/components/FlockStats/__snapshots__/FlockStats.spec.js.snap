@@ -50,7 +50,7 @@ exports[`FlockStats component: FlockStats connected component renders 1`] = `
   }
   stats={
     Object {
-      "averageNumber": 7.566666666666666,
+      "averageNumber": 0,
       "averageWeight": 63.841904761904786,
       "eggsPerChicken": Object {
         "chicken1": 78,
