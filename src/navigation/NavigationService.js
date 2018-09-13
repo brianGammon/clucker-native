@@ -15,14 +15,14 @@ function navigate(routeName, params) {
   );
 }
 
-function resetTabs() {
+function resetTabs(routeName: string = 'Settings') {
   const resetAction = StackActions.reset({
     index: 0,
     actions: [
       NavigationActions.navigate({
         routeName: 'Tabs',
         action: NavigationActions.navigate({
-          routeName: 'Settings',
+          routeName,
         }),
       }),
     ],

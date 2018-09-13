@@ -921,15 +921,13 @@ describe('saga tests', () => {
 
     // Happy path
     const updateAction = { type: a.UPDATE_FULFILLED, meta: { type: metaTypes.userSettings } };
-    expect(generator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED }));
-    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
+    expect(generator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' }));
     expect(generator.next().done).toEqual(true);
 
     // Alt path
     const wrongUpdateAction = { type: a.UPDATE_FULFILLED, meta: { type: metaTypes.flocks } };
     expect(altGenerator.next(wrongUpdateAction).value).toEqual(take(a.UPDATE_FULFILLED));
-    expect(altGenerator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED }));
-    expect(altGenerator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
+    expect(altGenerator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' }));
     expect(altGenerator.next().done).toEqual(true);
   });
 
@@ -1325,9 +1323,9 @@ describe('saga tests', () => {
   });
 
   test('resetNavigation with resetStack = true', () => {
-    const action = { type: a.DELETE_FLOCK_FULFILLED, resetStack: true };
+    const action = { type: a.DELETE_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' };
     const generator = sagas.resetNavigation(action);
-    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.resetTabs]));
+    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.resetTabs], 'FlockStats'));
   });
 
   test('resetNavigation with resetStack = false', () => {
@@ -1338,7 +1336,7 @@ describe('saga tests', () => {
 
   test('watchFlockActionsComplete', () => {
     const generator = sagas.watchFlockActionsComplete();
-    expect(generator.next().value).toEqual(takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED], sagas.resetNavigation));
+    expect(generator.next().value).toEqual(takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED, a.SWITCH_FLOCK_FULFILLED], sagas.resetNavigation));
   });
 
   test('saveChicken - update, remove photo, new photo', () => {

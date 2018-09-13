@@ -65,6 +65,7 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   eggCountText: {
+    fontWeight: 'bold',
     color: 'black',
   },
   statsLabel: {

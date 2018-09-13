@@ -33,15 +33,6 @@ class Chicken extends React.Component<Props, State> {
     showModal: false,
   };
 
-  shouldComponentUpdate(newProps) {
-    const { chicken, navigation } = newProps;
-    if (!chicken) {
-      navigation.goBack();
-      return false;
-    }
-    return true;
-  }
-
   toggleModal = (visible) => {
     this.setState({ showModal: visible });
   };

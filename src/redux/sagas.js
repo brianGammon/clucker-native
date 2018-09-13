@@ -452,8 +452,7 @@ export function* switchFlock(action) {
   while (true) {
     const updateAction = yield take(a.UPDATE_FULFILLED);
     if (updateAction.meta.type === metaTypes.userSettings) {
-      yield put({ type: a.SWITCH_FLOCK_FULFILLED });
-      yield call([NavigationService, NavigationService.navigate], 'Stats');
+      yield put({ type: a.SWITCH_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' });
       break;
     }
   }
@@ -648,15 +647,15 @@ export function* watchDeleteChickenRequested() {
 }
 
 export function* resetNavigation(action) {
-  const { resetStack } = action;
+  const { resetStack, routeName } = action;
   if (resetStack) {
-    yield call([NavigationService, NavigationService.resetTabs]);
+    yield call([NavigationService, NavigationService.resetTabs], routeName);
   }
 }
 
 export function* watchFlockActionsComplete() {
   yield takeLatest(
-    [a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED],
+    [a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED, a.SWITCH_FLOCK_FULFILLED],
     resetNavigation,
   );
 }
