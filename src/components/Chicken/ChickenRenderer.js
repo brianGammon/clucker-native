@@ -100,7 +100,7 @@ const ChickenRenderer = ({
         </View>
       </View>
       <View padder style={{ alignItems: 'center' }}>
-        <TouchableOpacity onPress={() => toggleModal(!showModal)}>
+        <TouchableOpacity onPress={chicken.photoUrl ? () => toggleModal(!showModal) : null}>
           <Image
             style={{ width: 200, height: 200 }}
             source={

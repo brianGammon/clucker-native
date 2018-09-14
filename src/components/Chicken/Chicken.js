@@ -1,8 +1,8 @@
 /* @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { ActionSheet } from 'native-base';
-import { Text, Alert } from 'react-native';
+import { ActionSheet, Text } from 'native-base';
+import { Alert } from 'react-native';
 import ChickenRenderer from './ChickenRenderer';
 import chickenSelector from '../../selectors/chickenSelector';
 import chickenStatsSelector from '../../selectors/chickenStatsSelector';

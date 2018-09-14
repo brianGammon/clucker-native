@@ -1,14 +1,7 @@
 /* @flow */
 import React from 'react';
 import {
-  View,
-  Input,
-  Item,
-  Icon,
-  Text,
-  Label,
-  Button,
-  Textarea,
+  View, Input, Item, Icon, Text, Button, Textarea,
 } from 'native-base';
 import errorMapper from '../../utils/errorMapper';
 import CommonLabel from '../CommonLabel';

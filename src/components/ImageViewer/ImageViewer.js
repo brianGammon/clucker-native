@@ -1,9 +1,8 @@
 /* @flow */
 import React from 'react';
+import { View, Icon, Button } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {
-  Dimensions, Modal, View, TouchableOpacity, Image,
-} from 'react-native';
+import { Dimensions, Modal, Image } from 'react-native';
 import styles from './styles';
 
 type Props = {
@@ -28,14 +27,17 @@ const ImageViewer = ({ url, showModal, toggleModal }: Props) => {
       onRequestClose={() => {}}
     >
       <View style={styles.modalContainer}>
-        <TouchableOpacity
+        <Button
+          large
+          light
+          transparent
           style={styles.closeButton}
           onPress={() => {
             toggleModal(!showModal);
           }}
         >
-          <Ionicons name="ios-close" color="white" style={styles.closeIcon} />
-        </TouchableOpacity>
+          <Icon style={styles.closeIcon} name="close" />
+        </Button>
         <Image
           resizeMode="cover"
           style={{

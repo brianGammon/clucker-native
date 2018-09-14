@@ -38,7 +38,6 @@ class Chart extends React.Component<Props, State> {
     // react-native-svg-charts has a little issue where
     // the chat doesn't resize certain parts when orientation changes
     // or if the data changes dramatically
-    console.log('Refreshing chart...');
     this.setState({ ready: false });
     setTimeout(() => {
       this.setState({ ready: true });

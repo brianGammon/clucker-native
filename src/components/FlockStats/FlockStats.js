@@ -22,22 +22,21 @@ type Props = {
   loading: boolean,
 };
 
-class FlockStats extends React.Component<Props> {
-  render() {
-    const {
-      stats, chickens, flock, loading, initialized,
-    } = this.props;
-    if (!initialized || loading) {
-      return <Loading message="Loading Stats..." />;
-    }
-    if (initialized && !loading && !stats) {
-      return <NoStats flock={flock} />;
-    }
-    return (
-      <FlockStatsRenderer stats={stats} chickens={chickens} flock={flock} />
-    );
+const FlockStats = ({
+  stats,
+  chickens,
+  flock,
+  loading,
+  initialized,
+}: Props) => {
+  if (!initialized || loading) {
+    return <Loading message="Loading Stats..." />;
   }
-}
+  if (initialized && !loading && !stats) {
+    return <NoStats flock={flock} />;
+  }
+  return <FlockStatsRenderer stats={stats} chickens={chickens} flock={flock} />;
+};
 
 const mapStateToProps = ({
   userSettings, eggs, flocks, chickens,

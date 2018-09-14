@@ -22,22 +22,17 @@ type Props = {
   stats: FlockStats,
 };
 
-class Flock extends React.Component<Props> {
-  render() {
-    const {
-      navigation, chickens, flock, isFlockOwner, stats,
-    } = this.props;
-    return (
-      <FlockRenderer
-        navigation={navigation}
-        chickens={chickens}
-        flock={flock}
-        isFlockOwner={isFlockOwner}
-        topProducer={stats && stats.mostEggs}
-      />
-    );
-  }
-}
+const Flock = ({
+  navigation, chickens, flock, isFlockOwner, stats,
+}: Props) => (
+  <FlockRenderer
+    navigation={navigation}
+    chickens={chickens}
+    flock={flock}
+    isFlockOwner={isFlockOwner}
+    topProducer={stats && stats.mostEggs}
+  />
+);
 
 const mapStateToProps = ({
   chickens,

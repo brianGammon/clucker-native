@@ -21,28 +21,23 @@ type Props = {
   },
 };
 
-class Calendar extends React.Component<Props> {
-  render() {
-    const {
-      navigation,
-      calendarData,
-      dates,
-      chickens,
-      stats,
-      currentFlockId,
-    } = this.props;
-    return (
-      <CalendarRenderer
-        navigation={navigation}
-        currentFlockId={currentFlockId}
-        stats={stats}
-        calendarData={calendarData}
-        chickens={chickens}
-        dates={dates}
-      />
-    );
-  }
-}
+const Calendar = ({
+  navigation,
+  calendarData,
+  dates,
+  chickens,
+  stats,
+  currentFlockId,
+}: Props) => (
+  <CalendarRenderer
+    navigation={navigation}
+    currentFlockId={currentFlockId}
+    stats={stats}
+    calendarData={calendarData}
+    chickens={chickens}
+    dates={dates}
+  />
+);
 
 const mapStateToProps = (
   {
