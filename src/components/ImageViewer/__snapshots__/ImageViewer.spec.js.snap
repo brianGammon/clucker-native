@@ -15,7 +15,7 @@ exports[`ImageViewer renders properly showModal set to false 1`] = `
   transparent={true}
   visible={false}
 >
-  <Component
+  <Styled(ViewNB)
     style={
       Object {
         "alignItems": "center",
@@ -25,8 +25,9 @@ exports[`ImageViewer renders properly showModal set to false 1`] = `
       }
     }
   >
-    <TouchableOpacity
-      activeOpacity={0.2}
+    <Styled(Button)
+      large={true}
+      light={true}
       onPress={[Function]}
       style={
         Object {
@@ -35,19 +36,17 @@ exports[`ImageViewer renders properly showModal set to false 1`] = `
           "top": 10,
         }
       }
+      transparent={true}
     >
-      <Icon
-        allowFontScaling={false}
-        color="white"
-        name="ios-close"
-        size={12}
+      <Styled(Icon)
+        name="close"
         style={
           Object {
             "fontSize": 60,
           }
         }
       />
-    </TouchableOpacity>
+    </Styled(Button)>
     <Image
       resizeMode="cover"
       source={
@@ -62,7 +61,7 @@ exports[`ImageViewer renders properly showModal set to false 1`] = `
         }
       }
     />
-  </Component>
+  </Styled(ViewNB)>
 </Component>
 `;
 
@@ -81,7 +80,7 @@ exports[`ImageViewer renders properly with image URL 1`] = `
   transparent={true}
   visible={true}
 >
-  <Component
+  <Styled(ViewNB)
     style={
       Object {
         "alignItems": "center",
@@ -91,8 +90,9 @@ exports[`ImageViewer renders properly with image URL 1`] = `
       }
     }
   >
-    <TouchableOpacity
-      activeOpacity={0.2}
+    <Styled(Button)
+      large={true}
+      light={true}
       onPress={[Function]}
       style={
         Object {
@@ -101,19 +101,17 @@ exports[`ImageViewer renders properly with image URL 1`] = `
           "top": 10,
         }
       }
+      transparent={true}
     >
-      <Icon
-        allowFontScaling={false}
-        color="white"
-        name="ios-close"
-        size={12}
+      <Styled(Icon)
+        name="close"
         style={
           Object {
             "fontSize": 60,
           }
         }
       />
-    </TouchableOpacity>
+    </Styled(Button)>
     <Image
       resizeMode="cover"
       source={
@@ -128,7 +126,7 @@ exports[`ImageViewer renders properly with image URL 1`] = `
         }
       }
     />
-  </Component>
+  </Styled(ViewNB)>
 </Component>
 `;
 
@@ -147,7 +145,7 @@ exports[`ImageViewer renders properly with no image URL provided 1`] = `
   transparent={true}
   visible={true}
 >
-  <Component
+  <Styled(ViewNB)
     style={
       Object {
         "alignItems": "center",
@@ -157,8 +155,9 @@ exports[`ImageViewer renders properly with no image URL provided 1`] = `
       }
     }
   >
-    <TouchableOpacity
-      activeOpacity={0.2}
+    <Styled(Button)
+      large={true}
+      light={true}
       onPress={[Function]}
       style={
         Object {
@@ -167,19 +166,17 @@ exports[`ImageViewer renders properly with no image URL provided 1`] = `
           "top": 10,
         }
       }
+      transparent={true}
     >
-      <Icon
-        allowFontScaling={false}
-        color="white"
-        name="ios-close"
-        size={12}
+      <Styled(Icon)
+        name="close"
         style={
           Object {
             "fontSize": 60,
           }
         }
       />
-    </TouchableOpacity>
+    </Styled(Button)>
     <Image
       resizeMode="cover"
       source={
@@ -194,6 +191,6 @@ exports[`ImageViewer renders properly with no image URL provided 1`] = `
         }
       }
     />
-  </Component>
+  </Styled(ViewNB)>
 </Component>
 `;

@@ -901,13 +901,13 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
 `;
 
 exports[`Chicken component: Should render correctly when chicken not found 1`] = `
-<Component>
+<Styled(Text)>
   Chicken with ID chicken5 not found
-</Component>
+</Styled(Text)>
 `;
 
 exports[`Chicken component: Should render correctly when no chicken ID passed in 1`] = `
-<Component>
+<Styled(Text)>
   No Chicken ID passed in!
-</Component>
+</Styled(Text)>
 `;
