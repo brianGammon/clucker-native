@@ -21,9 +21,6 @@ export default StyleSheet.create({
   pickerText: {
     color: variables.textColor,
   },
-  label: {
-    fontWeight: 'bold',
-  },
   checkboxContainer: {
     marginLeft: -10,
     marginTop: 20,

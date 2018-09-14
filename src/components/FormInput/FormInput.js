@@ -44,12 +44,12 @@ class FormInput extends React.Component<Props, State> {
     if (meta.multiline) {
       return (
         <View>
-          <CommonLabel text={meta.label} />
+          <CommonLabel text={`${meta.label}:`} />
           <Textarea
             {...handler()}
             rowSpan={meta.numberOfLines || 5}
             bordered
-            placeholder="Notes"
+            placeholder="Enter optional notes"
             maxLength={meta.maxLength || null}
             blurOnSubmit
             returnKeyType="done"
@@ -60,7 +60,7 @@ class FormInput extends React.Component<Props, State> {
     return (
       <View>
         <Item inlineLabel error={touched && error !== null}>
-          <CommonLabel text={meta.label} />
+          <CommonLabel text={`${meta.label}:`} />
           <Input
             keyboardType={meta.keyboardType || null}
             maxLength={meta.maxLength || null}

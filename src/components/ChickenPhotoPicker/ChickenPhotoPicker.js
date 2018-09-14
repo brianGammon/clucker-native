@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, Button, Text } from 'native-base';
 import { Image } from 'react-native';
+import CommonLabel from '../CommonLabel';
 import styles from './styles';
 
 type Props = {
@@ -35,16 +36,20 @@ const ChickenPhotoPicker = ({
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Profile Photo:</Text>
+      <CommonLabel text="Profile Photo:" />
       <View style={{ flexDirection: 'row' }}>
         <Image style={{ width: 200, height: 200 }} source={imageSource} />
         <View style={styles.photoControls}>
           {photoUrl !== ''
             && !newImage && (
-              <Button onPress={onRemoveProfilePhoto} title="Remove" />
+              <Button transparent onPress={onRemoveProfilePhoto}>
+                <Text>Remove</Text>
+              </Button>
           )}
           {((originalPhotoUrl !== '' && photoUrl === '') || newImage) && (
-            <Button onPress={onResetProfilePhoto} title="Reset" />
+            <Button transparent onPress={onResetProfilePhoto}>
+              <Text>Reset</Text>
+            </Button>
           )}
           <Button transparent onPress={() => onSelectPhoto(false)}>
             <Text>Select Photo</Text>

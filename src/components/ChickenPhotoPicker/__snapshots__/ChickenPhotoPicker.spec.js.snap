@@ -8,18 +8,10 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
     }
   }
 >
-  <Styled(Text)
-    style={
-      Object {
-        "color": "#575757",
-        "fontSize": 17,
-        "fontWeight": "bold",
-        "paddingBottom": 10,
-      }
-    }
-  >
-    Profile Photo:
-  </Styled(Text)>
+  <CommonLabel
+    style={null}
+    text="Profile Photo:"
+  />
   <Styled(ViewNB)
     style={
       Object {
@@ -49,8 +41,12 @@ exports[`ChickenPhotoPicker renders when existing photo was removed 1`] = `
     >
       <Styled(Button)
         onPress={[Function]}
-        title="Reset"
-      />
+        transparent={true}
+      >
+        <Styled(Text)>
+          Reset
+        </Styled(Text)>
+      </Styled(Button)>
       <Styled(Button)
         onPress={[Function]}
         transparent={true}
@@ -80,18 +76,10 @@ exports[`ChickenPhotoPicker renders when no previous photo and no new photo sele
     }
   }
 >
-  <Styled(Text)
-    style={
-      Object {
-        "color": "#575757",
-        "fontSize": 17,
-        "fontWeight": "bold",
-        "paddingBottom": 10,
-      }
-    }
-  >
-    Profile Photo:
-  </Styled(Text)>
+  <CommonLabel
+    style={null}
+    text="Profile Photo:"
+  />
   <Styled(ViewNB)
     style={
       Object {
@@ -148,18 +136,10 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
     }
   }
 >
-  <Styled(Text)
-    style={
-      Object {
-        "color": "#575757",
-        "fontSize": 17,
-        "fontWeight": "bold",
-        "paddingBottom": 10,
-      }
-    }
-  >
-    Profile Photo:
-  </Styled(Text)>
+  <CommonLabel
+    style={null}
+    text="Profile Photo:"
+  />
   <Styled(ViewNB)
     style={
       Object {
@@ -189,8 +169,12 @@ exports[`ChickenPhotoPicker renders when original photo exists, new photo select
     >
       <Styled(Button)
         onPress={[Function]}
-        title="Reset"
-      />
+        transparent={true}
+      >
+        <Styled(Text)>
+          Reset
+        </Styled(Text)>
+      </Styled(Button)>
       <Styled(Button)
         onPress={[Function]}
         transparent={true}
@@ -220,18 +204,10 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
     }
   }
 >
-  <Styled(Text)
-    style={
-      Object {
-        "color": "#575757",
-        "fontSize": 17,
-        "fontWeight": "bold",
-        "paddingBottom": 10,
-      }
-    }
-  >
-    Profile Photo:
-  </Styled(Text)>
+  <CommonLabel
+    style={null}
+    text="Profile Photo:"
+  />
   <Styled(ViewNB)
     style={
       Object {
@@ -261,8 +237,12 @@ exports[`ChickenPhotoPicker renders when originalPhotoUrl exists, and new image 
     >
       <Styled(Button)
         onPress={[Function]}
-        title="Remove"
-      />
+        transparent={true}
+      >
+        <Styled(Text)>
+          Remove
+        </Styled(Text)>
+      </Styled(Button)>
       <Styled(Button)
         onPress={[Function]}
         transparent={true}

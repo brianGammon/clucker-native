@@ -11,10 +11,6 @@ export default StyleSheet.create({
   datePickerField: {
     flex: 1,
   },
-  label: {
-    fontWeight: 'bold',
-    color: variables.inputColorPlaceholder,
-  },
   clearDateIcon: {
     color: variables.textColor,
   },

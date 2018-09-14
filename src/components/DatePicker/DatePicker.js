@@ -2,12 +2,9 @@
 import React from 'react';
 import moment from 'moment';
 import {
-  DatePicker as NBDatePicker,
-  View,
-  Button,
-  Icon,
-  Label,
+  DatePicker as NBDatePicker, View, Button, Icon,
 } from 'native-base';
+import CommonLabel from '../CommonLabel';
 import styles from './styles';
 
 type Props = {
@@ -47,7 +44,7 @@ class DatePicker extends React.Component<Props> {
     const valueAsDate = value && value !== '' ? new Date(moment(value).valueOf()) : null;
     return (
       <View style={styles.container}>
-        <Label style={styles.label}>{label || 'Date'}:</Label>
+        <CommonLabel text={`${label || 'Date'}:`} />
         <View style={styles.datePickerField}>
           <NBDatePicker
             ref={this.datePickerRef}

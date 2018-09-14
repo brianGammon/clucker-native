@@ -11,17 +11,10 @@ exports[`DatePicker renders with all props supplied 1`] = `
     }
   }
 >
-  <Styled(Label)
-    style={
-      Object {
-        "color": "#575757",
-        "fontWeight": "bold",
-      }
-    }
-  >
-    Date
-    :
-  </Styled(Label)>
+  <CommonLabel
+    style={null}
+    text="Date:"
+  />
   <Styled(ViewNB)
     style={
       Object {

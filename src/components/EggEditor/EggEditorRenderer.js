@@ -21,6 +21,7 @@ import {
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import DatePicker from '../DatePicker';
+import CommonLabel from '../CommonLabel';
 import { type Navigation, type Chicken } from '../../types';
 import FormInput from '../FormInput';
 import styles from './styles';
@@ -87,7 +88,7 @@ const EggEditorRenderer = ({
                 render={({ value: chickenId, errors, touched }) => (
                   <View style={styles.pickerContainer}>
                     <Item inlineLabel error={touched && errors !== null}>
-                      <Label style={styles.label}>Chicken:</Label>
+                      <CommonLabel text="Chicken:" />
                       <View style={{ flex: 1 }}>
                         <Picker
                           note
@@ -113,9 +114,7 @@ const EggEditorRenderer = ({
                     </Item>
                     {errors
                       && touched && (
-                        <Text style={styles.error}>
-                          Select a chicken
-                        </Text>
+                        <Text style={styles.error}>Select a chicken</Text>
                     )}
                   </View>
                 )}
