@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlockManager renders with flocks 1`] = `
+<Styled(ViewNB)>
+  <Connect(FlockSelector) />
+  <Connect(AddFlock) />
+  <Connect(JoinFlock) />
+</Styled(ViewNB)>
+`;
+
+exports[`FlockManager renders without flocks 1`] = `
+<Styled(ViewNB)>
+  <Styled(ViewNB)
+    padder={true}
+    style={
+      Object {
+        "backgroundColor": "rgb(254, 206, 137)",
+        "borderRadius": 20,
+        "flexDirection": "row",
+        "marginVertical": 10,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/chicken-sm.png",
+        }
+      }
+      style={
+        Object {
+          "height": 50,
+          "width": 50,
+        }
+      }
+    />
+    <Styled(Text)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      To start tracking eggs, either create a new flock or join an existing flock below.
+    </Styled(Text)>
+  </Styled(ViewNB)>
+  <Connect(AddFlock) />
+  <Connect(JoinFlock) />
+</Styled(ViewNB)>
+`;

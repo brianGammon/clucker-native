@@ -50,7 +50,7 @@ class JoinFlock extends React.Component<Props, State> {
     const { userId, joinFlock } = this.props;
     const { value } = this.state;
     if (!value || value.trim() === '') {
-      return this.setError('Please enter a flock ID.');
+      return this.setError('Please enter a flock key.');
     }
     return joinFlock(userId, value);
   };

@@ -11,6 +11,7 @@ import {
   Textarea,
 } from 'native-base';
 import errorMapper from '../../utils/errorMapper';
+import CommonLabel from '../CommonLabel';
 import styles from './styles';
 
 type Props = {
@@ -50,7 +51,7 @@ class FormInput extends React.Component<Props, State> {
     if (meta.multiline) {
       return (
         <View>
-          <Label style={styles.label}>{meta.label}:</Label>
+          <CommonLabel text={meta.label} />
           <Textarea
             {...handler()}
             rowSpan={meta.numberOfLines || 5}
@@ -66,7 +67,7 @@ class FormInput extends React.Component<Props, State> {
     return (
       <View>
         <Item inlineLabel error={touched && error !== null}>
-          <Label style={styles.label}>{meta.label}:</Label>
+          <CommonLabel text={meta.label} />
           <Input
             keyboardType={meta.keyboardType || null}
             maxLength={meta.maxLength || null}

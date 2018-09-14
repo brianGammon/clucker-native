@@ -1,7 +1,9 @@
+/* @flow */
 import React from 'react';
 import {
-  Text, View, Button, TextInput,
-} from 'react-native';
+  View, Text, Button, Input, Item,
+} from 'native-base';
+import CommonLabel from '../CommonLabel';
 import styles from './styles';
 
 type Props = {
@@ -19,18 +21,27 @@ const JoinFlockRenderer = ({
   handleJoinFlock,
   handleChangeText,
 }: Props) => (
-  <View style={{ marginTop: 20, marginBottom: 30 }}>
-    <Text style={styles.label}>Join Flock</Text>
-    <View style={styles.rowContainer}>
-      <TextInput
-        style={styles.input}
-        value={value}
-        onChangeText={text => handleChangeText(text)}
-        autoCapitalize="none"
-      />
-      <Button title="Join" onPress={handleJoinFlock} />
+  <View>
+    <CommonLabel text="Join an existing flock" />
+    <View padder>
+      <Text style={styles.helpText}>
+        Type or paste a shared flock key, then tap Join:
+      </Text>
+      <Item regular>
+        <Input
+          value={value}
+          placeholder="Enter a flock key"
+          onChangeText={text => handleChangeText(text)}
+          autoCapitalize="none"
+        />
+        <Button transparent onPress={handleJoinFlock}>
+          <Text>Join</Text>
+        </Button>
+      </Item>
+      <View style={styles.errorContainer}>
+        {error && touched && <Text style={styles.error}>{error}</Text>}
+      </View>
     </View>
-    {error && touched && <Text>{error}</Text>}
   </View>
 );
 

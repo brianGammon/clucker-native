@@ -1,40 +1,44 @@
+/* @flow */
 import * as React from 'react';
 import {
-  Text, ScrollView, View, Button, TextInput,
-} from 'react-native';
-import AddFlock from '../AddFlock';
-import JoinFlock from '../JoinFlock';
-import FlockSelector from '../FlockSelector';
+  Container, Content, View, Text, Button, Icon,
+} from 'native-base';
+import FlockManager from '../FlockManager';
+import Header from '../Header';
 import { type User } from '../../types';
+import Line from '../Line';
 import styles from './styles';
 
 type Props = {
   user: User,
+  hasFlocks: boolean,
   handleSignOut: () => void,
 };
 
-const SettingsRenderer = ({ handleSignOut, user }: Props) => (
-  <ScrollView style={{ padding: 10 }}>
-    <View>
+const SettingsRenderer = ({ handleSignOut, user, hasFlocks }: Props) => (
+  <Container>
+    <Header title="Settings" />
+    <Content padder>
       <Text style={styles.sectionLabel}>Account</Text>
-      <View style={styles.rowContainer}>
-        <View>
-          <Text style={styles.label}>Logged In:</Text>
-          <Text style={{ marginRight: 10 }}>
-            {user ? user.email : 'unknown user'}
-          </Text>
+      <View padder style={styles.rowContainer}>
+        <View style={styles.profileContainer}>
+          <Icon style={styles.profileIcon} active name="person" />
+          <View style={styles.profileInfo}>
+            <Text>Logged In:</Text>
+            <Text>{user ? user.email : 'unknown user'}</Text>
+          </View>
         </View>
 
-        <Button title="Sign Out" onPress={handleSignOut} />
+        <Button transparent onPress={handleSignOut}>
+          <Text>Sign Out</Text>
+        </Button>
       </View>
-    </View>
-    <View style={styles.sectionLine} />
-    <View>
-      <Text style={styles.sectionLabel}>Flocks</Text>
-      <FlockSelector />
-      <AddFlock />
-      <JoinFlock />
-    </View>
-  </ScrollView>
+      <Line />
+      <View>
+        <Text style={styles.sectionLabel}>Flocks</Text>
+        <FlockManager hasFlocks={hasFlocks} />
+      </View>
+    </Content>
+  </Container>
 );
 export default SettingsRenderer;

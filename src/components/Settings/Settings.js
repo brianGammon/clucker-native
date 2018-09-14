@@ -9,6 +9,7 @@ type Props = {
   navigation: Navigation,
   signOut: () => void,
   user: User,
+  hasFlocks: boolean,
 };
 
 class Settings extends React.Component<Props> {
@@ -19,13 +20,25 @@ class Settings extends React.Component<Props> {
   };
 
   render() {
-    const { user } = this.props;
-    return <SettingsRenderer user={user} handleSignOut={this.handleSignOut} />;
+    const { user, hasFlocks } = this.props;
+    return (
+      <SettingsRenderer
+        user={user}
+        hasFlocks={hasFlocks}
+        handleSignOut={this.handleSignOut}
+      />
+    );
   }
 }
 
-const mapStateToProps = ({ auth: { user } }) => ({
+const mapStateToProps = ({
+  auth: { user },
+  userSettings: {
+    data: { flocks },
+  },
+}) => ({
   user,
+  hasFlocks: flocks && Object.keys(flocks).length > 0,
 });
 
 const mapDispatchToProps = dispatch => ({

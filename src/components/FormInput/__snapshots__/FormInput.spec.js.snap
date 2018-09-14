@@ -6,17 +6,10 @@ exports[`FormInput renders - error, not touched yet 1`] = `
     error={false}
     inlineLabel={true}
   >
-    <Styled(Label)
-      style={
-        Object {
-          "color": "#575757",
-          "fontWeight": "bold",
-        }
-      }
-    >
-      thisField
-      :
-    </Styled(Label)>
+    <CommonLabel
+      style={null}
+      text="thisField"
+    />
     <Styled(Input)
       autoCapitalize="none"
       keyboardType={null}
@@ -45,7 +38,7 @@ exports[`FormInput renders - error, not touched yet 1`] = `
   <Styled(ViewNB)
     style={
       Object {
-        "height": 20,
+        "minHeight": 20,
       }
     }
   >
@@ -69,17 +62,10 @@ exports[`FormInput renders - errors, touched 1`] = `
     error={true}
     inlineLabel={true}
   >
-    <Styled(Label)
-      style={
-        Object {
-          "color": "#575757",
-          "fontWeight": "bold",
-        }
-      }
-    >
-      thisField
-      :
-    </Styled(Label)>
+    <CommonLabel
+      style={null}
+      text="thisField"
+    />
     <Styled(Input)
       autoCapitalize="none"
       keyboardType={null}
@@ -111,7 +97,7 @@ exports[`FormInput renders - errors, touched 1`] = `
   <Styled(ViewNB)
     style={
       Object {
-        "height": 20,
+        "minHeight": 20,
       }
     }
   >

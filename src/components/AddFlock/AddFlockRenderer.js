@@ -1,7 +1,9 @@
+/* @flow */
 import React from 'react';
 import {
-  Text, View, Button, TextInput,
-} from 'react-native';
+  View, Text, Button, Input, Item,
+} from 'native-base';
+import CommonLabel from '../CommonLabel';
 import styles from './styles';
 
 type Props = {
@@ -19,18 +21,29 @@ const AddFlockRenderer = ({
   handleAddFlock,
   handleChangeText,
 }: Props) => (
-  <View style={{ marginTop: 20 }}>
-    <Text style={styles.label}>Add Flock</Text>
-    <View style={styles.rowContainer}>
-      <TextInput
-        style={styles.input}
-        maxLength={25}
-        value={value}
-        onChangeText={text => handleChangeText(text)}
-      />
-      <Button title="Add" onPress={handleAddFlock} />
+  <View>
+    <CommonLabel text="Create a new flock" />
+    <View padder>
+      <Text style={styles.helpText}>
+        Type in a name for your new flock, then tap Create:
+      </Text>
+      <Item regular>
+        <Input
+          maxLength={25}
+          value={value}
+          placeholder="Enter a flock name"
+          onChangeText={text => handleChangeText(text)}
+          autoCapitalize="none"
+        />
+
+        <Button transparent onPress={handleAddFlock}>
+          <Text>Create</Text>
+        </Button>
+      </Item>
+      <View style={styles.errorContainer}>
+        {error && touched && <Text style={styles.error}>{error}</Text>}
+      </View>
     </View>
-    {error && touched && <Text>{error}</Text>}
   </View>
 );
 

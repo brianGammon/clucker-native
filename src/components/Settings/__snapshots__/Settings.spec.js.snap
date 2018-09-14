@@ -3,6 +3,7 @@
 exports[`Settings component: Should render 1`] = `
 <SettingsRenderer
   handleSignOut={[Function]}
+  hasFlocks={true}
   user={
     Object {
       "email": "test@example.com",

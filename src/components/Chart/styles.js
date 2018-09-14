@@ -1,5 +1,6 @@
+/* @flow */
 import { StyleSheet } from 'react-native';
-import variables from '../../styles/common';
+import variables from '../../styles/variables';
 
 const label = {
   fontSize: 17,
@@ -35,7 +36,7 @@ export const chartSettings = {
   },
   lineChart: {
     svg: {
-      stroke: variables.cluckerOrangeDark,
+      stroke: variables.cluckerOrange,
       strokeWidth: 3,
     },
     contentInset: {
@@ -86,6 +87,6 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   spinner: {
-    color: variables.cluckerOrangeDark,
+    color: variables.cluckerOrange,
   },
 });

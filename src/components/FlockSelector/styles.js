@@ -1,21 +1,24 @@
+/* @flow */
 import { StyleSheet } from 'react-native';
+import common from '../../styles/common';
 
 export default StyleSheet.create({
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  container: {
+    marginVertical: 10,
+  },
+  helpTextContainer: {
+    paddingTop: 10,
+    paddingHorizontal: 10,
+  },
+  helpText: common.helpText,
+  listItem: {
+    paddingTop: 2,
+    paddingBottom: 2,
+  },
+  listItemLeft: {
     alignItems: 'center',
   },
-  flockSelector: {
-    borderWidth: 1,
-    borderColor: 'grey',
-  },
-  flockRow: {
-    height: 45,
-    padding: 10,
-  },
-  label: {
-    marginBottom: 8,
-    fontSize: 16,
+  listItemLeftText: {
+    marginLeft: 10,
   },
 });

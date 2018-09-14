@@ -64,7 +64,12 @@ export const Header = ({
       </Left>
       <Body>
         <Title>{title || 'Default Title'}</Title>
-        {subTitle && subTitle !== '' && <Subtitle>{subTitle}</Subtitle>}
+        {subTitle
+          && subTitle !== '' && (
+            <Subtitle numberOfLines={2} ellipsizeMode="tail">
+              {subTitle}
+            </Subtitle>
+        )}
       </Body>
       <Right>
         {cancelButton && (
