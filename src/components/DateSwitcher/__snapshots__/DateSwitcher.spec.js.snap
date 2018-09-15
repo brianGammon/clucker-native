@@ -24,7 +24,7 @@ exports[`DateSwitcher renders in day mode 1`] = `
       transparent={true}
     >
       <Styled(Icon)
-        name="arrow-dropleft"
+        name="arrow-dropleft-circle"
       />
     </Styled(Button)>
     <Styled(H2)
@@ -43,7 +43,7 @@ exports[`DateSwitcher renders in day mode 1`] = `
       transparent={true}
     >
       <Styled(Icon)
-        name="arrow-dropright"
+        name="arrow-dropright-circle"
       />
     </Styled(Button)>
   </Styled(ViewNB)>
@@ -97,7 +97,7 @@ exports[`DateSwitcher renders in month mode 1`] = `
       transparent={true}
     >
       <Styled(Icon)
-        name="arrow-dropleft"
+        name="arrow-dropleft-circle"
       />
     </Styled(Button)>
     <Styled(H2)
@@ -116,7 +116,7 @@ exports[`DateSwitcher renders in month mode 1`] = `
       transparent={true}
     >
       <Styled(Icon)
-        name="arrow-dropright"
+        name="arrow-dropright-circle"
       />
     </Styled(Button)>
   </Styled(ViewNB)>

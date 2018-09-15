@@ -637,6 +637,7 @@ export function* deleteChicken(action) {
     yield call([chickensRef, chickensRef.remove]);
 
     yield put({ type: a.DELETE_CHICKEN_FULFILLED });
+    yield call([NavigationService, NavigationService.resetTabs], 'Flock');
   } catch (error) {
     yield put({ type: a.DELETE_CHICKEN_REJECTED, payload: { error } });
   }

@@ -31,7 +31,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-dropleft"
+            name="arrow-dropleft-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -107,7 +107,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-dropright"
+            name="arrow-dropright-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -174,7 +174,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-dropleft"
+            name="arrow-dropleft-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -250,7 +250,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-dropright"
+            name="arrow-dropright-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -501,7 +501,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-dropleft"
+            name="arrow-dropleft-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -577,7 +577,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           transparent={true}
         >
           <Styled(Icon)
-            name="arrow-dropright"
+            name="arrow-dropright-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>

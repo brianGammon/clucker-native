@@ -30,7 +30,7 @@ const DateSwitcher = ({
         })
         }
       >
-        <Icon name="arrow-dropleft" />
+        <Icon name="arrow-dropleft-circle" />
       </Button>
       <H2 style={styles.monthTitle}>
         {moment(dates.date).format(mode === 'month' ? 'MMMM YYYY' : 'MMMM D')}
@@ -44,7 +44,7 @@ const DateSwitcher = ({
         })
         }
       >
-        <Icon name="arrow-dropright" />
+        <Icon name="arrow-dropright-circle" />
       </Button>
     </View>
     <View style={styles.eggStats}>

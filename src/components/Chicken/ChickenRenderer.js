@@ -63,7 +63,7 @@ const ChickenRenderer = ({
               : null)
             }
           >
-            <Icon name="arrow-dropleft" />
+            <Icon name="arrow-dropleft-circle" />
           </Button>
         </View>
 
@@ -95,7 +95,7 @@ const ChickenRenderer = ({
               : null)
             }
           >
-            <Icon name="arrow-dropright" />
+            <Icon name="arrow-dropright-circle" />
           </Button>
         </View>
       </View>

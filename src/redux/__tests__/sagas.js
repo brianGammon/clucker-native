@@ -1308,6 +1308,7 @@ describe('saga tests', () => {
     const chickensRef = ref.child('/chickens/flock1/chicken1');
     expect(generator.next().value).toEqual(call([chickensRef, chickensRef.remove]));
     expect(generator.next().value).toEqual(put({ type: a.DELETE_CHICKEN_FULFILLED }));
+    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.resetTabs], 'Flock'));
     expect(generator.next().done).toEqual(true);
 
     // error flow

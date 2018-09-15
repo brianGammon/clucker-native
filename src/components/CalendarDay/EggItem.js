@@ -31,11 +31,12 @@ const EggItem = ({ item, eggs, handleMoreOptions }: Props) => (
             </View>
           )}
         </View>
-        {eggs[item].notes !== '' && (
-          <View style={styles.notesContainer}>
-            <Icon name="attach" />
-            <Text style={styles.eggNote}>{eggs[item].notes}</Text>
-          </View>
+        {eggs[item].notes
+          && eggs[item].notes !== '' && (
+            <View style={styles.notesContainer}>
+              <Icon name="attach" />
+              <Text style={styles.eggNote}>{eggs[item].notes}</Text>
+            </View>
         )}
       </View>
       <View>
