@@ -27,7 +27,7 @@ const JoinFlockRenderer = ({
       <Text style={styles.helpText}>
         Type or paste a shared flock key, then tap Join:
       </Text>
-      <Item regular>
+      <Item>
         <Input
           value={value}
           placeholder="Enter a flock key"

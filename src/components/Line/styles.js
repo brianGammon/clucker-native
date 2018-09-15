@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import variables from 'native-base/dist/src/theme/variables/platform';
+import variables from '../../styles/variables';
 
 export default StyleSheet.create({
   line: {
@@ -7,7 +7,7 @@ export default StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: variables.inputColorPlaceholder,
+    borderBottomColor: variables.cluckerOrange,
     alignSelf: 'center',
   },
 });

@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, View, Text } from 'native-base';
 import Header from '../Header';
 import { type Flock } from '../../types';
+import FlockManager from '../FlockManager';
 import styles from './styles';
 
 type Props = {
@@ -18,7 +19,7 @@ const NoStats = ({ flock }: Props) => (
     />
 
     <View padder style={styles.noEggsMessage}>
-      {!flock && <Text>To Get Started, create a Flock</Text>}
+      {!flock && <FlockManager hasFlocks={false} />}
       {flock && <Text>You have not logged any eggs yet</Text>}
     </View>
   </Container>

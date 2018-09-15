@@ -13,7 +13,6 @@ type Props = {
 
 const FlockManager = ({ hasFlocks }: Props) => (
   <View>
-    {hasFlocks && <FlockSelector />}
     {!hasFlocks && (
       <View padder style={styles.noFlocksMessage}>
         <Image
@@ -26,6 +25,7 @@ const FlockManager = ({ hasFlocks }: Props) => (
         </Text>
       </View>
     )}
+    {hasFlocks && <FlockSelector />}
     <AddFlock />
     <JoinFlock />
   </View>

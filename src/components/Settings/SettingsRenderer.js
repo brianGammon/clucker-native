@@ -5,6 +5,7 @@ import {
 } from 'native-base';
 import FlockManager from '../FlockManager';
 import Header from '../Header';
+import CommonLabel from '../CommonLabel';
 import { type User } from '../../types';
 import Line from '../Line';
 import styles from './styles';
@@ -24,7 +25,7 @@ const SettingsRenderer = ({ handleSignOut, user, hasFlocks }: Props) => (
         <View style={styles.profileContainer}>
           <Icon style={styles.profileIcon} active name="person" />
           <View style={styles.profileInfo}>
-            <Text>Logged In:</Text>
+            <CommonLabel text="Logged In:" />
             <Text>{user ? user.email : 'unknown user'}</Text>
           </View>
         </View>

@@ -6,6 +6,6 @@ export default StyleSheet.create({
   label: {
     color: variables.cluckerGrey,
     fontSize: 15,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
   },
 });

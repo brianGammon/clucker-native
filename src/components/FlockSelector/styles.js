@@ -4,7 +4,7 @@ import common from '../../styles/common';
 
 export default StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: 20,
   },
   helpTextContainer: {
     paddingTop: 10,
@@ -12,8 +12,8 @@ export default StyleSheet.create({
   },
   helpText: common.helpText,
   listItem: {
-    paddingTop: 2,
-    paddingBottom: 2,
+    paddingTop: 4,
+    paddingBottom: 4,
   },
   listItemLeft: {
     alignItems: 'center',
