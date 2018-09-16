@@ -29,11 +29,6 @@ const router = {
 beforeEach(() => {
   sampleState = {
     initialUrl: 'clucker://test',
-    userSettings: {
-      data: {
-        currentFlockId: 'flock1',
-      },
-    },
   };
   mockNavigation.dispatch.mockClear();
   router.getActionForPathAndParams = jest.fn();

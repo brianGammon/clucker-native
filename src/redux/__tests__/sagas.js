@@ -338,12 +338,7 @@ describe('saga tests', () => {
     expect(generator.next().value).toEqual(
       take(a.SIGN_OUT_REQUESTED),
     );
-    expect(generator.next().value).toEqual(
-      all([
-        put(actions.firebaseRemoveAllListenersRequested()),
-        put({ type: a.CLEAR_ALL_FLOCKS }),
-      ]),
-    );
+    expect(generator.next().value).toEqual(put(actions.firebaseRemoveAllListenersRequested()));
     expect(generator.next().value).toEqual(call([auth, auth.signOut]));
   });
 
@@ -644,8 +639,6 @@ describe('saga tests', () => {
       ]),
     ); // contintue to wait
   });
-
-
 
   test('deleteFromStorage', () => {
     const paths = ['path1', 'path2'];

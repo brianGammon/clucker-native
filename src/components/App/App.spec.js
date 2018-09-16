@@ -12,17 +12,6 @@ describe('App component:', () => {
   const mockStore = configureStore(middlewares);
   const initialState = {
     appState: appStates.STARTING,
-    userSettings: {
-      name: 'Test Name',
-      currentFlockId: 'Flock11',
-      flocks: {
-        XYZ123: true,
-        XYZ124: true,
-      },
-    },
-    flocks: {
-      initialized: true,
-    },
   };
 
   const getStore = state => mockStore(state);

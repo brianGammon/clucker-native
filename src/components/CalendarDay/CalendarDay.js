@@ -74,7 +74,7 @@ class CalendarDay extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ eggs, userSettings }, { navigation }) => {
+const mapStateToProps = ({ eggs }, { navigation }) => {
   const date = navigation.getParam('date', nowAsMoment().format('YYYY-MM-DD'));
   const { previousDate, nextDate } = dateSwitcher(date, 'days', 'YYYY-MM-DD');
   return {
@@ -83,7 +83,6 @@ const mapStateToProps = ({ eggs, userSettings }, { navigation }) => {
       previousDate,
       nextDate,
     },
-    flockId: userSettings.data.currentFlockId,
     eggs: eggsByRangeSelector(eggs.data, date),
   };
 };

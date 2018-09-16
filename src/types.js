@@ -9,11 +9,6 @@ export type User = {
   email: string,
 };
 
-export type Flock = {
-  name: string,
-  ownedBy: string,
-};
-
 export type Chicken = {
   name: string,
   breed: string,
@@ -62,12 +57,6 @@ export type FlockStats = {
       },
     },
   },
-};
-
-export type UserSettings = {
-  name: string,
-  currentFlockId: string,
-  flocks: { [string]: boolean },
 };
 
 export type CalendarData = {

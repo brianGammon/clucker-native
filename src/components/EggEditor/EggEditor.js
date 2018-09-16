@@ -150,7 +150,7 @@ class EggEditor extends React.Component<Props, State> {
 
 const mapStateToProps = (
   {
-    chickens, userSettings, eggs, auth: { user },
+    chickens, eggs, auth: { user },
   },
   { navigation },
 ) => {
@@ -162,7 +162,6 @@ const mapStateToProps = (
     chickens: chickens.data,
     eggId,
     egg: eggId ? eggs.data[eggId] : {},
-    flockId: userSettings.data.currentFlockId,
     userId: user ? user.uid : '',
     defaultDate: defaultDate || nowAsMoment().format('YYYY-MM-DD'),
     inProgress: eggs.inProgress,

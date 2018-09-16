@@ -211,12 +211,7 @@ export function* watchAuthChanged() {
 export function* watchSignOutRequested() {
   while (true) {
     yield take(a.SIGN_OUT_REQUESTED);
-    // clear flocks and turn off all listeners first
-    yield all([
-      put(actions.firebaseRemoveAllListenersRequested()),
-      put({ type: a.CLEAR_ALL_FLOCKS }),
-    ]);
-    // then call firebase sign out
+    yield put(actions.firebaseRemoveAllListenersRequested());
     const auth = firebase.auth();
     yield call([auth, auth.signOut]);
   }
@@ -376,9 +371,7 @@ export function* addToStorage(userId, image) {
     const results = yield all(
       images.map((img) => {
         const fileName = `${id}-${img.width}x${img.height}`;
-        const putRef = ref.child(
-          `uploads/user:${userId}/${fileName}`,
-        );
+        const putRef = ref.child(`uploads/user:${userId}/${fileName}`);
         return call([putRef, putRef.putFile], img.path);
       }),
     );
@@ -439,10 +432,7 @@ export function* watchDeleteChickenRequested() {
 
 export function* saveChicken(action) {
   const {
-    chickenId,
-    data: chicken,
-    newImage,
-    userId,
+    chickenId, data: chicken, newImage, userId,
   } = action.payload;
 
   // pull in previous chicken state
@@ -501,9 +491,7 @@ export function* saveChicken(action) {
       firebaseAction = actions.firebaseUpdateRequested;
     }
     // yield call([console, console.log], { flockId, chickenId, data: chicken });
-    yield put(
-      firebaseAction({ chickenId, data: chicken }, metaTypes.chickens),
-    );
+    yield put(firebaseAction({ chickenId, data: chicken }, metaTypes.chickens));
   } catch (error) {
     yield put(actions.firebaseUpdateRejected(error, metaTypes.chickens));
   }

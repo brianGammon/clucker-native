@@ -31,12 +31,10 @@ describe('Flock component:', () => {
   test('Should render FlockRenderer as flock owner', () => {
     const navigation = jest.fn();
     const chickens = sampleData.chickens.data;
-    const flock = sampleData.flocks.data.flock2;
     const wrapper = shallow(
       <FlockRenderer
         navigation={navigation}
         chickens={chickens}
-        flock={flock}
         isFlockOwner
       />,
     );
@@ -46,12 +44,10 @@ describe('Flock component:', () => {
   test('Should render FlockRenderer not as flock owner', () => {
     const navigation = jest.fn();
     const chickens = sampleData.chickens.data;
-    const flock = sampleData.flocks.data.flock2;
     const wrapper = shallow(
       <FlockRenderer
         navigation={navigation}
         chickens={chickens}
-        flock={flock}
         isFlockOwner={false}
       />,
     );
