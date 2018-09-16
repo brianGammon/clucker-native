@@ -329,6 +329,16 @@ const handlers = {
     };
     return newState;
   },
+  [a.SAVE_CHICKEN_REQUESTED](state) {
+    const newState = {
+      ...state,
+      chickens: {
+        ...state.chickens,
+        inProgress: true,
+      },
+    };
+    return newState;
+  },
 };
 
 export default (state = initialState, action = {}) => {

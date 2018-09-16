@@ -581,6 +581,20 @@ describe('firebaseReducer reducer', () => {
     expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
   });
 
+  test(actionTypes.SAVE_CHICKEN_REQUESTED, () => {
+    const action = {
+      type: actionTypes.SAVE_CHICKEN_REQUESTED,
+    };
+    const expectedState = {
+      ...sampleState,
+      chickens: {
+        ...sampleState.chickens,
+        inProgress: true,
+      },
+    };
+    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+  });
+
   test('bogus action does nothing', () => {
     const action = {
       type: 'DO_NOT_TOUCH_STATE_ACTION',

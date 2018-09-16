@@ -149,6 +149,7 @@ class ChickenEditor extends React.Component<Props, State> {
       error,
       chickenId,
       chicken: { photoUrl },
+      inProgress,
     } = this.props;
     const { formReady } = this.state;
     if (!formReady) {
@@ -166,15 +167,13 @@ class ChickenEditor extends React.Component<Props, State> {
         originalPhotoUrl={photoUrl || ''}
         onSelectPhoto={this.onSelectPhoto}
         onDateChange={this.onDateChange}
+        inProgress={inProgress}
       />
     );
   }
 }
 
-const mapStateToProps = (
-  { chickens, auth: { user } },
-  { navigation },
-) => {
+const mapStateToProps = ({ chickens, auth: { user } }, { navigation }) => {
   const chickenId = navigation.getParam('chickenId', null);
   let chickenData = { chicken: {} };
   if (chickenId) {

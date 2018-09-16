@@ -20,6 +20,7 @@ type Props = {
   error: string,
   originalPhotoUrl: string,
   onDateChange: () => void,
+  inProgress: boolean,
 };
 
 const ChickenEditorRenderer = ({
@@ -32,6 +33,7 @@ const ChickenEditorRenderer = ({
   originalPhotoUrl,
   onSelectPhoto,
   onDateChange,
+  inProgress,
 }: Props) => (
   <Container>
     <Header title={`${mode} Chicken`} cancelButton />
@@ -40,6 +42,7 @@ const ChickenEditorRenderer = ({
         {error && <Text style={styles.error}>{error}</Text>}
         <FieldGroup
           control={form}
+          strict={false}
           render={({ invalid }) => (
             <Form>
               <FieldControl
@@ -91,7 +94,7 @@ const ChickenEditorRenderer = ({
 
               <Button
                 block
-                disabled={invalid}
+                disabled={invalid || inProgress}
                 onPress={handleSubmit}
                 style={styles.submit}
               >

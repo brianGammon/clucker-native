@@ -455,6 +455,7 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
     }
   }
   handleSubmit={[Function]}
+  inProgress={false}
   mode="Add"
   navigation={
     Object {
@@ -943,6 +944,7 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
     }
   }
   handleSubmit={[Function]}
+  inProgress={false}
   mode="Edit"
   navigation={
     Object {
