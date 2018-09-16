@@ -5,12 +5,14 @@ import {
   DatePicker as NBDatePicker, View, Button, Icon,
 } from 'native-base';
 import CommonLabel from '../CommonLabel';
+import { nowAsMoment } from '../../utils/dateHelper';
 import styles from './styles';
 
 type Props = {
   clearable: boolean,
   label: string,
   value: Date | null,
+  minimumDate: Date | null,
   maximumDate: Date | null,
   onDateChange: (date: string) => void,
 };
@@ -39,7 +41,7 @@ class DatePicker extends React.Component<Props> {
 
   render() {
     const {
-      clearable, value, maximumDate, label,
+      clearable, value, maximumDate, minimumDate, label,
     } = this.props;
     const valueAsDate = value && value !== '' ? new Date(moment(value).valueOf()) : null;
     return (
@@ -49,10 +51,17 @@ class DatePicker extends React.Component<Props> {
           <NBDatePicker
             ref={this.datePickerRef}
             defaultDate={valueAsDate}
-            // minimumDate={new Date(2018, 1, 1)}
+            minimumDate={
+              minimumDate
+              || new Date(
+                nowAsMoment()
+                  .subtract(2, 'year')
+                  .valueOf(),
+              )
+            }
             maximumDate={maximumDate}
             locale="en"
-            modalTransparent={false}
+            modalTransparent
             animationType="fade"
             androidMode="default"
             placeHolderTextStyle={styles.placeHolderTextStyle}

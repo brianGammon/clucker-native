@@ -48,7 +48,7 @@ const WeekDays = ({ calendarData, month, navigation }: Props) => {
                   justifyContent: 'space-between',
                 }}
               >
-                <Text style={styles.dayLabel}>{moment(day).format('D')}</Text>
+                <Text style={styles.dayLabel}>{dayAsMoment.format('D')}</Text>
                 {calendarData[day].hasNote && (
                   <View
                     style={{

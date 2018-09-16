@@ -29,7 +29,8 @@ exports[`DatePicker renders with all props supplied 1`] = `
       formatChosenDate={[Function]}
       locale="en"
       maximumDate={2018-12-31T05:00:00.000Z}
-      modalTransparent={false}
+      minimumDate={2016-09-16T00:00:00.000Z}
+      modalTransparent={true}
       onDateChange={[Function]}
       placeHolderTextStyle={
         Object {
