@@ -37,13 +37,15 @@ const Calendar = ({
 );
 
 const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
-  const date = navigation.getParam('date', nowAsMoment().format('YYYY-MM'));
+  const now = nowAsMoment();
+  const date = navigation.getParam('date', now.clone().format('YYYY-MM'));
   const { previousDate, nextDate } = dateSwitcher(date, 'months', 'YYYY-MM');
   return {
     stats: flockStatsSelector(eggs.data, date),
     calendarData: calendarDataSelector(eggs.data, date),
     chickens: chickens.data,
     dates: {
+      now: now.format('YYYY-MM'),
       date,
       previousDate,
       nextDate,

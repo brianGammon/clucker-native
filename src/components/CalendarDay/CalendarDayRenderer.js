@@ -11,6 +11,7 @@ import EggItem from './EggItem';
 type Props = {
   navigation: any,
   dates: {
+    now: string,
     date: string,
     previousDate: string,
     nextDate?: string,

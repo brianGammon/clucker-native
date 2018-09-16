@@ -27,15 +27,15 @@ exports[`DateSwitcher renders in day mode 1`] = `
         name="arrow-dropleft-circle"
       />
     </Styled(Button)>
-    <Styled(H2)
+    <Styled(H3)
       style={
         Object {
           "fontWeight": "bold",
         }
       }
     >
-      May 5
-    </Styled(H2)>
+      May 5, 2018
+    </Styled(H3)>
     <Styled(Button)
       dark={true}
       disabled={false}
@@ -44,6 +44,17 @@ exports[`DateSwitcher renders in day mode 1`] = `
     >
       <Styled(Icon)
         name="arrow-dropright-circle"
+      />
+    </Styled(Button)>
+    <Styled(Button)
+      dark={true}
+      disabled={false}
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="today"
+        type="MaterialIcons"
       />
     </Styled(Button)>
   </Styled(ViewNB)>
@@ -100,7 +111,7 @@ exports[`DateSwitcher renders in month mode 1`] = `
         name="arrow-dropleft-circle"
       />
     </Styled(Button)>
-    <Styled(H2)
+    <Styled(H3)
       style={
         Object {
           "fontWeight": "bold",
@@ -108,7 +119,7 @@ exports[`DateSwitcher renders in month mode 1`] = `
       }
     >
       May 2018
-    </Styled(H2)>
+    </Styled(H3)>
     <Styled(Button)
       dark={true}
       disabled={false}
@@ -117,6 +128,17 @@ exports[`DateSwitcher renders in month mode 1`] = `
     >
       <Styled(Icon)
         name="arrow-dropright-circle"
+      />
+    </Styled(Button)>
+    <Styled(Button)
+      dark={true}
+      disabled={false}
+      onPress={[Function]}
+      transparent={true}
+    >
+      <Styled(Icon)
+        name="today"
+        type="MaterialIcons"
       />
     </Styled(Button)>
   </Styled(ViewNB)>

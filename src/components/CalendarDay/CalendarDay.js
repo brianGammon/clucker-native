@@ -13,6 +13,7 @@ import { type Egg } from '../../types';
 type Props = {
   navigation: any,
   dates: {
+    now: string,
     date: string,
     previousDate: string,
     nextDate?: string,
@@ -75,10 +76,12 @@ class CalendarDay extends React.Component<Props> {
 }
 
 const mapStateToProps = ({ eggs }, { navigation }) => {
-  const date = navigation.getParam('date', nowAsMoment().format('YYYY-MM-DD'));
+  const now = nowAsMoment();
+  const date = navigation.getParam('date', now.clone().format('YYYY-MM-DD'));
   const { previousDate, nextDate } = dateSwitcher(date, 'days', 'YYYY-MM-DD');
   return {
     dates: {
+      now: now.format('YYYY-MM-DD'),
       date,
       previousDate,
       nextDate,

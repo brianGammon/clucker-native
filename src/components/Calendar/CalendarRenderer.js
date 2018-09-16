@@ -22,6 +22,7 @@ type Props = {
     [chickenId: string]: Chicken,
   },
   dates: {
+    now: string,
     date: string,
     previousDate: string,
     nextDate: string,

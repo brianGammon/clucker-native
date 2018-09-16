@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import {
-  View, Button, Text, H3, H2, Icon,
+  View, Button, Text, H3, Icon,
 } from 'native-base';
 import styles from './styles';
 import { type Navigation } from '../../types';
@@ -10,6 +10,7 @@ type Props = {
   mode: 'month' | 'day',
   navigation: Navigation,
   dates: {
+    now: string,
     date: string,
     previousDate: string,
     nextDate: string,
@@ -32,9 +33,11 @@ const DateSwitcher = ({
       >
         <Icon name="arrow-dropleft-circle" />
       </Button>
-      <H2 style={styles.monthTitle}>
-        {moment(dates.date).format(mode === 'month' ? 'MMMM YYYY' : 'MMMM D')}
-      </H2>
+      <H3 style={styles.monthTitle}>
+        {moment(dates.date).format(
+          mode === 'month' ? 'MMM YYYY' : 'MMM D, YYYY',
+        )}
+      </H3>
       <Button
         transparent
         dark
@@ -45,6 +48,17 @@ const DateSwitcher = ({
         }
       >
         <Icon name="arrow-dropright-circle" />
+      </Button>
+      <Button
+        transparent
+        dark
+        disabled={dates.now === dates.date}
+        onPress={() => navigation.replace(mode === 'month' ? 'Month' : 'Day', {
+          date: dates.now,
+        })
+        }
+      >
+        <Icon name="today" type="MaterialIcons" />
       </Button>
     </View>
     <View style={styles.eggStats}>

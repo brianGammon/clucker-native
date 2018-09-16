@@ -6,6 +6,7 @@ exports[`CalendarDay component: Should render correctly 1`] = `
     Object {
       "date": "2018-05-09",
       "nextDate": "2018-05-10",
+      "now": "2018-05-15",
       "previousDate": "2018-05-08",
     }
   }
