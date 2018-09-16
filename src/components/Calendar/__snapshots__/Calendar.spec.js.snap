@@ -41,6 +41,7 @@ exports[`Calender component: Should render 1`] = `
           "chicken1": 1,
           "chicken2": 1,
         },
+        "hasNote": true,
         "total": 2,
       },
       "2018-05-06": Object {
@@ -48,6 +49,7 @@ exports[`Calender component: Should render 1`] = `
           "chicken1": 1,
           "chicken4": 1,
         },
+        "hasNote": true,
         "total": 2,
       },
       "2018-05-07": Object {
@@ -77,6 +79,7 @@ exports[`Calender component: Should render 1`] = `
           "chicken2": 1,
           "chicken4": 1,
         },
+        "hasNote": true,
         "total": 2,
       },
       "2018-05-11": Object {
@@ -91,6 +94,7 @@ exports[`Calender component: Should render 1`] = `
           "chicken1": 1,
           "chicken4": 1,
         },
+        "hasNote": true,
         "total": 2,
       },
       "2018-05-13": Object {
@@ -232,6 +236,7 @@ exports[`Calender component: Should render 1`] = `
             "chicken1": 1,
             "chicken2": 1,
           },
+          "hasNote": true,
           "total": 2,
         },
         "2018-05-06": Object {
@@ -239,6 +244,7 @@ exports[`Calender component: Should render 1`] = `
             "chicken1": 1,
             "chicken4": 1,
           },
+          "hasNote": true,
           "total": 2,
         },
         "2018-05-07": Object {
@@ -268,6 +274,7 @@ exports[`Calender component: Should render 1`] = `
             "chicken2": 1,
             "chicken4": 1,
           },
+          "hasNote": true,
           "total": 2,
         },
         "2018-05-11": Object {
@@ -282,6 +289,7 @@ exports[`Calender component: Should render 1`] = `
             "chicken1": 1,
             "chicken4": 1,
           },
+          "hasNote": true,
           "total": 2,
         },
         "2018-05-13": Object {

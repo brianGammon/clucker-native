@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { TouchableOpacity } from 'react-native';
-import { View, Text, Badge } from 'native-base';
+import { View, Text, Icon } from 'native-base';
 import { type CalendarData, type Navigation } from '../../types';
 import styles from './styles';
 import { nowAsMoment } from '../../utils/dateHelper';
@@ -42,13 +42,33 @@ const WeekDays = ({ calendarData, month, navigation }: Props) => {
                 calendarData[day].total ? styles.innerDayCellSuccess : null,
               ]}
             >
-              <Text style={styles.dayLabel}>{moment(day).format('D')}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Text style={styles.dayLabel}>{moment(day).format('D')}</Text>
+                {calendarData[day].hasNote && (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}
+                  >
+                    <Icon
+                      style={{ fontSize: 20, marginRight: 5 }}
+                      name="attach"
+                    />
+                  </View>
+                )}
+              </View>
+
               {calendarData[day].total && (
-                <Badge style={styles.eggCount}>
+                <View style={styles.eggCount}>
                   <Text style={styles.eggCountText}>
                     {calendarData[day].total}
                   </Text>
-                </Badge>
+                </View>
               )}
             </View>
           </TouchableOpacity>

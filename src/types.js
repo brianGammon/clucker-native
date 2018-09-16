@@ -62,6 +62,7 @@ export type FlockStats = {
 export type CalendarData = {
   [date: string]: {
     total: number,
+    hasNote: boolean,
     byChicken: {
       [chickenId: string]: number,
     },

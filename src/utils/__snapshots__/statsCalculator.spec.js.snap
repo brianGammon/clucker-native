@@ -32,6 +32,7 @@ Object {
         "chicken2": 8,
         "chicken4": 8,
       },
+      "hasNote": true,
       "total": 28,
     },
   },

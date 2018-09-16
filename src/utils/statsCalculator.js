@@ -67,6 +67,9 @@ export default (eggs, range) => {
       }
 
       eggsPerPeriod[rollupPeriod].total += 1;
+      if (egg.notes && egg.notes !== '') {
+        eggsPerPeriod[rollupPeriod].hasNote = true;
+      }
       eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0) + 1;
     }
   });

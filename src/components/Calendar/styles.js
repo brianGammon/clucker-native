@@ -65,8 +65,6 @@ export default StyleSheet.create({
   },
   eggCount: {
     alignSelf: 'center',
-    backgroundColor: variables.successBackground,
-    borderWidth: 1,
   },
   eggCountText: {
     fontWeight: 'bold',
