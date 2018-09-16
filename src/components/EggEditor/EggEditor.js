@@ -26,11 +26,10 @@ type Props = {
   },
   eggId: string,
   egg: Egg,
-  flockId: string,
   navigation: Navigation,
   defaultDate: string,
   userId: string,
-  saveForm: (payload: { flockId: string, eggId?: string, data: Egg }) => void,
+  saveForm: (payload: { eggId?: string, data: Egg }) => void,
   clearError: () => void,
 };
 
@@ -94,7 +93,7 @@ class EggEditor extends React.Component<Props, State> {
 
   onSaveForm = () => {
     const {
-      egg, userId, flockId, eggId, saveForm,
+      egg, userId, eggId, saveForm,
     } = this.props;
     const data = {
       ...egg,
@@ -102,7 +101,7 @@ class EggEditor extends React.Component<Props, State> {
       modified: moment().toISOString(),
       userId,
     };
-    const payload = { flockId, eggId, data };
+    const payload = { eggId, data };
     saveForm(payload);
   };
 

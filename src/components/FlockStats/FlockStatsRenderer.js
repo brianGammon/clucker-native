@@ -7,7 +7,6 @@ import Header from '../Header';
 import {
   type FlockStats as FlockStatsType,
   type Chicken,
-  type Flock,
 } from '../../types';
 import Leaderboard from '../Leaderboard';
 import Line from '../Line';
@@ -16,16 +15,15 @@ import HeaviestEgg from '../HeaviestEgg';
 import styles from './styles';
 
 type Props = {
-  flock: Flock,
   stats: FlockStatsType,
   chickens: {
     [chickenId: string]: Chicken,
   },
 };
 
-const FlockStatsRenderer = ({ stats, chickens, flock }: Props) => (
+const FlockStatsRenderer = ({ stats, chickens }: Props) => (
   <Container>
-    <Header title="Flock Stats" subTitle={flock.name} eggButton />
+    <Header title="Flock Stats" eggButton />
 
     <Content padder>
       <View>

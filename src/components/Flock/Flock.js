@@ -2,14 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import FlockRenderer from './FlockRenderer';
-import {
-  type Chicken,
-  type Navigation,
-  type Flock as FlockType,
-  type FlockStats,
-} from '../../types';
-import currentFlockSelector from '../../selectors/currentFlockSelector';
-import isFlockOwnerSelector from '../../selectors/isFlockOwnerSelector';
+import { type Chicken, type Navigation, type FlockStats } from '../../types';
 import flockStatsSelector from '../../selectors/flockStatsSelector';
 
 type Props = {
@@ -17,46 +10,20 @@ type Props = {
   chickens: {
     [string]: Chicken,
   },
-  flock: FlockType,
-  isFlockOwner: boolean,
   stats: FlockStats,
 };
 
-const Flock = ({
-  navigation, chickens, flock, isFlockOwner, stats,
-}: Props) => (
+const Flock = ({ navigation, chickens, stats }: Props) => (
   <FlockRenderer
     navigation={navigation}
     chickens={chickens}
-    flock={flock}
-    isFlockOwner={isFlockOwner}
     topProducer={stats && stats.mostEggs}
   />
 );
 
-const mapStateToProps = ({
-  chickens,
-  flocks,
-  userSettings,
-  eggs,
-  auth: { user },
-}) => {
-  const flockId = userSettings.data.currentFlockId;
-  let flock = {};
-  let isFlockOwner = false;
-  let stats = {};
-  if (flockId) {
-    flock = currentFlockSelector(flocks.data, userSettings);
-    isFlockOwner = isFlockOwnerSelector(flocks.data, userSettings, user.uid);
-    stats = flockStatsSelector(eggs.data);
-  }
-  return {
-    chickens: chickens.data,
-    flockId,
-    flock,
-    isFlockOwner,
-    stats,
-  };
-};
+const mapStateToProps = ({ chickens, eggs }) => ({
+  chickens: chickens.data,
+  stats: flockStatsSelector(eggs.data),
+});
 
 export default connect(mapStateToProps)(Flock);

@@ -176,27 +176,14 @@ export function resetPasswordRequested(email) {
   };
 }
 
-export function listenToChickens(flockId) {
-  const ref = firebase.database().ref(`chickens/${flockId}`);
+export function listenToChickens(userId) {
+  const ref = firebase.database().ref(`userData/${userId}/chickens`);
   return firebaseListenRequested(ref, metaTypes.chickens);
 }
 
-export function listenToEggs(flockId) {
-  const ref = firebase.database().ref(`eggs/${flockId}`);
+export function listenToEggs(userId) {
+  const ref = firebase.database().ref(`userData/${userId}/eggs`);
   return firebaseListenRequested(ref, metaTypes.eggs);
-}
-
-export function listenToUserSettings(uid) {
-  const ref = firebase.database().ref(`userSettings/${uid}`);
-  return firebaseListenRequested(ref, metaTypes.userSettings);
-}
-
-export function removeUserSettingsListenerRequested() {
-  return firebaseRemoveListenerRequested(false, metaTypes.userSettings);
-}
-
-export function removeUserSettingsRequested(uid) {
-  return firebaseRemoveRequested({ uid }, metaTypes.userSettings);
 }
 
 export function setInitialUrl(url) {

@@ -14,7 +14,6 @@ import NoStats from '../NoStats';
 
 type Props = {
   navigation: any,
-  currentFlockId: string,
   stats: FlockStats,
   calendarData: CalendarData,
   chickens: {
@@ -29,14 +28,13 @@ type Props = {
 
 const CalendarRenderer = ({
   navigation,
-  currentFlockId,
   calendarData,
   dates,
   chickens,
   stats,
 }: Props) => (
   <Container>
-    <Header title="Calendar" eggButton={!!currentFlockId} />
+    <Header title="Calendar" eggButton />
     <Content padder>
       <DateSwitcher
         mode="month"

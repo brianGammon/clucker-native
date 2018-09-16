@@ -7,7 +7,6 @@ import {
   cancel,
   flush,
   all,
-  takeEvery,
   takeLatest,
   select,
   race,
@@ -46,44 +45,6 @@ export function* updateItems(updates, metaType) {
   }
 }
 
-export function getUserSettingsPath({ uid }) {
-  return `userSettings/${uid}`;
-}
-
-export function getUserSettingsUpdate({ userId, userSettings }) {
-  return {
-    [`userSettings/${userId}`]: userSettings,
-  };
-}
-
-export function getChickensPath({ flockId, chickenId }) {
-  let path = `chickens/${flockId}`;
-  if (chickenId) {
-    path += `/${chickenId}`;
-  }
-  return path;
-}
-
-export function getChickensUpdate({ flockId, chickenId, data }) {
-  return {
-    [`chickens/${flockId}/${chickenId}`]: data,
-  };
-}
-
-export function getEggsPath({ flockId, eggId }) {
-  let path = `eggs/${flockId}`;
-  if (eggId) {
-    path += `/${eggId}`;
-  }
-  return path;
-}
-
-export function getEggsUpdate({ flockId, eggId, data }) {
-  return {
-    [`eggs/${flockId}/${eggId}`]: data,
-  };
-}
-
 export function* removeItem(path, metaType) {
   try {
     const ref = firebase.database().ref(path);
@@ -92,6 +53,34 @@ export function* removeItem(path, metaType) {
   } catch (error) {
     yield put(actions.firebaseRemoveRejected(error, metaType));
   }
+}
+
+export function getChickensPath(userId, { chickenId }) {
+  let path = `userData/${userId}/chickens`;
+  if (chickenId) {
+    path += `/${chickenId}`;
+  }
+  return path;
+}
+
+export function getChickensUpdate(userId, { chickenId, data }) {
+  return {
+    [`userData/${userId}/chickens/${chickenId}`]: data,
+  };
+}
+
+export function getEggsPath(userId, { eggId }) {
+  let path = `userData/${userId}/eggs`;
+  if (eggId) {
+    path += `/${eggId}`;
+  }
+  return path;
+}
+
+export function getEggsUpdate(userId, { eggId, data }) {
+  return {
+    [`userData/${userId}/eggs/${eggId}`]: data,
+  };
 }
 
 export function* watchCreateRequested() {
@@ -109,7 +98,8 @@ export function* watchCreateRequested() {
         break;
     }
     if (typeof getPath === 'function') {
-      const path = yield call(getPath, action.payload);
+      const userId = yield select(state => state.auth.user.uid);
+      const path = yield call(getPath, userId, action.payload);
       yield fork(addItems, path, action.payload.data, action.meta.type);
     }
   }
@@ -120,9 +110,6 @@ export function* watchUpdateRequested() {
     const action = yield take(a.UPDATE_REQUESTED);
     let getUpdates = null;
     switch (action.meta.type) {
-      case metaTypes.userSettings:
-        getUpdates = getUserSettingsUpdate;
-        break;
       case metaTypes.chickens:
         getUpdates = getChickensUpdate;
         break;
@@ -133,7 +120,8 @@ export function* watchUpdateRequested() {
         break;
     }
     if (typeof getUpdates === 'function') {
-      const updates = yield call(getUpdates, action.payload);
+      const userId = yield select(state => state.auth.user.uid);
+      const updates = yield call(getUpdates, userId, action.payload);
       yield fork(updateItems, updates, action.meta.type);
     }
   }
@@ -144,9 +132,6 @@ export function* watchRemoveRequested() {
     const action = yield take(a.REMOVE_REQUESTED);
     let getPath = null;
     switch (action.meta.type) {
-      case metaTypes.userSettings:
-        getPath = getUserSettingsPath;
-        break;
       case metaTypes.chickens:
         getPath = getChickensPath;
         break;
@@ -158,7 +143,8 @@ export function* watchRemoveRequested() {
     }
 
     if (typeof getPath === 'function') {
-      const path = yield call(getPath, action.payload);
+      const userId = yield select(state => state.auth.user.uid);
+      const path = yield call(getPath, userId, action.payload);
       yield fork(removeItem, path, action.meta.type);
     }
   }
@@ -211,7 +197,10 @@ export function* watchAuthChanged() {
     const event = yield take(chan);
     yield put(actions.authStatusChanged(event.user));
     if (event.user) {
-      yield put(actions.listenToUserSettings(event.user.uid));
+      yield all([
+        put(actions.listenToChickens(event.user.uid)),
+        put(actions.listenToEggs(event.user.uid)),
+      ]);
       yield call([NavigationService, NavigationService.navigate], 'SignedIn');
     } else {
       yield put(actions.firebaseRemoveAllListenersRequested());
@@ -344,235 +333,6 @@ export function* watchListener(metaType) {
   }
 }
 
-export function* syncFlocks(action) {
-  const ref = firebase.database().ref();
-  const { added, deleted } = action.payload;
-  try {
-    // Clear from state any flocks removed from userSettings
-    yield all(deleted.map(key => put({ type: a.CLEAR_FLOCK, payload: key })));
-
-    // Add to state any flocks added to UserSettings
-    const addResult = yield all(
-      added.map((key) => {
-        const childRef = ref.child(`flocks/${key}`);
-        return call([childRef, ref.once], 'value');
-      }),
-    );
-
-    // Send the result of each to the reducer
-    yield all(
-      addResult.map((snap) => {
-        const value = snap.val() || {};
-        const { key } = snap;
-        return put({ type: a.SET_FLOCK, payload: { [key]: value } });
-      }),
-    );
-
-    // Mark as initialized
-    yield put({ type: a.SYNC_FLOCKS_FULFILLED });
-  } catch (error) {
-    yield put({ type: a.SYNC_FLOCKS_REJECTED, payload: { error } });
-  }
-}
-
-export function* watchSyncFlocks() {
-  yield takeEvery(a.SYNC_FLOCKS_REQUESTED, syncFlocks);
-}
-
-export function* joinFlock(action) {
-  const { userId, flockId } = action.payload;
-  // call firebaseRef.once to get a snap of that flock
-  const ref = firebase.database().ref(`flocks/${flockId}`);
-  const snap = yield call([ref, ref.once]);
-  if (snap.val()) {
-    const userSettings = yield select(state => state.userSettings.data);
-    const flocks = userSettings.flocks || {};
-    const newUserSettings = {
-      ...userSettings,
-      currentFlockId: flockId,
-      flocks: { ...flocks, [flockId]: true },
-    };
-    yield put(
-      actions.firebaseUpdateRequested(
-        { userId, userSettings: newUserSettings },
-        metaTypes.userSettings,
-      ),
-    );
-
-    while (true) {
-      yield take(a.SYNC_FLOCKS_FULFILLED);
-      yield put({ type: a.JOIN_FLOCK_FULFILLED });
-      yield call([NavigationService, NavigationService.navigate], 'Stats');
-      break;
-    }
-  } else {
-    yield put({
-      type: a.JOIN_FLOCK_REJECTED,
-      payload: { error: new Error(`Flock ID '${flockId}' not found`) },
-    });
-  }
-}
-
-export function* watchJoinFlockRequested() {
-  yield takeLatest(a.JOIN_FLOCK_REQUESTED, joinFlock);
-}
-
-export function* addFlock(action) {
-  const { userId, name } = action.payload;
-  const ref = firebase.database().ref('flocks');
-  try {
-    // const newRef = yield call([ref, ref.push]);
-    const newRef = ref.push();
-    yield call([newRef, newRef.set], { name, ownedBy: userId });
-    const userSettings = yield select(state => state.userSettings.data);
-    const flocks = userSettings.flocks || {};
-    const newUserSettings = {
-      ...userSettings,
-      currentFlockId: newRef.key,
-      flocks: { ...flocks, [newRef.key]: true },
-    };
-    yield put(
-      actions.firebaseUpdateRequested(
-        { userId, userSettings: newUserSettings },
-        metaTypes.userSettings,
-      ),
-    );
-    while (true) {
-      yield take(a.SYNC_FLOCKS_FULFILLED);
-      yield put({ type: a.ADD_FLOCK_FULFILLED });
-      yield call([NavigationService, NavigationService.navigate], 'Stats');
-      break;
-    }
-  } catch (error) {
-    yield put({
-      type: a.ADD_FLOCK_REJECTED,
-      payload: { error },
-    });
-  }
-}
-
-export function* watchAddFlockRequested() {
-  yield takeLatest(a.ADD_FLOCK_REQUESTED, addFlock);
-}
-
-export function* switchFlock(action) {
-  const { userId, userSettings } = action.payload;
-  yield all([
-    put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-    put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-  ]);
-  yield put(
-    actions.firebaseUpdateRequested(
-      { userId, userSettings },
-      metaTypes.userSettings,
-    ),
-  );
-  while (true) {
-    const updateAction = yield take(a.UPDATE_FULFILLED);
-    if (updateAction.meta.type === metaTypes.userSettings) {
-      yield put({
-        type: a.SWITCH_FLOCK_FULFILLED,
-        resetStack: true,
-        routeName: 'FlockStats',
-      });
-      break;
-    }
-  }
-}
-
-export function* watchSwitchFlockRequested() {
-  yield takeLatest(a.SWITCH_FLOCK_REQUESTED, switchFlock);
-}
-
-export function* unlinkFlock(action) {
-  const { userId, userSettings, flockId } = action.payload;
-  const { currentFlockId } = userSettings;
-  let newCurrentFlockId = currentFlockId;
-  let resetStack = false;
-
-  if (currentFlockId && currentFlockId === flockId) {
-    newCurrentFlockId = null;
-    yield all([
-      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-    ]);
-    resetStack = true;
-  }
-
-  const { [flockId]: removed, ...rest } = userSettings.flocks;
-  const newUserSettings = {
-    ...userSettings,
-    currentFlockId: newCurrentFlockId,
-    flocks: rest,
-  };
-  yield put(
-    actions.firebaseUpdateRequested(
-      { userId, userSettings: newUserSettings },
-      metaTypes.userSettings,
-    ),
-  );
-  while (true) {
-    yield take(a.SYNC_FLOCKS_FULFILLED);
-    yield put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack });
-    break;
-  }
-}
-
-export function* watchUnlinkFlockRequested() {
-  yield takeLatest(a.UNLINK_FLOCK_REQUESTED, unlinkFlock);
-}
-
-export function* deleteFlock(action) {
-  const { userId, userSettings, flockId } = action.payload;
-  const { currentFlockId } = userSettings;
-  let resetStack = false;
-
-  if (currentFlockId && currentFlockId === flockId) {
-    yield all([
-      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-    ]);
-    resetStack = true;
-  }
-
-  const baseRef = firebase.database().ref();
-  const userSettingsRef = baseRef.child('userSettings');
-  const queryRef = userSettingsRef
-    .orderByChild(`flocks/${flockId}`)
-    .equalTo(true);
-  try {
-    const snapshot = yield call([queryRef, queryRef.once], 'value');
-    const updates = {};
-    snapshot.forEach((child) => {
-      const { key } = child;
-      const { currentFlockId: curr } = child.val();
-      if (curr && curr === flockId) {
-        updates[`${key}/currentFlockId`] = null;
-      }
-      updates[`${key}/flocks/${flockId}`] = null;
-    });
-
-    yield call([userSettingsRef, userSettingsRef.update], updates);
-    let removalRef = baseRef.child(`eggs/${flockId}`);
-    yield call([removalRef, removalRef.remove]);
-    removalRef = baseRef.child(`chickens/${flockId}`);
-    yield call([removalRef, removalRef.remove]);
-    removalRef = baseRef.child(`flocks/${flockId}`);
-    yield call([removalRef, removalRef.remove]);
-    const deletedFlocksRef = baseRef.child(
-      `deletedFlocks/${userId}/${flockId}`,
-    );
-    yield call([deletedFlocksRef, deletedFlocksRef.set], true);
-    yield put({ type: a.DELETE_FLOCK_FULFILLED, resetStack });
-  } catch (error) {
-    yield put({ type: a.DELETE_FLOCK_REJECTED, payload: { error } });
-  }
-}
-
-export function* watchDeleteFlockRequested() {
-  yield takeLatest(a.DELETE_FLOCK_REQUESTED, deleteFlock);
-}
-
 export function* deleteFromStorage(paths) {
   yield put({ type: a.STORAGE_DELETE_REQUESTED });
   const ref = firebase.storage().ref();
@@ -593,7 +353,7 @@ export function* deleteFromStorage(paths) {
   }
 }
 
-export function* addToStorage(userId, flockId, image) {
+export function* addToStorage(userId, image) {
   yield put({ type: a.STORAGE_UPLOAD_REQUESTED });
   const ref = firebase.storage().ref();
   const thumbnail = { height: 128, width: 128, path: null };
@@ -617,7 +377,7 @@ export function* addToStorage(userId, flockId, image) {
       images.map((img) => {
         const fileName = `${id}-${img.width}x${img.height}`;
         const putRef = ref.child(
-          `uploads/user:${userId}/flock:${flockId}/${fileName}`,
+          `uploads/user:${userId}/${fileName}`,
         );
         return call([putRef, putRef.putFile], img.path);
       }),
@@ -629,7 +389,7 @@ export function* addToStorage(userId, flockId, image) {
 }
 
 export function* deleteChicken(action) {
-  const { chickenId, flockId, paths } = action.payload;
+  const { chickenId, paths } = action.payload;
 
   try {
     // remove the chicken's images from storage
@@ -644,7 +404,9 @@ export function* deleteChicken(action) {
       throw errorResult.payload.error;
     }
 
+    // TODO: STOP listining to eggs first
     // run the egg selector for the chickenId
+    const userId = yield select(state => state.auth.user.uid);
     const eggs = yield select(state => eggsByChickenSelector(state.eggs.data, chickenId));
 
     // loop over eggs build a list of updates to null
@@ -655,12 +417,14 @@ export function* deleteChicken(action) {
 
     // call the egg deletion
     const ref = firebase.database().ref();
-    const eggsRef = ref.child(`/eggs/${flockId}`);
+    const eggsRef = ref.child(`userData/${userId}/eggs`);
     yield call([eggsRef, eggsRef.update], updates);
 
     // delete the chicken
-    const chickensRef = ref.child(`/chickens/${flockId}/${chickenId}`);
+    const chickensRef = ref.child(`userData/${userId}/chickens/${chickenId}`);
     yield call([chickensRef, chickensRef.remove]);
+
+    // TODO: restart listining to eggs
 
     yield put({ type: a.DELETE_CHICKEN_FULFILLED });
     yield call([NavigationService, NavigationService.resetTabs], 'Flock');
@@ -673,27 +437,8 @@ export function* watchDeleteChickenRequested() {
   yield takeLatest(a.DELETE_CHICKEN_REQUESTED, deleteChicken);
 }
 
-export function* resetNavigation(action) {
-  const { resetStack, routeName } = action;
-  if (resetStack) {
-    yield call([NavigationService, NavigationService.resetTabs], routeName);
-  }
-}
-
-export function* watchFlockActionsComplete() {
-  yield takeLatest(
-    [
-      a.DELETE_FLOCK_FULFILLED,
-      a.UNLINK_FLOCK_FULFILLED,
-      a.SWITCH_FLOCK_FULFILLED,
-    ],
-    resetNavigation,
-  );
-}
-
 export function* saveChicken(action) {
   const {
-    flockId,
     chickenId,
     data: chicken,
     newImage,
@@ -732,7 +477,7 @@ export function* saveChicken(action) {
 
     // Figure out if there is a new image to process
     if (newImage) {
-      const task = yield fork(addToStorage, userId, flockId, newImage);
+      const task = yield fork(addToStorage, userId, newImage);
       const { successResult, errorResult } = yield race({
         successResult: take(a.STORAGE_UPLOAD_FULFILLED),
         errorResult: take(a.STORAGE_UPLOAD_REJECTED),
@@ -757,7 +502,7 @@ export function* saveChicken(action) {
     }
     // yield call([console, console.log], { flockId, chickenId, data: chicken });
     yield put(
-      firebaseAction({ flockId, chickenId, data: chicken }, metaTypes.chickens),
+      firebaseAction({ chickenId, data: chicken }, metaTypes.chickens),
     );
   } catch (error) {
     yield put(actions.firebaseUpdateRejected(error, metaTypes.chickens));
@@ -773,20 +518,12 @@ export default function* rootSaga() {
     watchAuthChanged(),
     watchAuthActionRequested(),
     watchSignOutRequested(),
-    watchListener('userSettings'),
     watchListener('chickens'),
     watchListener('eggs'),
     watchCreateRequested(),
     watchUpdateRequested(),
     watchRemoveRequested(),
-    watchSyncFlocks(),
-    watchJoinFlockRequested(),
-    watchAddFlockRequested(),
-    watchUnlinkFlockRequested(),
-    watchDeleteFlockRequested(),
     watchDeleteChickenRequested(),
-    watchFlockActionsComplete(),
     watchSaveChickenRequested(),
-    watchSwitchFlockRequested(),
   ]);
 }

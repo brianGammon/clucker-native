@@ -14,7 +14,6 @@ type Props = {
   userId: string,
   chicken: Chicken,
   chickenId: string,
-  flockId: string,
   inProgress: boolean,
   error: string,
   saveForm: (payload: {}) => void,
@@ -131,12 +130,11 @@ class ChickenEditor extends React.Component<Props, State> {
 
   onSaveForm = () => {
     const {
-      chicken, chickenId, flockId, saveForm, userId,
+      chicken, chickenId, saveForm, userId,
     } = this.props;
     const { newImage, ...rest } = this.form.value;
     const data = { ...chicken, ...rest };
     const payload = {
-      flockId,
       chickenId,
       data,
       userId,
@@ -174,7 +172,7 @@ class ChickenEditor extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (
-  { chickens, userSettings, auth: { user } },
+  { chickens, auth: { user } },
   { navigation },
 ) => {
   const chickenId = navigation.getParam('chickenId', null);
@@ -184,7 +182,6 @@ const mapStateToProps = (
   }
   return {
     ...chickenData,
-    flockId: userSettings.data.currentFlockId,
     inProgress: chickens.inProgress,
     error: chickens.error,
     userId: user.uid,

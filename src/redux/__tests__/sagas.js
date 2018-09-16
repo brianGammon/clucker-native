@@ -64,42 +64,25 @@ describe('saga tests', () => {
     expect(failGenerator.next().done).toEqual(true);
   });
 
-  test('getUserSettingsPath', () => {
-    const uid = '1';
-    const path = `userSettings/${uid}`;
-    expect(sagas.getUserSettingsPath({ uid })).toEqual(path);
-  });
-
-  test('getUserSettingsUpdate', () => {
-    const updates = {
-      userId: 'userId1',
-      userSettings: {
-        currentFlockId: 'flockId1',
-        flocks: { flockId1: true },
-      },
-    };
-
-    expect(sagas.getUserSettingsUpdate(updates)).toMatchSnapshot();
-  });
 
   test('getChickensPath for remove', () => {
-    const flockId = 'flock1';
+    const userId = 'user1';
     const chickenId = 'chicken1';
-    const path = `chickens/${flockId}/${chickenId}`;
-    expect(sagas.getChickensPath({ flockId, chickenId })).toEqual(path);
+    const path = `userData/${userId}/chickens/${chickenId}`;
+    expect(sagas.getChickensPath(userId, { chickenId })).toEqual(path);
   });
 
   test('getChickensPath for create', () => {
-    const flockId = 'flock1';
-    const path = `chickens/${flockId}`;
+    const userId = 'user1';
+    const path = `userData/${userId}/chickens`;
     expect(
-      sagas.getChickensPath({ flockId, data: { key1: 'value1' } }),
+      sagas.getChickensPath(userId, { data: { key1: 'value1' } }),
     ).toEqual(path);
   });
 
   test('getChickensUpdate', () => {
+    const userId = 'user1';
     const updates = {
-      flockId: 'flock1',
       chickenId: 'chicken1',
       data: {
         name: 'Test Chicken',
@@ -108,27 +91,27 @@ describe('saga tests', () => {
       },
     };
 
-    expect(sagas.getChickensUpdate(updates)).toMatchSnapshot();
+    expect(sagas.getChickensUpdate(userId, updates)).toMatchSnapshot();
   });
 
   test('getEggsPath for remove', () => {
-    const flockId = 'flock1';
+    const userId = 'user1';
     const eggId = 'egg1';
-    const path = `eggs/${flockId}/${eggId}`;
-    expect(sagas.getEggsPath({ flockId, eggId })).toEqual(path);
+    const path = `userData/${userId}/eggs/${eggId}`;
+    expect(sagas.getEggsPath(userId, { eggId })).toEqual(path);
   });
 
   test('getEggsPath for create', () => {
-    const flockId = 'flock1';
-    const path = `eggs/${flockId}`;
-    expect(sagas.getEggsPath({ flockId, data: { key1: 'value1' } })).toEqual(
+    const userId = 'user1';
+    const path = `userData/${userId}/eggs`;
+    expect(sagas.getEggsPath(userId, { data: { key1: 'value1' } })).toEqual(
       path,
     );
   });
 
   test('getEggsUpdate', () => {
+    const userId = 'user1';
     const updates = {
-      flockId: 'flock1',
       eggId: 'egg1',
       data: {
         chickenName: 'Test Chicken',
@@ -137,7 +120,7 @@ describe('saga tests', () => {
       },
     };
 
-    expect(sagas.getEggsUpdate(updates)).toMatchSnapshot();
+    expect(sagas.getEggsUpdate(userId, updates)).toMatchSnapshot();
   });
 
   test('removeItem - regular stream - success and failure', () => {
@@ -164,21 +147,21 @@ describe('saga tests', () => {
   test(`watchCreateRequested ${metaTypes.chickens}`, () => {
     const generator = sagas.watchCreateRequested();
     const payload = {
-      flockId: 'flock1',
       data: {
         name: 'Test Chicken',
         breed: 'Some Breed',
         hatched: '2018-10-06',
       },
     };
-    const expectedPath = 'chickens/flock1';
-
+    const expectedPath = 'userData/user1/chickens';
+    const userId = 'user1';
     const action = actions.firebaseCreateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensPath;
-    const result = selector(payload);
+    const result = selector(userId, payload);
     expect(generator.next().value).toEqual(take(a.CREATE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
+    expect(JSON.stringify(generator.next(action).value)).toEqual(JSON.stringify(select(state => state.auth.user.uid)));
+    expect(generator.next(userId).value).toEqual(
+      call(selector, userId, action.payload),
     );
     expect(generator.next(result).value).toEqual(
       fork(sagas.addItems, expectedPath, payload.data, action.meta.type),
@@ -188,21 +171,21 @@ describe('saga tests', () => {
   test(`watchCreateRequested ${metaTypes.eggs}`, () => {
     const generator = sagas.watchCreateRequested();
     const payload = {
-      flockId: 'flock1',
       data: {
         chickenName: 'Test Chicken',
         chickenId: 'chicken1',
         date: '2018-10-06',
       },
     };
-    const expectedPath = 'eggs/flock1';
-
+    const expectedPath = 'userData/user1/eggs';
+    const userId = 'user1';
     const action = actions.firebaseCreateRequested(payload, metaTypes.eggs);
     const selector = sagas.getEggsPath;
-    const result = selector(payload);
+    const result = selector(userId, payload);
     expect(generator.next().value).toEqual(take(a.CREATE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
+    expect(JSON.stringify(generator.next(action).value)).toEqual(JSON.stringify(select(state => state.auth.user.uid)));
+    expect(generator.next(userId).value).toEqual(
+      call(selector, userId, action.payload),
     );
     expect(generator.next(result).value).toEqual(
       fork(sagas.addItems, expectedPath, payload.data, action.meta.type),
@@ -219,41 +202,9 @@ describe('saga tests', () => {
     );
   });
 
-  test(`watchUpdateRequested ${metaTypes.userSettings}`, () => {
-    const generator = sagas.watchUpdateRequested();
-    const payload = {
-      userId: 'user1',
-      userSettings: {
-        currentFlockId: 'flockId1',
-        flocks: { flockId1: true },
-      },
-    };
-    const expectedUpdates = {
-      'userSettings/user1': payload.userSettings,
-    };
-    const action = actions.firebaseUpdateRequested(
-      {
-        userId: payload.userId,
-        userSettings: payload.userSettings,
-      },
-      metaTypes.userSettings,
-    );
-    const selector = sagas.getUserSettingsUpdate;
-
-    const result = selector(payload);
-    expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
-    );
-    expect(generator.next(result).value).toEqual(
-      fork(sagas.updateItems, expectedUpdates, action.meta.type),
-    );
-  });
-
   test(`watchUpdateRequested ${metaTypes.chickens}`, () => {
     const generator = sagas.watchUpdateRequested();
     const payload = {
-      flockId: 'flock1',
       chickenId: 'chicken1',
       data: {
         name: 'Test Chicken',
@@ -262,14 +213,16 @@ describe('saga tests', () => {
       },
     };
     const expectedUpdates = {
-      'chickens/flock1/chicken1': payload.data,
+      'userData/user1/chickens/chicken1': payload.data,
     };
+    const userId = 'user1';
     const action = actions.firebaseUpdateRequested(payload, metaTypes.chickens);
     const selector = sagas.getChickensUpdate;
-    const result = selector(payload);
+    const result = selector(userId, payload);
     expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
+    expect(JSON.stringify(generator.next(action).value)).toEqual(JSON.stringify(select(state => state.auth.user.uid)));
+    expect(generator.next(userId).value).toEqual(
+      call(selector, userId, action.payload),
     );
     expect(generator.next(result).value).toEqual(
       fork(sagas.updateItems, expectedUpdates, action.meta.type),
@@ -279,7 +232,6 @@ describe('saga tests', () => {
   test(`watchUpdateRequested ${metaTypes.eggs}`, () => {
     const generator = sagas.watchUpdateRequested();
     const payload = {
-      flockId: 'flock1',
       eggId: 'egg1',
       data: {
         chickenName: 'Test Chicken',
@@ -287,15 +239,17 @@ describe('saga tests', () => {
         date: '2018-10-06',
       },
     };
+    const userId = 'user1';
     const expectedUpdates = {
-      'eggs/flock1/egg1': payload.data,
+      'userData/user1/eggs/egg1': payload.data,
     };
     const action = actions.firebaseUpdateRequested(payload, metaTypes.eggs);
     const selector = sagas.getEggsUpdate;
-    const result = selector(payload);
+    const result = selector(userId, payload);
     expect(generator.next().value).toEqual(take(a.UPDATE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
+    expect(JSON.stringify(generator.next(action).value)).toEqual(JSON.stringify(select(state => state.auth.user.uid)));
+    expect(generator.next(userId).value).toEqual(
+      call(selector, userId, action.payload),
     );
     expect(generator.next(result).value).toEqual(
       fork(sagas.updateItems, expectedUpdates, action.meta.type),
@@ -312,35 +266,20 @@ describe('saga tests', () => {
     );
   });
 
-  test(`watchRemoveRequested ${metaTypes.userSettings}`, () => {
-    const generator = sagas.watchRemoveRequested();
-    const path = 'userSettings/user1';
-
-    const action = actions.removeUserSettingsRequested('user1');
-    const selector = sagas.getUserSettingsPath;
-
-    expect(generator.next().value).toEqual(take(a.REMOVE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
-    );
-    expect(generator.next(path).value).toEqual(
-      fork(sagas.removeItem, path, action.meta.type),
-    );
-  });
-
   test(`watchRemoveRequested ${metaTypes.chickens}`, () => {
     const generator = sagas.watchRemoveRequested();
-    const path = 'chickens/flock1/chicken1';
+    const path = 'userData/user1/chickens/chicken1';
 
     const action = actions.firebaseRemoveRequested(
-      { flockId: 'flock1', chickenId: 'chicken1' },
+      { chickenId: 'chicken1' },
       metaTypes.chickens,
     );
     const selector = sagas.getChickensPath;
-
+    const userId = 'user1';
     expect(generator.next().value).toEqual(take(a.REMOVE_REQUESTED));
-    expect(generator.next(action).value).toEqual(
-      call(selector, action.payload),
+    expect(JSON.stringify(generator.next(action).value)).toEqual(JSON.stringify(select(state => state.auth.user.uid)));
+    expect(generator.next(userId).value).toEqual(
+      call(selector, userId, action.payload),
     );
     expect(generator.next(path).value).toEqual(
       fork(sagas.removeItem, path, action.meta.type),
@@ -372,7 +311,10 @@ describe('saga tests', () => {
       put(actions.authStatusChanged(event.user)),
     );
     expect(generator.next().value).toEqual(
-      put(actions.listenToUserSettings(event.user.uid)),
+      all([
+        put(actions.listenToChickens('user1')),
+        put(actions.listenToEggs('user1')),
+      ]),
     );
     expect(generator.next().value).toEqual(
       call([NavigationService, NavigationService.navigate], 'SignedIn'),
@@ -478,12 +420,12 @@ describe('saga tests', () => {
     };
 
     expect(
-      sagas.getUpdateAction(childAddedEvent, metaTypes.userSettings),
+      sagas.getUpdateAction(childAddedEvent, metaTypes.chickens),
     ).toEqual(
       actions.firebaseListenChildAdded(
         childAddedEvent.key,
         childAddedEvent.data,
-        metaTypes.userSettings,
+        metaTypes.chickens,
       ),
     );
   });
@@ -496,12 +438,12 @@ describe('saga tests', () => {
     };
 
     expect(
-      sagas.getUpdateAction(childChangedEvent, metaTypes.userSettings),
+      sagas.getUpdateAction(childChangedEvent, metaTypes.chickens),
     ).toEqual(
       actions.firebaseListenChildChanged(
         childChangedEvent.key,
         childChangedEvent.data,
-        metaTypes.userSettings,
+        metaTypes.chickens,
       ),
     );
   });
@@ -513,11 +455,11 @@ describe('saga tests', () => {
     };
 
     expect(
-      sagas.getUpdateAction(childRemovedEvent, metaTypes.userSettings),
+      sagas.getUpdateAction(childRemovedEvent, metaTypes.chickens),
     ).toEqual(
       actions.firebaseListenChildRemoved(
         childRemovedEvent.key,
-        metaTypes.userSettings,
+        metaTypes.chickens,
       ),
     );
   });
@@ -529,7 +471,7 @@ describe('saga tests', () => {
     };
 
     expect(
-      sagas.getUpdateAction(childRemovedEvent, metaTypes.userSettings),
+      sagas.getUpdateAction(childRemovedEvent, metaTypes.chickens),
     ).toEqual({});
   });
 
@@ -608,17 +550,17 @@ describe('saga tests', () => {
   });
 
   test('watchListener', () => {
-    const checkedMetaType = metaTypes.userSettings;
+    const checkedMetaType = metaTypes.chickens;
 
     const generator = cloneableGenerator(sagas.watchListener)(checkedMetaType);
 
     expect(generator.next().value).toEqual(take(a.LISTEN_REQUESTED));
 
     const regularGenerator = generator.clone();
-    const checkedListenRequestAction = actions.listenToUserSettings('userId1');
-    const checkedListenRemoveAction = actions.removeUserSettingsListenerRequested();
-    const unwantedListenRequestAction = actions.listenToChickens('flockId1');
-    const unwantedListenRemoveAction = actions.removeUserSettingsListenerRequested();
+    const checkedListenRequestAction = actions.listenToChickens('user1');
+    const checkedListenRemoveAction = actions.firebaseRemoveListenerRequested(false, metaTypes.chickens);
+    const unwantedListenRequestAction = actions.listenToEggs('user1');
+    const unwantedListenRemoveAction = actions.firebaseRemoveListenerRequested(false, metaTypes.eggs);
     unwantedListenRemoveAction.meta.type = 'unknown';
     const { ref } = checkedListenRequestAction.payload;
     const mockTask = createMockTask();
@@ -703,496 +645,7 @@ describe('saga tests', () => {
     ); // contintue to wait
   });
 
-  test('syncFlocks', () => {
-    const ref = firebase.database().ref();
-    const payload = {
-      added: ['flock1', 'flock2'],
-      deleted: ['flock3', 'flock4'],
-    };
-    const action = { type: a.SYNC_FLOCKS_REQUESTED, payload };
-    const generator = cloneableGenerator(sagas.syncFlocks)(action);
-    expect(generator.next().value).toEqual(all([
-      put({ type: a.CLEAR_FLOCK, payload: 'flock3' }),
-      put({ type: a.CLEAR_FLOCK, payload: 'flock4' }),
-    ]));
-    const childRef1 = ref.child('flocks/flock1');
-    const childRef2 = ref.child('flocks/flock2');
-    expect(generator.next().value).toEqual(all([
-      call([childRef1, childRef1.once], 'value'),
-      call([childRef2, childRef2.once], 'value'),
-    ]));
-    const snapshots = [
-      {
-        key: 'flock1',
-        val() {
-          return { name: 'Flock 1' };
-        },
-      },
-      {
-        key: 'flock2',
-        val() {
-          return { name: 'Flock 2' };
-        },
-      },
-    ];
-    const errorGenerator = generator.clone();
-    expect(generator.next(snapshots).value).toEqual(all([
-      put({ type: a.SET_FLOCK, payload: { flock1: { name: 'Flock 1' } } }),
-      put({ type: a.SET_FLOCK, payload: { flock2: { name: 'Flock 2' } } }),
-    ]));
 
-    expect(generator.next().value).toEqual(put({ type: a.SYNC_FLOCKS_FULFILLED }));
-    expect(generator.next().done).toEqual(true);
-
-    // Error flow
-    const error = new Error('Error message');
-    expect(errorGenerator.throw(error).value).toEqual(put({ type: a.SYNC_FLOCKS_REJECTED, payload: { error } }));
-    expect(generator.next().done).toEqual(true);
-  });
-
-  test('watchSyncFlocks', () => {
-    const generator = sagas.watchSyncFlocks();
-    expect(generator.next().value).toMatchSnapshot();
-  });
-
-  test('joinFlock', () => {
-    const userSettings = {
-      currentFlockId: 'flock2',
-      flocks: {
-        flock2: true,
-      },
-    };
-
-    const action = {
-      type: a.JOIN_FLOCK_REQUESTED,
-      payload: {
-        userId: 'user1',
-        flockId: 'flock1',
-      },
-    };
-    const ref = firebase.database().ref(`flocks/${action.payload.flockId}`);
-    const snapshot = {
-      val() {
-        return { name: 'Valid Flock' };
-      },
-    };
-
-    const generator = cloneableGenerator(sagas.joinFlock)(action);
-    expect(generator.next().value).toEqual(call([ref, ref.once]));
-    const errorGenerator = generator.clone();
-
-    // Happy path flow
-    expect(JSON.stringify(generator.next(snapshot).value)).toEqual(
-      JSON.stringify(select(state => state.userSettings.data)),
-    );
-
-    const expectedUserSettings = {
-      currentFlockId: 'flock1',
-      flocks: {
-        flock1: true,
-        flock2: true,
-      },
-    };
-    expect(generator.next(userSettings).value).toEqual(
-      put(
-        actions.firebaseUpdateRequested(
-          { userId: action.payload.userId, userSettings: expectedUserSettings },
-          metaTypes.userSettings,
-        ),
-      ),
-    );
-    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
-    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(
-      put({ type: a.JOIN_FLOCK_FULFILLED }),
-    );
-    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
-    expect(generator.next().done).toEqual(true);
-
-    // Error flow
-    snapshot.val = () => null;
-    const error = new Error(`Flock ID '${action.payload.flockId}' not found`);
-    expect(errorGenerator.next(snapshot).value).toEqual(
-      put({
-        type: a.JOIN_FLOCK_REJECTED,
-        payload: { error },
-      }),
-    );
-    expect(generator.next().done).toEqual(true);
-  });
-
-  test('watchJoinFlockRequested', () => {
-    const generator = sagas.watchJoinFlockRequested();
-    expect(generator.next().value).toEqual(
-      takeLatest(a.JOIN_FLOCK_REQUESTED, sagas.joinFlock),
-    );
-  });
-
-  test('addFlock', () => {
-    const userSettings = {
-      currentFlockId: 'flock1',
-      flocks: {
-        flock1: true,
-      },
-    };
-
-    const action = {
-      type: a.ADD_FLOCK_REQUESTED,
-      payload: {
-        userId: 'user1',
-        name: 'Test Flock 1',
-      },
-    };
-    const newRef = firebase
-      .database()
-      .ref('flocks')
-      .push();
-
-    const generator = cloneableGenerator(sagas.addFlock)(action);
-    expect(JSON.stringify(generator.next().value)).toEqual(
-      JSON.stringify(
-        call([newRef, newRef.set], {
-          name: action.payload.name,
-          ownedBy: action.payload.userId,
-        }),
-      ),
-    );
-    const errorGenerator = generator.clone();
-
-    // Happy path flow
-    expect(JSON.stringify(generator.next().value)).toEqual(
-      JSON.stringify(select(state => state.userSettings.data)),
-    );
-
-    const expectedUserSettings = {
-      currentFlockId: 'key1',
-      flocks: {
-        flock1: true,
-        key1: true,
-      },
-    };
-    expect(generator.next(userSettings).value).toEqual(
-      put(
-        actions.firebaseUpdateRequested(
-          { userId: action.payload.userId, userSettings: expectedUserSettings },
-          metaTypes.userSettings,
-        ),
-      ),
-    );
-
-    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
-    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(
-      put({ type: a.ADD_FLOCK_FULFILLED }),
-    );
-    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
-    expect(generator.next().done).toEqual(true);
-
-    // Error flow
-    expect(errorGenerator.throw(new Error('Error saving item')).value).toEqual(
-      put({
-        type: a.ADD_FLOCK_REJECTED,
-        payload: { error: new Error('Error saving item') },
-      }),
-    );
-    expect(generator.next().done).toEqual(true);
-  });
-
-  test('watchAddFlockRequested', () => {
-    const generator = sagas.watchAddFlockRequested();
-    expect(generator.next().value).toEqual(
-      takeLatest(a.ADD_FLOCK_REQUESTED, sagas.addFlock),
-    );
-  });
-
-  test('switchFlock', () => {
-    const userId = 'user1';
-    const userSettings = {
-      currentFlockId: 'flock2',
-      flocks: {
-        flock1: true,
-        flock2: true,
-      },
-    };
-    const action = { type: a.SWITCH_FLOCK_REQUESTED, payload: { userId, userSettings } };
-    const generator = cloneableGenerator(sagas.switchFlock)(action);
-    expect(generator.next().value).toEqual(all([
-      put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-      put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-    ]));
-    expect(generator.next().value).toEqual(put(actions.firebaseUpdateRequested({ userId, userSettings }, metaTypes.userSettings)));
-    expect(generator.next().value).toEqual(take(a.UPDATE_FULFILLED));
-    const altGenerator = generator.clone();
-
-    // Happy path
-    const updateAction = { type: a.UPDATE_FULFILLED, meta: { type: metaTypes.userSettings } };
-    expect(generator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' }));
-    expect(generator.next().done).toEqual(true);
-
-    // Alt path
-    const wrongUpdateAction = { type: a.UPDATE_FULFILLED, meta: { type: metaTypes.flocks } };
-    expect(altGenerator.next(wrongUpdateAction).value).toEqual(take(a.UPDATE_FULFILLED));
-    expect(altGenerator.next(updateAction).value).toEqual(put({ type: a.SWITCH_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' }));
-    expect(altGenerator.next().done).toEqual(true);
-  });
-
-  test('watchSwitchFlockRequested', () => {
-    const generator = sagas.watchSwitchFlockRequested();
-    expect(generator.next().value).toEqual(
-      takeLatest(a.SWITCH_FLOCK_REQUESTED, sagas.switchFlock),
-    );
-  });
-
-  test('unlinkFlock when flock is selected', () => {
-    const userId = 'user1';
-    const userSettings = {
-      currentFlockId: 'flock1',
-      flocks: {
-        flock1: true,
-        flock2: true,
-      },
-    };
-    const flockId = 'flock1';
-    const action = {
-      type: a.UNLINK_FLOCK_REQUESTED,
-      payload: { userId, userSettings, flockId },
-    };
-    const generator = sagas.unlinkFlock(action);
-    expect(generator.next().value).toEqual(
-      all([
-        put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-        put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-      ]),
-    );
-    const expectedUserSettings = {
-      currentFlockId: null,
-      flocks: {
-        flock2: true,
-      },
-    };
-    expect(generator.next().value).toEqual(
-      put(
-        actions.firebaseUpdateRequested(
-          { userId, userSettings: expectedUserSettings },
-          metaTypes.userSettings,
-        ),
-      ),
-    );
-    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
-    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: true }));
-    expect(generator.next().done).toEqual(true);
-  });
-
-  test('unlinkFlock when flock not selected', () => {
-    const userId = 'user1';
-    const userSettings = {
-      currentFlockId: 'flock1',
-      flocks: {
-        flock1: true,
-        flock2: true,
-      },
-    };
-    const flockId = 'flock2';
-    const action = {
-      type: a.UNLINK_FLOCK_REQUESTED,
-      payload: { userId, userSettings, flockId },
-    };
-    const generator = sagas.unlinkFlock(action);
-    const expectedUserSettings = {
-      currentFlockId: 'flock1',
-      flocks: {
-        flock1: true,
-      },
-    };
-    expect(generator.next().value).toEqual(
-      put(
-        actions.firebaseUpdateRequested(
-          { userId, userSettings: expectedUserSettings },
-          metaTypes.userSettings,
-        ),
-      ),
-    );
-    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
-    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: false }));
-    expect(generator.next().done).toEqual(true);
-  });
-
-  test('watchUnlinkFlockRequested', () => {
-    const generator = sagas.watchUnlinkFlockRequested();
-    expect(generator.next().value).toEqual(
-      takeLatest(a.UNLINK_FLOCK_REQUESTED, sagas.unlinkFlock),
-    );
-  });
-
-  describe('deleteFlocks', () => {
-    const userId = 'user1';
-    const userSettings = {
-      currentFlockId: 'flock1',
-      flocks: {
-        flock1: true,
-        flock2: true,
-      },
-    };
-    const flockId = 'flock1';
-    const action = {
-      type: a.DELETE_FLOCK_REQUESTED,
-      payload: { userId, userSettings, flockId },
-    };
-
-    const baseRef = firebase.database().ref();
-    const userSettingsRef = baseRef.child('userSettings');
-    const queryRef = userSettingsRef
-      .orderByChild('flocks/flock1')
-      .equalTo(true);
-
-    const snapshot1 = {
-      key: 'user1',
-      val() {
-        return {
-          currentFlockId: 'flock1',
-          flocks: {
-            flock1: true,
-            flock2: true,
-          },
-        };
-      },
-    };
-
-    // Part of the deleted flock, but different flock active
-    const snapshot2 = {
-      key: 'user2',
-      val() {
-        return {
-          currentFlockId: 'flock2',
-          flocks: {
-            flock1: true,
-            flock2: true,
-          },
-        };
-      },
-    };
-
-    // Has no current flock, but is part of the deleted flock
-    const snapshot3 = {
-      key: 'user3',
-      val() {
-        return {
-          flocks: {
-            flock1: true,
-            flock2: true,
-          },
-        };
-      },
-    };
-
-    const snapshot = {
-      forEach(cb) {
-        [snapshot1, snapshot2, snapshot3].forEach(child => cb(child));
-      },
-    };
-
-    const updates = {
-      'user1/currentFlockId': null,
-      'user1/flocks/flock1': null,
-      'user2/flocks/flock1': null,
-      'user3/flocks/flock1': null,
-    };
-
-    test('deleteFlock when currently selected', () => {
-      const generator = cloneableGenerator(sagas.deleteFlock)(action);
-      expect(generator.next().value).toEqual(
-        all([
-          put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
-          put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
-        ]),
-      );
-
-      expect(generator.next().value).toEqual(
-        call([queryRef, queryRef.once], 'value'),
-      );
-
-      // Save for later
-      const errorGenerator = generator.clone();
-
-      expect(generator.next(snapshot).value).toEqual(
-        call([userSettingsRef, userSettingsRef.update], updates),
-      );
-      let removalRef = baseRef.child('eggs/flock1');
-      expect(generator.next().value).toEqual(
-        call([removalRef, removalRef.remove]),
-      );
-
-      removalRef = baseRef.child('chickens/flock1');
-      expect(generator.next().value).toEqual(
-        call([removalRef, removalRef.remove]),
-      );
-
-      removalRef = baseRef.child('flocks/flock1');
-      expect(generator.next().value).toEqual(
-        call([removalRef, removalRef.remove]),
-      );
-
-      const deletedFlocksRef = baseRef.child('deletedFlocks/user1/flock1');
-      expect(generator.next().value).toEqual(
-        call([deletedFlocksRef, deletedFlocksRef.set], true),
-      );
-
-      expect(generator.next().value).toEqual(put({ type: a.DELETE_FLOCK_FULFILLED, resetStack: true }));
-      expect(generator.next().done).toEqual(true);
-
-      // Error path
-      const error = new Error('An error occured');
-      expect(errorGenerator.throw(error).value).toEqual(
-        put({ type: a.DELETE_FLOCK_REJECTED, payload: { error } }),
-      );
-    });
-
-    test('deleteFlock when not the currently selected flock', () => {
-      // When no current flock is set at all
-      const { currentFlockId, ...rest } = userSettings;
-      const action2 = {
-        type: a.DELETE_FLOCK_REQUESTED,
-        payload: { userId, userSettings: rest, flockId },
-      };
-
-      const generator = sagas.deleteFlock(action2);
-
-      expect(generator.next().value).toEqual(
-        call([queryRef, queryRef.once], 'value'),
-      );
-
-      expect(generator.next(snapshot).value).toEqual(
-        call([userSettingsRef, userSettingsRef.update], updates),
-      );
-      let removalRef = baseRef.child('eggs/flock1');
-      expect(generator.next().value).toEqual(
-        call([removalRef, removalRef.remove]),
-      );
-
-      removalRef = baseRef.child('chickens/flock1');
-      expect(generator.next().value).toEqual(
-        call([removalRef, removalRef.remove]),
-      );
-
-      removalRef = baseRef.child('flocks/flock1');
-      expect(generator.next().value).toEqual(
-        call([removalRef, removalRef.remove]),
-      );
-
-      const deletedFlocksRef = baseRef.child('deletedFlocks/user1/flock1');
-      expect(generator.next().value).toEqual(
-        call([deletedFlocksRef, deletedFlocksRef.set], true),
-      );
-
-      expect(generator.next().value).toEqual(put({ type: a.DELETE_FLOCK_FULFILLED, resetStack: false }));
-      expect(generator.next().done).toEqual(true);
-    });
-  });
-
-  test('watchDeleteFlockRequested', () => {
-    const generator = sagas.watchDeleteFlockRequested();
-    expect(generator.next().value).toEqual(
-      takeLatest(a.DELETE_FLOCK_REQUESTED, sagas.deleteFlock),
-    );
-  });
 
   test('deleteFromStorage', () => {
     const paths = ['path1', 'path2'];
@@ -1230,7 +683,6 @@ describe('saga tests', () => {
 
   test('addToStorage', () => {
     const userId = 'user1';
-    const flockId = 'flock1';
     const image = {
       path: 'tmp/path1',
       width: 480,
@@ -1240,9 +692,9 @@ describe('saga tests', () => {
       path: 'tmp/thumbPath1',
     };
     const ref = firebase.storage().ref();
-    const photoRef = ref.child(`uploads/user:${userId}/flock:${flockId}/123456789-480x480`);
-    const thumbRef = ref.child(`uploads/user:${userId}/flock:${flockId}/123456789-128x128`);
-    const generator = cloneableGenerator(sagas.addToStorage)(userId, flockId, image);
+    const photoRef = ref.child(`uploads/user:${userId}/123456789-480x480`);
+    const thumbRef = ref.child(`uploads/user:${userId}/123456789-128x128`);
+    const generator = cloneableGenerator(sagas.addToStorage)(userId, image);
     expect(generator.next().value).toEqual(put({ type: a.STORAGE_UPLOAD_REQUESTED }));
     expect(generator.next().value).toEqual(call(
       [ImageResizer, ImageResizer.createResizedImage],
@@ -1305,7 +757,8 @@ describe('saga tests', () => {
     const result = {
       successResult: { type: a.STORAGE_DELETE_FULFILLED },
     };
-    expect(JSON.stringify(generator.next(result).value)).toEqual(JSON.stringify(select(state => eggsByChickenSelector(state.eggs.data, action.payload.chickenId))));
+    expect(JSON.stringify(generator.next(result).value)).toEqual(JSON.stringify(select(state => state.auth.user.uid)));
+    expect(JSON.stringify(generator.next('user1').value)).toEqual(JSON.stringify(select(state => eggsByChickenSelector(state.eggs.data, action.payload.chickenId))));
     expect(generator.next(eggs).value).toEqual(
       call([eggsRef, eggsRef.update], updates),
     );
@@ -1326,23 +779,6 @@ describe('saga tests', () => {
   test('watchDeleteChickenRequested', () => {
     const generator = sagas.watchDeleteChickenRequested();
     expect(generator.next().value).toEqual(takeLatest(a.DELETE_CHICKEN_REQUESTED, sagas.deleteChicken));
-  });
-
-  test('resetNavigation with resetStack = true', () => {
-    const action = { type: a.DELETE_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' };
-    const generator = sagas.resetNavigation(action);
-    expect(generator.next().value).toEqual(call([NavigationService, NavigationService.resetTabs], 'FlockStats'));
-  });
-
-  test('resetNavigation with resetStack = false', () => {
-    const action = { type: a.DELETE_FLOCK_FULFILLED, resetStack: false };
-    const generator = sagas.resetNavigation(action);
-    expect(generator.next().done).toEqual(true);
-  });
-
-  test('watchFlockActionsComplete', () => {
-    const generator = sagas.watchFlockActionsComplete();
-    expect(generator.next().value).toEqual(takeLatest([a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED, a.SWITCH_FLOCK_FULFILLED], sagas.resetNavigation));
   });
 
   test('saveChicken - update, remove photo, new photo', () => {
@@ -1381,7 +817,7 @@ describe('saga tests', () => {
     const result = {
       successResult: { type: a.STORAGE_DELETE_FULFILLED },
     };
-    expect(generator.next(result).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
+    expect(generator.next(result).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.newImage));
 
     expect(generator.next(task).value).toEqual(race({
       successResult: take(a.STORAGE_UPLOAD_FULFILLED),
@@ -1395,7 +831,7 @@ describe('saga tests', () => {
         { downloadURL: 'http://test.example.com/2', ref: 'path4' },
       ],
     };
-    expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
 
     expect(generator.next().done).toEqual(true);
 
@@ -1437,7 +873,7 @@ describe('saga tests', () => {
     };
     const task = createMockTask();
     expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
-    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
+    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.newImage));
     expect(generator.next(task).value).toEqual(race({
       successResult: take(a.STORAGE_UPLOAD_FULFILLED),
       errorResult: take(a.STORAGE_UPLOAD_REJECTED),
@@ -1451,7 +887,7 @@ describe('saga tests', () => {
         ],
       },
     };
-    expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next(result).value).toEqual(put(actions.firebaseUpdateRequested({ chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -1473,7 +909,7 @@ describe('saga tests', () => {
     const prevChickenState = null;
     const task = createMockTask();
     expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
-    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.flockId, action.payload.newImage));
+    expect(generator.next(prevChickenState).value).toEqual(fork(sagas.addToStorage, action.payload.userId, action.payload.newImage));
 
     expect(generator.next(task).value).toEqual(race({
       successResult: take(a.STORAGE_UPLOAD_FULFILLED),
@@ -1488,7 +924,7 @@ describe('saga tests', () => {
         ],
       },
     };
-    expect(generator.next(result).value).toEqual(put(actions.firebaseCreateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next(result).value).toEqual(put(actions.firebaseCreateRequested({ chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -1507,7 +943,7 @@ describe('saga tests', () => {
     const generator = sagas.saveChicken(action);
     const prevChickenState = null;
     expect(JSON.stringify(generator.next().value)).toEqual(JSON.stringify(select(state => state.chickens.data[action.payload.chickenId])));
-    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseCreateRequested({ flockId: action.payload.flockId, chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
+    expect(generator.next(prevChickenState).value).toEqual(put(actions.firebaseCreateRequested({ chickenId: action.payload.chickenId, data: action.payload.data }, metaTypes.chickens)));
     expect(generator.next().done).toEqual(true);
   });
 

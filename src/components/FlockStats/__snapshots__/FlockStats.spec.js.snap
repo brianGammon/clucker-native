@@ -10,7 +10,6 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
 <Styled(Container)>
   <withNavigation(Header)
     eggButton={true}
-    subTitle="Test Flock 1"
     title="Flock Stats"
   />
   <Styled(Content)

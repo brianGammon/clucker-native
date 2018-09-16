@@ -2,10 +2,6 @@
 
 exports[`firebaseReducer reducer AUTH_STATUS_LOGGED_IN 1`] = `
 Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
   "appState": "READY",
   "auth": Object {
     "errors": Object {
@@ -19,21 +15,7 @@ Object {
       "uid": "testId",
     },
   },
-  "flocks": Object {
-    "data": Object {
-      "flock1": "item1value",
-      "flock2": "item2value",
-    },
-    "error": null,
-    "inProgress": false,
-    "initialized": false,
-  },
-  "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
+  "chickens": Object {
     "data": Object {
       "item1": "item1value",
       "item2": "item2value",
@@ -42,15 +24,12 @@ Object {
     "inProgress": false,
     "initialized": false,
   },
+  "initialUrl": null,
 }
 `;
 
 exports[`firebaseReducer reducer missing initial state 1`] = `
 Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
   "appState": "STARTING",
   "auth": Object {
     "errors": Object {
@@ -71,42 +50,18 @@ Object {
     "error": null,
     "inProgress": false,
   },
-  "deleteFlock": Object {
-    "error": null,
-    "inProgress": false,
-  },
   "eggs": Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
     "initialized": false,
   },
-  "flocks": Object {
-    "data": Object {},
-    "error": null,
-    "inProgress": false,
-    "initialized": false,
-  },
   "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
-    "data": Object {},
-    "error": null,
-    "inProgress": false,
-    "initialized": false,
-  },
 }
 `;
 
 exports[`firebaseReducer reducer undefined initial state 1`] = `
 Object {
-  "addForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
   "appState": "STARTING",
   "auth": Object {
     "errors": Object {
@@ -127,32 +82,12 @@ Object {
     "error": null,
     "inProgress": false,
   },
-  "deleteFlock": Object {
-    "error": null,
-    "inProgress": false,
-  },
   "eggs": Object {
     "data": Object {},
     "error": null,
     "inProgress": false,
     "initialized": false,
   },
-  "flocks": Object {
-    "data": Object {},
-    "error": null,
-    "inProgress": false,
-    "initialized": false,
-  },
   "initialUrl": null,
-  "joinForm": Object {
-    "error": null,
-    "inProgress": false,
-  },
-  "userSettings": Object {
-    "data": Object {},
-    "error": null,
-    "inProgress": false,
-    "initialized": false,
-  },
 }
 `;

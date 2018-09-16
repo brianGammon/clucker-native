@@ -1,7 +1,6 @@
 /* @flow */
 import React from 'react';
 import { View, Icon, Button } from 'native-base';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Dimensions, Modal, Image } from 'react-native';
 import styles from './styles';
 

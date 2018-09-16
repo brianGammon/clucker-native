@@ -6,37 +6,24 @@ import NoChickens from './NoChickens';
 import FlockHeader from './FlockHeader';
 import Header from '../Header';
 import Line from '../Line';
-import { type Chicken, type Navigation, type Flock } from '../../types';
+import { type Chicken, type Navigation } from '../../types';
 
 type Props = {
   navigation: Navigation,
   chickens: {
     [string]: Chicken,
   },
-  flock: Flock,
-  isFlockOwner: boolean,
   topProducer: string,
 };
 
-const FlockRenderer = ({
-  navigation,
-  chickens,
-  flock,
-  isFlockOwner,
-  topProducer,
-}: Props) => (
+const FlockRenderer = ({ navigation, chickens, topProducer }: Props) => (
   <Container>
-    <Header title="Flock" eggButton={Object.keys(flock || {}).length > 0} />
-    <FlockHeader
-      flock={flock}
-      chickens={chickens}
-      isFlockOwner={isFlockOwner}
-      navigation={navigation}
-    />
+    <Header title="Flock" eggButton />
+    <FlockHeader chickens={chickens} navigation={navigation} />
     <Line />
     <Content>
       {Object.keys(chickens || {}).length === 0 && (
-        <NoChickens navigation={navigation} isFlockOwner={isFlockOwner} />
+        <NoChickens navigation={navigation} />
       )}
       <FlatList
         data={Object.keys(chickens || {})}

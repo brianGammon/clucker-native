@@ -161,7 +161,6 @@ exports[`Calender component: Should render 1`] = `
       },
     }
   }
-  currentFlockId="flock1"
   dates={
     Object {
       "date": "2018-05",

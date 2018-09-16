@@ -21,8 +21,7 @@ type Props = {
   chickenId: string,
   prevChickenId: string,
   nextChickenId: string,
-  flockId: string,
-  deleteChicken: (flockId: string, chickenId: string, paths: string[]) => void,
+  deleteChicken: (chickenId: string, paths: string[]) => void,
   inProgress: boolean,
   error: string,
 };
@@ -65,7 +64,7 @@ class Chicken extends React.Component<Props, State> {
   };
 
   deleteChicken = (chickenId) => {
-    const { flockId, deleteChicken, chicken } = this.props;
+    const { deleteChicken, chicken } = this.props;
 
     const paths = [];
     if (chicken.photoPath && chicken.photoPath !== '') {
@@ -84,7 +83,7 @@ class Chicken extends React.Component<Props, State> {
         },
         {
           text: 'Delete',
-          onPress: () => deleteChicken(flockId, chickenId, paths),
+          onPress: () => deleteChicken(chickenId, paths),
           style: 'destructive',
         },
       ],
@@ -135,25 +134,22 @@ class Chicken extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (
-  {
-    chickens, eggs, userSettings, deleteChicken: { inProgress, error },
-  },
+  { chickens, eggs, deleteChicken: { inProgress, error } },
   { navigation },
 ) => {
   const chickenId = navigation.getParam('chickenId', 'NO-ID');
   return {
     ...chickenSelector(chickens.data, chickenId),
     stats: chickenStatsSelector(eggs.data, chickenId),
-    flockId: userSettings.data.currentFlockId,
     inProgress,
     error,
   };
 };
 
 const mapDispatchtoProps = dispatch => ({
-  deleteChicken: (flockId, chickenId, paths) => dispatch({
+  deleteChicken: (chickenId, paths) => dispatch({
     type: actionTypes.DELETE_CHICKEN_REQUESTED,
-    payload: { flockId, chickenId, paths },
+    payload: { chickenId, paths },
   }),
 });
 

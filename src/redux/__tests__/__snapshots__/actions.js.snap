@@ -262,7 +262,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "orderByChild": [Function],
-      "path": "chickens/flockId1",
+      "path": "userData/user1/chickens",
       "push": [MockFunction],
       "putFile": [MockFunction],
       "remove": [MockFunction],
@@ -294,39 +294,7 @@ Object {
       "on": [MockFunction],
       "once": [MockFunction],
       "orderByChild": [Function],
-      "path": "eggs/flockId1",
-      "push": [MockFunction],
-      "putFile": [MockFunction],
-      "remove": [MockFunction],
-      "set": [MockFunction],
-      "snap": Object {
-        "val": [Function],
-      },
-      "update": [MockFunction],
-      "val": [MockFunction],
-    },
-  },
-  "type": "LISTEN_REQUESTED",
-}
-`;
-
-exports[`Redux actions: listenToUserSettings 1`] = `
-Object {
-  "meta": Object {
-    "type": "userSettings",
-  },
-  "payload": Object {
-    "ref": Reference {
-      "child": [Function],
-      "data": null,
-      "delete": [MockFunction],
-      "equalTo": [Function],
-      "key": "key1",
-      "off": [MockFunction],
-      "on": [MockFunction],
-      "once": [MockFunction],
-      "orderByChild": [Function],
-      "path": "userSettings/userId1",
+      "path": "userData/user1/eggs",
       "push": [MockFunction],
       "putFile": [MockFunction],
       "remove": [MockFunction],
@@ -345,30 +313,6 @@ Object {
 exports[`Redux actions: removeInitialUrl 1`] = `
 Object {
   "type": "REMOVE_INITIAL_URL",
-}
-`;
-
-exports[`Redux actions: removeUserSettingsListenerRequested 1`] = `
-Object {
-  "meta": Object {
-    "type": "userSettings",
-  },
-  "payload": Object {
-    "clearData": false,
-  },
-  "type": "REMOVE_LISTENER_REQUESTED",
-}
-`;
-
-exports[`Redux actions: removeUserSettingsRequested 1`] = `
-Object {
-  "meta": Object {
-    "type": "userSettings",
-  },
-  "payload": Object {
-    "uid": "userId1",
-  },
-  "type": "REMOVE_REQUESTED",
 }
 `;
 

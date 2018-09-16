@@ -18,18 +18,6 @@ const getInitialState = () => {
       inProgress: false,
       user: null,
     },
-    joinForm: {
-      inProgress: false,
-      error: null,
-    },
-    addForm: {
-      inProgress: false,
-      error: null,
-    },
-    deleteFlock: {
-      inProgress: false,
-      error: null,
-    },
     deleteChicken: {
       inProgress: false,
       error: null,
@@ -319,143 +307,6 @@ const handlers = {
     };
     return newState;
   },
-  [a.SYNC_FLOCKS_REQUESTED](state) {
-    const propertyState = state.flocks;
-
-    const newState = {
-      ...state,
-      flocks: {
-        ...propertyState,
-        inProgress: true,
-        error: null,
-      },
-    };
-    return newState;
-  },
-  [a.SYNC_FLOCKS_FULFILLED](state) {
-    const propertyState = state.flocks;
-    const newState = {
-      ...state,
-      flocks: {
-        ...propertyState,
-        initialized: true,
-        inProgress: false,
-      },
-    };
-    return newState;
-  },
-  [a.SYNC_FLOCKS_REJECTED](state, action) {
-    const propertyState = state.flocks;
-    const { error } = action.payload;
-
-    const newState = {
-      ...state,
-      flocks: {
-        ...propertyState,
-        initialized: true,
-        inProgress: false,
-        error: error.message,
-      },
-    };
-    return newState;
-  },
-  [a.SET_FLOCK](state, action) {
-    const propertyState = state.flocks;
-    const propertyData = propertyState.data;
-    const newData = { ...propertyData, ...action.payload };
-
-    const newState = {
-      ...state,
-      flocks: {
-        ...propertyState,
-        data: newData,
-      },
-    };
-    return newState;
-  },
-  [a.CLEAR_FLOCK](state, action) {
-    const { flocks } = state;
-    const { [action.payload]: removed, ...rest } = flocks.data;
-    const newState = { ...state, flocks: { ...flocks, data: rest } };
-    return newState;
-  },
-  [a.CLEAR_ALL_FLOCKS](state) {
-    const { flocks } = getInitialState();
-    const newState = { ...state, flocks };
-    return newState;
-  },
-  [a.JOIN_FLOCK_REQUESTED](state) {
-    const newState = {
-      ...state,
-      appState: appStates.BUSY,
-      joinForm: { inProgress: true, error: null },
-    };
-    return newState;
-  },
-  [a.JOIN_FLOCK_FULFILLED](state) {
-    const newState = {
-      ...state,
-      appState: appStates.READY,
-      joinForm: { inProgress: false, error: null },
-    };
-    return newState;
-  },
-  [a.JOIN_FLOCK_REJECTED](state, action) {
-    const { error } = action.payload;
-    const newState = {
-      ...state,
-      appState: appStates.READY,
-      joinForm: { inProgress: false, error: error.message },
-    };
-    return newState;
-  },
-  [a.ADD_FLOCK_REQUESTED](state) {
-    const newState = {
-      ...state,
-      appState: appStates.BUSY,
-      addForm: { inProgress: true, error: null },
-    };
-    return newState;
-  },
-  [a.ADD_FLOCK_FULFILLED](state) {
-    const newState = {
-      ...state,
-      appState: appStates.READY,
-      addForm: { inProgress: false, error: null },
-    };
-    return newState;
-  },
-  [a.ADD_FLOCK_REJECTED](state, action) {
-    const { error } = action.payload;
-    const newState = {
-      ...state,
-      appState: appStates.READY,
-      addForm: { inProgress: false, error: error.message },
-    };
-    return newState;
-  },
-  [a.DELETE_FLOCK_REQUESTED](state) {
-    const newState = {
-      ...state,
-      deleteFlock: { inProgress: true, error: null },
-    };
-    return newState;
-  },
-  [a.DELETE_FLOCK_FULFILLED](state) {
-    const newState = {
-      ...state,
-      deleteFlock: { inProgress: false, error: null },
-    };
-    return newState;
-  },
-  [a.DELETE_FLOCK_REJECTED](state, action) {
-    const { error } = action.payload;
-    const newState = {
-      ...state,
-      deleteFlock: { inProgress: false, error: error.message },
-    };
-    return newState;
-  },
   [a.DELETE_CHICKEN_REQUESTED](state) {
     const newState = {
       ...state,
@@ -475,28 +326,6 @@ const handlers = {
     const newState = {
       ...state,
       deleteChicken: { inProgress: false, error: error.message },
-    };
-    return newState;
-  },
-  [a.SWITCH_FLOCK_REQUESTED](state) {
-    const { userSettings } = state;
-    const newState = {
-      ...state,
-      userSettings: {
-        ...userSettings,
-        initialized: false,
-      },
-    };
-    return newState;
-  },
-  [a.SWITCH_FLOCK_FULFILLED](state) {
-    const { userSettings } = state;
-    const newState = {
-      ...state,
-      userSettings: {
-        ...userSettings,
-        initialized: true,
-      },
     };
     return newState;
   },

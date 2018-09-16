@@ -12,7 +12,6 @@ import { type Egg } from '../../types';
 
 type Props = {
   navigation: any,
-  flockId: string,
   dates: {
     date: string,
     previousDate: string,
@@ -21,19 +20,19 @@ type Props = {
   eggs: {
     [eggId: string]: Egg,
   },
-  deleteEgg: (flockId: string, eggId: string) => void,
+  deleteEgg: (eggId: string) => void,
 };
 
 class CalendarDay extends React.Component<Props> {
   deleteEgg = (eggId) => {
-    const { flockId, deleteEgg } = this.props;
+    const { deleteEgg } = this.props;
     Alert.alert('Are you sure you want to delete this egg?', null, [
       {
         text: 'Cancel',
       },
       {
         text: 'Delete',
-        onPress: () => deleteEgg(flockId, eggId),
+        onPress: () => deleteEgg(eggId),
         style: 'destructive',
       },
     ]);
@@ -63,13 +62,10 @@ class CalendarDay extends React.Component<Props> {
   };
 
   render() {
-    const {
-      navigation, dates, eggs, flockId,
-    } = this.props;
+    const { navigation, dates, eggs } = this.props;
     return (
       <CalendarDayRenderer
         navigation={navigation}
-        currentFlockId={flockId}
         dates={dates}
         eggs={eggs}
         handleMoreOptions={this.handleMoreOptions}
@@ -93,7 +89,7 @@ const mapStateToProps = ({ eggs, userSettings }, { navigation }) => {
 };
 
 const mapDispatchtoProps = dispatch => ({
-  deleteEgg: (flockId, eggId) => dispatch(firebaseRemoveRequested({ flockId, eggId }, metaTypes.eggs)),
+  deleteEgg: eggId => dispatch(firebaseRemoveRequested({ eggId }, metaTypes.eggs)),
 });
 
 export default connect(

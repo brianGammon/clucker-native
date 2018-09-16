@@ -47,13 +47,6 @@ exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
         },
       }
     }
-    flock={
-      Object {
-        "name": "Test Flock 2",
-        "ownedBy": "user1",
-      }
-    }
-    isFlockOwner={true}
     navigation={[MockFunction]}
   />
   <Line />
@@ -130,13 +123,6 @@ exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
         },
       }
     }
-    flock={
-      Object {
-        "name": "Test Flock 2",
-        "ownedBy": "user1",
-      }
-    }
-    isFlockOwner={false}
     navigation={[MockFunction]}
   />
   <Line />
@@ -208,13 +194,6 @@ exports[`Flock component: Should render connected component as flock guest 1`] =
       },
     }
   }
-  flock={
-    Object {
-      "name": "Test Flock 1",
-      "ownedBy": "user1",
-    }
-  }
-  isFlockOwner={false}
   navigation={Object {}}
   topProducer="chicken1"
 />
@@ -262,13 +241,6 @@ exports[`Flock component: Should render connected component as flock owner 1`] =
       },
     }
   }
-  flock={
-    Object {
-      "name": "Test Flock 1",
-      "ownedBy": "user1",
-    }
-  }
-  isFlockOwner={true}
   navigation={Object {}}
   topProducer="chicken1"
 />

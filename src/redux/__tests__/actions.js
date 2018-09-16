@@ -128,23 +128,11 @@ describe('Redux actions:', () => {
   });
 
   test('listenToChickens', () => {
-    expect(actions.listenToChickens('flockId1')).toMatchSnapshot();
+    expect(actions.listenToChickens('user1')).toMatchSnapshot();
   });
 
   test('listenToEggs', () => {
-    expect(actions.listenToEggs('flockId1')).toMatchSnapshot();
-  });
-
-  test('listenToUserSettings', () => {
-    expect(actions.listenToUserSettings('userId1')).toMatchSnapshot();
-  });
-
-  test('removeUserSettingsListenerRequested', () => {
-    expect(actions.removeUserSettingsListenerRequested()).toMatchSnapshot();
-  });
-
-  test('removeUserSettingsRequested', () => {
-    expect(actions.removeUserSettingsRequested('userId1')).toMatchSnapshot();
+    expect(actions.listenToEggs('user1')).toMatchSnapshot();
   });
 
   test('setInitialUrl', () => {

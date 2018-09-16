@@ -74,13 +74,12 @@ const chartData = (stats: FlockStats) => {
   return data;
 };
 
-const mapStateToProps = ({ eggs, userSettings: { data: userSettings } }) => {
+const mapStateToProps = ({ eggs }) => {
   const stats = flockStatsSelector(eggs.data);
   const data = chartData(stats);
 
   return {
     data,
-    currentFlockId: userSettings.currentFlockId,
   };
 };
 
