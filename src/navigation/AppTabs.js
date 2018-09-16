@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
+import { Icon } from 'native-base';
 import { createBottomTabNavigator } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import StatsStack from './StatsStack';
 import FlockStack from './FlockStack';
 import CalendarStack from './CalendarStack';
 import SettingsStack from './SettingsStack';
 import withLinking from './withLinking';
+import variables from '../styles/variables';
 
 type TabBarIconProps = {
   isFocused: boolean,
@@ -41,20 +42,22 @@ export const Tabs = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Stats') {
-          iconName = `ios-stats${focused ? '' : '-outline'}`;
+          iconName = 'stats';
         } else if (routeName === 'Flock') {
-          iconName = `ios-list-box${focused ? '' : '-outline'}`;
+          iconName = 'list-box';
         } else if (routeName === 'Settings') {
-          iconName = `ios-settings${focused ? '' : '-outline'}`;
+          iconName = 'settings';
         } else if (routeName === 'Calendar') {
-          iconName = `ios-calendar${focused ? '' : '-outline'}`;
+          iconName = 'calendar';
         }
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        return (
+          <Icon style={{ color: tintColor }} active={focused} name={iconName} />
+        );
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'grey',
-      inactiveTintColor: 'grey',
+      activeTintColor: variables.cluckerGrey,
+      inactiveTintColor: variables.cluckerGrey,
     },
   },
 );
