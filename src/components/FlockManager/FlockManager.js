@@ -20,8 +20,8 @@ const FlockManager = ({ hasFlocks }: Props) => (
           style={styles.image}
         />
         <Text style={styles.noFlocksMessageText}>
-          To start tracking eggs, either create a new flock or join an existing
-          flock below.
+          To start tracking eggs, either create a new flock or link someone
+          else&#39;s flock below.
         </Text>
       </View>
     )}

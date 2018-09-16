@@ -757,20 +757,26 @@ describe('firebaseReducer reducer', () => {
   });
 
   test(actionTypes.JOIN_FLOCK_REQUESTED, () => {
+    const state = {
+      ...sampleState,
+      appState: appStates.READY,
+    };
     const action = {
       type: actionTypes.JOIN_FLOCK_REQUESTED,
       payload: { userId: 'user1', flockId: 'flock1' },
     };
     const expectedState = {
-      ...sampleState,
+      ...state,
+      appState: appStates.BUSY,
       joinForm: { inProgress: true, error: null },
     };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
   });
 
   test(actionTypes.JOIN_FLOCK_FULFILLED, () => {
     const initialState = {
       ...sampleState,
+      appState: appStates.BUSY,
       joinForm: { inProgress: true, error: null },
     };
     const action = {
@@ -778,6 +784,7 @@ describe('firebaseReducer reducer', () => {
     };
     const expectedState = {
       ...initialState,
+      appState: appStates.READY,
       joinForm: { inProgress: false, error: null },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
@@ -786,6 +793,7 @@ describe('firebaseReducer reducer', () => {
   test(actionTypes.JOIN_FLOCK_REJECTED, () => {
     const initialState = {
       ...sampleState,
+      appState: appStates.BUSY,
       joinForm: { inProgress: true, error: null },
     };
     const error = new Error('Test error message');
@@ -795,26 +803,33 @@ describe('firebaseReducer reducer', () => {
     };
     const expectedState = {
       ...initialState,
+      appState: appStates.READY,
       joinForm: { inProgress: false, error: error.message },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
   });
 
   test(actionTypes.ADD_FLOCK_REQUESTED, () => {
+    const state = {
+      ...sampleState,
+      appState: appStates.READY,
+    };
     const action = {
       type: actionTypes.ADD_FLOCK_REQUESTED,
       payload: { userId: 'user1', flockId: 'flock1' },
     };
     const expectedState = {
-      ...sampleState,
+      ...state,
+      appState: appStates.BUSY,
       addForm: { inProgress: true, error: null },
     };
-    expect(firebaseReducer(sampleState, action)).toEqual(expectedState);
+    expect(firebaseReducer(state, action)).toEqual(expectedState);
   });
 
   test(actionTypes.ADD_FLOCK_FULFILLED, () => {
     const initialState = {
       ...sampleState,
+      appState: appStates.BUSY,
       addForm: { inProgress: true, error: null },
     };
     const action = {
@@ -822,6 +837,7 @@ describe('firebaseReducer reducer', () => {
     };
     const expectedState = {
       ...initialState,
+      appState: appStates.READY,
       addForm: { inProgress: false, error: null },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);
@@ -830,6 +846,7 @@ describe('firebaseReducer reducer', () => {
   test(actionTypes.ADD_FLOCK_REJECTED, () => {
     const initialState = {
       ...sampleState,
+      appState: appStates.BUSY,
       addForm: { inProgress: true, error: null },
     };
     const error = new Error('Test error message');
@@ -839,6 +856,7 @@ describe('firebaseReducer reducer', () => {
     };
     const expectedState = {
       ...initialState,
+      appState: appStates.READY,
       addForm: { inProgress: false, error: error.message },
     };
     expect(firebaseReducer(initialState, action)).toEqual(expectedState);

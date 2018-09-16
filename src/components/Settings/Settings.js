@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import SettingsRenderer from './SettingsRenderer';
+import Loading from '../Loading';
 import { type Navigation, type User } from '../../types';
 import { actionTypes } from '../../redux/constants';
 
@@ -10,6 +11,7 @@ type Props = {
   signOut: () => void,
   user: User,
   hasFlocks: boolean,
+  inProgress: boolean,
 };
 
 class Settings extends React.Component<Props> {
@@ -20,7 +22,10 @@ class Settings extends React.Component<Props> {
   };
 
   render() {
-    const { user, hasFlocks } = this.props;
+    const { user, hasFlocks, inProgress } = this.props;
+    if (inProgress) {
+      return <Loading message="Deleting flock..." />;
+    }
     return (
       <SettingsRenderer
         user={user}
@@ -36,9 +41,11 @@ const mapStateToProps = ({
   userSettings: {
     data: { flocks },
   },
+  deleteFlock: { inProgress },
 }) => ({
   user,
   hasFlocks: flocks && Object.keys(flocks).length > 0,
+  inProgress,
 });
 
 const mapDispatchToProps = dispatch => ({

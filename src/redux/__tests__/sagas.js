@@ -801,7 +801,8 @@ describe('saga tests', () => {
         ),
       ),
     );
-    expect(generator.next().value).toEqual(
+    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
+    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(
       put({ type: a.JOIN_FLOCK_FULFILLED }),
     );
     expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
@@ -877,7 +878,9 @@ describe('saga tests', () => {
         ),
       ),
     );
-    expect(generator.next().value).toEqual(
+
+    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
+    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(
       put({ type: a.ADD_FLOCK_FULFILLED }),
     );
     expect(generator.next().value).toEqual(call([NavigationService, NavigationService.navigate], 'Stats'));
@@ -973,7 +976,8 @@ describe('saga tests', () => {
         ),
       ),
     );
-    expect(generator.next().value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: true }));
+    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
+    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: true }));
     expect(generator.next().done).toEqual(true);
   });
 
@@ -1006,7 +1010,8 @@ describe('saga tests', () => {
         ),
       ),
     );
-    expect(generator.next().value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: false }));
+    expect(generator.next().value).toEqual(take(a.SYNC_FLOCKS_FULFILLED));
+    expect(generator.next({ type: a.SYNC_FLOCKS_FULFILLED }).value).toEqual(put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack: false }));
     expect(generator.next().done).toEqual(true);
   });
 

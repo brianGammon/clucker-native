@@ -75,6 +75,18 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           Oct 5, 2016 (1y 11m)
         </Styled(Text)>
       </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          dark={true}
+          disabled={false}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-dropright-circle"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
       <Styled(ViewNB)
         style={
           Object {
@@ -96,18 +108,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
                 "fontSize": 30,
               }
             }
-          />
-        </Styled(Button)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)>
-        <Styled(Button)
-          dark={true}
-          disabled={false}
-          onPress={[Function]}
-          transparent={true}
-        >
-          <Styled(Icon)
-            name="arrow-dropright-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -218,6 +218,18 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           Oct 5, 2016 (1y 11m)
         </Styled(Text)>
       </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          dark={true}
+          disabled={false}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-dropright-circle"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
       <Styled(ViewNB)
         style={
           Object {
@@ -239,18 +251,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
                 "fontSize": 30,
               }
             }
-          />
-        </Styled(Button)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)>
-        <Styled(Button)
-          dark={true}
-          disabled={false}
-          onPress={[Function]}
-          transparent={true}
-        >
-          <Styled(Icon)
-            name="arrow-dropright-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -545,6 +545,18 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           Oct 5, 2016 (1y 11m)
         </Styled(Text)>
       </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          dark={true}
+          disabled={false}
+          onPress={[Function]}
+          transparent={true}
+        >
+          <Styled(Icon)
+            name="arrow-dropright-circle"
+          />
+        </Styled(Button)>
+      </Styled(ViewNB)>
       <Styled(ViewNB)
         style={
           Object {
@@ -566,18 +578,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
                 "fontSize": 30,
               }
             }
-          />
-        </Styled(Button)>
-      </Styled(ViewNB)>
-      <Styled(ViewNB)>
-        <Styled(Button)
-          dark={true}
-          disabled={false}
-          onPress={[Function]}
-          transparent={true}
-        >
-          <Styled(Icon)
-            name="arrow-dropright-circle"
           />
         </Styled(Button)>
       </Styled(ViewNB)>
@@ -851,6 +851,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
     }
   }
   chickenId="chicken1"
+  error={null}
   handleMoreOptions={[Function]}
   navigation={
     Object {

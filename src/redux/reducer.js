@@ -387,6 +387,7 @@ const handlers = {
   [a.JOIN_FLOCK_REQUESTED](state) {
     const newState = {
       ...state,
+      appState: appStates.BUSY,
       joinForm: { inProgress: true, error: null },
     };
     return newState;
@@ -394,6 +395,7 @@ const handlers = {
   [a.JOIN_FLOCK_FULFILLED](state) {
     const newState = {
       ...state,
+      appState: appStates.READY,
       joinForm: { inProgress: false, error: null },
     };
     return newState;
@@ -402,6 +404,7 @@ const handlers = {
     const { error } = action.payload;
     const newState = {
       ...state,
+      appState: appStates.READY,
       joinForm: { inProgress: false, error: error.message },
     };
     return newState;
@@ -409,6 +412,7 @@ const handlers = {
   [a.ADD_FLOCK_REQUESTED](state) {
     const newState = {
       ...state,
+      appState: appStates.BUSY,
       addForm: { inProgress: true, error: null },
     };
     return newState;
@@ -416,6 +420,7 @@ const handlers = {
   [a.ADD_FLOCK_FULFILLED](state) {
     const newState = {
       ...state,
+      appState: appStates.READY,
       addForm: { inProgress: false, error: null },
     };
     return newState;
@@ -424,6 +429,7 @@ const handlers = {
     const { error } = action.payload;
     const newState = {
       ...state,
+      appState: appStates.READY,
       addForm: { inProgress: false, error: error.message },
     };
     return newState;

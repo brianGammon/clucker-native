@@ -41,7 +41,7 @@ exports[`FlockManager renders without flocks 1`] = `
         }
       }
     >
-      To start tracking eggs, either create a new flock or join an existing flock below.
+      To start tracking eggs, either create a new flock or link someone else's flock below.
     </Styled(Text)>
   </Styled(ViewNB)>
   <Connect(AddFlock) />

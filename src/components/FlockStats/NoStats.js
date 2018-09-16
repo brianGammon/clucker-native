@@ -7,10 +7,11 @@ import FlockManager from '../FlockManager';
 import styles from './styles';
 
 type Props = {
+  hasFlocks: boolean,
   flock: Flock | null,
 };
 
-const NoStats = ({ flock }: Props) => (
+const NoStats = ({ flock, hasFlocks }: Props) => (
   <Container>
     <Header
       title="Flock Stats"
@@ -19,7 +20,7 @@ const NoStats = ({ flock }: Props) => (
     />
 
     <View padder style={styles.noEggsMessage}>
-      {!flock && <FlockManager hasFlocks={false} />}
+      {!flock && <FlockManager hasFlocks={hasFlocks} />}
       {flock && <Text>You have not logged any eggs yet</Text>}
     </View>
   </Container>

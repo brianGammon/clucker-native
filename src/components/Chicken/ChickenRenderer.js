@@ -80,11 +80,6 @@ const ChickenRenderer = ({
               )})`}
           </Text>
         </View>
-        <View style={styles.rowContainer}>
-          <Button transparent dark onPress={handleMoreOptions}>
-            <Icon active style={{ fontSize: 30 }} name="more" />
-          </Button>
-        </View>
         <View>
           <Button
             transparent
@@ -96,6 +91,11 @@ const ChickenRenderer = ({
             }
           >
             <Icon name="arrow-dropright-circle" />
+          </Button>
+        </View>
+        <View style={styles.rowContainer}>
+          <Button transparent dark onPress={handleMoreOptions}>
+            <Icon active style={{ fontSize: 30 }} name="more" />
           </Button>
         </View>
       </View>

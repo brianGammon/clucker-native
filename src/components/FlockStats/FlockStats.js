@@ -6,6 +6,7 @@ import flockStatsSelector from '../../selectors/flockStatsSelector';
 import currentFlockSelector from '../../selectors/currentFlockSelector';
 import Loading from '../Loading';
 import NoStats from './NoStats';
+import { appStates } from '../../redux/constants';
 import {
   type Flock,
   type FlockStats as FlockStatsType,
@@ -14,6 +15,7 @@ import {
 
 type Props = {
   flock: Flock,
+  hasFlocks: boolean,
   chickens: {
     [chickenId: string]: Chicken,
   },
@@ -23,6 +25,7 @@ type Props = {
 };
 
 const FlockStats = ({
+  hasFlocks,
   stats,
   chickens,
   flock,
@@ -33,17 +36,24 @@ const FlockStats = ({
     return <Loading message="Loading Stats..." />;
   }
   if (initialized && !loading && !stats) {
-    return <NoStats flock={flock} />;
+    return <NoStats flock={flock} hasFlocks={hasFlocks} />;
   }
   return <FlockStatsRenderer stats={stats} chickens={chickens} flock={flock} />;
 };
 
 const mapStateToProps = ({
-  userSettings, eggs, flocks, chickens,
+  userSettings,
+  eggs,
+  flocks,
+  chickens,
+  appState,
 }) => {
   let flock = null;
   let stats = null;
-  const initialized = userSettings.initialized && flocks.initialized;
+  const hasFlocks = Object.keys(userSettings.data.flocks || {}).length > 0;
+  const initialized = userSettings.initialized
+    && flocks.initialized
+    && appState === appStates.READY;
   if (userSettings.data.currentFlockId && initialized) {
     flock = currentFlockSelector(flocks.data, userSettings);
     if (flock) {
@@ -51,6 +61,7 @@ const mapStateToProps = ({
     }
   }
   return {
+    hasFlocks,
     flock,
     stats,
     chickens: chickens.data,

@@ -352,17 +352,21 @@ export function* syncFlocks(action) {
     yield all(deleted.map(key => put({ type: a.CLEAR_FLOCK, payload: key })));
 
     // Add to state any flocks added to UserSettings
-    const addResult = yield all(added.map((key) => {
-      const childRef = ref.child(`flocks/${key}`);
-      return call([childRef, ref.once], 'value');
-    }));
+    const addResult = yield all(
+      added.map((key) => {
+        const childRef = ref.child(`flocks/${key}`);
+        return call([childRef, ref.once], 'value');
+      }),
+    );
 
     // Send the result of each to the reducer
-    yield all(addResult.map((snap) => {
-      const value = snap.val() || {};
-      const { key } = snap;
-      return put({ type: a.SET_FLOCK, payload: { [key]: value } });
-    }));
+    yield all(
+      addResult.map((snap) => {
+        const value = snap.val() || {};
+        const { key } = snap;
+        return put({ type: a.SET_FLOCK, payload: { [key]: value } });
+      }),
+    );
 
     // Mark as initialized
     yield put({ type: a.SYNC_FLOCKS_FULFILLED });
@@ -394,8 +398,13 @@ export function* joinFlock(action) {
         metaTypes.userSettings,
       ),
     );
-    yield put({ type: a.JOIN_FLOCK_FULFILLED });
-    yield call([NavigationService, NavigationService.navigate], 'Stats');
+
+    while (true) {
+      yield take(a.SYNC_FLOCKS_FULFILLED);
+      yield put({ type: a.JOIN_FLOCK_FULFILLED });
+      yield call([NavigationService, NavigationService.navigate], 'Stats');
+      break;
+    }
   } else {
     yield put({
       type: a.JOIN_FLOCK_REJECTED,
@@ -428,8 +437,12 @@ export function* addFlock(action) {
         metaTypes.userSettings,
       ),
     );
-    yield put({ type: a.ADD_FLOCK_FULFILLED });
-    yield call([NavigationService, NavigationService.navigate], 'Stats');
+    while (true) {
+      yield take(a.SYNC_FLOCKS_FULFILLED);
+      yield put({ type: a.ADD_FLOCK_FULFILLED });
+      yield call([NavigationService, NavigationService.navigate], 'Stats');
+      break;
+    }
   } catch (error) {
     yield put({
       type: a.ADD_FLOCK_REJECTED,
@@ -448,11 +461,20 @@ export function* switchFlock(action) {
     put(actions.firebaseListenRemoved(true, metaTypes.chickens)),
     put(actions.firebaseListenRemoved(true, metaTypes.eggs)),
   ]);
-  yield put(actions.firebaseUpdateRequested({ userId, userSettings }, metaTypes.userSettings));
+  yield put(
+    actions.firebaseUpdateRequested(
+      { userId, userSettings },
+      metaTypes.userSettings,
+    ),
+  );
   while (true) {
     const updateAction = yield take(a.UPDATE_FULFILLED);
     if (updateAction.meta.type === metaTypes.userSettings) {
-      yield put({ type: a.SWITCH_FLOCK_FULFILLED, resetStack: true, routeName: 'FlockStats' });
+      yield put({
+        type: a.SWITCH_FLOCK_FULFILLED,
+        resetStack: true,
+        routeName: 'FlockStats',
+      });
       break;
     }
   }
@@ -489,7 +511,11 @@ export function* unlinkFlock(action) {
       metaTypes.userSettings,
     ),
   );
-  yield put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack });
+  while (true) {
+    yield take(a.SYNC_FLOCKS_FULFILLED);
+    yield put({ type: a.UNLINK_FLOCK_FULFILLED, resetStack });
+    break;
+  }
 }
 
 export function* watchUnlinkFlockRequested() {
@@ -656,7 +682,11 @@ export function* resetNavigation(action) {
 
 export function* watchFlockActionsComplete() {
   yield takeLatest(
-    [a.DELETE_FLOCK_FULFILLED, a.UNLINK_FLOCK_FULFILLED, a.SWITCH_FLOCK_FULFILLED],
+    [
+      a.DELETE_FLOCK_FULFILLED,
+      a.UNLINK_FLOCK_FULFILLED,
+      a.SWITCH_FLOCK_FULFILLED,
+    ],
     resetNavigation,
   );
 }

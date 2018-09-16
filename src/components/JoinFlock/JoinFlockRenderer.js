@@ -22,7 +22,7 @@ const JoinFlockRenderer = ({
   handleChangeText,
 }: Props) => (
   <View>
-    <CommonLabel text="Join an existing flock" />
+    <CommonLabel text="Link someone else's flock" />
     <View padder>
       <Text style={styles.helpText}>
         Type or paste a shared flock key, then tap Join:

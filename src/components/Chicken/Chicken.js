@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { ActionSheet, Text } from 'native-base';
 import { Alert } from 'react-native';
+import Loading from '../Loading';
 import ChickenRenderer from './ChickenRenderer';
 import chickenSelector from '../../selectors/chickenSelector';
 import chickenStatsSelector from '../../selectors/chickenStatsSelector';
@@ -22,6 +23,8 @@ type Props = {
   nextChickenId: string,
   flockId: string,
   deleteChicken: (flockId: string, chickenId: string, paths: string[]) => void,
+  inProgress: boolean,
+  error: string,
 };
 
 type State = {
@@ -96,9 +99,15 @@ class Chicken extends React.Component<Props, State> {
       nextChickenId,
       stats,
       navigation,
+      inProgress,
+      error,
     } = this.props;
 
     const { showModal } = this.state;
+
+    if (inProgress) {
+      return <Loading message="Deleting Chicken..." />;
+    }
 
     if (chickenId === 'NO-ID') {
       return <Text>No Chicken ID passed in!</Text>;
@@ -119,17 +128,25 @@ class Chicken extends React.Component<Props, State> {
         showModal={showModal}
         toggleModal={this.toggleModal}
         handleMoreOptions={this.handleMoreOptions}
+        error={error}
       />
     );
   }
 }
 
-const mapStateToProps = ({ chickens, eggs, userSettings }, { navigation }) => {
+const mapStateToProps = (
+  {
+    chickens, eggs, userSettings, deleteChicken: { inProgress, error },
+  },
+  { navigation },
+) => {
   const chickenId = navigation.getParam('chickenId', 'NO-ID');
   return {
     ...chickenSelector(chickens.data, chickenId),
     stats: chickenStatsSelector(eggs.data, chickenId),
     flockId: userSettings.data.currentFlockId,
+    inProgress,
+    error,
   };
 };
 
