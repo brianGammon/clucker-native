@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import variables from '../../styles/variables';
 
 const iconSize = 50;
 const iconPadding = 10;
@@ -28,9 +29,6 @@ export default StyleSheet.create({
   text: {
     height: 20,
   },
-  dateScroll: {
-    // borderWidth: 1,
-  },
   dateCell: {
     alignItems: 'center',
     padding: 10,
@@ -38,6 +36,9 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderLeftWidth: 1,
     borderColor: 'grey',
+  },
+  dateCellSuccess: {
+    backgroundColor: variables.successBackground,
   },
   lastCell: {
     borderRightWidth: 1,

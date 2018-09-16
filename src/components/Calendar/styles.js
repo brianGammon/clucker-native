@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import variables from '../../styles/variables';
 
 const label = {
   color: 'grey',
@@ -25,6 +26,7 @@ export default StyleSheet.create({
   labelCell: {
     ...cell,
     borderBottomWidth: 1,
+    borderColor: variables.cluckerGreyLight,
   },
   outside: {
     backgroundColor: '#ddd',
@@ -38,6 +40,7 @@ export default StyleSheet.create({
     ...cell,
     borderRightWidth: 1,
     borderBottomWidth: 1,
+    borderColor: variables.cluckerGreyLight,
     minHeight: 60,
   },
   innerDayCell: {
@@ -46,10 +49,11 @@ export default StyleSheet.create({
     width: '100%',
   },
   innerDayCellSuccess: {
-    backgroundColor: 'lightgreen',
+    backgroundColor: variables.successBackground,
   },
   sunday: {
     borderLeftWidth: 1,
+    borderColor: variables.cluckerGreyLight,
   },
   dayLabel: {
     ...label,
@@ -61,7 +65,7 @@ export default StyleSheet.create({
   },
   eggCount: {
     alignSelf: 'center',
-    backgroundColor: 'lightgreen',
+    backgroundColor: variables.successBackground,
     borderWidth: 1,
   },
   eggCountText: {

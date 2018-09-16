@@ -41,7 +41,7 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
               }
             }
           >
-            Eggs Laid
+            Eggs Logged
           </Styled(Text)>
           <Styled(H2)
             style={
@@ -52,6 +52,15 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
           >
             100
           </Styled(H2)>
+          <Styled(Text)
+            style={
+              Object {
+                "fontSize": 14,
+              }
+            }
+          >
+            Total
+          </Styled(Text)>
         </Styled(ViewNB)>
         <Styled(ViewNB)
           style={

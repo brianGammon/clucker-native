@@ -4,10 +4,7 @@ import {
   View, Text, Container, Content, H2,
 } from 'native-base';
 import Header from '../Header';
-import {
-  type FlockStats as FlockStatsType,
-  type Chicken,
-} from '../../types';
+import { type FlockStats as FlockStatsType, type Chicken } from '../../types';
 import Leaderboard from '../Leaderboard';
 import Line from '../Line';
 import Chart from '../Chart';
@@ -29,8 +26,9 @@ const FlockStatsRenderer = ({ stats, chickens }: Props) => (
       <View>
         <View style={styles.eggStats}>
           <View style={styles.eggStatsCell}>
-            <Text style={styles.label}>Eggs Laid</Text>
+            <Text style={styles.label}>Eggs Logged</Text>
             <H2 style={styles.eggStatsValue}>{stats.total}</H2>
+            <Text style={styles.subText}>Total</Text>
           </View>
           <View style={styles.eggStatsCell}>
             <Text style={styles.label}>30 Day Avg</Text>
@@ -39,10 +37,13 @@ const FlockStatsRenderer = ({ stats, chickens }: Props) => (
             </H2>
             <Text style={styles.subText}>Per Day</Text>
           </View>
+
           <View style={styles.eggStatsCell}>
             <Text style={styles.label}>Avg Weight</Text>
             <H2 style={styles.eggStatsValue}>
-              {Math.round(10 * stats.averageWeight) / 10}
+              {stats.averageWeight > 0
+                ? Math.round(10 * stats.averageWeight) / 10
+                : '--'}
             </H2>
             <Text style={styles.subText}>Grams</Text>
           </View>

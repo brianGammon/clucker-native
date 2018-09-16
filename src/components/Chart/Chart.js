@@ -58,7 +58,11 @@ const chartData = (stats: FlockStats) => {
   if (!stats) {
     return [];
   }
+  const numPeriods = Object.keys(stats.eggsPerPeriod).length;
   const currMonth = moment(stats.firstEgg.substring(0, 7));
+  if (numPeriods < 3) {
+    currMonth.subtract(1, 'month');
+  }
   const thisMonth = moment(nowAsMoment().format('YYYY-MM'));
   const data = [];
   while (currMonth.isSameOrBefore(thisMonth)) {

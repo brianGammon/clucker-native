@@ -158,7 +158,7 @@ const ChickenRenderer = ({
               <Text style={[styles.label, { marginBottom: 10 }]}>
                 Last Week
               </Text>
-              <View style={styles.dateScroll}>
+              <View>
                 <View style={{ flexDirection: 'row' }}>
                   {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
                     <View
@@ -166,7 +166,7 @@ const ChickenRenderer = ({
                       style={[
                         styles.dateCell,
                         stats.lastSevenDays[key] > 0
-                          ? { backgroundColor: 'lightgreen' }
+                          ? styles.dateCellSuccess
                           : null,
                         index === Object.keys(stats.lastSevenDays).length - 1
                           ? styles.lastCell

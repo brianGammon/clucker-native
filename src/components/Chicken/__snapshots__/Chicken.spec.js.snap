@@ -397,9 +397,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         >
           Last Week
         </Styled(Text)>
-        <Styled(ViewNB)
-          style={Object {}}
-        >
+        <Styled(ViewNB)>
           <Styled(ViewNB)
             style={
               Object {
@@ -420,7 +418,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
                     "padding": 10,
                   },
                   Object {
-                    "backgroundColor": "lightgreen",
+                    "backgroundColor": "#c9f5d6",
                   },
                   Object {
                     "borderColor": "grey",
@@ -764,9 +762,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         >
           Last Week
         </Styled(Text)>
-        <Styled(ViewNB)
-          style={Object {}}
-        >
+        <Styled(ViewNB)>
           <Styled(ViewNB)
             style={
               Object {
@@ -787,7 +783,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
                     "padding": 10,
                   },
                   Object {
-                    "backgroundColor": "lightgreen",
+                    "backgroundColor": "#c9f5d6",
                   },
                   Object {
                     "borderColor": "grey",
