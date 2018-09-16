@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import variables from 'native-base/dist/src/theme/variables/platform';
+import variables from '../../styles/variables';
 
 const label = {
   fontSize: 17,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   label: {
     ...label,
-    color: variables.inputColorPlaceholder,
+    color: variables.cluckerGrey,
   },
   subText: {
     fontSize: 14,

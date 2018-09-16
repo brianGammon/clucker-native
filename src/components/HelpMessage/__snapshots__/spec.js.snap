@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpMessage renders with default message 1`] = `
+<Styled(ViewNB)
+  padder={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(254, 206, 137)",
+      "borderRadius": 20,
+      "flexDirection": "row",
+      "marginVertical": 10,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/assets/chicken-sm.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "width": 50,
+      }
+    }
+  />
+  <Styled(ViewNB)
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "marginLeft": 5,
+      }
+    }
+  />
+</Styled(ViewNB)>
+`;
+
+exports[`HelpMessage renders with message prop 1`] = `
+<Styled(ViewNB)
+  padder={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(254, 206, 137)",
+      "borderRadius": 20,
+      "flexDirection": "row",
+      "marginVertical": 10,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/assets/chicken-sm.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "width": 50,
+      }
+    }
+  />
+  <Styled(ViewNB)
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "marginLeft": 5,
+      }
+    }
+  />
+</Styled(ViewNB)>
+`;

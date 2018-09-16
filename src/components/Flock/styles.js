@@ -4,7 +4,6 @@ import variables from 'native-base/dist/src/theme/variables/platform';
 export default StyleSheet.create({
   noChickens: {
     flexDirection: 'row',
-    margin: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },

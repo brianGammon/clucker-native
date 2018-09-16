@@ -1,14 +1,14 @@
 import React from 'react';
-import NoStats from '.';
+import HelpMessage from '.';
 
-describe('NoStats', () => {
+describe('HelpMessage', () => {
   test('renders with default message', () => {
-    const wrapper = shallow(<NoStats />);
+    const wrapper = shallow(<HelpMessage />);
     expect(wrapper).toMatchSnapshot();
   });
 
   test('renders with message prop', () => {
-    const wrapper = shallow(<NoStats message="Passed in message" />);
+    const wrapper = shallow(<HelpMessage message="Passed in message" />);
     expect(wrapper).toMatchSnapshot();
   });
 });

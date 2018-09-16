@@ -1,16 +1,21 @@
 /* @flow */
 import React from 'react';
-import { Container, View, Text } from 'native-base';
+import { Container, Text, Content } from 'native-base';
+import HelpMessage from '../HelpMessage';
 import Header from '../Header';
 import styles from './styles';
 
 const NoStats = () => (
   <Container>
     <Header title="Flock Stats" eggButton />
-
-    <View padder style={styles.noEggsMessage}>
-      <Text>You have not logged any eggs yet</Text>
-    </View>
+    <Content padder>
+      <HelpMessage>
+        <Text style={styles.noFlocksMessageText}>
+          Get started by logging some eggs using the &#34;+ Egg&#34; button
+          above.
+        </Text>
+      </HelpMessage>
+    </Content>
   </Container>
 );
 

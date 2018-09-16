@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Content } from 'native-base';
+import { Container, Content, View } from 'native-base';
 import { FlatList } from 'react-native';
 import FlockItem from './FlockItem';
+import HelpMessage from '../HelpMessage';
 import NoChickens from './NoChickens';
 import FlockHeader from './FlockHeader';
 import Header from '../Header';
@@ -23,7 +24,11 @@ const FlockRenderer = ({ navigation, chickens, topProducer }: Props) => (
     <Line />
     <Content>
       {Object.keys(chickens || {}).length === 0 && (
-        <NoChickens navigation={navigation} />
+        <View padder>
+          <HelpMessage>
+            <NoChickens navigation={navigation} />
+          </HelpMessage>
+        </View>
       )}
       <FlatList
         data={Object.keys(chickens || {})}

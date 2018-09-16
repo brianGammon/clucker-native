@@ -1,6 +1,8 @@
 /* @flow */
 import * as React from 'react';
-import { View, Container, Content } from 'native-base';
+import {
+  View, Container, Content, Text,
+} from 'native-base';
 import { type Chicken, type CalendarData, type FlockStats } from '../../types';
 import Header from '../Header';
 import styles from './styles';
@@ -10,7 +12,7 @@ import Line from '../Line';
 import WeekDays from './WeekDays';
 import Leaderboard from '../Leaderboard';
 import HeaviestEgg from '../HeaviestEgg';
-import NoStats from '../NoStats';
+import HelpMessage from '../HelpMessage';
 
 type Props = {
   navigation: any,
@@ -60,7 +62,14 @@ const CalendarRenderer = ({
           {stats.heaviest && <HeaviestEgg heaviest={stats.heaviest} />}
         </View>
       )}
-      {!stats && <NoStats />}
+      {!stats && (
+        <View>
+          <Line />
+          <HelpMessage>
+            <Text>No eggs logged yet for this period</Text>
+          </HelpMessage>
+        </View>
+      )}
     </Content>
   </Container>
 );
