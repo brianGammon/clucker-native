@@ -8,22 +8,23 @@ import styles from './styles';
 
 type Props = {
   item: string,
-  eggs: {
-    [eggId: string]: Egg,
-  },
+  chickenName: string,
+  egg: Egg,
   handleMoreOptions: (eggId: string) => void,
 };
 
-const EggItem = ({ item, eggs, handleMoreOptions }: Props) => (
+const EggItem = ({
+  item, egg, chickenName, handleMoreOptions,
+}: Props) => (
   <ListItem>
     <Body style={styles.container}>
       <View style={styles.details}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.label}>{eggs[item].chickenName}</Text>
-            <Text>{`${eggs[item].weight || '-- '}g`}</Text>
+            <Text style={styles.label}>{chickenName}</Text>
+            <Text>{`${egg.weight || '-- '}g`}</Text>
           </View>
-          {eggs[item].damaged && (
+          {egg.damaged && (
             <View style={styles.badgeContainer}>
               <Badge warning>
                 <Text style={styles.badgeText}>Damaged</Text>
@@ -31,11 +32,11 @@ const EggItem = ({ item, eggs, handleMoreOptions }: Props) => (
             </View>
           )}
         </View>
-        {!!eggs[item].notes
-          && eggs[item].notes !== '' && (
+        {!!egg.notes
+          && egg.notes !== '' && (
             <View style={styles.notesContainer}>
               <Icon name="attach" />
-              <Text style={styles.eggNote}>{eggs[item].notes}</Text>
+              <Text style={styles.eggNote}>{egg.notes}</Text>
             </View>
         )}
       </View>

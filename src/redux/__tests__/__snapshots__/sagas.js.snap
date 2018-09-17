@@ -14,7 +14,6 @@ exports[`saga tests getEggsUpdate 1`] = `
 Object {
   "userData/user1/eggs/egg1": Object {
     "chickenId": "chicken1",
-    "chickenName": "Test Chicken",
     "date": "2018-10-06",
   },
 }

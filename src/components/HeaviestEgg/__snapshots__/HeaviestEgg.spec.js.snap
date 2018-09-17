@@ -85,7 +85,7 @@ exports[`HeaviestEgg renders 1`] = `
         }
       }
     >
-      Bossie
+      Unnamed Hen
     </Styled(Text)>
     <Styled(Text)
       style={

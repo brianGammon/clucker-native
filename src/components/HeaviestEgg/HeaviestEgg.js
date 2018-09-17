@@ -6,10 +6,11 @@ import styles from './styles';
 import { type Egg } from '../../types';
 
 type Props = {
+  chickenName: string,
   heaviest: Egg,
 };
 
-const HeaviestEgg = ({ heaviest }: Props) => (
+const HeaviestEgg = ({ heaviest, chickenName }: Props) => (
   <View style={styles.container}>
     <Text style={styles.statsLabel}>Heaviest</Text>
     <View style={[styles.row, styles.headerRow]}>
@@ -18,7 +19,7 @@ const HeaviestEgg = ({ heaviest }: Props) => (
       <Text style={styles.medLabel}>Date</Text>
     </View>
     <View style={styles.row}>
-      <Text style={styles.wideValue}>{heaviest.chickenName}</Text>
+      <Text style={styles.wideValue}>{chickenName || 'Unnamed Hen'}</Text>
       <Text style={styles.value}>{heaviest.weight}</Text>
       <Text style={styles.value}>
         {moment(heaviest.date).format('MMM D, YYYY')}

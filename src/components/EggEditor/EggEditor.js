@@ -28,7 +28,6 @@ type Props = {
   egg: Egg,
   navigation: Navigation,
   defaultDate: string,
-  userId: string,
   saveForm: (payload: { eggId?: string, data: Egg }) => void,
   clearError: () => void,
 };
@@ -41,7 +40,6 @@ class EggEditor extends React.Component<Props, State> {
   form = FormBuilder.group({
     damaged: [false],
     chickenId: ['', Validators.required],
-    chickenName: [''],
     date: ['', [Validators.required, dateInRangeValidator]],
     notes: [''],
     weight: [
@@ -54,22 +52,20 @@ class EggEditor extends React.Component<Props, State> {
 
   componentDidMount() {
     const {
-      chickenId, defaultDate, egg, chickens,
+      chickenId, defaultDate, egg,
     } = this.props;
     let defaultState = {
       ...this.form.value,
       chickenId: chickenId || '',
-      chickenName: chickenId ? chickens[chickenId].name : '',
       date: defaultDate,
     };
 
     if (egg) {
-      const { userId, modified, ...rest } = egg;
+      const { modified, ...rest } = egg;
       defaultState = { ...defaultState, ...rest };
     }
     this.form.controls.damaged.setValue(defaultState.damaged);
     this.form.controls.chickenId.setValue(defaultState.chickenId);
-    this.form.controls.chickenName.setValue(defaultState.chickenName);
     this.form.controls.date.setValue(defaultState.date);
     this.form.controls.notes.setValue(defaultState.notes);
     this.form.controls.weight.setValue(defaultState.weight);
@@ -93,13 +89,12 @@ class EggEditor extends React.Component<Props, State> {
 
   onSaveForm = () => {
     const {
-      egg, userId, eggId, saveForm,
+      egg, eggId, saveForm,
     } = this.props;
     const data = {
       ...egg,
       ...this.form.value,
       modified: moment().toISOString(),
-      userId,
     };
     const payload = { eggId, data };
     saveForm(payload);
@@ -110,14 +105,9 @@ class EggEditor extends React.Component<Props, State> {
   };
 
   handlePickItem = (itemValue) => {
-    const { chickens } = this.props;
     const { chickenId: control } = this.form.controls;
     control.setValue(itemValue);
     control.markAsTouched();
-
-    this.form.controls.chickenName.setValue(
-      chickens[itemValue] ? chickens[itemValue].name : 'Unnamed Hen',
-    );
   };
 
   toggleDamaged = (damaged: boolean) => {
@@ -150,7 +140,7 @@ class EggEditor extends React.Component<Props, State> {
 
 const mapStateToProps = (
   {
-    chickens, eggs, auth: { user },
+    chickens, eggs,
   },
   { navigation },
 ) => {
@@ -162,7 +152,6 @@ const mapStateToProps = (
     chickens: chickens.data,
     eggId,
     egg: eggId ? eggs.data[eggId] : {},
-    userId: user ? user.uid : '',
     defaultDate: defaultDate || nowAsMoment().format('YYYY-MM-DD'),
     inProgress: eggs.inProgress,
     error: eggs.error,

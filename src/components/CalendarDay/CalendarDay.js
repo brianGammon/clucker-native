@@ -8,7 +8,7 @@ import { nowAsMoment, dateSwitcher } from '../../utils/dateHelper';
 import eggsByRangeSelector from '../../selectors/eggsByRangeSelector';
 import { metaTypes } from '../../redux/constants';
 import { firebaseRemoveRequested } from '../../redux/actions';
-import { type Egg } from '../../types';
+import { type Egg, type Chicken } from '../../types';
 
 type Props = {
   navigation: any,
@@ -20,6 +20,9 @@ type Props = {
   },
   eggs: {
     [eggId: string]: Egg,
+  },
+  chickens: {
+    [chickenId: string]: Chicken,
   },
   deleteEgg: (eggId: string) => void,
 };
@@ -63,19 +66,22 @@ class CalendarDay extends React.Component<Props> {
   };
 
   render() {
-    const { navigation, dates, eggs } = this.props;
+    const {
+      navigation, dates, eggs, chickens,
+    } = this.props;
     return (
       <CalendarDayRenderer
         navigation={navigation}
         dates={dates}
         eggs={eggs}
+        chickens={chickens}
         handleMoreOptions={this.handleMoreOptions}
       />
     );
   }
 }
 
-const mapStateToProps = ({ eggs }, { navigation }) => {
+const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
   const now = nowAsMoment();
   const date = navigation.getParam('date', now.clone().format('YYYY-MM-DD'));
   const { previousDate, nextDate } = dateSwitcher(date, 'days', 'YYYY-MM-DD');
@@ -87,6 +93,7 @@ const mapStateToProps = ({ eggs }, { navigation }) => {
       nextDate,
     },
     eggs: eggsByRangeSelector(eggs.data, date),
+    chickens: chickens.data,
   };
 };
 

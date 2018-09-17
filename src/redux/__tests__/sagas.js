@@ -114,7 +114,6 @@ describe('saga tests', () => {
     const updates = {
       eggId: 'egg1',
       data: {
-        chickenName: 'Test Chicken',
         chickenId: 'chicken1',
         date: '2018-10-06',
       },
@@ -172,7 +171,6 @@ describe('saga tests', () => {
     const generator = sagas.watchCreateRequested();
     const payload = {
       data: {
-        chickenName: 'Test Chicken',
         chickenId: 'chicken1',
         date: '2018-10-06',
       },
@@ -234,7 +232,6 @@ describe('saga tests', () => {
     const payload = {
       eggId: 'egg1',
       data: {
-        chickenName: 'Test Chicken',
         chickenId: 'chicken1',
         date: '2018-10-06',
       },

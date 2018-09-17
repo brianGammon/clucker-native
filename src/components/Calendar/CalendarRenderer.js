@@ -60,7 +60,12 @@ const CalendarRenderer = ({
           <Line />
           <Leaderboard stats={stats} chickens={chickens} mode="month" />
           <Line />
-          {stats.heaviest && <HeaviestEgg heaviest={stats.heaviest} />}
+          {stats.heaviest && (
+            <HeaviestEgg
+              heaviest={stats.heaviest}
+              chickenName={chickens[stats.heaviest.chickenId].name}
+            />
+          )}
         </View>
       )}
       {!stats && (

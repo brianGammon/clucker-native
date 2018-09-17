@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Container, Content } from 'native-base';
 import { FlatList } from 'react-native';
-import { type Egg } from '../../types';
+import { type Egg, type Chicken } from '../../types';
 import Header from '../Header';
 import DateSwitcher from '../DateSwitcher';
 import Line from '../Line';
@@ -19,12 +19,16 @@ type Props = {
   eggs: {
     [eggId: string]: Egg,
   },
+  chickens: {
+    [chickenId: string]: Chicken,
+  },
   handleMoreOptions: (eggId: string) => void,
 };
 
 const CalendarDayRenderer = ({
   navigation,
   eggs,
+  chickens,
   dates,
   handleMoreOptions,
 }: Props) => (
@@ -44,7 +48,8 @@ const CalendarDayRenderer = ({
         renderItem={({ item }) => (
           <EggItem
             item={item}
-            eggs={eggs}
+            chickenName={chickens[eggs[item].chickenId].name}
+            egg={eggs[item]}
             handleMoreOptions={handleMoreOptions}
           />
         )}

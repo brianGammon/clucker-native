@@ -57,7 +57,12 @@ const FlockStatsRenderer = ({ stats, chickens }: Props) => (
       <Line />
       <Leaderboard stats={stats} chickens={chickens} mode="allTime" />
       <Line />
-      {stats.heaviest && <HeaviestEgg heaviest={stats.heaviest} />}
+      {stats.heaviest && (
+        <HeaviestEgg
+          heaviest={stats.heaviest}
+          chickenName={chickens[stats.heaviest.chickenId].name}
+        />
+      )}
     </Content>
   </Container>
 );

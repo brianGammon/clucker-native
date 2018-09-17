@@ -21,13 +21,12 @@ export type Chicken = {
 
 export type Egg = {
   chickenId: string,
-  chickenName: string,
   damaged: boolean,
   date: string,
   modified: string,
   notes: string,
-  userId: string,
   weight: string | number,
+  quantity: number,
 };
 
 export type ChickenStats = {
