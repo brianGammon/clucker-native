@@ -13,7 +13,6 @@ import {
   Form,
   CheckBox,
   Picker,
-  Label,
   Item,
   Icon,
   Title,

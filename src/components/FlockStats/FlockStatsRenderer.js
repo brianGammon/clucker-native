@@ -60,7 +60,11 @@ const FlockStatsRenderer = ({ stats, chickens }: Props) => (
       {stats.heaviest && (
         <HeaviestEgg
           heaviest={stats.heaviest}
-          chickenName={chickens[stats.heaviest.chickenId].name}
+          chickenName={
+            (chickens[stats.heaviest.chickenId]
+              && chickens[stats.heaviest.chickenId].name)
+            || 'Unnamed Hen'
+          }
         />
       )}
     </Content>

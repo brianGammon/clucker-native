@@ -48,7 +48,11 @@ const CalendarDayRenderer = ({
         renderItem={({ item }) => (
           <EggItem
             item={item}
-            chickenName={chickens[eggs[item].chickenId].name}
+            chickenName={
+              (chickens[eggs[item].chickenId]
+                && chickens[eggs[item].chickenId].name)
+              || 'Unnamed Hen'
+            }
             egg={eggs[item]}
             handleMoreOptions={handleMoreOptions}
           />
