@@ -23,6 +23,8 @@ type Props = {
   goBackButton: string,
   cancelButton: boolean,
   eggButton: boolean,
+  handleSave: () => {},
+  saveDisabled: boolean,
 };
 export const Header = ({
   navigation,
@@ -31,34 +33,41 @@ export const Header = ({
   goBackButton,
   eggButton,
   cancelButton,
+  handleSave,
+  saveDisabled,
 }: Props) => (
   <NBHeader>
     <Left>
+      {cancelButton && (
+        <Button transparent onPress={() => navigation.goBack()}>
+          <Text>Cancel</Text>
+        </Button>
+      )}
       {goBackButton !== undefined && (
-      <Button transparent onPress={() => navigation.goBack()}>
-        <Icon active name="arrow-back" />
-        {goBackButton !== '' && (
-        <Text style={styles.goBackText}>{goBackButton}</Text>
-        )}
-      </Button>
+        <Button transparent onPress={() => navigation.goBack()}>
+          <Icon active name="arrow-back" />
+          {goBackButton !== '' && (
+            <Text style={styles.goBackText}>{goBackButton}</Text>
+          )}
+        </Button>
       )}
     </Left>
     <Body>
       <Title>{title || 'Default Title'}</Title>
       {subTitle
-          && subTitle !== '' && (
-            <Subtitle numberOfLines={2} ellipsizeMode="tail">
-              {subTitle}
-            </Subtitle>
+        && subTitle !== '' && (
+          <Subtitle numberOfLines={2} ellipsizeMode="tail">
+            {subTitle}
+          </Subtitle>
       )}
     </Body>
     <Right>
-      {cancelButton && (
-      <Button transparent onPress={() => navigation.goBack()}>
-        <Text>Cancel</Text>
-      </Button>
-      )}
       {eggButton && <ActionButton navigation={navigation} />}
+      {handleSave && (
+        <Button transparent disabled={saveDisabled} onPress={handleSave}>
+          <Text>Save</Text>
+        </Button>
+      )}
     </Right>
   </NBHeader>
 );

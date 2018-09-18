@@ -41,13 +41,7 @@ exports[`Header renders with default title, eggButton and goBack button 1`] = `
 
 exports[`Header renders with title set, and cancel button 1`] = `
 <Styled(Header)>
-  <Styled(Left) />
-  <Styled(Body)>
-    <Styled(Title)>
-      Test Title
-    </Styled(Title)>
-  </Styled(Body)>
-  <Styled(Right)>
+  <Styled(Left)>
     <Styled(Button)
       onPress={[Function]}
       transparent={true}
@@ -56,6 +50,12 @@ exports[`Header renders with title set, and cancel button 1`] = `
         Cancel
       </Styled(Text)>
     </Styled(Button)>
-  </Styled(Right)>
+  </Styled(Left)>
+  <Styled(Body)>
+    <Styled(Title)>
+      Test Title
+    </Styled(Title)>
+  </Styled(Body)>
+  <Styled(Right) />
 </Styled(Header)>
 `;

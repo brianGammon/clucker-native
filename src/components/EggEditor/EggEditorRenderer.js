@@ -1,7 +1,6 @@
 /* @flow */
 import React from 'react';
 import {
-  Button,
   Container,
   Content,
   View,
@@ -44,14 +43,20 @@ const EggEditorRenderer = ({
   onSaveForm,
   error,
 }: Props) => (
-  <Container>
-    <Header title={`${mode} Egg`} cancelButton />
-    <Content>
-      <View padder>
-        {error && <Text style={styles.error}>{error}</Text>}
-        <FieldGroup
-          control={form}
-          render={({ invalid }) => (
+  <FieldGroup
+    control={form}
+    render={({ invalid }) => (
+      <Container>
+        <Header
+          title={`${mode} Egg`}
+          cancelButton
+          handleSave={onSaveForm}
+          saveDisabled={invalid}
+        />
+        <Content>
+          <View padder>
+            {error && <Text style={styles.error}>{error}</Text>}
+
             <Form>
               <Field
                 control={form.get('date')}
@@ -137,21 +142,12 @@ const EggEditorRenderer = ({
                   maxLength: 250,
                 }}
               />
-
-              <Button
-                block
-                disabled={invalid}
-                onPress={onSaveForm}
-                style={styles.submit}
-              >
-                <Text>Save</Text>
-              </Button>
             </Form>
-          )}
-        />
-      </View>
-    </Content>
-  </Container>
+          </View>
+        </Content>
+      </Container>
+    )}
+  />
 );
 
 export default EggEditorRenderer;

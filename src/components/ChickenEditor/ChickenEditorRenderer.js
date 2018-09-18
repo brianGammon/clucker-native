@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Container, Content, View, Text, Form,
+  Container, Content, View, Text, Form,
 } from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
@@ -35,15 +35,21 @@ const ChickenEditorRenderer = ({
   onDateChange,
   inProgress,
 }: Props) => (
-  <Container>
-    <Header title={`${mode} Chicken`} cancelButton />
-    <Content>
-      <View padder>
-        {error && <Text style={styles.error}>{error}</Text>}
-        <FieldGroup
-          control={form}
-          strict={false}
-          render={({ invalid }) => (
+  <FieldGroup
+    control={form}
+    strict={false}
+    render={({ invalid }) => (
+      <Container>
+        <Header
+          title={`${mode} Chicken`}
+          cancelButton
+          handleSave={handleSubmit}
+          saveDisabled={invalid || inProgress}
+        />
+        <Content>
+          <View padder>
+            {error && <Text style={styles.error}>{error}</Text>}
+
             <Form>
               <FieldControl
                 name="name"
@@ -91,21 +97,12 @@ const ChickenEditorRenderer = ({
                   );
                 }}
               />
-
-              <Button
-                block
-                disabled={invalid || inProgress}
-                onPress={handleSubmit}
-                style={styles.submit}
-              >
-                <Text>Save</Text>
-              </Button>
             </Form>
-          )}
-        />
-      </View>
-    </Content>
-  </Container>
+          </View>
+        </Content>
+      </Container>
+    )}
+  />
 );
 
 export default ChickenEditorRenderer;

@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import {
-  Button, Container, Content, View, Text, Form,
+  Container, Content, View, Text, Form,
 } from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
@@ -23,14 +23,20 @@ const BulkEditorRenderer = ({
   onSaveForm,
   error,
 }: Props) => (
-  <Container>
-    <Header title="Bulk Entry" cancelButton />
-    <Content>
-      <View padder>
-        {error && <Text style={styles.error}>{error}</Text>}
-        <FieldGroup
-          control={form}
-          render={({ invalid }) => (
+  <FieldGroup
+    control={form}
+    render={({ invalid }) => (
+      <Container>
+        <Header
+          title="Bulk Entry"
+          cancelButton
+          handleSave={onSaveForm}
+          saveDisabled={invalid}
+        />
+        <Content>
+          <View padder>
+            {error && <Text style={styles.error}>{error}</Text>}
+
             <Form>
               <Field
                 control={form.get('date')}
@@ -64,21 +70,12 @@ const BulkEditorRenderer = ({
                   maxLength: 250,
                 }}
               />
-
-              <Button
-                block
-                disabled={invalid}
-                onPress={onSaveForm}
-                style={styles.submit}
-              >
-                <Text>Save</Text>
-              </Button>
             </Form>
-          )}
-        />
-      </View>
-    </Content>
-  </Container>
+          </View>
+        </Content>
+      </Container>
+    )}
+  />
 );
 
 export default BulkEditorRenderer;
