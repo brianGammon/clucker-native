@@ -4,9 +4,7 @@ import { FlatList } from 'react-native';
 import FlockItem from './FlockItem';
 import HelpMessage from '../HelpMessage';
 import NoChickens from './NoChickens';
-import FlockHeader from './FlockHeader';
 import Header from '../Header';
-import Line from '../Line';
 import { type Chicken, type Navigation } from '../../types';
 
 type Props = {
@@ -20,8 +18,6 @@ type Props = {
 const FlockRenderer = ({ navigation, chickens, topProducer }: Props) => (
   <Container>
     <Header title="Flock" eggButton />
-    <FlockHeader chickens={chickens} navigation={navigation} />
-    <Line />
     <Content>
       {Object.keys(chickens || {}).length === 0 && (
         <View padder>
