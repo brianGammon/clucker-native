@@ -5,6 +5,7 @@ describe('DatePicker', () => {
   const props = {
     clearable: true,
     value: new Date('8/31/2018'),
+    minimumDate: new Date('12/31/2016'),
     maximumDate: new Date('12/31/2018'),
     onDateChange: () => {},
   };

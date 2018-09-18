@@ -27,6 +27,7 @@ export type Egg = {
   notes: string,
   weight: string | number,
   quantity: number,
+  bulkMode: boolean,
 };
 
 export type ChickenStats = {

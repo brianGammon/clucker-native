@@ -1,3 +1,3 @@
-import EggEditorComponent from './EggEditor';
+import EggEditor from './EggEditor';
 
-export default EggEditorComponent;
+export default EggEditor;

@@ -6,28 +6,23 @@ import {
   Content,
   View,
   Text,
-  Header,
-  Left,
-  Body,
-  Right,
   Form,
   CheckBox,
   Picker,
   Item,
   Icon,
-  Title,
 } from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
+import Header from '../Header';
 import DatePicker from '../DatePicker';
 import CommonLabel from '../CommonLabel';
-import { type Navigation, type Chicken } from '../../types';
+import { type Chicken } from '../../types';
 import FormInput from '../FormInput';
 import styles from './styles';
 
 type Props = {
   mode: 'Edit' | 'Add',
-  navigation: Navigation,
   form: any,
   chickens: {
     [string]: Chicken,
@@ -41,7 +36,6 @@ type Props = {
 
 const EggEditorRenderer = ({
   mode,
-  navigation,
   form,
   chickens,
   handlePickItem,
@@ -51,17 +45,7 @@ const EggEditorRenderer = ({
   error,
 }: Props) => (
   <Container>
-    <Header>
-      <Left />
-      <Body>
-        <Title>{`${mode} Egg`}</Title>
-      </Body>
-      <Right>
-        <Button transparent onPress={() => navigation.goBack()}>
-          <Text>Cancel</Text>
-        </Button>
-      </Right>
-    </Header>
+    <Header title={`${mode} Egg`} cancelButton />
     <Content>
       <View padder>
         {error && <Text style={styles.error}>{error}</Text>}

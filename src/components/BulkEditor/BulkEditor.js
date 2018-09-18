@@ -3,27 +3,20 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { FormBuilder, Validators } from 'react-reactive-form';
-import EggEditorRenderer from './EggEditorRenderer';
+import BulkEditorRenderer from './BulkEditorRenderer';
 import { nowAsMoment } from '../../utils/dateHelper';
-import { type Chicken, type Egg, type Navigation } from '../../types';
+import { type Egg, type Navigation } from '../../types';
 import { metaTypes, actionTypes } from '../../redux/constants';
 import Loading from '../Loading';
 import {
   firebaseUpdateRequested,
   firebaseCreateRequested,
 } from '../../redux/actions';
-import {
-  dateInRangeValidator,
-  weightRangeValidator,
-} from '../../utils/validators';
+import { dateInRangeValidator } from '../../utils/validators';
 
 type Props = {
   inProgress: boolean,
   error: string,
-  chickenId: string,
-  chickens: {
-    [chickenId: string]: Chicken,
-  },
   eggId: string,
   egg: Egg,
   navigation: Navigation,
@@ -36,27 +29,19 @@ type State = {
   formReady: boolean,
 };
 
-class EggEditor extends React.Component<Props, State> {
+class BulkEditor extends React.Component<Props, State> {
   form = FormBuilder.group({
-    damaged: [false],
-    chickenId: ['', Validators.required],
     date: ['', [Validators.required, dateInRangeValidator]],
     notes: [''],
-    weight: [
-      '',
-      [Validators.pattern(/^\d+([.]\d{0,1})?$/), weightRangeValidator],
-    ],
+    quantity: ['1'],
   });
 
   state = { formReady: false };
 
   componentDidMount() {
-    const {
-      chickenId, defaultDate, egg,
-    } = this.props;
+    const { defaultDate, egg } = this.props;
     let defaultState = {
       ...this.form.value,
-      chickenId: chickenId || '',
       date: defaultDate,
     };
 
@@ -64,11 +49,9 @@ class EggEditor extends React.Component<Props, State> {
       const { modified, ...rest } = egg;
       defaultState = { ...defaultState, ...rest };
     }
-    this.form.controls.damaged.setValue(defaultState.damaged);
-    this.form.controls.chickenId.setValue(defaultState.chickenId);
     this.form.controls.date.setValue(defaultState.date);
     this.form.controls.notes.setValue(defaultState.notes);
-    this.form.controls.weight.setValue(defaultState.weight);
+    this.form.controls.quantity.setValue(defaultState.quantity);
     this.setState({ formReady: true });
   }
 
@@ -88,13 +71,12 @@ class EggEditor extends React.Component<Props, State> {
   }
 
   onSaveForm = () => {
-    const {
-      egg, eggId, saveForm,
-    } = this.props;
+    const { egg, eggId, saveForm } = this.props;
     const data = {
       ...egg,
       ...this.form.value,
-      bulkMode: false,
+      chickenId: 'unknown',
+      bulkMode: true,
       modified: moment().toISOString(),
     };
     const payload = { eggId, data };
@@ -105,32 +87,17 @@ class EggEditor extends React.Component<Props, State> {
     this.form.controls.date.setValue(dateString);
   };
 
-  handlePickItem = (itemValue) => {
-    const { chickenId: control } = this.form.controls;
-    control.setValue(itemValue);
-    control.markAsTouched();
-  };
-
-  toggleDamaged = (damaged: boolean) => {
-    this.form.controls.damaged.setValue(damaged);
-  }
-
   render() {
-    const {
-      navigation, chickens, error, eggId,
-    } = this.props;
+    const { navigation, error, eggId } = this.props;
     const { formReady } = this.state;
     if (!formReady) {
       return <Loading />;
     }
     return (
-      <EggEditorRenderer
+      <BulkEditorRenderer
         mode={eggId ? 'Edit' : 'Add'}
         navigation={navigation}
-        chickens={chickens}
         form={this.form}
-        handlePickItem={this.handlePickItem}
-        toggleDamaged={this.toggleDamaged}
         onSaveForm={this.onSaveForm}
         error={error}
         onDateChange={this.onDateChange}
@@ -139,18 +106,10 @@ class EggEditor extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (
-  {
-    chickens, eggs,
-  },
-  { navigation },
-) => {
-  const chickenId = navigation.getParam('chickenId', null);
+const mapStateToProps = ({ eggs }, { navigation }) => {
   const eggId = navigation.getParam('eggId', null);
   const defaultDate = navigation.getParam('date', null);
   return {
-    chickenId,
-    chickens: chickens.data,
     eggId,
     egg: eggId ? eggs.data[eggId] : {},
     defaultDate: defaultDate || nowAsMoment().format('YYYY-MM-DD'),
@@ -172,4 +131,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EggEditor);
+)(BulkEditor);

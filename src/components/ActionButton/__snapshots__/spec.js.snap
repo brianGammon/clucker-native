@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionButton renders 1`] = `
+<Styled(Button)
+  onPress={[Function]}
+  transparent={true}
+>
+  <Styled(Icon)
+    active={true}
+    name="add-circle"
+  />
+</Styled(Button)>
+`;

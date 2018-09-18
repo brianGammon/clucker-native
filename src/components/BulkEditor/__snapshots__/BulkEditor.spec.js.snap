@@ -1,0 +1,465 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BulkEditor component: Should render connected BulkEditor with default chicken, egg, and date 1`] = `
+<BulkEditorRenderer
+  error=""
+  form={
+    FormGroup {
+      "_onDisabledChange": Array [],
+      "_pendingChange": false,
+      "_pendingDirty": false,
+      "_pendingTouched": false,
+      "asyncValidator": null,
+      "controls": Object {
+        "date": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "2018-02-06",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": Array [
+              [Function],
+              [Function],
+            ],
+          },
+          "value": "2018-02-06",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "notes": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "Chicken1’s first egg in 3 months!! ",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": null,
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": null,
+          },
+          "value": "Chicken1’s first egg in 3 months!! ",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "quantity": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "1",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "1",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": null,
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": null,
+          },
+          "value": "1",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+      },
+      "errors": null,
+      "get": [Function],
+      "getError": [Function],
+      "handleSubmit": [Function],
+      "hasError": [Function],
+      "meta": Object {},
+      "patchValue": [Function],
+      "pristine": true,
+      "reset": [Function],
+      "setValue": [Function],
+      "stateChanges": Observable {
+        "observers": Array [],
+      },
+      "status": "VALID",
+      "statusChanges": Observable {
+        "observers": Array [],
+      },
+      "submitted": false,
+      "touched": false,
+      "validator": null,
+      "validatorOrOpts": Object {
+        "asyncValidators": null,
+        "updateOn": null,
+        "validators": null,
+      },
+      "value": Object {
+        "date": "2018-02-06",
+        "notes": "Chicken1’s first egg in 3 months!! ",
+        "quantity": "1",
+      },
+      "valueChanges": Observable {
+        "observers": Array [],
+      },
+    }
+  }
+  mode="Edit"
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "eggId",
+            null,
+          ],
+          Array [
+            "date",
+            null,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": "-L4geyAR0BkMrAjiF7NZ",
+          },
+          Object {
+            "isThrow": false,
+            "value": "2018-02-10",
+          },
+        ],
+      },
+    }
+  }
+  onDateChange={[Function]}
+  onSaveForm={[Function]}
+/>
+`;
+
+exports[`BulkEditor component: Should render connected BulkEditor with no defaults 1`] = `
+<BulkEditorRenderer
+  error=""
+  form={
+    FormGroup {
+      "_onDisabledChange": Array [],
+      "_pendingChange": false,
+      "_pendingDirty": false,
+      "_pendingTouched": false,
+      "asyncValidator": null,
+      "controls": Object {
+        "date": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "2018-05-15",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": [Function],
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": Array [
+              [Function],
+              [Function],
+            ],
+          },
+          "value": "2018-05-15",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "notes": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": null,
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": null,
+          },
+          "value": "",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+        "quantity": FormControl {
+          "_onCollectionChange": [Function],
+          "_onDisabledChange": Array [],
+          "_parent": [Circular],
+          "_pendingChange": true,
+          "_pendingDirty": false,
+          "_pendingTouched": false,
+          "_pendingValue": "1",
+          "active": false,
+          "asyncValidator": null,
+          "errors": null,
+          "formState": "1",
+          "get": [Function],
+          "getError": [Function],
+          "handler": [Function],
+          "hasError": [Function],
+          "meta": Object {},
+          "onBlur": [Function],
+          "onBlurChanges": Observable {
+            "observers": Array [],
+          },
+          "onChange": [Function],
+          "onFocus": [Function],
+          "onValueChanges": Observable {
+            "observers": Array [],
+          },
+          "patchValue": [Function],
+          "pristine": true,
+          "reset": [Function],
+          "setValue": [Function],
+          "stateChanges": Observable {
+            "observers": Array [],
+          },
+          "status": "VALID",
+          "statusChanges": Observable {
+            "observers": Array [],
+          },
+          "submitted": false,
+          "touched": false,
+          "validator": null,
+          "validatorsOrOpts": Object {
+            "asyncValidators": null,
+            "updateOn": null,
+            "validators": null,
+          },
+          "value": "1",
+          "valueChanges": Observable {
+            "observers": Array [],
+          },
+        },
+      },
+      "errors": null,
+      "get": [Function],
+      "getError": [Function],
+      "handleSubmit": [Function],
+      "hasError": [Function],
+      "meta": Object {},
+      "patchValue": [Function],
+      "pristine": true,
+      "reset": [Function],
+      "setValue": [Function],
+      "stateChanges": Observable {
+        "observers": Array [],
+      },
+      "status": "VALID",
+      "statusChanges": Observable {
+        "observers": Array [],
+      },
+      "submitted": false,
+      "touched": false,
+      "validator": null,
+      "validatorOrOpts": Object {
+        "asyncValidators": null,
+        "updateOn": null,
+        "validators": null,
+      },
+      "value": Object {
+        "date": "2018-05-15",
+        "notes": "",
+        "quantity": "1",
+      },
+      "valueChanges": Observable {
+        "observers": Array [],
+      },
+    }
+  }
+  mode="Add"
+  navigation={
+    Object {
+      "getParam": [MockFunction] {
+        "calls": Array [
+          Array [
+            "eggId",
+            null,
+          ],
+          Array [
+            "date",
+            null,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": null,
+          },
+          Object {
+            "isThrow": false,
+            "value": null,
+          },
+        ],
+      },
+    }
+  }
+  onDateChange={[Function]}
+  onSaveForm={[Function]}
+/>
+`;

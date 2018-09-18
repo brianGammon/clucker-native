@@ -28,29 +28,13 @@ exports[`Header renders with default title, eggButton and goBack button 1`] = `
     </Styled(Title)>
   </Styled(Body)>
   <Styled(Right)>
-    <Styled(Button)
-      onPress={[Function]}
-      transparent={true}
-    >
-      <Styled(Icon)
-        active={true}
-        name="add-circle"
-        style={
-          Object {
-            "fontSize": 24,
-          }
+    <ActionButton
+      navigation={
+        Object {
+          "getParam": [MockFunction],
         }
-      />
-      <Styled(Text)
-        style={
-          Object {
-            "paddingLeft": 5,
-          }
-        }
-      >
-        Egg
-      </Styled(Text)>
-    </Styled(Button)>
+      }
+    />
   </Styled(Right)>
 </Styled(Header)>
 `;
