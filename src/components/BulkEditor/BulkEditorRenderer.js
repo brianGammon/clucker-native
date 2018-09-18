@@ -11,7 +11,6 @@ import FormInput from '../FormInput';
 import styles from './styles';
 
 type Props = {
-  mode: 'Edit' | 'Add',
   form: any,
   onSaveForm: () => void,
   onDateChange: (dateString: string) => void,
@@ -19,14 +18,13 @@ type Props = {
 };
 
 const BulkEditorRenderer = ({
-  mode,
   form,
   onDateChange,
   onSaveForm,
   error,
 }: Props) => (
   <Container>
-    <Header title={`${mode} Egg`} cancelButton />
+    <Header title="Bulk Entry" cancelButton />
     <Content>
       <View padder>
         {error && <Text style={styles.error}>{error}</Text>}

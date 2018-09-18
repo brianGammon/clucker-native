@@ -22,7 +22,7 @@ type Props = {
   chickens: {
     [chickenId: string]: Chicken,
   },
-  handleMoreOptions: (eggId: string) => void,
+  handleMoreOptions: (eggId: string, bulkMode: boolean) => void,
 };
 
 const CalendarDayRenderer = ({

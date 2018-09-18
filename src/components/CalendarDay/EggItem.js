@@ -4,13 +4,14 @@ import {
   View, Text, ListItem, Body, Button, Icon, Badge,
 } from 'native-base';
 import { type Egg } from '../../types';
+import CommonLabel from '../CommonLabel';
 import styles from './styles';
 
 type Props = {
   item: string,
   chickenName: string,
   egg: Egg,
-  handleMoreOptions: (eggId: string) => void,
+  handleMoreOptions: (eggId: string, bulkMode: boolean) => void,
 };
 
 const EggItem = ({
@@ -18,15 +19,29 @@ const EggItem = ({
 }: Props) => (
   <ListItem>
     <Body style={styles.container}>
-      <View style={styles.details}>
+      <View style={styles.flex}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.label}>{chickenName}</Text>
-            <Text>{`${egg.weight || '-- '}g`}</Text>
-          </View>
+          {!egg.bulkMode && (
+            <View style={styles.flex}>
+              <Text style={styles.label}>{chickenName}</Text>
+              <View style={styles.row}>
+                <CommonLabel text="Weight: " />
+                <Text>{`${egg.weight || '-- '}g`}</Text>
+              </View>
+            </View>
+          )}
+          {egg.bulkMode && (
+            <View style={styles.flex}>
+              <Text style={styles.label}>Bulk Entry</Text>
+              <View style={styles.row}>
+                <CommonLabel text="Quantity: " />
+                <Text>{egg.quantity}</Text>
+              </View>
+            </View>
+          )}
           {egg.damaged && (
             <View style={styles.badgeContainer}>
-              <Badge warning>
+              <Badge danger>
                 <Text style={styles.badgeText}>Damaged</Text>
               </Badge>
             </View>
@@ -45,7 +60,7 @@ const EggItem = ({
           style={styles.moreButton}
           transparent
           dark
-          onPress={() => handleMoreOptions(item)}
+          onPress={() => handleMoreOptions(item, egg.bulkMode)}
         >
           <Icon active style={styles.moreIcon} name="more" />
         </Button>

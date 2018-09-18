@@ -5,8 +5,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  details: {
+  flex: {
     flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
   },
   badgeContainer: {
     flexDirection: 'row',

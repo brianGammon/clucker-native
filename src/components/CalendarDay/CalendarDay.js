@@ -42,11 +42,11 @@ class CalendarDay extends React.Component<Props> {
     ]);
   };
 
-  handleMoreOptions = (eggId: string) => {
+  handleMoreOptions = (eggId: string, bulkMode: boolean) => {
     const { navigation } = this.props;
     const BUTTONS = ['Edit Details', 'Delete Egg', 'Cancel'];
     const ACTIONS = [
-      () => navigation.navigate('EggEditor', { eggId }),
+      () => navigation.navigate(bulkMode ? 'BulkEditor' : 'EggEditor', { eggId }),
       () => this.deleteEgg(eggId),
       () => {},
     ];

@@ -200,7 +200,6 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
       },
     }
   }
-  mode="Edit"
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -432,7 +431,6 @@ exports[`BulkEditor component: Should render connected BulkEditor with no defaul
       },
     }
   }
-  mode="Add"
   navigation={
     Object {
       "getParam": [MockFunction] {

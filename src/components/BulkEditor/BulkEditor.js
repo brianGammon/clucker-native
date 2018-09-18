@@ -88,14 +88,13 @@ class BulkEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const { navigation, error, eggId } = this.props;
+    const { navigation, error } = this.props;
     const { formReady } = this.state;
     if (!formReady) {
       return <Loading />;
     }
     return (
       <BulkEditorRenderer
-        mode={eggId ? 'Edit' : 'Add'}
         navigation={navigation}
         form={this.form}
         onSaveForm={this.onSaveForm}
