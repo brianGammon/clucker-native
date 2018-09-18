@@ -55,6 +55,12 @@
         "userId": "user1",
         "weight": "62.3"
       },
+      "-L8xhEvLj6TTdrJtJHJe": {
+        "chickenId": "unknown",
+        "date": "2018-03-31",
+        "modified": "2018-03-31T20:17:16.527Z",
+        "quantity": "8"
+      },
       "-L91gSf4MV20VXirRW0Q": {
         "chickenId": "chicken3",
         "chickenName": "Chicken3",
@@ -223,6 +229,12 @@
         "modified": "2018-04-08T20:59:35.590Z",
         "userId": "user1",
         "weight": "58.1"
+      },
+      "-L9b2doBcV0z7ZljPEzs": {
+        "chickenId": "unknown",
+        "date": "2018-04-08",
+        "modified": "2018-04-08T20:59:35.590Z",
+        "quantity": "21"
       },
       "-L9fIU-_Tj6KXYSR_q73": {
         "chickenId": "chicken4",
@@ -399,6 +411,12 @@
         "modified": "2018-04-16T16:55:09.865Z",
         "userId": "user1",
         "weight": "65.5"
+      },
+      "-LAENQIyi8oXg-AqekQs": {
+        "chickenId": "unknown",
+        "date": "2018-04-16",
+        "modified": "2018-04-16T16:55:09.865Z",
+        "quantity": "64"
       },
       "-LAKZf9OsGh0g_Cxx3Ft": {
         "chickenId": "chicken2",
@@ -654,6 +672,12 @@
         "userId": "user1",
         "weight": "65.3"
       },
+      "-LBMzYSJNk-9FIp-72nK": {
+        "chickenId": "unknown",
+        "date": "2018-04-30",
+        "modified": "2018-04-30T19:18:46.383Z",
+        "quantity": "56"
+      },
       "-LBMzabge-5oORvOVzKP": {
         "chickenId": "chicken4",
         "chickenName": "Chicken4",
@@ -832,6 +856,12 @@
         "modified": "2018-05-22T23:38:20.234Z",
         "userId": "user1",
         "weight": "63.6"
+      },
+      "-LC69RfnS0PF9sWVkUgX": {
+        "chickenId": "unknown",
+        "date": "2018-05-09",
+        "modified": "2018-05-22T23:38:20.234Z",
+        "weight": "93.6"
       },
       "-LCBBHoRFzWGBmN6LraU": {
         "chickenId": "chicken4",

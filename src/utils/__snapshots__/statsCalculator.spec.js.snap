@@ -2,20 +2,22 @@
 
 exports[`Stats Calculator calculate for allTime, full set 1`] = `
 Object {
-  "averageNumber": 2.1333333333333333,
-  "averageWeight": 63.79381443298966,
+  "averageNumber": 6.166666666666667,
+  "averageWeight": 64.09795918367344,
   "eggsPerChicken": Object {
     "chicken1": 36,
     "chicken2": 28,
     "chicken3": 11,
     "chicken4": 31,
+    "unknown": 150,
   },
   "eggsPerPeriod": Object {
     "2018-03": Object {
       "byChicken": Object {
         "chicken4": 1,
+        "unknown": 8,
       },
-      "total": 1,
+      "total": 9,
     },
     "2018-04": Object {
       "byChicken": Object {
@@ -23,29 +25,29 @@ Object {
         "chicken2": 20,
         "chicken3": 11,
         "chicken4": 22,
+        "unknown": 141,
       },
-      "total": 77,
+      "total": 218,
     },
     "2018-05": Object {
       "byChicken": Object {
         "chicken1": 12,
         "chicken2": 8,
         "chicken4": 8,
+        "unknown": 1,
       },
       "hasNote": true,
-      "total": 28,
+      "total": 29,
     },
   },
   "firstEgg": "2018-03-31",
   "heaviest": Object {
-    "chickenId": "chicken1",
-    "chickenName": "Chicken1",
-    "date": "2018-04-28",
-    "modified": "2018-04-28T15:03:19.202Z",
-    "userId": "user1",
-    "weight": "71.5",
+    "chickenId": "unknown",
+    "date": "2018-05-09",
+    "modified": "2018-05-22T23:38:20.234Z",
+    "weight": "93.6",
   },
-  "mostEggs": "chicken1",
-  "total": 106,
+  "mostEggs": "unknown",
+  "total": 256,
 }
 `;

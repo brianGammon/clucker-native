@@ -15,7 +15,7 @@ type Props = {
 const Leaderboard = ({ stats, chickens, mode }: Props) => (
   <View style={styles.container}>
     <Text style={styles.statsLabel}>
-      {`${mode === 'allTime' ? 'All Time' : ''} Leaderboard`}
+      {`${mode === 'allTime' ? 'All Time' : 'Month'} Leaderboard`}
     </Text>
     <View style={[styles.row, styles.headerRow]}>
       <Text style={styles.wideLabel}>Chicken</Text>
@@ -23,14 +23,19 @@ const Leaderboard = ({ stats, chickens, mode }: Props) => (
         <Text style={styles.label}>Eggs</Text>
       </View>
     </View>
-    {Object.keys(stats.eggsPerChicken).map(key => (
-      <View key={key} style={styles.row}>
-        <Text style={styles.wideValue}>
-          {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
-        </Text>
-        <Text style={styles.value}>{stats.eggsPerChicken[key]}</Text>
-      </View>
-    ))}
+    {Object.keys(stats.eggsPerChicken).map((key) => {
+      if (!chickens[key]) {
+        return null;
+      }
+      return (
+        <View key={key} style={styles.row}>
+          <Text style={styles.wideValue}>
+            {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
+          </Text>
+          <Text style={styles.value}>{stats.eggsPerChicken[key]}</Text>
+        </View>
+      );
+    })}
   </View>
 );
 

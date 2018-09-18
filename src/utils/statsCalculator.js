@@ -3,6 +3,7 @@ import { sortBy, toPairs, fromPairs } from 'lodash';
 import { dateStringAsMoment, nowAsMoment } from './dateHelper';
 
 export default (eggs, range) => {
+  let totalCount = 0;
   let heaviestEgg = null;
   let highestWeight = 0;
   let totalWithWeight = 0;
@@ -34,6 +35,8 @@ export default (eggs, range) => {
 
   sortedEggs.forEach((egg) => {
     const thisEggDate = moment(egg.date);
+    const quantity = +egg.quantity || 1;
+    totalCount += quantity;
 
     if (!earliestDate) {
       earliestDate = egg.date;
@@ -42,7 +45,7 @@ export default (eggs, range) => {
     if (!eggsPerChicken[egg.chickenId]) {
       eggsPerChicken[egg.chickenId] = 0;
     }
-    eggsPerChicken[egg.chickenId] += 1;
+    eggsPerChicken[egg.chickenId] += quantity;
 
     // Find heaviest & avg
     if (egg.weight) {
@@ -57,7 +60,7 @@ export default (eggs, range) => {
 
     if (range === 'allTime' || thisEggDate.isAfter(startofRange)) {
       if (thisEggDate.isAfter(startofRange)) {
-        rangeForAverageCount += 1;
+        rangeForAverageCount += quantity;
       }
 
       const rollupPeriod = range === 'allTime' ? egg.date.substring(0, 7) : egg.date;
@@ -66,11 +69,11 @@ export default (eggs, range) => {
         eggsPerPeriod[rollupPeriod] = { total: 0, byChicken: {} };
       }
 
-      eggsPerPeriod[rollupPeriod].total += 1;
+      eggsPerPeriod[rollupPeriod].total += quantity;
       if (egg.notes && egg.notes !== '') {
         eggsPerPeriod[rollupPeriod].hasNote = true;
       }
-      eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0) + 1;
+      eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0) + quantity;
     }
   });
 
@@ -90,7 +93,7 @@ export default (eggs, range) => {
   eggsPerChicken = fromPairs(sortedArray);
 
   const stats = {
-    total: sortedEggs.length,
+    total: totalCount,
     heaviest: heaviestEgg,
     averageWeight: totalWeight / totalWithWeight,
     averageNumber,

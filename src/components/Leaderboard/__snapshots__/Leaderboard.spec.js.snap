@@ -17,7 +17,7 @@ exports[`Leaderboard renders 1`] = `
       }
     }
   >
-     Leaderboard
+    Month Leaderboard
   </Styled(Text)>
   <Styled(ViewNB)
     style={
@@ -110,36 +110,6 @@ exports[`Leaderboard renders 1`] = `
       }
     >
       Chicken2
-    </Styled(Text)>
-    <Styled(Text)
-      style={
-        Object {
-          "textAlign": "center",
-          "width": 40,
-        }
-      }
-    >
-      2
-    </Styled(Text)>
-  </Styled(ViewNB)>
-  <Styled(ViewNB)
-    key="unknown"
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "padding": 4,
-      }
-    }
-  >
-    <Styled(Text)
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      Unnamed Hen
     </Styled(Text)>
     <Styled(Text)
       style={
