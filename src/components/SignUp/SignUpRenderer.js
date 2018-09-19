@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { FieldGroup, FieldControl } from 'react-reactive-form';
-import { Button, Text, Form } from 'native-base';
+import {
+  Text, Button, Form, Spinner,
+} from 'native-base';
 import FormInput from '../FormInput';
 import AuthContainer from '../Auth/AuthContainer';
 import AuthExtraLink from '../Auth/AuthExtraLink';
@@ -11,6 +13,7 @@ type Props = {
   },
   navigation: any,
   error: string,
+  inProgress: boolean,
   loginForm: any,
   handleSubmit: any,
   focusNext: (field: string) => void,
@@ -23,6 +26,7 @@ const SignUpRenderer = ({
   handleSubmit,
   inputRefs,
   focusNext,
+  inProgress,
 }: Props) => (
   <AuthContainer
     title="Sign Up"
@@ -38,6 +42,7 @@ const SignUpRenderer = ({
   >
     <FieldGroup
       control={loginForm}
+      strict={false}
       render={({ invalid }) => (
         <Form>
           <FieldControl
@@ -71,9 +76,10 @@ const SignUpRenderer = ({
             style={{ marginTop: 10 }}
             block
             onPress={handleSubmit}
-            disabled={invalid}
+            disabled={invalid || inProgress}
           >
-            <Text>Submit</Text>
+            {!inProgress && <Text>Submit</Text>}
+            {inProgress && <Spinner size="small" color="white" />}
           </Button>
         </Form>
       )}

@@ -1,19 +1,14 @@
 /* @flow */
 import React from 'react';
-import { View, Text, Button } from 'native-base';
-import { type Navigation } from '../../types';
+import { View, Text } from 'native-base';
 import styles from './styles';
 
-type Props = {
-  navigation: Navigation,
-};
-
-const NoChickens = ({ navigation }: Props) => (
+const NoChickens = () => (
   <View style={styles.noChickens}>
-    <Text style={styles.noChickensText}>No Chickens Yet</Text>
-    <Button transparent onPress={() => navigation.navigate('ChickenEditor')}>
-      <Text>Add One?</Text>
-    </Button>
+    <Text>
+      No chickens in your flock yet. Add one by tapping the &#34;+&#34; button
+      above.
+    </Text>
   </View>
 );
 

@@ -7,9 +7,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  noChickensText: {
-    color: variables.inputColorPlaceholder,
-  },
   header: {
     flexDirection: 'row',
     justifyContent: 'center',

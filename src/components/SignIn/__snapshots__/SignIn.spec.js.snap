@@ -5,6 +5,7 @@ exports[`SignIn component: Should render 1`] = `
   error={null}
   focusNext={[Function]}
   handleSubmit={[Function]}
+  inProgress={false}
   inputRefs={Object {}}
   loginForm={
     FormGroup {
@@ -180,7 +181,7 @@ exports[`SignIn component: SignInRenderer renders when no error message 1`] = `
 >
   <FieldGroup
     render={[Function]}
-    strict={true}
+    strict={false}
   />
 </AuthBase>
 `;
@@ -206,7 +207,7 @@ exports[`SignIn component: SignInRenderer renders with error message 1`] = `
 >
   <FieldGroup
     render={[Function]}
-    strict={true}
+    strict={false}
   />
 </AuthBase>
 `;

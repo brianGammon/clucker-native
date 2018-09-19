@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { FieldGroup, FieldControl } from 'react-reactive-form';
-import { Text, Button, Form } from 'native-base';
+import {
+  Text, Button, Form, Spinner,
+} from 'native-base';
 import FormInput from '../FormInput';
 import AuthContainer from '../Auth/AuthContainer';
 import AuthExtraLink from '../Auth/AuthExtraLink';
@@ -8,6 +10,7 @@ import styles from './styles';
 
 type Props = {
   navigation: any,
+  inProgress: boolean,
   form: any,
   error: string,
   successMessage: string,
@@ -18,6 +21,7 @@ const ResetPasswordRenderer = ({
   navigation,
   form,
   error,
+  inProgress,
   successMessage,
   handleSubmit,
 }: Props) => (
@@ -43,6 +47,7 @@ const ResetPasswordRenderer = ({
       && !error && <Text style={styles.success}>{successMessage}</Text>}
     <FieldGroup
       control={form}
+      strict={false}
       render={({ invalid }) => (
         <Form>
           <FieldControl
@@ -59,9 +64,10 @@ const ResetPasswordRenderer = ({
             style={{ marginTop: 10 }}
             block
             onPress={handleSubmit}
-            disabled={invalid}
+            disabled={invalid || inProgress}
           >
-            <Text>Send Email</Text>
+            {!inProgress && <Text>Send Email</Text>}
+            {inProgress && <Spinner size="small" color="white" />}
           </Button>
         </Form>
       )}

@@ -8,6 +8,7 @@ import { actionTypes } from '../../redux/constants';
 
 type Props = {
   navigation: any,
+  inProgress: boolean,
   error: string,
   signUp: (email: string, password: string) => void,
   clearError: () => void,
@@ -40,9 +41,10 @@ class SignUp extends React.Component<Props> {
   };
 
   render() {
-    const { navigation, error } = this.props;
+    const { navigation, error, inProgress } = this.props;
     return (
       <SignUpRenderer
+        inProgress={inProgress}
         inputRefs={this.inputRefs}
         focusNext={this.focusNext}
         navigation={navigation}
@@ -54,7 +56,8 @@ class SignUp extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth: { errors } }) => ({
+const mapStateToProps = ({ auth: { inProgress, errors } }) => ({
+  inProgress,
   error: errors.signUp,
 });
 

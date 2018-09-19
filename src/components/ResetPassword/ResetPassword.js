@@ -50,10 +50,11 @@ class ResetPassword extends React.Component<Props, State> {
   };
 
   render() {
-    const { navigation, error } = this.props;
+    const { navigation, error, inProgress } = this.props;
     const { successMessage } = this.state;
     return (
       <ResetPasswordRenderer
+        inProgress={inProgress}
         navigation={navigation}
         form={this.form}
         successMessage={successMessage}

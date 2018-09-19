@@ -76,7 +76,7 @@ const CalendarRenderer = ({
         <View>
           <Line />
           <HelpMessage>
-            <Text>No eggs logged yet for this period</Text>
+            <Text>No eggs logged for this period.</Text>
           </HelpMessage>
         </View>
       )}
