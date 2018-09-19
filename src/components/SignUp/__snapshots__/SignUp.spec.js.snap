@@ -3,7 +3,9 @@
 exports[`SignUp component: Should render 1`] = `
 <SignUpRenderer
   error={null}
+  focusNext={[Function]}
   handleSubmit={[Function]}
+  inputRefs={Object {}}
   loginForm={
     FormGroup {
       "_onDisabledChange": Array [],

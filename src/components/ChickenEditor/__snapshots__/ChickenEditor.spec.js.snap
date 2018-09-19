@@ -3,6 +3,7 @@
 exports[`ChickenEditor component: Should render in add new mode 1`] = `
 <ChickenEditorRenderer
   error=""
+  focusNext={[Function]}
   form={
     FormGroup {
       "_onDisabledChange": Array [],
@@ -456,6 +457,7 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
   }
   handleSubmit={[Function]}
   inProgress={false}
+  inputRefs={Object {}}
   mode="Add"
   navigation={
     Object {
@@ -494,6 +496,7 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
 exports[`ChickenEditor component: Should render in edit mode 1`] = `
 <ChickenEditorRenderer
   error=""
+  focusNext={[Function]}
   form={
     FormGroup {
       "_onDisabledChange": Array [],
@@ -945,6 +948,7 @@ exports[`ChickenEditor component: Should render in edit mode 1`] = `
   }
   handleSubmit={[Function]}
   inProgress={false}
+  inputRefs={Object {}}
   mode="Edit"
   navigation={
     Object {

@@ -121,11 +121,13 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
           "_pendingChange": true,
           "_pendingDirty": false,
           "_pendingTouched": false,
-          "_pendingValue": "1",
+          "_pendingValue": "",
           "active": false,
           "asyncValidator": null,
-          "errors": null,
-          "formState": "1",
+          "errors": Object {
+            "required": true,
+          },
+          "formState": "",
           "get": [Function],
           "getError": [Function],
           "handler": [Function],
@@ -147,19 +149,23 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
           "stateChanges": Observable {
             "observers": Array [],
           },
-          "status": "VALID",
+          "status": "INVALID",
           "statusChanges": Observable {
             "observers": Array [],
           },
           "submitted": false,
           "touched": false,
-          "validator": null,
+          "validator": [Function],
           "validatorsOrOpts": Object {
             "asyncValidators": null,
             "updateOn": null,
-            "validators": null,
+            "validators": Array [
+              [Function],
+              [Function],
+              [Function],
+            ],
           },
-          "value": "1",
+          "value": "",
           "valueChanges": Observable {
             "observers": Array [],
           },
@@ -178,7 +184,7 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
       "stateChanges": Observable {
         "observers": Array [],
       },
-      "status": "VALID",
+      "status": "INVALID",
       "statusChanges": Observable {
         "observers": Array [],
       },
@@ -193,7 +199,7 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
       "value": Object {
         "date": "2018-02-06",
         "notes": "Chicken1’s first egg in 3 months!! ",
-        "quantity": "1",
+        "quantity": "",
       },
       "valueChanges": Observable {
         "observers": Array [],
@@ -352,11 +358,13 @@ exports[`BulkEditor component: Should render connected BulkEditor with no defaul
           "_pendingChange": true,
           "_pendingDirty": false,
           "_pendingTouched": false,
-          "_pendingValue": "1",
+          "_pendingValue": "",
           "active": false,
           "asyncValidator": null,
-          "errors": null,
-          "formState": "1",
+          "errors": Object {
+            "required": true,
+          },
+          "formState": "",
           "get": [Function],
           "getError": [Function],
           "handler": [Function],
@@ -378,19 +386,23 @@ exports[`BulkEditor component: Should render connected BulkEditor with no defaul
           "stateChanges": Observable {
             "observers": Array [],
           },
-          "status": "VALID",
+          "status": "INVALID",
           "statusChanges": Observable {
             "observers": Array [],
           },
           "submitted": false,
           "touched": false,
-          "validator": null,
+          "validator": [Function],
           "validatorsOrOpts": Object {
             "asyncValidators": null,
             "updateOn": null,
-            "validators": null,
+            "validators": Array [
+              [Function],
+              [Function],
+              [Function],
+            ],
           },
-          "value": "1",
+          "value": "",
           "valueChanges": Observable {
             "observers": Array [],
           },
@@ -409,7 +421,7 @@ exports[`BulkEditor component: Should render connected BulkEditor with no defaul
       "stateChanges": Observable {
         "observers": Array [],
       },
-      "status": "VALID",
+      "status": "INVALID",
       "statusChanges": Observable {
         "observers": Array [],
       },
@@ -424,7 +436,7 @@ exports[`BulkEditor component: Should render connected BulkEditor with no defaul
       "value": Object {
         "date": "2018-05-15",
         "notes": "",
-        "quantity": "1",
+        "quantity": "",
       },
       "valueChanges": Observable {
         "observers": Array [],

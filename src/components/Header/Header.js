@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react';
 import { withNavigation } from 'react-navigation';
+import { Platform } from 'react-native';
 import {
   Header as NBHeader,
   Left,
@@ -40,7 +41,8 @@ export const Header = ({
     <Left>
       {cancelButton && (
         <Button transparent onPress={() => navigation.goBack()}>
-          <Text>Cancel</Text>
+          {Platform.OS === 'android' && <Icon name="close" />}
+          {Platform.OS === 'ios' && <Text>Cancel</Text>}
         </Button>
       )}
       {goBackButton !== undefined && (
@@ -65,7 +67,8 @@ export const Header = ({
       {eggButton && <ActionButton navigation={navigation} />}
       {handleSave && (
         <Button transparent disabled={saveDisabled} onPress={handleSave}>
-          <Text>Save</Text>
+          {Platform.OS === 'android' && <Icon name="checkmark" />}
+          {Platform.OS === 'ios' && <Text>Save</Text>}
         </Button>
       )}
     </Right>

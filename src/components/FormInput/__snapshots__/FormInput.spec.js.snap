@@ -12,7 +12,8 @@ exports[`FormInput renders - error, not touched yet 1`] = `
     />
     <Styled(Input)
       autoCapitalize="none"
-      blurOnSubmit={false}
+      autoCorrect={false}
+      blurOnSubmit={true}
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
@@ -70,7 +71,8 @@ exports[`FormInput renders - errors, touched 1`] = `
     />
     <Styled(Input)
       autoCapitalize="none"
-      blurOnSubmit={false}
+      autoCorrect={false}
+      blurOnSubmit={true}
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}

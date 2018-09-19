@@ -12,6 +12,10 @@ import styles from './styles';
 
 type Props = {
   mode: 'Edit' | 'Add',
+  inputRefs: {
+    [id: string]: any,
+  },
+  focusNext: (field: string) => void,
   form: any,
   onRemoveProfilePhoto: () => void,
   onResetProfilePhoto: () => void,
@@ -34,6 +38,8 @@ const ChickenEditorRenderer = ({
   onSelectPhoto,
   onDateChange,
   inProgress,
+  inputRefs,
+  focusNext,
 }: Props) => (
   <FieldGroup
     control={form}
@@ -54,7 +60,14 @@ const ChickenEditorRenderer = ({
               <FieldControl
                 name="name"
                 render={formProps => <FormInput {...formProps} />}
-                meta={{ label: 'Name', maxLength: 25 }}
+                meta={{
+                  label: 'Name',
+                  maxLength: 25,
+                  inputRefs,
+                  onSubmitEditing: () => focusNext('Breed'),
+                  returnKeyType: 'next',
+                  blurOnSubmit: false,
+                }}
               />
 
               <FieldControl
@@ -63,6 +76,9 @@ const ChickenEditorRenderer = ({
                 meta={{
                   label: 'Breed',
                   maxLength: 25,
+                  inputRefs,
+                  returnKeyType: 'done',
+                  blurOnSubmit: true,
                 }}
               />
 

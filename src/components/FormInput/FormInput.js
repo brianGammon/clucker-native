@@ -24,6 +24,9 @@ type Props = {
     returnKeyType: string,
     blurOnSubmit: boolean,
     onSubmitEditing: () => {},
+    inputRefs: {
+      [id: string]: any,
+    },
   },
 };
 
@@ -66,14 +69,22 @@ class FormInput extends React.Component<Props, State> {
         <Item inlineLabel error={touched && error !== null}>
           <CommonLabel text={`${meta.label}:`} />
           <Input
+            ref={
+              meta.inputRefs
+                ? (input) => {
+                  meta.inputRefs[meta.label] = input;
+                }
+                : null
+            }
             keyboardType={meta.keyboardType || null}
             maxLength={meta.maxLength || null}
             numberOfLines={meta.numberOfLines || null}
             autoCapitalize={meta.autoCapitalize}
+            autoCorrect={false}
             secureTextEntry={hidePassword && meta.secureTextEntry}
             onSubmitEditing={meta.onSubmitEditing || null}
             returnKeyType={meta.returnKeyType || 'done'}
-            blurOnSubmit={meta.blurOnSubmit || false}
+            blurOnSubmit={meta.blurOnSubmit || true}
             {...handler()}
           />
           {touched && error !== null && <Icon name="alert" />}

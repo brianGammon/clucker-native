@@ -14,6 +14,8 @@ type Props = {
 };
 
 class SignUp extends React.Component<Props> {
+  inputRefs = {};
+
   loginForm = FormBuilder.group({
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -26,6 +28,11 @@ class SignUp extends React.Component<Props> {
     }
   }
 
+  focusNext = (field: string) => {
+    // eslint-disable-next-line no-underscore-dangle
+    this.inputRefs[field]._root.focus();
+  };
+
   handleSubmit = () => {
     const { email, password } = this.loginForm.value;
     const { signUp } = this.props;
@@ -36,6 +43,8 @@ class SignUp extends React.Component<Props> {
     const { navigation, error } = this.props;
     return (
       <SignUpRenderer
+        inputRefs={this.inputRefs}
+        focusNext={this.focusNext}
         navigation={navigation}
         error={error}
         loginForm={this.loginForm}

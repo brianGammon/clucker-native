@@ -33,7 +33,10 @@ class BulkEditor extends React.Component<Props, State> {
   form = FormBuilder.group({
     date: ['', [Validators.required, dateInRangeValidator]],
     notes: [''],
-    quantity: ['1'],
+    quantity: [
+      '',
+      [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)],
+    ],
   });
 
   state = { formReady: false };

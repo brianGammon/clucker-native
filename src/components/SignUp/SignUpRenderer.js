@@ -6,10 +6,14 @@ import AuthContainer from '../Auth/AuthContainer';
 import AuthExtraLink from '../Auth/AuthExtraLink';
 
 type Props = {
+  inputRefs: {
+    [id: string]: any,
+  },
   navigation: any,
   error: string,
   loginForm: any,
   handleSubmit: any,
+  focusNext: (field: string) => void,
 };
 
 const SignUpRenderer = ({
@@ -17,6 +21,8 @@ const SignUpRenderer = ({
   error,
   loginForm,
   handleSubmit,
+  inputRefs,
+  focusNext,
 }: Props) => (
   <AuthContainer
     title="Sign Up"
@@ -41,6 +47,10 @@ const SignUpRenderer = ({
               label: 'Email',
               autoCapitalize: 'none',
               keyboardType: 'email-address',
+              inputRefs,
+              onSubmitEditing: () => focusNext('Password'),
+              returnKeyType: 'next',
+              blurOnSubmit: false,
             }}
           />
 
@@ -51,6 +61,9 @@ const SignUpRenderer = ({
               label: 'Password',
               autoCapitalize: 'none',
               secureTextEntry: true,
+              inputRefs,
+              returnKeyType: 'done',
+              blurOnSubmit: true,
             }}
           />
 

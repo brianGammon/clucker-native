@@ -25,9 +25,7 @@ type State = {
 };
 
 class ChickenEditor extends React.Component<Props, State> {
-  static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.getParam('chickenId', null) ? 'Edit' : 'Add'} Chicken`,
-  });
+  inputRefs = {};
 
   form = FormBuilder.group({
     name: ['', Validators.required],
@@ -143,6 +141,11 @@ class ChickenEditor extends React.Component<Props, State> {
     saveForm(payload);
   };
 
+  focusNext = (field: string) => {
+    // eslint-disable-next-line no-underscore-dangle
+    this.inputRefs[field]._root.focus();
+  };
+
   render() {
     const {
       navigation,
@@ -157,6 +160,8 @@ class ChickenEditor extends React.Component<Props, State> {
     }
     return (
       <ChickenEditorRenderer
+        inputRefs={this.inputRefs}
+        focusNext={this.focusNext}
         mode={chickenId ? 'Edit' : 'Add'}
         navigation={navigation}
         form={this.form}
