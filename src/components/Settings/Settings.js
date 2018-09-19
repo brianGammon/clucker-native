@@ -12,10 +12,16 @@ type Props = {
 };
 
 class Settings extends React.Component<Props> {
+  componentDidUpdate() {
+    const { navigation, user } = this.props;
+    if (!user) {
+      navigation.navigate('Preload');
+    }
+  }
+
   handleSignOut = () => {
-    const { navigation, signOut } = this.props;
+    const { signOut } = this.props;
     signOut();
-    navigation.navigate('SignedOut');
   };
 
   render() {

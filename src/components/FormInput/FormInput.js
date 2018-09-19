@@ -21,6 +21,9 @@ type Props = {
     maxLength: number,
     numberOfLines: number,
     keyboardType: any,
+    returnKeyType: string,
+    blurOnSubmit: boolean,
+    onSubmitEditing: () => {},
   },
 };
 
@@ -51,8 +54,9 @@ class FormInput extends React.Component<Props, State> {
             bordered
             placeholder="Enter optional notes"
             maxLength={meta.maxLength || null}
-            blurOnSubmit
-            returnKeyType="done"
+            onSubmitEditing={meta.onSubmitEditing || null}
+            blurOnSubmit={meta.blurOnSubmit || true}
+            returnKeyType={meta.returnKeyType || 'done'}
           />
         </View>
       );
@@ -67,7 +71,9 @@ class FormInput extends React.Component<Props, State> {
             numberOfLines={meta.numberOfLines || null}
             autoCapitalize={meta.autoCapitalize}
             secureTextEntry={hidePassword && meta.secureTextEntry}
-            returnKeyType="done"
+            onSubmitEditing={meta.onSubmitEditing || null}
+            returnKeyType={meta.returnKeyType || 'done'}
+            blurOnSubmit={meta.blurOnSubmit || false}
             {...handler()}
           />
           {touched && error !== null && <Icon name="alert" />}

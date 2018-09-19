@@ -11,6 +11,7 @@ import {
   select,
   race,
 } from 'redux-saga/effects';
+import { AsyncStorage } from 'react-native';
 // $FlowFixMe
 import firebase from 'react-native-firebase';
 // eslint-disable-next-line
@@ -201,6 +202,7 @@ export function* watchAuthChanged() {
         put(actions.listenToChickens(event.user.uid)),
         put(actions.listenToEggs(event.user.uid)),
       ]);
+      yield fork([AsyncStorage, AsyncStorage.setItem], 'hasSignedIn', 'true');
       yield call([NavigationService, NavigationService.navigate], 'SignedIn');
     } else {
       yield put(actions.firebaseRemoveAllListenersRequested());

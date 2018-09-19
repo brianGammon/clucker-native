@@ -12,6 +12,7 @@ import {
   takeLatest,
   race,
 } from 'redux-saga/effects';
+import { AsyncStorage } from 'react-native';
 // eslint-disable-next-line
 import ImageResizer from 'react-native-image-resizer';
 import * as sagas from '../sagas';
@@ -313,6 +314,7 @@ describe('saga tests', () => {
         put(actions.listenToEggs('user1')),
       ]),
     );
+    expect(generator.next().value).toEqual(fork([AsyncStorage, AsyncStorage.setItem], 'hasSignedIn', 'true' ));
     expect(generator.next().value).toEqual(
       call([NavigationService, NavigationService.navigate], 'SignedIn'),
     );

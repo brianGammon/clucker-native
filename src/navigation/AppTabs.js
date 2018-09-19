@@ -57,7 +57,7 @@ export const Tabs = createBottomTabNavigator(
     }),
     tabBarOptions: {
       activeTintColor: variables.cluckerGrey,
-      inactiveTintColor: variables.cluckerGrey,
+      inactiveTintColor: variables.cluckerGreyMedium,
     },
   },
 );

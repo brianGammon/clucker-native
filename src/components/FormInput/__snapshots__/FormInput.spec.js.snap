@@ -12,9 +12,11 @@ exports[`FormInput renders - error, not touched yet 1`] = `
     />
     <Styled(Input)
       autoCapitalize="none"
+      blurOnSubmit={false}
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
+      onSubmitEditing={null}
       returnKeyType="done"
       secureTextEntry={true}
     />
@@ -68,9 +70,11 @@ exports[`FormInput renders - errors, touched 1`] = `
     />
     <Styled(Input)
       autoCapitalize="none"
+      blurOnSubmit={false}
       keyboardType={null}
       maxLength={null}
       numberOfLines={null}
+      onSubmitEditing={null}
       returnKeyType="done"
       secureTextEntry={true}
     />
