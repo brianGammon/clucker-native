@@ -32,7 +32,7 @@ type Props = {
 class CalendarDay extends React.Component<Props> {
   deleteEgg = (eggId) => {
     const { deleteEgg } = this.props;
-    Alert.alert('Are you sure you want to delete this egg?', null, [
+    Alert.alert('Are you sure you want to delete this entry?', null, [
       {
         text: 'Cancel',
       },
@@ -46,7 +46,7 @@ class CalendarDay extends React.Component<Props> {
 
   handleMoreOptions = (eggId: string, bulkMode: boolean) => {
     const { navigation } = this.props;
-    const BUTTONS = ['Edit Details', 'Delete Egg', 'Cancel'];
+    const BUTTONS = ['Edit Details', 'Delete Entry', 'Cancel'];
     const ACTIONS = [
       () => navigation.navigate(bulkMode ? 'BulkEditor' : 'EggEditor', { eggId }),
       () => this.deleteEgg(eggId),
