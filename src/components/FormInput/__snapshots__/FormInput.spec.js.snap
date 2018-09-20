@@ -117,7 +117,7 @@ exports[`FormInput renders - errors, touched 1`] = `
         }
       }
     >
-      Enter a valid email address.
+      Enter a valid email address
     </Styled(Text)>
   </Styled(ViewNB)>
 </Styled(ViewNB)>

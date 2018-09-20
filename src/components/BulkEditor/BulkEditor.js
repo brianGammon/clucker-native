@@ -35,7 +35,7 @@ class BulkEditor extends React.Component<Props, State> {
     notes: [''],
     quantity: [
       '',
-      [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)],
+      [Validators.required, Validators.min(1), Validators.max(500), Validators.pattern(/^\d+$/)],
     ],
   });
 

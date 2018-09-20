@@ -163,6 +163,7 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
               [Function],
               [Function],
               [Function],
+              [Function],
             ],
           },
           "value": "",
@@ -397,6 +398,7 @@ exports[`BulkEditor component: Should render connected BulkEditor with no defaul
             "asyncValidators": null,
             "updateOn": null,
             "validators": Array [
+              [Function],
               [Function],
               [Function],
               [Function],
