@@ -19,6 +19,7 @@ type Props = {
   eggs: {
     [eggId: string]: Egg,
   },
+  count: number,
   chickens: {
     [chickenId: string]: Chicken,
   },
@@ -31,6 +32,7 @@ const CalendarDayRenderer = ({
   chickens,
   dates,
   handleMoreOptions,
+  count,
 }: Props) => (
   <Container>
     <Header title="Egg List" eggButton goBackButton="Month" />
@@ -39,7 +41,7 @@ const CalendarDayRenderer = ({
         mode="day"
         navigation={navigation}
         dates={dates}
-        eggCount={Object.keys(eggs || {}).length}
+        eggCount={count}
       />
       <Line />
       <FlatList
