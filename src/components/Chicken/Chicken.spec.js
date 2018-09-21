@@ -81,7 +81,7 @@ describe('Chicken component:', () => {
 
     test('ChickenRenderer should render correctly when no stats yet', () => {
       const { stats, ...rest } = props;
-      props = { ...rest };
+      props = { ...rest, stats: {} };
       paramReturned = 'chicken1';
       const wrapper = shallow(
         <ChickenRenderer navigation={navigation} {...props} />,

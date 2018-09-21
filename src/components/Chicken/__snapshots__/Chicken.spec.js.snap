@@ -7,14 +7,15 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     goBackButton="Flock"
     title="Chicken"
   />
-  <Styled(Content)>
+  <Styled(Content)
+    padder={true}
+  >
     <ImageViewer
       showModal={true}
       toggleModal={[Function]}
       url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
     />
     <Styled(ViewNB)
-      padder={true}
       style={
         Object {
           "alignItems": "center",
@@ -23,18 +24,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     >
-      <Styled(ViewNB)>
-        <Styled(Button)
-          dark={true}
-          disabled={true}
-          onPress={[Function]}
-          transparent={true}
-        >
-          <Styled(Icon)
-            name="arrow-dropleft-circle"
-          />
-        </Styled(Button)>
-      </Styled(ViewNB)>
       <Styled(ViewNB)
         style={
           Object {
@@ -52,28 +41,18 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         >
           Chicken1
         </Styled(H2)>
-        <Styled(Text)
-          style={
-            Object {
-              "color": "grey",
-              "fontSize": 16,
-              "height": 20,
-            }
-          }
+      </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          dark={true}
+          disabled={true}
+          onPress={[Function]}
+          transparent={true}
         >
-          Cuckoo Maran
-        </Styled(Text)>
-        <Styled(Text)
-          style={
-            Object {
-              "color": "grey",
-              "fontSize": 16,
-              "height": 20,
-            }
-          }
-        >
-          Oct 5, 2016 (1y 11m)
-        </Styled(Text)>
+          <Styled(Icon)
+            name="arrow-dropleft-circle"
+          />
+        </Styled(Button)>
       </Styled(ViewNB)>
       <Styled(ViewNB)>
         <Styled(Button)
@@ -113,10 +92,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Styled(ViewNB)
-      padder={true}
       style={
         Object {
-          "alignItems": "center",
+          "flexDirection": "row",
         }
       }
     >
@@ -132,12 +110,243 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 200,
-              "width": 200,
+              "height": 180,
+              "width": 180,
             }
           }
         />
       </TouchableOpacity>
+      <Styled(ViewNB)
+        style={
+          Object {
+            "marginLeft": 10,
+          }
+        }
+      >
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Breed"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            Cuckoo Maran
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Hatched"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            Oct 5, 2016
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Age"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            1y 11m
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Gender"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            Female
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Separator)>
+          <Styled(Text)>
+            AWARDS
+          </Styled(Text)>
+        </Styled(Separator)>
+        <Styled(ListItem)>
+          <Styled(Text)>
+            None
+          </Styled(Text)>
+        </Styled(ListItem)>
+      </Styled(ViewNB)>
+      <Styled(Separator)>
+        <Styled(Text)>
+          CHICKEN STATS
+        </Styled(Text)>
+      </Styled(Separator)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Total Eggs Laid
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            0
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Last Egg
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            --
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Longest Streak
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            0 days
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Heaviest Egg
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            --
+             grams
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(Separator)>
+        <Styled(Text)>
+          PAST 7 DAYS
+        </Styled(Text)>
+      </Styled(Separator)>
+      <Styled(ListItem)
+        last={true}
+        style={
+          Object {
+            "paddingBottom": 5,
+            "paddingTop": 5,
+          }
+        }
+      >
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": "100%",
+            }
+          }
+        />
+      </Styled(ListItem)>
     </Styled(ViewNB)>
   </Styled(Content)>
 </Styled(Container)>
@@ -150,14 +359,15 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     goBackButton="Flock"
     title="Chicken"
   />
-  <Styled(Content)>
+  <Styled(Content)
+    padder={true}
+  >
     <ImageViewer
       showModal={true}
       toggleModal={[Function]}
       url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
     />
     <Styled(ViewNB)
-      padder={true}
       style={
         Object {
           "alignItems": "center",
@@ -166,18 +376,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     >
-      <Styled(ViewNB)>
-        <Styled(Button)
-          dark={true}
-          disabled={true}
-          onPress={[Function]}
-          transparent={true}
-        >
-          <Styled(Icon)
-            name="arrow-dropleft-circle"
-          />
-        </Styled(Button)>
-      </Styled(ViewNB)>
       <Styled(ViewNB)
         style={
           Object {
@@ -195,28 +393,18 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         >
           Chicken1
         </Styled(H2)>
-        <Styled(Text)
-          style={
-            Object {
-              "color": "grey",
-              "fontSize": 16,
-              "height": 20,
-            }
-          }
+      </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          dark={true}
+          disabled={true}
+          onPress={[Function]}
+          transparent={true}
         >
-          Cuckoo Maran
-        </Styled(Text)>
-        <Styled(Text)
-          style={
-            Object {
-              "color": "grey",
-              "fontSize": 16,
-              "height": 20,
-            }
-          }
-        >
-          Oct 5, 2016 (1y 11m)
-        </Styled(Text)>
+          <Styled(Icon)
+            name="arrow-dropleft-circle"
+          />
+        </Styled(Button)>
       </Styled(ViewNB)>
       <Styled(ViewNB)>
         <Styled(Button)
@@ -256,10 +444,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Styled(ViewNB)
-      padder={true}
       style={
         Object {
-          "alignItems": "center",
+          "flexDirection": "row",
         }
       }
     >
@@ -275,194 +462,300 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 200,
-              "width": 200,
+              "height": 180,
+              "width": 180,
             }
           }
         />
       </TouchableOpacity>
-    </Styled(ViewNB)>
-    <Styled(ViewNB)
-      padder={true}
-    >
-      <Line />
       <Styled(ViewNB)
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "marginBottom": 10,
+            "marginLeft": 10,
           }
         }
       >
         <Styled(ViewNB)
           style={
             Object {
-              "alignItems": "center",
-              "flex": 1,
+              "marginBottom": 10,
             }
           }
         >
-          <Styled(Text)
-            style={
-              Object {
-                "color": "grey",
-                "fontSize": 17,
-                "fontWeight": "bold",
-              }
-            }
-          >
-            Total Eggs
-          </Styled(Text)>
-          <Styled(H2)
+          <CommonLabel
             style={
               Object {
                 "fontWeight": "bold",
               }
             }
-          >
-            1
-          </Styled(H2)>
+            text="Breed"
+          />
           <Styled(Text)
             style={
               Object {
+                "color": "#575757",
+                "fontSize": 16,
                 "height": 20,
               }
             }
-          />
+          >
+            Cuckoo Maran
+          </Styled(Text)>
         </Styled(ViewNB)>
         <Styled(ViewNB)
           style={
             Object {
-              "alignItems": "center",
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Hatched"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            Oct 5, 2016
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Age"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            1y 11m
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Gender"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            Female
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+    </Styled(ViewNB)>
+    <Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Separator)>
+          <Styled(Text)>
+            AWARDS
+          </Styled(Text)>
+        </Styled(Separator)>
+        <Styled(ListItem)>
+          <Styled(Text)>
+            None
+          </Styled(Text)>
+        </Styled(ListItem)>
+      </Styled(ViewNB)>
+      <Styled(Separator)>
+        <Styled(Text)>
+          CHICKEN STATS
+        </Styled(Text)>
+      </Styled(Separator)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
               "flex": 1,
             }
           }
         >
-          <Styled(Text)
+          <Styled(Text)>
+            Total Eggs Laid
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            1
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Last Egg
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            --
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Longest Streak
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            0 days
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Heaviest Egg
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            --
+             grams
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(Separator)>
+        <Styled(Text)>
+          PAST 7 DAYS
+        </Styled(Text)>
+      </Styled(Separator)>
+      <Styled(ListItem)
+        last={true}
+        style={
+          Object {
+            "paddingBottom": 5,
+            "paddingTop": 5,
+          }
+        }
+      >
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flexDirection": "row",
+              "width": "100%",
+            }
+          }
+        >
+          <Styled(ViewNB)
+            key="2018-10-06"
             style={
               Array [
                 Object {
-                  "color": "grey",
-                  "fontSize": 17,
-                  "fontWeight": "bold",
+                  "alignItems": "center",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "borderLeftWidth": 1,
+                  "borderTopWidth": 1,
+                  "padding": 5,
+                  "width": "14.2857%",
+                },
+                Object {
+                  "backgroundColor": "#c9f5d6",
+                },
+                Object {
+                  "borderColor": "#ddd",
+                  "borderRightWidth": 1,
                 },
               ]
             }
           >
-            Best Streak
-          </Styled(Text)>
-          <Styled(H2)
-            style={
-              Object {
-                "fontWeight": "bold",
-              }
-            }
-          >
-            0
-          </Styled(H2)>
-          <Styled(Text)
-            style={
-              Object {
-                "height": 20,
-              }
-            }
-          >
-            Days
-          </Styled(Text)>
-        </Styled(ViewNB)>
-      </Styled(ViewNB)>
-      <Line />
-      <Styled(ViewNB)
-        style={
-          Object {
-            "alignItems": "center",
-          }
-        }
-      >
-        <Styled(Text)
-          style={
-            Array [
-              Object {
-                "color": "grey",
-                "fontSize": 17,
-                "fontWeight": "bold",
-              },
-              Object {
-                "marginBottom": 10,
-              },
-            ]
-          }
-        >
-          Last Week
-        </Styled(Text)>
-        <Styled(ViewNB)>
-          <Styled(ViewNB)
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <Styled(ViewNB)
-              key="2018-10-06"
+            <Styled(Text)
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "borderBottomWidth": 1,
-                    "borderColor": "grey",
-                    "borderLeftWidth": 1,
-                    "borderTopWidth": 1,
-                    "padding": 10,
-                  },
-                  Object {
-                    "backgroundColor": "#c9f5d6",
-                  },
-                  Object {
-                    "borderColor": "grey",
-                    "borderRightWidth": 1,
-                  },
-                ]
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
               }
             >
-              <Styled(Text)
+              Oct
+            </Styled(Text)>
+            <Styled(Text)
+              style={
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              6
+            </Styled(Text)>
+            <Styled(ViewNB)>
+              <Styled(Icon)
+                name="checkmark-circle"
                 style={
                   Object {
-                    "color": "grey",
-                    "fontSize": 16,
-                    "fontWeight": "bold",
+                    "fontSize": 20,
                   }
                 }
-              >
-                Oct
-              </Styled(Text)>
-              <Styled(Text)
-                style={
-                  Object {
-                    "color": "grey",
-                    "fontSize": 16,
-                    "fontWeight": "bold",
-                  }
-                }
-              >
-                6
-              </Styled(Text)>
-              <Styled(ViewNB)>
-                <Styled(Icon)
-                  name="checkmark-circle"
-                  style={
-                    Object {
-                      "fontSize": 20,
-                    }
-                  }
-                />
-              </Styled(ViewNB)>
+              />
             </Styled(ViewNB)>
           </Styled(ViewNB)>
         </Styled(ViewNB)>
-      </Styled(ViewNB)>
+      </Styled(ListItem)>
     </Styled(ViewNB)>
   </Styled(Content)>
 </Styled(Container)>
@@ -475,14 +768,15 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     goBackButton="Flock"
     title="Chicken"
   />
-  <Styled(Content)>
+  <Styled(Content)
+    padder={true}
+  >
     <ImageViewer
       showModal={true}
       toggleModal={[Function]}
       url="https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2F1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=029f7593-9ed3-481e-8dc6-5d3c38844180"
     />
     <Styled(ViewNB)
-      padder={true}
       style={
         Object {
           "alignItems": "center",
@@ -491,18 +785,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         }
       }
     >
-      <Styled(ViewNB)>
-        <Styled(Button)
-          dark={true}
-          disabled={true}
-          onPress={[Function]}
-          transparent={true}
-        >
-          <Styled(Icon)
-            name="arrow-dropleft-circle"
-          />
-        </Styled(Button)>
-      </Styled(ViewNB)>
       <Styled(ViewNB)
         style={
           Object {
@@ -520,28 +802,18 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         >
           Chicken1
         </Styled(H2)>
-        <Styled(Text)
-          style={
-            Object {
-              "color": "grey",
-              "fontSize": 16,
-              "height": 20,
-            }
-          }
+      </Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Button)
+          dark={true}
+          disabled={true}
+          onPress={[Function]}
+          transparent={true}
         >
-          Cuckoo Maran
-        </Styled(Text)>
-        <Styled(Text)
-          style={
-            Object {
-              "color": "grey",
-              "fontSize": 16,
-              "height": 20,
-            }
-          }
-        >
-          Oct 5, 2016 (1y 11m)
-        </Styled(Text)>
+          <Styled(Icon)
+            name="arrow-dropleft-circle"
+          />
+        </Styled(Button)>
       </Styled(ViewNB)>
       <Styled(ViewNB)>
         <Styled(Button)
@@ -581,10 +853,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Styled(ViewNB)
-      padder={true}
       style={
         Object {
-          "alignItems": "center",
+          "flexDirection": "row",
         }
       }
     >
@@ -600,234 +871,300 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 200,
-              "width": 200,
+              "height": 180,
+              "width": 180,
             }
           }
         />
       </TouchableOpacity>
-    </Styled(ViewNB)>
-    <Styled(ViewNB)
-      padder={true}
-    >
-      <Line />
       <Styled(ViewNB)
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "marginBottom": 10,
+            "marginLeft": 10,
           }
         }
       >
         <Styled(ViewNB)
           style={
             Object {
-              "alignItems": "center",
-              "flex": 1,
+              "marginBottom": 10,
             }
           }
         >
-          <Styled(Text)
-            style={
-              Object {
-                "color": "grey",
-                "fontSize": 17,
-                "fontWeight": "bold",
-              }
-            }
-          >
-            Total Eggs
-          </Styled(Text)>
-          <Styled(H2)
+          <CommonLabel
             style={
               Object {
                 "fontWeight": "bold",
               }
             }
-          >
-            1
-          </Styled(H2)>
-          <Styled(Text)
-            style={
-              Object {
-                "height": 20,
-              }
-            }
+            text="Breed"
           />
-        </Styled(ViewNB)>
-        <Styled(ViewNB)
-          style={
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-            }
-          }
-        >
-          <Styled(Text)
-            style={
-              Array [
-                Object {
-                  "color": "grey",
-                  "fontSize": 17,
-                  "fontWeight": "bold",
-                },
-              ]
-            }
-          >
-            Heaviest Egg
-          </Styled(Text)>
-          <Styled(H2)
-            style={
-              Object {
-                "fontWeight": "bold",
-              }
-            }
-          >
-            88.1
-          </Styled(H2)>
           <Styled(Text)
             style={
               Object {
+                "color": "#575757",
+                "fontSize": 16,
                 "height": 20,
               }
             }
           >
-            Apr 2, 2017
+            Cuckoo Maran
           </Styled(Text)>
         </Styled(ViewNB)>
         <Styled(ViewNB)
           style={
             Object {
-              "alignItems": "center",
-              "flex": 1,
+              "marginBottom": 10,
             }
           }
         >
-          <Styled(Text)
-            style={
-              Array [
-                Object {
-                  "color": "grey",
-                  "fontSize": 17,
-                  "fontWeight": "bold",
-                },
-              ]
-            }
-          >
-            Best Streak
-          </Styled(Text)>
-          <Styled(H2)
+          <CommonLabel
             style={
               Object {
                 "fontWeight": "bold",
               }
             }
-          >
-            0
-          </Styled(H2)>
+            text="Hatched"
+          />
           <Styled(Text)
             style={
               Object {
+                "color": "#575757",
+                "fontSize": 16,
                 "height": 20,
               }
             }
           >
-            Days
+            Oct 5, 2016
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Age"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            1y 11m
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "marginBottom": 10,
+            }
+          }
+        >
+          <CommonLabel
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            text="Gender"
+          />
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "height": 20,
+              }
+            }
+          >
+            Female
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ViewNB)>
-      <Line />
-      <Styled(ViewNB)
+    </Styled(ViewNB)>
+    <Styled(ViewNB)>
+      <Styled(ViewNB)>
+        <Styled(Separator)>
+          <Styled(Text)>
+            AWARDS
+          </Styled(Text)>
+        </Styled(Separator)>
+        <Styled(ListItem)>
+          <Styled(Text)>
+            None
+          </Styled(Text)>
+        </Styled(ListItem)>
+      </Styled(ViewNB)>
+      <Styled(Separator)>
+        <Styled(Text)>
+          CHICKEN STATS
+        </Styled(Text)>
+      </Styled(Separator)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Total Eggs Laid
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            1
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Last Egg
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            --
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Longest Streak
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            0 days
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(ListItem)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Styled(Text)>
+            Heaviest Egg
+          </Styled(Text)>
+        </Styled(ViewNB)>
+        <Styled(ViewNB)>
+          <Styled(Text)>
+            88.1
+             grams
+          </Styled(Text)>
+        </Styled(ViewNB)>
+      </Styled(ListItem)>
+      <Styled(Separator)>
+        <Styled(Text)>
+          PAST 7 DAYS
+        </Styled(Text)>
+      </Styled(Separator)>
+      <Styled(ListItem)
+        last={true}
         style={
           Object {
-            "alignItems": "center",
+            "paddingBottom": 5,
+            "paddingTop": 5,
           }
         }
       >
-        <Styled(Text)
+        <Styled(ViewNB)
           style={
-            Array [
-              Object {
-                "color": "grey",
-                "fontSize": 17,
-                "fontWeight": "bold",
-              },
-              Object {
-                "marginBottom": 10,
-              },
-            ]
+            Object {
+              "flexDirection": "row",
+              "width": "100%",
+            }
           }
         >
-          Last Week
-        </Styled(Text)>
-        <Styled(ViewNB)>
           <Styled(ViewNB)
+            key="2018-10-06"
             style={
-              Object {
-                "flexDirection": "row",
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderBottomWidth": 1,
+                  "borderColor": "#ddd",
+                  "borderLeftWidth": 1,
+                  "borderTopWidth": 1,
+                  "padding": 5,
+                  "width": "14.2857%",
+                },
+                Object {
+                  "backgroundColor": "#c9f5d6",
+                },
+                Object {
+                  "borderColor": "#ddd",
+                  "borderRightWidth": 1,
+                },
+              ]
             }
           >
-            <Styled(ViewNB)
-              key="2018-10-06"
+            <Styled(Text)
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "borderBottomWidth": 1,
-                    "borderColor": "grey",
-                    "borderLeftWidth": 1,
-                    "borderTopWidth": 1,
-                    "padding": 10,
-                  },
-                  Object {
-                    "backgroundColor": "#c9f5d6",
-                  },
-                  Object {
-                    "borderColor": "grey",
-                    "borderRightWidth": 1,
-                  },
-                ]
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
               }
             >
-              <Styled(Text)
+              Oct
+            </Styled(Text)>
+            <Styled(Text)
+              style={
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              6
+            </Styled(Text)>
+            <Styled(ViewNB)>
+              <Styled(Icon)
+                name="checkmark-circle"
                 style={
                   Object {
-                    "color": "grey",
-                    "fontSize": 16,
-                    "fontWeight": "bold",
+                    "fontSize": 20,
                   }
                 }
-              >
-                Oct
-              </Styled(Text)>
-              <Styled(Text)
-                style={
-                  Object {
-                    "color": "grey",
-                    "fontSize": 16,
-                    "fontWeight": "bold",
-                  }
-                }
-              >
-                6
-              </Styled(Text)>
-              <Styled(ViewNB)>
-                <Styled(Icon)
-                  name="checkmark-circle"
-                  style={
-                    Object {
-                      "fontSize": 20,
-                    }
-                  }
-                />
-              </Styled(ViewNB)>
+              />
             </Styled(ViewNB)>
           </Styled(ViewNB)>
         </Styled(ViewNB)>
-      </Styled(ViewNB)>
+      </Styled(ListItem)>
     </Styled(ViewNB)>
   </Styled(Content)>
 </Styled(Container)>
@@ -849,6 +1186,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
   chickenId="chicken1"
   error={null}
   handleMoreOptions={[Function]}
+  heaviest={true}
   navigation={
     Object {
       "getParam": [MockFunction] {
@@ -880,6 +1218,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
         "userId": "user1",
         "weight": "73.5",
       },
+      "lastEgg": "2018-05-13",
       "lastSevenDays": Object {
         "2018-05-09": 1,
         "2018-05-10": 0,
@@ -894,6 +1233,7 @@ exports[`Chicken component: Should render correctly when chicken ID passed in 1`
     }
   }
   toggleModal={[Function]}
+  topProducer={true}
 />
 `;
 

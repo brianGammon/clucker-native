@@ -7,6 +7,7 @@ import Loading from '../Loading';
 import ChickenRenderer from './ChickenRenderer';
 import chickenSelector from '../../selectors/chickenSelector';
 import chickenStatsSelector from '../../selectors/chickenStatsSelector';
+import flockStatsSelector from '../../selectors/flockStatsSelector';
 import { actionTypes } from '../../redux/constants';
 import {
   type Chicken as ChickenType,
@@ -24,6 +25,8 @@ type Props = {
   deleteChicken: (chickenId: string, paths: string[]) => void,
   inProgress: boolean,
   error: string,
+  topProducer: boolean,
+  heaviest: boolean,
 };
 
 type State = {
@@ -100,6 +103,8 @@ class Chicken extends React.Component<Props, State> {
       navigation,
       inProgress,
       error,
+      topProducer,
+      heaviest,
     } = this.props;
 
     const { showModal } = this.state;
@@ -128,6 +133,8 @@ class Chicken extends React.Component<Props, State> {
         toggleModal={this.toggleModal}
         handleMoreOptions={this.handleMoreOptions}
         error={error}
+        topProducer={topProducer}
+        heaviest={heaviest}
       />
     );
   }
@@ -138,11 +145,16 @@ const mapStateToProps = (
   { navigation },
 ) => {
   const chickenId = navigation.getParam('chickenId', 'NO-ID');
+  const flockStats = flockStatsSelector(eggs.data);
+  const topProducer = flockStats.mostEggs === chickenId;
+  const heaviest = flockStats.heaviest && flockStats.heaviest.chickenId === chickenId;
   return {
     ...chickenSelector(chickens.data, chickenId),
     stats: chickenStatsSelector(eggs.data, chickenId),
     inProgress,
     error,
+    topProducer,
+    heaviest,
   };
 };
 

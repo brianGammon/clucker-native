@@ -79,6 +79,7 @@ const chickenStatsSelector = createCachedSelector(
     stats.heaviest = heaviestEgg;
     stats.longestStreak = longestStreak;
     stats.lastSevenDays = lastSevenDays;
+    stats.lastEgg = lastEggDate;
     return stats;
   },
 )(getChickenId);

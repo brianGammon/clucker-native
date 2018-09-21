@@ -3,11 +3,21 @@ import React from 'react';
 import moment from 'moment';
 import { Image, TouchableOpacity } from 'react-native';
 import {
-  Container, Content, Text, View, Button, H2, Icon,
+  Container,
+  Content,
+  Text,
+  View,
+  Button,
+  H2,
+  Icon,
+  Separator,
+  ListItem,
+  Left,
+  Right,
 } from 'native-base';
 import ImageViewer from '../ImageViewer';
 import Header from '../Header';
-import Line from '../Line';
+import CommonLabel from '../CommonLabel';
 import { type Chicken, type ChickenStats } from '../../types';
 import styles from './styles';
 
@@ -20,6 +30,8 @@ type Props = {
   showModal: boolean,
   toggleModal: boolean => void,
   handleMoreOptions: () => void,
+  topProducer: boolean,
+  heaviest: boolean,
 };
 
 const calculateAge = (hatched: string) => {
@@ -43,16 +55,21 @@ const ChickenRenderer = ({
   handleMoreOptions,
   showModal,
   toggleModal,
+  topProducer,
+  heaviest,
 }: Props) => (
   <Container>
     <Header title="Chicken" eggButton goBackButton="Flock" />
-    <Content>
+    <Content padder>
       <ImageViewer
         toggleModal={toggleModal}
         showModal={showModal}
         url={chicken.photoUrl}
       />
-      <View padder style={styles.rowContainer}>
+      <View style={styles.rowContainer}>
+        <View style={styles.flex}>
+          <H2 style={{ fontWeight: 'bold', fontSize: 20 }}>{chicken.name}</H2>
+        </View>
         <View>
           <Button
             transparent
@@ -65,20 +82,6 @@ const ChickenRenderer = ({
           >
             <Icon name="arrow-dropleft-circle" />
           </Button>
-        </View>
-
-        <View style={{ flex: 1 }}>
-          <H2 style={{ fontWeight: 'bold', fontSize: 20 }}>{chicken.name}</H2>
-          <Text style={{ height: 20, fontSize: 16, color: 'grey' }}>
-            {chicken.breed}
-          </Text>
-          <Text style={{ height: 20, fontSize: 16, color: 'grey' }}>
-            {!!chicken.hatched
-              && chicken.hatched !== ''
-              && `${moment(chicken.hatched).format('MMM D, YYYY')} (${calculateAge(
-                chicken.hatched,
-              )})`}
-          </Text>
         </View>
         <View>
           <Button
@@ -95,14 +98,16 @@ const ChickenRenderer = ({
         </View>
         <View style={styles.rowContainer}>
           <Button transparent dark onPress={handleMoreOptions}>
-            <Icon active style={{ fontSize: 30 }} name="more" />
+            <Icon active style={styles.moreIcon} name="more" />
           </Button>
         </View>
       </View>
-      <View padder style={{ alignItems: 'center' }}>
-        <TouchableOpacity onPress={chicken.photoUrl ? () => toggleModal(!showModal) : null}>
+      <View style={styles.row}>
+        <TouchableOpacity
+          onPress={chicken.photoUrl ? () => toggleModal(!showModal) : null}
+        >
           <Image
-            style={{ width: 200, height: 200 }}
+            style={styles.image}
             source={
               chicken.photoUrl
                 ? { uri: chicken.photoUrl }
@@ -110,92 +115,144 @@ const ChickenRenderer = ({
             }
           />
         </TouchableOpacity>
-      </View>
-
-      {stats
-        && stats.total > 0 && (
-          <View padder>
-            <Line />
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: 10,
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                }}
-              >
-                <Text style={styles.label}>Total Eggs</Text>
-                <H2 style={styles.h2}>{stats.total}</H2>
-                <Text style={styles.text} />
-              </View>
-              {stats.heaviest && (
-                <View style={{ flex: 1, alignItems: 'center' }}>
-                  <Text style={[styles.label]}>Heaviest Egg</Text>
-                  <H2 style={styles.h2}>
-                    {stats.heaviest && stats.heaviest.weight}
-                  </H2>
-                  <Text style={styles.text}>
-                    {stats.heaviest
-                      && moment(stats.heaviest.date).format('MMM D, YYYY')}
-                  </Text>
-                </View>
-              )}
-              <View style={{ flex: 1, alignItems: 'center' }}>
-                <Text style={[styles.label]}>Best Streak</Text>
-                <H2 style={styles.h2}>{stats.longestStreak}</H2>
-                <Text style={styles.text}>Days</Text>
-              </View>
-            </View>
-            <Line />
-
-            <View style={{ alignItems: 'center' }}>
-              <Text style={[styles.label, { marginBottom: 10 }]}>
-                Last Week
-              </Text>
-              <View>
-                <View style={{ flexDirection: 'row' }}>
-                  {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
-                    <View
-                      key={key}
-                      style={[
-                        styles.dateCell,
-                        stats.lastSevenDays[key] > 0
-                          ? styles.dateCellSuccess
-                          : null,
-                        index === Object.keys(stats.lastSevenDays).length - 1
-                          ? styles.lastCell
-                          : null,
-                      ]}
-                    >
-                      <Text style={styles.dateCellLabel}>
-                        {moment(key).format('MMM')}
-                      </Text>
-                      <Text style={styles.dateCellLabel}>
-                        {moment(key).format('D')}
-                      </Text>
-                      <View>
-                        <Icon
-                          style={styles.dateCellIcon}
-                          name={
-                            stats.lastSevenDays[key] > 0
-                              ? 'checkmark-circle'
-                              : 'close'
-                          }
-                        />
-                      </View>
-                    </View>
-                  ))}
-                </View>
-              </View>
-            </View>
+        <View style={styles.chickenInfo}>
+          <View style={styles.fieldGroup}>
+            <CommonLabel style={styles.label} text="Breed" />
+            <Text style={styles.chickenInfoText}>
+              {chicken.breed || '--'}
+            </Text>
           </View>
-      )}
+          <View style={styles.fieldGroup}>
+            <CommonLabel style={styles.label} text="Hatched" />
+            <Text style={styles.chickenInfoText}>
+              {(!!chicken.hatched
+                && chicken.hatched !== ''
+                && moment(chicken.hatched).format('MMM D, YYYY'))
+                || '--'}
+            </Text>
+          </View>
+
+          {!!chicken.hatched
+            && chicken.hatched !== '' && (
+              <View style={styles.fieldGroup}>
+                <CommonLabel style={styles.label} text="Age" />
+                <Text style={styles.chickenInfoText}>
+                  {calculateAge(chicken.hatched)}
+                </Text>
+              </View>
+          )}
+          <View style={styles.fieldGroup}>
+            <CommonLabel style={styles.label} text="Gender" />
+            <Text style={styles.chickenInfoText}>
+              Female
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View>
+        <View>
+          <Separator>
+            <Text>AWARDS</Text>
+          </Separator>
+          {topProducer && (
+            <ListItem>
+              <Icon style={styles.trophyIcon} active name="trophy" />
+              <Text style={styles.awardText}>Top Producer</Text>
+            </ListItem>
+          )}
+          {heaviest && (
+            <ListItem>
+              <Icon style={styles.trophyIcon} active name="trophy" />
+              <Text style={styles.awardText}>Heaviest Egg</Text>
+            </ListItem>
+          )}
+          {(!topProducer && !heaviest) && (
+            <ListItem>
+              <Text>None</Text>
+            </ListItem>
+          )}
+        </View>
+        <Separator>
+          <Text>CHICKEN STATS</Text>
+        </Separator>
+        <ListItem>
+          <View style={styles.flex}>
+            <Text>Total Eggs Laid</Text>
+          </View>
+          <View>
+            <Text>{stats.total || 0}</Text>
+          </View>
+        </ListItem>
+        <ListItem>
+          <View style={styles.flex}>
+            <Text>Last Egg</Text>
+          </View>
+          <View>
+            <Text>{(stats.lastEgg && moment.utc(stats.lastEgg).format('MMM D, YYYY')) || '--'}</Text>
+          </View>
+        </ListItem>
+        <ListItem>
+          <View style={styles.flex}>
+            <Text>Longest Streak</Text>
+          </View>
+          <View>
+            <Text>
+              {`${stats.longestStreak || 0} day${
+                stats.longestStreak === 1 ? '' : 's'
+              }`}
+            </Text>
+          </View>
+        </ListItem>
+        <ListItem>
+          <View style={styles.flex}>
+            <Text>Heaviest Egg</Text>
+          </View>
+          <View>
+            <Text>
+              {(stats.heaviest && stats.heaviest.weight) || '--'} grams
+            </Text>
+          </View>
+        </ListItem>
+        <Separator>
+          <Text>PAST 7 DAYS</Text>
+        </Separator>
+        <ListItem
+          last
+          style={styles.pastWeek}
+        >
+          <View style={styles.pastWeekContainer}>
+            {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
+              <View
+                key={key}
+                style={[
+                  styles.dateCell,
+                  stats.lastSevenDays[key] > 0 ? styles.dateCellSuccess : null,
+                  index === Object.keys(stats.lastSevenDays).length - 1
+                    ? styles.lastCell
+                    : null,
+                ]}
+              >
+                <Text style={styles.dateCellLabel}>
+                  {moment(key).format('MMM')}
+                </Text>
+                <Text style={styles.dateCellLabel}>
+                  {moment(key).format('D')}
+                </Text>
+                <View>
+                  <Icon
+                    style={styles.dateCellIcon}
+                    name={
+                      stats.lastSevenDays[key] > 0
+                        ? 'checkmark-circle'
+                        : 'close'
+                    }
+                  />
+                </View>
+              </View>
+            ))}
+          </View>
+        </ListItem>
+      </View>
     </Content>
   </Container>
 );

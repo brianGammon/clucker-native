@@ -37,6 +37,7 @@ export type ChickenStats = {
   lastSevenDays: {
     [string]: number,
   },
+  lastEgg: string,
 };
 
 export type FlockStats = {
