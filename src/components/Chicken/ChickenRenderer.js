@@ -60,7 +60,7 @@ const ChickenRenderer = ({
 }: Props) => (
   <Container>
     <Header title="Chicken" eggButton goBackButton="Flock" />
-    <Content padder>
+    <Content>
       <ImageViewer
         toggleModal={toggleModal}
         showModal={showModal}
@@ -68,7 +68,9 @@ const ChickenRenderer = ({
       />
       <View style={styles.rowContainer}>
         <View style={styles.flex}>
-          <H2 style={{ fontWeight: 'bold', fontSize: 20 }}>{chicken.name}</H2>
+          <H2 style={{ fontWeight: 'bold', fontSize: 20, marginLeft: 4 }}>
+            {chicken.name}
+          </H2>
         </View>
         <View>
           <Button
@@ -118,9 +120,7 @@ const ChickenRenderer = ({
         <View style={styles.chickenInfo}>
           <View style={styles.fieldGroup}>
             <CommonLabel style={styles.label} text="Breed" />
-            <Text style={styles.chickenInfoText}>
-              {chicken.breed || '--'}
-            </Text>
+            <Text style={styles.chickenInfoText}>{chicken.breed || '--'}</Text>
           </View>
           <View style={styles.fieldGroup}>
             <CommonLabel style={styles.label} text="Hatched" />
@@ -143,9 +143,7 @@ const ChickenRenderer = ({
           )}
           <View style={styles.fieldGroup}>
             <CommonLabel style={styles.label} text="Gender" />
-            <Text style={styles.chickenInfoText}>
-              Female
-            </Text>
+            <Text style={styles.chickenInfoText}>Female</Text>
           </View>
         </View>
       </View>
@@ -166,10 +164,11 @@ const ChickenRenderer = ({
               <Text style={styles.awardText}>Heaviest Egg</Text>
             </ListItem>
           )}
-          {(!topProducer && !heaviest) && (
-            <ListItem>
-              <Text>None</Text>
-            </ListItem>
+          {!topProducer
+            && !heaviest && (
+              <ListItem>
+                <Text>None</Text>
+              </ListItem>
           )}
         </View>
         <Separator>
@@ -188,7 +187,11 @@ const ChickenRenderer = ({
             <Text>Last Egg</Text>
           </View>
           <View>
-            <Text>{(stats.lastEgg && moment.utc(stats.lastEgg).format('MMM D, YYYY')) || '--'}</Text>
+            <Text>
+              {(stats.lastEgg
+                && moment.utc(stats.lastEgg).format('MMM D, YYYY'))
+                || '--'}
+            </Text>
           </View>
         </ListItem>
         <ListItem>
@@ -216,10 +219,7 @@ const ChickenRenderer = ({
         <Separator>
           <Text>PAST 7 DAYS</Text>
         </Separator>
-        <ListItem
-          last
-          style={styles.pastWeek}
-        >
+        <ListItem last style={styles.pastWeek}>
           <View style={styles.pastWeekContainer}>
             {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
               <View

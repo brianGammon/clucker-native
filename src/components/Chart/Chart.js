@@ -50,7 +50,7 @@ class Chart extends React.Component<Props, State> {
     if (!ready) {
       return <ChartLoading />;
     }
-    return <ChartRenderer data={data} onRefreshChart={this.resetChart} />;
+    return <ChartRenderer data={data} />;
   }
 }
 

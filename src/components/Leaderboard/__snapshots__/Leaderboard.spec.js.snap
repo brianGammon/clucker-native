@@ -1,156 +1,134 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Leaderboard renders 1`] = `
-<Styled(ViewNB)
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-    }
-  }
->
-  <Styled(Text)
-    style={
-      Object {
-        "fontSize": 17,
-        "fontWeight": "bold",
-      }
-    }
-  >
-    Month Leaderboard
-  </Styled(Text)>
-  <Styled(ViewNB)
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "padding": 4,
-        },
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#eee",
-          "flexDirection": "row",
-          "padding": 4,
-        },
-      ]
-    }
-  >
-    <Styled(Text)
-      style={
-        Object {
-          "color": "grey",
-          "flex": 1,
-          "fontWeight": "bold",
-          "width": 40,
-        }
-      }
-    >
-      Chicken
+<Styled(ViewNB)>
+  <Styled(Separator)>
+    <Styled(Text)>
+      LEADERBOARD
     </Styled(Text)>
-    <Styled(ViewNB)>
-      <Styled(Text)
-        style={
-          Object {
-            "color": "grey",
-            "fontWeight": "bold",
-            "width": 40,
-          }
-        }
-      >
-        Eggs
-      </Styled(Text)>
-    </Styled(ViewNB)>
-  </Styled(ViewNB)>
-  <Styled(ViewNB)
+  </Styled(Separator)>
+  <Styled(ListItem)
     key="chicken1"
     style={
       Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "padding": 4,
+        "paddingBottom": 4,
+        "paddingTop": 4,
       }
     }
   >
-    <Styled(Text)
+    <Styled(Left)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      Chicken1
-    </Styled(Text)>
-    <Styled(Text)
-      style={
-        Object {
-          "textAlign": "center",
-          "width": 40,
+      <Styled(Thumbnail)
+        small={true}
+        source={
+          Object {
+            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1BD434AA-4A5D-40A9-A97A-C3D64FC8B841.jpeg?alt=media&token=689dfae8-c034-46ae-9984-db5c4ee3fe72",
+          }
         }
-      }
-    >
-      3
-    </Styled(Text)>
-  </Styled(ViewNB)>
-  <Styled(ViewNB)
+        square={true}
+      />
+      <Styled(Text)
+        style={
+          Object {
+            "marginLeft": 8,
+          }
+        }
+      >
+        Chicken1
+      </Styled(Text)>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Text)>
+        3
+      </Styled(Text)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
     key="chicken2"
     style={
       Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "padding": 4,
+        "paddingBottom": 4,
+        "paddingTop": 4,
       }
     }
   >
-    <Styled(Text)
+    <Styled(Left)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      Chicken2
-    </Styled(Text)>
-    <Styled(Text)
-      style={
-        Object {
-          "textAlign": "center",
-          "width": 40,
+      <Styled(Thumbnail)
+        small={true}
+        source={
+          Object {
+            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_8BF48E4E-F5EF-4DCC-91C1-746CF33586FB.jpeg?alt=media&token=0e0d4dea-5104-4cfe-9a49-f87d4b412e24",
+          }
         }
-      }
-    >
-      2
-    </Styled(Text)>
-  </Styled(ViewNB)>
-  <Styled(ViewNB)
+        square={true}
+      />
+      <Styled(Text)
+        style={
+          Object {
+            "marginLeft": 8,
+          }
+        }
+      >
+        Chicken2
+      </Styled(Text)>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Text)>
+        2
+      </Styled(Text)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
     key="chicken3"
     style={
       Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-        "padding": 4,
+        "paddingBottom": 4,
+        "paddingTop": 4,
       }
     }
   >
-    <Styled(Text)
+    <Styled(Left)
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      Chicken3
-    </Styled(Text)>
-    <Styled(Text)
-      style={
-        Object {
-          "textAlign": "center",
-          "width": 40,
+      <Styled(Thumbnail)
+        small={true}
+        source={
+          Object {
+            "uri": "https://firebasestorage.googleapis.com/v0/b/cluckr-prod.appspot.com/o/uploads%2Fuser%3AvEFMHqRcozMSriuqeJNKlCXnGMr2%2Fflock%3Aflock1%2Fthumb_1A2F5FA5-FE29-4D43-9E4A-E44F19CE44B9.jpeg?alt=media&token=708ffb11-4a0a-4dab-9633-27a2c0c74d18",
+          }
         }
-      }
-    >
-      1
-    </Styled(Text)>
-  </Styled(ViewNB)>
+        square={true}
+      />
+      <Styled(Text)
+        style={
+          Object {
+            "marginLeft": 8,
+          }
+        }
+      >
+        Chicken3
+      </Styled(Text)>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Text)>
+        1
+      </Styled(Text)>
+    </Styled(Right)>
+  </Styled(ListItem)>
 </Styled(ViewNB)>
 `;

@@ -1,39 +1,54 @@
 /* @flow */
 import React from 'react';
-import { View, Text } from 'native-base';
+import {
+  View,
+  Text,
+  Separator,
+  ListItem,
+  Left,
+  Thumbnail,
+  Right,
+} from 'native-base';
 import styles from './styles';
 import { type FlockStats, type Chicken } from '../../types';
 
 type Props = {
-  mode: 'month' | 'allTime',
   stats: FlockStats,
   chickens: {
     [chickenId: string]: Chicken,
   },
 };
 
-const Leaderboard = ({ stats, chickens, mode }: Props) => (
-  <View style={styles.container}>
-    {/* <Text style={styles.statsLabel}>
-      {`${mode === 'allTime' ? 'All Time' : 'Month'} Leaderboard`}
-    </Text> */}
-    <View style={[styles.row, styles.headerRow]}>
-      <Text style={styles.wideLabel}>Chicken</Text>
-      <View>
-        <Text style={styles.label}>Eggs</Text>
-      </View>
-    </View>
+const Leaderboard = ({ stats, chickens }: Props) => (
+  <View>
+    <Separator>
+      <Text>LEADERBOARD</Text>
+    </Separator>
     {Object.keys(stats.eggsPerChicken).map((key) => {
       if (!chickens[key]) {
         return null;
       }
       return (
-        <View key={key} style={styles.row}>
-          <Text style={styles.wideValue}>
-            {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
-          </Text>
-          <Text style={styles.value}>{stats.eggsPerChicken[key]}</Text>
-        </View>
+        <ListItem key={key} style={styles.li}>
+          <Left style={styles.flex}>
+            <Thumbnail
+              small
+              square
+              source={
+                chickens[key].thumbnailUrl
+                  ? { uri: chickens[key].thumbnailUrl }
+                  : require('../../assets/default-profile-photo_thumb.png')
+              }
+            />
+            <Text style={styles.leaderText}>
+              {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
+            </Text>
+          </Left>
+
+          <Right>
+            <Text>{stats.eggsPerChicken[key]}</Text>
+          </Right>
+        </ListItem>
       );
     })}
   </View>

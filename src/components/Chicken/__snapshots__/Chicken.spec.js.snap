@@ -7,9 +7,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     goBackButton="Flock"
     title="Chicken"
   />
-  <Styled(Content)
-    padder={true}
-  >
+  <Styled(Content)>
     <ImageViewer
       showModal={true}
       toggleModal={[Function]}
@@ -36,6 +34,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             Object {
               "fontSize": 20,
               "fontWeight": "bold",
+              "marginLeft": 4,
             }
           }
         >
@@ -110,8 +109,8 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 180,
-              "width": 180,
+              "height": 200,
+              "width": 200,
             }
           }
         />
@@ -359,9 +358,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     goBackButton="Flock"
     title="Chicken"
   />
-  <Styled(Content)
-    padder={true}
-  >
+  <Styled(Content)>
     <ImageViewer
       showModal={true}
       toggleModal={[Function]}
@@ -388,6 +385,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             Object {
               "fontSize": 20,
               "fontWeight": "bold",
+              "marginLeft": 4,
             }
           }
         >
@@ -462,8 +460,8 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 180,
-              "width": 180,
+              "height": 200,
+              "width": 200,
             }
           }
         />
@@ -768,9 +766,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
     goBackButton="Flock"
     title="Chicken"
   />
-  <Styled(Content)
-    padder={true}
-  >
+  <Styled(Content)>
     <ImageViewer
       showModal={true}
       toggleModal={[Function]}
@@ -797,6 +793,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
             Object {
               "fontSize": 20,
               "fontWeight": "bold",
+              "marginLeft": 4,
             }
           }
         >
@@ -871,8 +868,8 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 180,
-              "width": 180,
+              "height": 200,
+              "width": 200,
             }
           }
         />

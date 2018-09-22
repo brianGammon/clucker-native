@@ -45,8 +45,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   image: {
-    width: 180,
-    height: 180,
+    width: 200,
+    height: 200,
   },
   label: {
     fontWeight: 'bold',

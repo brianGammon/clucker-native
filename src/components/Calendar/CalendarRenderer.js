@@ -13,6 +13,7 @@ import WeekDays from './WeekDays';
 import Leaderboard from '../Leaderboard';
 import HeaviestEgg from '../HeaviestEgg';
 import HelpMessage from '../HelpMessage';
+import Stats from '../Stats';
 
 type Props = {
   navigation: any,
@@ -38,13 +39,8 @@ const CalendarRenderer = ({
 }: Props) => (
   <Container>
     <Header title="Calendar" eggButton />
-    <Content padder>
-      <DateSwitcher
-        mode="month"
-        navigation={navigation}
-        dates={dates}
-        eggCount={stats && stats.total}
-      />
+    <Content>
+      <DateSwitcher mode="month" navigation={navigation} dates={dates} />
 
       <View style={styles.section}>
         <WeekDayLabels />
@@ -57,19 +53,8 @@ const CalendarRenderer = ({
 
       {stats && (
         <View>
-          <Line />
-          <Leaderboard stats={stats} chickens={chickens} mode="month" />
-          <Line />
-          {stats.heaviest && (
-            <HeaviestEgg
-              heaviest={stats.heaviest}
-              chickenName={
-                (chickens[stats.heaviest.chickenId]
-                  && chickens[stats.heaviest.chickenId].name)
-                || 'Unnamed Hen'
-              }
-            />
-          )}
+          <Stats stats={stats} />
+          <Leaderboard stats={stats} chickens={chickens} />
         </View>
       )}
       {!stats && (

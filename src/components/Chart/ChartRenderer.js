@@ -4,26 +4,17 @@ import moment from 'moment';
 import {
   XAxis, YAxis, Grid, LineChart,
 } from 'react-native-svg-charts';
-import {
-  View, Icon, Button, Text,
-} from 'native-base';
+import { View } from 'native-base';
 import { type ChartData } from '../../types';
 import LineDecorator from './LineDecorator';
 import styles, { chartSettings } from './styles';
 
 type Props = {
   data: ChartData,
-  onRefreshChart: () => void,
 };
 
-const ChartRenderer = ({ data, onRefreshChart }: Props) => (
+const ChartRenderer = ({ data }: Props) => (
   <View>
-    {/* <View style={styles.chartTitle}>
-      <Text style={styles.label}>Egg Trendline</Text>
-      <Button dark transparent onPress={onRefreshChart}>
-        <Icon active name="refresh" />
-      </Button>
-    </View> */}
     <View style={styles.chartContainer}>
       <YAxis
         yAccessor={({ item }) => item.count}
