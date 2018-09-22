@@ -18,12 +18,12 @@ type Props = {
 
 const ChartRenderer = ({ data, onRefreshChart }: Props) => (
   <View>
-    <View style={styles.chartTitle}>
+    {/* <View style={styles.chartTitle}>
       <Text style={styles.label}>Egg Trendline</Text>
       <Button dark transparent onPress={onRefreshChart}>
         <Icon active name="refresh" />
       </Button>
-    </View>
+    </View> */}
     <View style={styles.chartContainer}>
       <YAxis
         yAccessor={({ item }) => item.count}

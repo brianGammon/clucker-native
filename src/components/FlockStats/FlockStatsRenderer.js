@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import {
-  View, Text, Container, Content, H2,
+  View, Text, Container, Content, H2, Separator, ListItem, Left, Body, Right, Thumbnail, List
 } from 'native-base';
 import Header from '../Header';
 import { type FlockStats as FlockStatsType, type Chicken } from '../../types';
@@ -22,8 +22,8 @@ const FlockStatsRenderer = ({ stats, chickens }: Props) => (
   <Container>
     <Header title="Flock Stats" eggButton />
 
-    <Content padder>
-      <View>
+    <Content>
+      {/* <View>
         <View style={styles.eggStats}>
           <View style={styles.eggStatsCell}>
             <Text style={styles.label}>Eggs Logged</Text>
@@ -48,25 +48,83 @@ const FlockStatsRenderer = ({ stats, chickens }: Props) => (
             <Text style={styles.subText}>Grams</Text>
           </View>
         </View>
-      </View>
+      </View> */}
 
-      <Line />
-
+      <Separator>
+        <Text>TRENDLINE</Text>
+      </Separator>
       <Chart />
-
-      <Line />
-      <Leaderboard stats={stats} chickens={chickens} mode="allTime" />
-      <Line />
-      {stats.heaviest && (
-        <HeaviestEgg
-          heaviest={stats.heaviest}
-          chickenName={
-            (chickens[stats.heaviest.chickenId]
-              && chickens[stats.heaviest.chickenId].name)
-            || 'Unnamed Hen'
-          }
-        />
-      )}
+      <Separator>
+        <Text>FLOCK STATS</Text>
+      </Separator>
+      <ListItem>
+        <View style={styles.flex}>
+          <Text>Total Eggs Laid</Text>
+        </View>
+        <View>
+          <Text>567</Text>
+        </View>
+      </ListItem>
+      <ListItem>
+        <View style={styles.flex}>
+          <Text>Average Per Day (30 day)</Text>
+        </View>
+        <View>
+          <Text>2.2</Text>
+        </View>
+      </ListItem>
+      <ListItem>
+        <View style={styles.flex}>
+          <Text>Average Weight</Text>
+        </View>
+        <View>
+          <Text>
+            66.7
+          </Text>
+        </View>
+      </ListItem>
+      <ListItem>
+        <View style={styles.flex}>
+          <Text>Heaviest Egg</Text>
+        </View>
+        <View>
+          <Text>
+            88.1 grams
+          </Text>
+        </View>
+      </ListItem>
+      <Separator>
+        <Text>LEADERBOARD</Text>
+      </Separator>
+      {Object.keys(stats.eggsPerChicken).map((key) => {
+        if (!chickens[key]) {
+          return null;
+        }
+        return (
+          <ListItem key={key} style={{ paddingTop: 4, paddingBottom: 4}}>
+            <Left style={{ flex: 1 }}>
+              <Thumbnail
+                small
+                square
+                source={
+                  chickens[key].thumbnailUrl
+                    ? { uri: chickens[key].thumbnailUrl }
+                    : require('../../assets/default-profile-photo_thumb.png')
+                }
+              />
+              <Text style={styles.leaderText}>
+                {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
+                
+              </Text>
+            </Left>
+            
+            <Right>
+              <Text style={styles.value}>{stats.eggsPerChicken[key]}</Text>
+            </Right>
+            
+          </ListItem>
+        );
+      })}
     </Content>
   </Container>
 );

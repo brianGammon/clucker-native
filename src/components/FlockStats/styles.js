@@ -34,4 +34,10 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  leaderText: {
+    marginLeft: 8,
+  },
+  flex: {
+    flex: 1,
+  },
 });

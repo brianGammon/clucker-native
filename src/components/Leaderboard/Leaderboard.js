@@ -14,9 +14,9 @@ type Props = {
 
 const Leaderboard = ({ stats, chickens, mode }: Props) => (
   <View style={styles.container}>
-    <Text style={styles.statsLabel}>
+    {/* <Text style={styles.statsLabel}>
       {`${mode === 'allTime' ? 'All Time' : 'Month'} Leaderboard`}
-    </Text>
+    </Text> */}
     <View style={[styles.row, styles.headerRow]}>
       <Text style={styles.wideLabel}>Chicken</Text>
       <View>
