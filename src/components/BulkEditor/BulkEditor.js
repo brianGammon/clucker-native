@@ -13,6 +13,7 @@ import {
   firebaseCreateRequested,
 } from '../../redux/actions';
 import { dateInRangeValidator } from '../../utils/validators';
+import { BULK_ENTRY_KEY } from '../../constants';
 
 type Props = {
   inProgress: boolean,
@@ -35,7 +36,12 @@ class BulkEditor extends React.Component<Props, State> {
     notes: [''],
     quantity: [
       '',
-      [Validators.required, Validators.min(1), Validators.max(500), Validators.pattern(/^\d+$/)],
+      [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(500),
+        Validators.pattern(/^\d+$/),
+      ],
     ],
   });
 
@@ -78,7 +84,7 @@ class BulkEditor extends React.Component<Props, State> {
     const data = {
       ...egg,
       ...this.form.value,
-      chickenId: 'unknown',
+      chickenId: BULK_ENTRY_KEY,
       bulkMode: true,
       modified: moment().toISOString(),
     };

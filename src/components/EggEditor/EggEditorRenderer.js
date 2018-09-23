@@ -19,6 +19,7 @@ import CommonLabel from '../CommonLabel';
 import { type Chicken } from '../../types';
 import FormInput from '../FormInput';
 import styles from './styles';
+import { UNNAMED_HEN_KEY, UNNAMED_HEN_LABEL } from '../../constants';
 
 type Props = {
   mode: 'Edit' | 'Add',
@@ -88,7 +89,10 @@ const EggEditorRenderer = ({
                           onValueChange={handlePickItem}
                         >
                           <Picker.Item label="Select a chicken" value="" />
-                          <Picker.Item label="Unnamed Hen" value="unknown" />
+                          <Picker.Item
+                            label={UNNAMED_HEN_LABEL}
+                            value={UNNAMED_HEN_KEY}
+                          />
                           {Object.keys(chickens || {}).map(key => (
                             <Picker.Item
                               key={key}

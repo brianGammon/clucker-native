@@ -1,5 +1,6 @@
 /* @flow */
 import * as React from 'react';
+import { Linking } from 'react-native';
 import {
   Container,
   Content,
@@ -16,6 +17,11 @@ import CommonLabel from '../CommonLabel';
 import Separator from '../Separator';
 import { type User } from '../../types';
 import styles from './styles';
+import {
+  PRIVACY_POLICY_URI,
+  TERMS_OF_USE_URI,
+  APP_VERSION,
+} from '../../constants';
 
 type Props = {
   user: User,
@@ -46,10 +52,10 @@ const SettingsRenderer = ({ handleSignOut, user }: Props) => (
           <Text>Version</Text>
         </Left>
         <Right>
-          <Text>1.0.0</Text>
+          <Text>{APP_VERSION}</Text>
         </Right>
       </ListItem>
-      <ListItem>
+      <ListItem onPress={() => Linking.openURL(PRIVACY_POLICY_URI)}>
         <Left>
           <Text>Privacy Policy</Text>
         </Left>
@@ -57,7 +63,7 @@ const SettingsRenderer = ({ handleSignOut, user }: Props) => (
           <Icon name="arrow-forward" />
         </Right>
       </ListItem>
-      <ListItem>
+      <ListItem onPress={() => Linking.openURL(TERMS_OF_USE_URI)}>
         <Left>
           <Text>Terms of Use</Text>
         </Left>

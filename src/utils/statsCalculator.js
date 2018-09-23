@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { sortBy, toPairs, fromPairs } from 'lodash';
 import { dateStringAsMoment, nowAsMoment } from './dateHelper';
+import { BULK_ENTRY_KEY } from '../constants';
 
 export default (eggs, range) => {
   let totalCount = 0;
@@ -42,10 +43,13 @@ export default (eggs, range) => {
       earliestDate = egg.date;
     }
 
-    if (!eggsPerChicken[egg.chickenId]) {
-      eggsPerChicken[egg.chickenId] = 0;
+    // Keep track of the totals for individual hens
+    if (egg.chickenId !== BULK_ENTRY_KEY) {
+      if (!eggsPerChicken[egg.chickenId]) {
+        eggsPerChicken[egg.chickenId] = 0;
+      }
+      eggsPerChicken[egg.chickenId] += quantity;
     }
-    eggsPerChicken[egg.chickenId] += quantity;
 
     // Find heaviest & avg
     if (egg.weight) {
@@ -76,7 +80,10 @@ export default (eggs, range) => {
       if (egg.damaged) {
         eggsPerPeriod[rollupPeriod].hasDamaged = true;
       }
-      eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0) + quantity;
+      if (egg.chickenId !== BULK_ENTRY_KEY) {
+        eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0)
+          + quantity;
+      }
     }
   });
 

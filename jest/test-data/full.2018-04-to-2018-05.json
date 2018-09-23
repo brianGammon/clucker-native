@@ -56,7 +56,8 @@
         "weight": "62.3"
       },
       "-L8xhEvLj6TTdrJtJHJe": {
-        "chickenId": "unknown",
+        "chickenId": "bulkentry",
+        "bulkMode": true,
         "date": "2018-03-31",
         "modified": "2018-03-31T20:17:16.527Z",
         "quantity": "8"
@@ -231,7 +232,8 @@
         "weight": "58.1"
       },
       "-L9b2doBcV0z7ZljPEzs": {
-        "chickenId": "unknown",
+        "chickenId": "bulkentry",
+        "bulkMode": true,
         "date": "2018-04-08",
         "modified": "2018-04-08T20:59:35.590Z",
         "quantity": "21"
@@ -413,7 +415,8 @@
         "weight": "65.5"
       },
       "-LAENQIyi8oXg-AqekQs": {
-        "chickenId": "unknown",
+        "chickenId": "bulkentry",
+        "bulkMode": true,
         "date": "2018-04-16",
         "modified": "2018-04-16T16:55:09.865Z",
         "quantity": "64"
@@ -676,7 +679,8 @@
         "weight": "65.3"
       },
       "-LBMzYSJNk-9FIp-72nK": {
-        "chickenId": "unknown",
+        "chickenId": "bulkentry",
+        "bulkMode": true,
         "date": "2018-04-30",
         "modified": "2018-04-30T19:18:46.383Z",
         "quantity": "56"

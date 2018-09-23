@@ -7,6 +7,7 @@ import Header from '../Header';
 import DateSwitcher from '../DateSwitcher';
 import Line from '../Line';
 import EggItem from './EggItem';
+import { UNNAMED_HEN_LABEL } from '../../constants';
 
 type Props = {
   navigation: any,
@@ -53,7 +54,7 @@ const CalendarDayRenderer = ({
             chickenName={
               (chickens[eggs[item].chickenId]
                 && chickens[eggs[item].chickenId].name)
-              || 'Unnamed Hen'
+              || UNNAMED_HEN_LABEL
             }
             egg={eggs[item]}
             handleMoreOptions={handleMoreOptions}

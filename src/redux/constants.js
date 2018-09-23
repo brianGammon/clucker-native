@@ -75,6 +75,5 @@ export const eventTypes = {
 
 export const appStates = {
   STARTING: 'STARTING',
-  BUSY: 'BUSY',
   READY: 'READY',
 };

@@ -9,13 +9,12 @@ Object {
     "chicken2": 28,
     "chicken3": 11,
     "chicken4": 31,
-    "unknown": 150,
+    "unknown": 1,
   },
   "eggsPerPeriod": Object {
     "2018-03": Object {
       "byChicken": Object {
         "chicken4": 1,
-        "unknown": 8,
       },
       "total": 9,
     },
@@ -25,7 +24,6 @@ Object {
         "chicken2": 20,
         "chicken3": 11,
         "chicken4": 22,
-        "unknown": 141,
       },
       "hasDamaged": true,
       "total": 218,
@@ -49,7 +47,7 @@ Object {
     "modified": "2018-05-22T23:38:20.234Z",
     "weight": "93.6",
   },
-  "mostEggs": "unknown",
+  "mostEggs": "chicken1",
   "total": 256,
 }
 `;

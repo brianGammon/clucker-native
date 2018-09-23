@@ -6,6 +6,7 @@ import {
 import styles from './styles';
 import Separator from '../Separator';
 import { type FlockStats, type Chicken } from '../../types';
+import { UNNAMED_HEN_LABEL } from '../../constants';
 
 type Props = {
   stats: FlockStats,
@@ -18,7 +19,7 @@ const Leaderboard = ({ stats, chickens }: Props) => (
   <View>
     <Separator text="EGG LEADERBOARD" />
     {Object.keys(stats.eggsPerChicken || {}).map((key) => {
-      const chicken = chickens[key] || { name: 'Unnamed Hen' };
+      const chicken = chickens[key] || { name: UNNAMED_HEN_LABEL };
       return (
         <ListItem key={key} style={styles.li}>
           <Left style={styles.flex}>
