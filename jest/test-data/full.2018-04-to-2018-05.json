@@ -528,7 +528,8 @@
         "date": "2018-04-21",
         "modified": "2018-04-21T23:25:36.754Z",
         "userId": "user1",
-        "weight": "70"
+        "weight": "70",
+        "damaged": false
       },
       "-LAeWmD29W9GD_e-10Of": {
         "chickenId": "chicken4",
@@ -568,7 +569,8 @@
         "date": "2018-04-23",
         "modified": "2018-04-23T17:46:14.176Z",
         "userId": "user1",
-        "weight": "61.9"
+        "weight": "61.9",
+        "damaged": true
       },
       "-LAu-OgWm53wZ2MTlcPI": {
         "chickenId": "chicken2",
@@ -608,7 +610,8 @@
         "date": "2018-04-25",
         "modified": "2018-04-25T23:53:14.650Z",
         "userId": "user1",
-        "weight": "58.4"
+        "weight": "58.4",
+        "damaged": true
       },
       "-LB5s886r1GcLL2X8wZI": {
         "chickenId": "chicken4",
@@ -716,7 +719,8 @@
         "date": "2018-05-02",
         "modified": "2018-05-02T21:20:06.914Z",
         "userId": "user1",
-        "weight": "58"
+        "weight": "58",
+        "damaged": true
       },
       "-LBXiYFQm1lgZpUT42ou": {
         "chickenId": "chicken4",
@@ -920,7 +924,8 @@
         "date": "2018-05-13",
         "modified": "2018-05-13T18:05:58.792Z",
         "userId": "user1",
-        "weight": "70.1"
+        "weight": "70.1",
+        "damaged": true
       }
     }
   }

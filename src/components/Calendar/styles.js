@@ -41,7 +41,7 @@ export default StyleSheet.create({
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderColor: variables.cluckerGreyLight,
-    minHeight: 60,
+    minHeight: 70,
   },
   innerDayCell: {
     padding: 2,
@@ -50,6 +50,15 @@ export default StyleSheet.create({
   },
   innerDayCellSuccess: {
     backgroundColor: variables.successBackground,
+  },
+  dayCellInfo: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    minHeight: 20,
+  },
+  dayCellInfoIcon: {
+    fontSize: 18,
+    paddingHorizontal: 2,
   },
   sunday: {
     borderLeftWidth: 1,

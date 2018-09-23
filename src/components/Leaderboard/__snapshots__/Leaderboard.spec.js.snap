@@ -2,11 +2,9 @@
 
 exports[`Leaderboard renders 1`] = `
 <Styled(ViewNB)>
-  <Styled(Separator)>
-    <Styled(Text)>
-      LEADERBOARD
-    </Styled(Text)>
-  </Styled(Separator)>
+  <Separator
+    text="EGG LEADERBOARD"
+  />
   <Styled(ListItem)
     key="chicken1"
     style={
@@ -81,6 +79,47 @@ exports[`Leaderboard renders 1`] = `
         }
       >
         Chicken2
+      </Styled(Text)>
+    </Styled(Left)>
+    <Styled(Right)>
+      <Styled(Text)>
+        2
+      </Styled(Text)>
+    </Styled(Right)>
+  </Styled(ListItem)>
+  <Styled(ListItem)
+    key="unknown"
+    style={
+      Object {
+        "paddingBottom": 4,
+        "paddingTop": 4,
+      }
+    }
+  >
+    <Styled(Left)
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Styled(Thumbnail)
+        small={true}
+        source={
+          Object {
+            "testUri": "../../../src/assets/default-profile-photo_thumb.png",
+          }
+        }
+        square={true}
+      />
+      <Styled(Text)
+        style={
+          Object {
+            "marginLeft": 8,
+          }
+        }
+      >
+        Unnamed Hen
       </Styled(Text)>
     </Styled(Left)>
     <Styled(Right)>

@@ -30,16 +30,6 @@ export default StyleSheet.create({
   bodyCell: {
     flex: 1,
   },
-  trophyCell: {
-    alignItems: 'center',
-    marginRight: 14,
-  },
-  trophyCellText: {
-    fontSize: 12,
-  },
-  trophyIcon: {
-    fontSize: 24,
-  },
   addText: {
     paddingLeft: 8,
     color: variables.inputColorPlaceholder,

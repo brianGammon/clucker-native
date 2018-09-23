@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Separator renders with text 1`] = `
+<Styled(Separator)
+  style={
+    Object {
+      "backgroundColor": "rgb(249, 149, 0)",
+    }
+  }
+>
+  <Styled(Text)
+    style={
+      Object {
+        "color": "#575757",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Test Message
+  </Styled(Text)>
+</Styled(Separator)>
+`;

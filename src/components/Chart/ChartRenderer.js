@@ -5,6 +5,7 @@ import {
   XAxis, YAxis, Grid, LineChart,
 } from 'react-native-svg-charts';
 import { View } from 'native-base';
+import Separator from '../Separator';
 import { type ChartData } from '../../types';
 import LineDecorator from './LineDecorator';
 import styles, { chartSettings } from './styles';
@@ -15,6 +16,7 @@ type Props = {
 
 const ChartRenderer = ({ data }: Props) => (
   <View>
+    <Separator text="EGG TRENDLINE" />
     <View style={styles.chartContainer}>
       <YAxis
         yAccessor={({ item }) => item.count}

@@ -10,11 +10,9 @@ import {
   Button,
   H2,
   Icon,
-  Separator,
   ListItem,
-  Left,
-  Right,
 } from 'native-base';
+import Separator from '../Separator';
 import ImageViewer from '../ImageViewer';
 import Header from '../Header';
 import CommonLabel from '../CommonLabel';
@@ -148,32 +146,24 @@ const ChickenRenderer = ({
         </View>
       </View>
       <View>
-        <View>
-          <Separator>
-            <Text>AWARDS</Text>
-          </Separator>
-          {topProducer && (
-            <ListItem>
-              <Icon style={styles.trophyIcon} active name="trophy" />
-              <Text style={styles.awardText}>Top Producer</Text>
-            </ListItem>
-          )}
-          {heaviest && (
-            <ListItem>
-              <Icon style={styles.trophyIcon} active name="trophy" />
-              <Text style={styles.awardText}>Heaviest Egg</Text>
-            </ListItem>
-          )}
-          {!topProducer
-            && !heaviest && (
+        {(topProducer || heaviest) && (
+          <View>
+            <Separator text="AWARDS" />
+            {topProducer && (
               <ListItem>
-                <Text>None</Text>
+                <Icon style={styles.trophyIcon} active name="trophy" />
+                <Text style={styles.awardText}>Top Producer</Text>
               </ListItem>
-          )}
-        </View>
-        <Separator>
-          <Text>CHICKEN STATS</Text>
-        </Separator>
+            )}
+            {heaviest && (
+              <ListItem>
+                <Icon style={styles.trophyIcon} active name="trophy" />
+                <Text style={styles.awardText}>Heaviest Egg</Text>
+              </ListItem>
+            )}
+          </View>
+        )}
+        <Separator text="CHICKEN STATS" />
         <ListItem>
           <View style={styles.flex}>
             <Text>Total Eggs Laid</Text>
@@ -216,9 +206,7 @@ const ChickenRenderer = ({
             </Text>
           </View>
         </ListItem>
-        <Separator>
-          <Text>PAST 7 DAYS</Text>
-        </Separator>
+        <Separator text="PAST 7 DAYS" />
         <ListItem last style={styles.pastWeek}>
           <View style={styles.pastWeekContainer}>
             {Object.keys(stats.lastSevenDays || {}).map((key, index) => (

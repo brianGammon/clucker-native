@@ -73,6 +73,9 @@ export default (eggs, range) => {
       if (egg.notes && egg.notes !== '') {
         eggsPerPeriod[rollupPeriod].hasNote = true;
       }
+      if (egg.damaged) {
+        eggsPerPeriod[rollupPeriod].hasDamaged = true;
+      }
       eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] = (eggsPerPeriod[rollupPeriod].byChicken[egg.chickenId] || 0) + quantity;
     }
   });

@@ -11,7 +11,6 @@ import DateSwitcher from '../DateSwitcher';
 import Line from '../Line';
 import WeekDays from './WeekDays';
 import Leaderboard from '../Leaderboard';
-import HeaviestEgg from '../HeaviestEgg';
 import HelpMessage from '../HelpMessage';
 import Stats from '../Stats';
 
@@ -38,7 +37,7 @@ const CalendarRenderer = ({
   stats,
 }: Props) => (
   <Container>
-    <Header title="Calendar" eggButton />
+    <Header title="Month Stats" eggButton />
     <Content>
       <DateSwitcher mode="month" navigation={navigation} dates={dates} />
 
@@ -53,7 +52,7 @@ const CalendarRenderer = ({
 
       {stats && (
         <View>
-          <Stats stats={stats} />
+          <Stats stats={stats} mode="month" />
           <Leaderboard stats={stats} chickens={chickens} />
         </View>
       )}

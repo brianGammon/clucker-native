@@ -10,16 +10,12 @@ exports[`FlockStats component: FlockStatsRenderer renders 1`] = `
 <Styled(Container)>
   <withNavigation(Header)
     eggButton={true}
-    title="Flock Stats"
+    title="All Time Stats"
   />
   <Styled(Content)>
-    <Styled(Separator)>
-      <Styled(Text)>
-        TRENDLINE
-      </Styled(Text)>
-    </Styled(Separator)>
     <Connect(Chart) />
     <Stats
+      mode="allTime"
       stats={
         Object {
           "averageNumber": 2,

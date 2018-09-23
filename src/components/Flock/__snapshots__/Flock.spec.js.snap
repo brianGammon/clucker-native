@@ -4,7 +4,7 @@ exports[`Flock component: Should render FlockRenderer as flock owner 1`] = `
 <Styled(Container)>
   <withNavigation(Header)
     eggButton={true}
-    title="Flock"
+    title="My Flock"
   />
   <Styled(Content)>
     <FlatList
@@ -36,7 +36,7 @@ exports[`Flock component: Should render FlockRenderer not as flock owner 1`] = `
 <Styled(Container)>
   <withNavigation(Header)
     eggButton={true}
-    title="Flock"
+    title="My Flock"
   />
   <Styled(Content)>
     <FlatList
@@ -107,7 +107,6 @@ exports[`Flock component: Should render connected component as flock guest 1`] =
     }
   }
   navigation={Object {}}
-  topProducer="chicken1"
 />
 `;
 
@@ -154,6 +153,5 @@ exports[`Flock component: Should render connected component as flock owner 1`] =
     }
   }
   navigation={Object {}}
-  topProducer="chicken1"
 />
 `;

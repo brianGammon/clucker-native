@@ -27,6 +27,7 @@ Object {
         "chicken4": 22,
         "unknown": 141,
       },
+      "hasDamaged": true,
       "total": 218,
     },
     "2018-05": Object {
@@ -36,6 +37,7 @@ Object {
         "chicken4": 8,
         "unknown": 1,
       },
+      "hasDamaged": true,
       "hasNote": true,
       "total": 29,
     },

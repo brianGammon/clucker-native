@@ -35,7 +35,7 @@ const CalendarDayRenderer = ({
   count,
 }: Props) => (
   <Container>
-    <Header title="Egg List" eggButton goBackButton="Month" />
+    <Header title="Daily Log" eggButton goBackButton="Month" />
     <Content padder>
       <DateSwitcher
         mode="day"

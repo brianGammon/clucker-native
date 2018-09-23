@@ -1,15 +1,10 @@
 /* @flow */
 import React from 'react';
 import {
-  View,
-  Text,
-  Separator,
-  ListItem,
-  Left,
-  Thumbnail,
-  Right,
+  View, Text, ListItem, Left, Thumbnail, Right,
 } from 'native-base';
 import styles from './styles';
+import Separator from '../Separator';
 import { type FlockStats, type Chicken } from '../../types';
 
 type Props = {
@@ -21,13 +16,9 @@ type Props = {
 
 const Leaderboard = ({ stats, chickens }: Props) => (
   <View>
-    <Separator>
-      <Text>LEADERBOARD</Text>
-    </Separator>
-    {Object.keys(stats.eggsPerChicken).map((key) => {
-      if (!chickens[key]) {
-        return null;
-      }
+    <Separator text="EGG LEADERBOARD" />
+    {Object.keys(stats.eggsPerChicken || {}).map((key) => {
+      const chicken = chickens[key] || { name: 'Unnamed Hen' };
       return (
         <ListItem key={key} style={styles.li}>
           <Left style={styles.flex}>
@@ -35,14 +26,12 @@ const Leaderboard = ({ stats, chickens }: Props) => (
               small
               square
               source={
-                chickens[key].thumbnailUrl
-                  ? { uri: chickens[key].thumbnailUrl }
+                chicken.thumbnailUrl
+                  ? { uri: chicken.thumbnailUrl }
                   : require('../../assets/default-profile-photo_thumb.png')
               }
             />
-            <Text style={styles.leaderText}>
-              {chickens[key] ? chickens[key].name : 'Unnamed Hen'}
-            </Text>
+            <Text style={styles.leaderText}>{chicken.name}</Text>
           </Left>
 
           <Right>

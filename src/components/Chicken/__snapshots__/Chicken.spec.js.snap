@@ -233,23 +233,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Styled(ViewNB)>
-      <Styled(ViewNB)>
-        <Styled(Separator)>
-          <Styled(Text)>
-            AWARDS
-          </Styled(Text)>
-        </Styled(Separator)>
-        <Styled(ListItem)>
-          <Styled(Text)>
-            None
-          </Styled(Text)>
-        </Styled(ListItem)>
-      </Styled(ViewNB)>
-      <Styled(Separator)>
-        <Styled(Text)>
-          CHICKEN STATS
-        </Styled(Text)>
-      </Styled(Separator)>
+      <Separator
+        text="CHICKEN STATS"
+      />
       <Styled(ListItem)>
         <Styled(ViewNB)
           style={
@@ -323,11 +309,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(Separator)>
-        <Styled(Text)>
-          PAST 7 DAYS
-        </Styled(Text)>
-      </Styled(Separator)>
+      <Separator
+        text="PAST 7 DAYS"
+      />
       <Styled(ListItem)
         last={true}
         style={
@@ -584,23 +568,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Styled(ViewNB)>
-      <Styled(ViewNB)>
-        <Styled(Separator)>
-          <Styled(Text)>
-            AWARDS
-          </Styled(Text)>
-        </Styled(Separator)>
-        <Styled(ListItem)>
-          <Styled(Text)>
-            None
-          </Styled(Text)>
-        </Styled(ListItem)>
-      </Styled(ViewNB)>
-      <Styled(Separator)>
-        <Styled(Text)>
-          CHICKEN STATS
-        </Styled(Text)>
-      </Styled(Separator)>
+      <Separator
+        text="CHICKEN STATS"
+      />
       <Styled(ListItem)>
         <Styled(ViewNB)
           style={
@@ -674,11 +644,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(Separator)>
-        <Styled(Text)>
-          PAST 7 DAYS
-        </Styled(Text)>
-      </Styled(Separator)>
+      <Separator
+        text="PAST 7 DAYS"
+      />
       <Styled(ListItem)
         last={true}
         style={
@@ -992,23 +960,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       </Styled(ViewNB)>
     </Styled(ViewNB)>
     <Styled(ViewNB)>
-      <Styled(ViewNB)>
-        <Styled(Separator)>
-          <Styled(Text)>
-            AWARDS
-          </Styled(Text)>
-        </Styled(Separator)>
-        <Styled(ListItem)>
-          <Styled(Text)>
-            None
-          </Styled(Text)>
-        </Styled(ListItem)>
-      </Styled(ViewNB)>
-      <Styled(Separator)>
-        <Styled(Text)>
-          CHICKEN STATS
-        </Styled(Text)>
-      </Styled(Separator)>
+      <Separator
+        text="CHICKEN STATS"
+      />
       <Styled(ListItem)>
         <Styled(ViewNB)
           style={
@@ -1082,11 +1036,9 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(Separator)>
-        <Styled(Text)>
-          PAST 7 DAYS
-        </Styled(Text)>
-      </Styled(Separator)>
+      <Separator
+        text="PAST 7 DAYS"
+      />
       <Styled(ListItem)
         last={true}
         style={

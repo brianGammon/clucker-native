@@ -19,12 +19,9 @@ type Props = {
   chickens: {
     [chickenId: string]: Chicken,
   },
-  topProducer: string,
 };
 
-const FlockItem = ({
-  item, chickens, navigation, topProducer,
-}: Props) => (
+const FlockItem = ({ item, chickens, navigation }: Props) => (
   <ListItem
     onPress={() => navigation.navigate('Chicken', { chickenId: item })}
     thumbnail
@@ -47,13 +44,6 @@ const FlockItem = ({
             {chickens[item].breed}
           </Text>
         </View>
-        {topProducer
-          && topProducer === item && (
-            <View style={[styles.trophyCell]}>
-              <Icon style={styles.trophyIcon} active name="trophy" />
-              <Text style={styles.trophyCellText}>Top Producer</Text>
-            </View>
-        )}
       </View>
     </Body>
     <Right>

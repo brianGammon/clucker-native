@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   li: {
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: 8,
+    paddingBottom: 8,
   },
 });

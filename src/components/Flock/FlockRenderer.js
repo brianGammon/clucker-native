@@ -12,12 +12,11 @@ type Props = {
   chickens: {
     [string]: Chicken,
   },
-  topProducer: string,
 };
 
-const FlockRenderer = ({ navigation, chickens, topProducer }: Props) => (
+const FlockRenderer = ({ navigation, chickens }: Props) => (
   <Container>
-    <Header title="Flock" eggButton />
+    <Header title="My Flock" eggButton />
     <Content>
       {Object.keys(chickens || {}).length === 0 && (
         <View padder>
@@ -30,12 +29,7 @@ const FlockRenderer = ({ navigation, chickens, topProducer }: Props) => (
         data={Object.keys(chickens || {})}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <FlockItem
-            item={item}
-            navigation={navigation}
-            topProducer={topProducer}
-            chickens={chickens}
-          />
+          <FlockItem item={item} navigation={navigation} chickens={chickens} />
         )}
       />
     </Content>

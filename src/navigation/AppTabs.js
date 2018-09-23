@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { Icon } from 'native-base';
+import { Icon, Text } from 'native-base';
 import { createBottomTabNavigator } from 'react-navigation';
 import StatsStack from './StatsStack';
 import FlockStack from './FlockStack';
@@ -20,13 +20,13 @@ export const Tabs = createBottomTabNavigator(
       screen: StatsStack,
       path: 'stats',
     },
-    Flock: {
-      screen: FlockStack,
-      path: 'flock',
-    },
     Calendar: {
       screen: CalendarStack,
       path: 'calendar',
+    },
+    Flock: {
+      screen: FlockStack,
+      path: 'flock',
     },
     Settings: SettingsStack,
   },
@@ -42,7 +42,7 @@ export const Tabs = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Stats') {
-          iconName = 'stats';
+          iconName = 'trending-up';
         } else if (routeName === 'Flock') {
           iconName = 'list-box';
         } else if (routeName === 'Settings') {
@@ -53,6 +53,22 @@ export const Tabs = createBottomTabNavigator(
         return (
           <Icon style={{ color: tintColor }} active={focused} name={iconName} />
         );
+      },
+      tabBarLabel: ({
+        tintColor,
+      }: {
+        tintColor: TabBarIconProps.tintColor,
+      }) => {
+        const { routeName } = navigation.state;
+        let label;
+        if (routeName === 'Stats') {
+          label = 'All Time';
+        } else if (routeName === 'Calendar') {
+          label = 'Month/Day';
+        } else {
+          label = routeName;
+        }
+        return <Text style={{ color: tintColor, fontSize: 12 }}>{label}</Text>;
       },
     }),
     tabBarOptions: {

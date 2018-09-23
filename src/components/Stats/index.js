@@ -1,20 +1,18 @@
 /* @flow */
 import React from 'react';
-import {
-  View, Text, Separator, ListItem,
-} from 'native-base';
+import { View, Text, ListItem } from 'native-base';
 import { type FlockStats } from '../../types';
+import Separator from '../Separator';
 import styles from './styles';
 
 type Props = {
   stats: FlockStats,
+  mode: 'month' | 'allTime',
 };
 
-const Stats = ({ stats }: Props) => (
+const Stats = ({ stats, mode }: Props) => (
   <View>
-    <Separator>
-      <Text>EGG STATS</Text>
-    </Separator>
+    <Separator text="EGGS STATS" />
     <ListItem style={styles.li}>
       <View style={styles.flex}>
         <Text>Total Laid</Text>
@@ -25,7 +23,7 @@ const Stats = ({ stats }: Props) => (
     </ListItem>
     <ListItem style={styles.li}>
       <View style={styles.flex}>
-        <Text>Average Per Day (30 day)</Text>
+        <Text>{`Avg Per Day${mode === 'month' ? '' : ' (30 day)'}`}</Text>
       </View>
       <View>
         <Text>{Math.round(10 * stats.averageNumber) / 10}</Text>
@@ -33,7 +31,7 @@ const Stats = ({ stats }: Props) => (
     </ListItem>
     <ListItem style={styles.li}>
       <View style={styles.flex}>
-        <Text>Average Weight</Text>
+        <Text>Avg Weight</Text>
       </View>
       <View>
         <Text>

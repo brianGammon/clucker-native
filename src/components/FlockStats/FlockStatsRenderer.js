@@ -18,14 +18,11 @@ type Props = {
 
 const FlockStatsRenderer = ({ stats, chickens }: Props) => (
   <Container>
-    <Header title="Flock Stats" eggButton />
+    <Header title="All Time Stats" eggButton />
 
     <Content>
-      <Separator>
-        <Text>TRENDLINE</Text>
-      </Separator>
       <Chart />
-      <Stats stats={stats} />
+      <Stats stats={stats} mode="allTime" />
       <Leaderboard stats={stats} chickens={chickens} />
     </Content>
   </Container>

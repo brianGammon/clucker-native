@@ -42,34 +42,28 @@ const WeekDays = ({ calendarData, month, navigation }: Props) => {
                 calendarData[day].total ? styles.innerDayCellSuccess : null,
               ]}
             >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}
-              >
+              <View>
                 <Text style={styles.dayLabel}>{dayAsMoment.format('D')}</Text>
+              </View>
+
+              <View style={styles.dayCellInfo}>
                 {calendarData[day].hasNote && (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                    }}
-                  >
-                    <Icon
-                      style={{ fontSize: 20, marginRight: 5 }}
-                      name="attach"
-                    />
-                  </View>
+                  <Icon style={styles.dayCellInfoIcon} name="attach" />
+                )}
+                {calendarData[day].hasNote && (
+                  <Icon style={styles.dayCellInfoIcon} name="warning" />
                 )}
               </View>
 
-              {calendarData[day].total && (
-                <View style={styles.eggCount}>
-                  <Text style={styles.eggCountText}>
-                    {calendarData[day].total}
-                  </Text>
-                </View>
-              )}
+              <View>
+                {calendarData[day].total && (
+                  <View style={styles.eggCount}>
+                    <Text style={styles.eggCountText}>
+                      {calendarData[day].total}
+                    </Text>
+                  </View>
+                )}
+              </View>
             </View>
           </TouchableOpacity>
         );
