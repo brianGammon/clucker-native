@@ -3,7 +3,7 @@
 exports[`Leaderboard renders 1`] = `
 <Styled(ViewNB)>
   <Separator
-    text="EGG LEADERBOARD"
+    text="LEADERBOARD"
   />
   <Styled(ListItem)
     key="chicken1"

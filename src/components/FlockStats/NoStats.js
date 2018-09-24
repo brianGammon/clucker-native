@@ -6,7 +6,7 @@ import Header from '../Header';
 
 const NoStats = () => (
   <Container>
-    <Header title="Flock Stats" eggButton />
+    <Header title="All Time Stats" eggButton />
     <Content padder>
       <HelpMessage>
         <Text>

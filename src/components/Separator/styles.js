@@ -3,10 +3,10 @@ import variables from '../../styles/variables';
 
 export default StyleSheet.create({
   separator: {
-    backgroundColor: variables.cluckerOrange,
+    backgroundColor: variables.cluckerGrey,
   },
   separatorLabel: {
-    color: variables.cluckerGrey,
+    color: 'white',
     fontWeight: 'bold',
   },
 });

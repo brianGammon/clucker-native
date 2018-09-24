@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 import variables from '../../styles/variables';
 
+const borderColor = variables.cluckerGreyMedium;
+
 const label = {
-  color: 'grey',
+  color: variables.cluckerGrey,
   fontWeight: 'bold',
   fontSize: 17,
 };
@@ -26,10 +28,10 @@ export default StyleSheet.create({
   labelCell: {
     ...cell,
     borderBottomWidth: 1,
-    borderColor: variables.cluckerGreyLight,
+    borderColor,
   },
   outside: {
-    backgroundColor: '#ddd',
+    backgroundColor: variables.cluckerGreyLight,
   },
   label,
   calendarContainer: {
@@ -40,7 +42,7 @@ export default StyleSheet.create({
     ...cell,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: variables.cluckerGreyLight,
+    borderColor,
     minHeight: 70,
   },
   innerDayCell: {
@@ -62,7 +64,7 @@ export default StyleSheet.create({
   },
   sunday: {
     borderLeftWidth: 1,
-    borderColor: variables.cluckerGreyLight,
+    borderColor,
   },
   dayLabel: {
     ...label,

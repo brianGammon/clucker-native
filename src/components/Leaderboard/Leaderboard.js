@@ -23,7 +23,7 @@ const Leaderboard = ({ stats, chickens }: Props) => {
 
   return (
     <View>
-      <Separator text="EGG LEADERBOARD" />
+      <Separator text="LEADERBOARD" />
       {keys.map((key) => {
         const chicken = chickens[key] || { name: UNNAMED_HEN_LABEL };
         return (

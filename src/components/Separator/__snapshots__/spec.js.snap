@@ -4,14 +4,14 @@ exports[`Separator renders with text 1`] = `
 <Styled(Separator)
   style={
     Object {
-      "backgroundColor": "rgb(249, 149, 0)",
+      "backgroundColor": "#575757",
     }
   }
 >
   <Styled(Text)
     style={
       Object {
-        "color": "#575757",
+        "color": "white",
         "fontWeight": "bold",
       }
     }

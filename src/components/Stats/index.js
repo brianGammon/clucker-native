@@ -12,7 +12,7 @@ type Props = {
 
 const Stats = ({ stats, mode }: Props) => (
   <View>
-    <Separator text="EGGS STATS" />
+    <Separator text="EGG STATS" />
     <ListItem style={styles.li}>
       <View style={styles.flex}>
         <Text>Total Laid</Text>
