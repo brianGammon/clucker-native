@@ -68,7 +68,7 @@ export const Tabs = createBottomTabNavigator(
         } else {
           label = routeName;
         }
-        return <Text style={{ color: tintColor, fontSize: 12 }}>{label}</Text>;
+        return <Text style={{ color: tintColor, fontSize: 12, alignSelf: 'center' }}>{label}</Text>;
       },
     }),
     tabBarOptions: {

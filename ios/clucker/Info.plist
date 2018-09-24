@@ -51,7 +51,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Ability to take a new profile photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Ability to select a profile photo</string>
 	<key>UIAppFonts</key>

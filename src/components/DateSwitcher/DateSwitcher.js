@@ -61,7 +61,7 @@ const DateSwitcher = ({
         <Icon name="today" type="MaterialIcons" />
       </Button>
     </View>
-    {!!eggCount && (
+    {mode === 'day' && (
       <View style={styles.eggStats}>
         <Text style={styles.statsLabel}>Eggs</Text>
         <H3>{eggCount || 0}</H3>

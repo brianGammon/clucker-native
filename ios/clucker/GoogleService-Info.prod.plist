@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>127886992250-m1a6i3iuninv6lc1hlbp71v2jfg4k4sr.apps.googleusercontent.com</string>
+	<string>127886992250-lc0t8pfoq10se2q06fk8q57n0j9ln1rk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.127886992250-m1a6i3iuninv6lc1hlbp71v2jfg4k4sr</string>
+	<string>com.googleusercontent.apps.127886992250-lc0t8pfoq10se2q06fk8q57n0j9ln1rk</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCGS-Lj2MsYGLT4x5F99xMK9lUTYsiP8QU</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.clucker</string>
+	<string>com.cluckerapp</string>
 	<key>PROJECT_ID</key>
 	<string>cluckr-prod</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:127886992250:ios:742bea62b5021fd1</string>
+	<string>1:127886992250:ios:2537a2e38686a22d</string>
 	<key>DATABASE_URL</key>
 	<string>https://cluckr-prod.firebaseio.com</string>
 </dict>

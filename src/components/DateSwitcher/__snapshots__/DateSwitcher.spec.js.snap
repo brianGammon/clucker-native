@@ -142,28 +142,5 @@ exports[`DateSwitcher renders in month mode 1`] = `
       />
     </Styled(Button)>
   </Styled(ViewNB)>
-  <Styled(ViewNB)
-    style={
-      Object {
-        "alignItems": "center",
-        "paddingLeft": 20,
-        "paddingRight": 20,
-      }
-    }
-  >
-    <Styled(Text)
-      style={
-        Object {
-          "fontSize": 17,
-          "fontWeight": "bold",
-        }
-      }
-    >
-      Eggs
-    </Styled(Text)>
-    <Styled(H3)>
-      20
-    </Styled(H3)>
-  </Styled(ViewNB)>
 </Styled(ViewNB)>
 `;

@@ -1,4 +1,4 @@
-package com.clucker;
+package com.cluckerapp;
 
 import com.facebook.react.ReactActivity;
 
