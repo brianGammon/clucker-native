@@ -99,13 +99,13 @@ export default (eggs, range) => {
   // sort the eggPerPeriod by most eggs
   const array = toPairs(eggsPerChicken);
   const sortedArray = array.sort((a, b) => b[1] - a[1]);
-  const topProducer = sortedArray[0][0];
+  const topProducer = sortedArray.length > 1 && sortedArray[0][0];
   eggsPerChicken = fromPairs(sortedArray);
 
   const stats = {
     total: totalCount,
     heaviest: heaviestEgg,
-    averageWeight: totalWeight / totalWithWeight,
+    averageWeight: totalWithWeight > 0 ? totalWeight / totalWithWeight : null,
     averageNumber,
     firstEgg: earliestDate,
     mostEggs: topProducer,

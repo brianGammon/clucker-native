@@ -15,33 +15,40 @@ type Props = {
   },
 };
 
-const Leaderboard = ({ stats, chickens }: Props) => (
-  <View>
-    <Separator text="EGG LEADERBOARD" />
-    {Object.keys(stats.eggsPerChicken || {}).map((key) => {
-      const chicken = chickens[key] || { name: UNNAMED_HEN_LABEL };
-      return (
-        <ListItem key={key} style={styles.li}>
-          <Left style={styles.flex}>
-            <Thumbnail
-              small
-              square
-              source={
-                chicken.thumbnailUrl
-                  ? { uri: chicken.thumbnailUrl }
-                  : require('../../assets/default-profile-photo_thumb.png')
-              }
-            />
-            <Text style={styles.leaderText}>{chicken.name}</Text>
-          </Left>
+const Leaderboard = ({ stats, chickens }: Props) => {
+  const keys = Object.keys(stats.eggsPerChicken || {});
+  if (keys.length === 0) {
+    return null;
+  }
 
-          <Right>
-            <Text>{stats.eggsPerChicken[key]}</Text>
-          </Right>
-        </ListItem>
-      );
-    })}
-  </View>
-);
+  return (
+    <View>
+      <Separator text="EGG LEADERBOARD" />
+      {keys.map((key) => {
+        const chicken = chickens[key] || { name: UNNAMED_HEN_LABEL };
+        return (
+          <ListItem key={key} style={styles.li}>
+            <Left style={styles.flex}>
+              <Thumbnail
+                small
+                square
+                source={
+                  chicken.thumbnailUrl
+                    ? { uri: chicken.thumbnailUrl }
+                    : require('../../assets/default-profile-photo_thumb.png')
+                }
+              />
+              <Text style={styles.leaderText}>{chicken.name}</Text>
+            </Left>
+
+            <Right>
+              <Text>{stats.eggsPerChicken[key]}</Text>
+            </Right>
+          </ListItem>
+        );
+      })}
+    </View>
+  );
+};
 
 export default Leaderboard;

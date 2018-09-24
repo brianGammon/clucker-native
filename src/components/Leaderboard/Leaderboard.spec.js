@@ -18,4 +18,11 @@ describe('Leaderboard', () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('renders nothing when only bulk eggs logged', () => {
+    const wrapper = shallow(
+      <Leaderboard stats={{ eggsPerChicken: {} }} chickens={{}} mode="month" />,
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 });

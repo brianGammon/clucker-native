@@ -1,0 +1,17 @@
+{
+  "eggs": {
+    "inProgress": false,
+    "error": "",
+    "key": "",
+    "data": {
+      "-LBqWmOjebR_PX7AxsKn": {
+        "chickenId": "bulkentry",
+        "date": "2018-05-06",
+        "modified": "2018-05-06T17:36:56.962Z",
+        "notes": "Ert said yay",
+        "quantity": "22",
+        "bulkMode": true
+      }
+    }
+  }
+}

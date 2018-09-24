@@ -57,8 +57,7 @@ const CalendarRenderer = ({
         </View>
       )}
       {!stats && (
-        <View>
-          <Line />
+        <View padder>
           <HelpMessage>
             <Text>No eggs logged for this period.</Text>
           </HelpMessage>

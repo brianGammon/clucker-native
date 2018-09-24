@@ -37,7 +37,7 @@ const Stats = ({ stats, mode }: Props) => (
         <Text>
           {stats.averageWeight > 0
             ? Math.round(10 * stats.averageWeight) / 10
-            : '--'}
+            : '-- '}
           g
         </Text>
       </View>

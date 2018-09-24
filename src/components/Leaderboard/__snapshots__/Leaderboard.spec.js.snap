@@ -171,3 +171,5 @@ exports[`Leaderboard renders 1`] = `
   </Styled(ListItem)>
 </Styled(ViewNB)>
 `;
+
+exports[`Leaderboard renders nothing when only bulk eggs logged 1`] = `""`;

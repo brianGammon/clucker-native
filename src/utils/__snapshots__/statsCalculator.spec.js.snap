@@ -51,3 +51,22 @@ Object {
   "total": 256,
 }
 `;
+
+exports[`Stats Calculator calculate for allTime, only bulk 1`] = `
+Object {
+  "averageNumber": 2.2,
+  "averageWeight": null,
+  "eggsPerChicken": Object {},
+  "eggsPerPeriod": Object {
+    "2018-05": Object {
+      "byChicken": Object {},
+      "hasNote": true,
+      "total": 22,
+    },
+  },
+  "firstEgg": "2018-05-06",
+  "heaviest": null,
+  "mostEggs": false,
+  "total": 22,
+}
+`;
