@@ -232,7 +232,12 @@ const handlers = {
 
     const newState = {
       ...state,
-      [property]: { ...propertyState, inProgress: false, error: error.message },
+      [property]: {
+        ...propertyState,
+        initialized: true,
+        inProgress: false,
+        error: error.message,
+      },
     };
     return newState;
   },

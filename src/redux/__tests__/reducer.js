@@ -406,7 +406,7 @@ describe('firebaseReducer reducer', () => {
     const expectedState = {
       ...sampleState,
       [metaTypes.chickens]: {
-        initialized: false,
+        initialized: true,
         inProgress: false,
         error: error.message,
         data: { item1: 'item1value', item2: 'item2value' },
