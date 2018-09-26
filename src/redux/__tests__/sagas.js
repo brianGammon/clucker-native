@@ -1,4 +1,5 @@
 import firebase from 'react-native-firebase';
+import { delay } from 'redux-saga';
 import { cloneableGenerator, createMockTask } from 'redux-saga/utils';
 import {
   put,
@@ -18,7 +19,9 @@ import ImageResizer from 'react-native-image-resizer';
 import * as sagas from '../sagas';
 import * as actions from '../actions';
 import NavigationService from '../../navigation/NavigationService';
-import { metaTypes, eventTypes, actionTypes as a } from '../constants';
+import {
+  metaTypes, eventTypes, actionTypes as a, LISTENER_TIMEOUT,
+} from '../constants';
 import eggsByChickenSelector from '../../selectors/eggsByChickenSelector';
 
 describe('saga tests', () => {
@@ -314,7 +317,7 @@ describe('saga tests', () => {
         put(actions.listenToEggs('user1')),
       ]),
     );
-    expect(generator.next().value).toEqual(fork([AsyncStorage, AsyncStorage.setItem], 'hasSignedIn', 'true' ));
+    expect(generator.next().value).toEqual(fork([AsyncStorage, AsyncStorage.setItem], 'hasSignedIn', 'true'));
     expect(generator.next().value).toEqual(
       call([NavigationService, NavigationService.navigate], 'SignedIn'),
     );
@@ -482,12 +485,18 @@ describe('saga tests', () => {
       metaType,
     );
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
-    expect(generator.next(chan).value).toEqual(call([ref, ref.once], 'value'));
+    expect(JSON.stringify(generator.next(chan).value)).toEqual(
+      JSON.stringify(race({
+        snap: call([ref, ref.once], 'value'),
+        timeout: delay(LISTENER_TIMEOUT),
+      })),
+    );
 
     const failureGenerator = generator.clone();
+    const timeoutGenerator = generator.clone();
 
     // regular flow
-    expect(generator.next(snap).value).toEqual(flush(chan));
+    expect(generator.next({ snap }).value).toEqual(flush(chan));
     expect(generator.next().value).toEqual(
       put(actions.firebaseListenFulfilled(data, metaType)),
     );
@@ -502,6 +511,10 @@ describe('saga tests', () => {
     );
     expect(generator.next().value).toEqual(take(chan)); // return to listen to the channel
     generator.return(); // simulate cancellation
+
+    // timeout flow
+    const timeOutError = new Error('Timeout fetching data from Firebase');
+    expect(timeoutGenerator.next({ timeout: true }).value).toEqual(put(actions.firebaseListenRejected(timeOutError, metaType)));
 
     // failure flow
     const error = new Error('An error occured');
@@ -523,10 +536,15 @@ describe('saga tests', () => {
       metaType,
     );
     expect(generator.next().value).toEqual(call(sagas.createEventChannel, ref));
-    expect(generator.next(chan).value).toEqual(call([ref, ref.once], 'value'));
+    expect(JSON.stringify(generator.next(chan).value)).toEqual(
+      JSON.stringify(race({
+        snap: call([ref, ref.once], 'value'),
+        timeout: delay(LISTENER_TIMEOUT),
+      })),
+    );
 
     // regular flow
-    expect(generator.next(snap).value).toEqual(flush(chan));
+    expect(generator.next({ snap }).value).toEqual(flush(chan));
     expect(generator.next().value).toEqual(
       put(actions.firebaseListenFulfilled({}, metaType)),
     );

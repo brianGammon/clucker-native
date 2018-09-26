@@ -77,3 +77,5 @@ export const appStates = {
   STARTING: 'STARTING',
   READY: 'READY',
 };
+
+export const LISTENER_TIMEOUT = 45000;

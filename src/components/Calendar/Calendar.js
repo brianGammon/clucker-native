@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import Loading from '../Loading';
 import CalendarRenderer from './CalendarRenderer';
 import calendarDataSelector from '../../selectors/calendarDataSelector';
 import { nowAsMoment, dateSwitcher } from '../../utils/dateHelper';
@@ -8,6 +9,7 @@ import flockStatsSelector from '../../selectors/flockStatsSelector';
 
 type Props = {
   navigation: any,
+  loading: boolean,
   stats: FlockStats,
   calendarData: CalendarData,
   chickens: {
@@ -26,15 +28,21 @@ const Calendar = ({
   dates,
   chickens,
   stats,
-}: Props) => (
-  <CalendarRenderer
-    navigation={navigation}
-    stats={stats}
-    calendarData={calendarData}
-    chickens={chickens}
-    dates={dates}
-  />
-);
+  loading,
+}: Props) => {
+  if (loading) {
+    return <Loading message="Loading Calendar..." />;
+  }
+  return (
+    <CalendarRenderer
+      navigation={navigation}
+      stats={stats}
+      calendarData={calendarData}
+      chickens={chickens}
+      dates={dates}
+    />
+  );
+};
 
 const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
   const now = nowAsMoment();
@@ -43,6 +51,7 @@ const mapStateToProps = ({ eggs, chickens }, { navigation }) => {
   return {
     stats: flockStatsSelector(eggs.data, date),
     calendarData: calendarDataSelector(eggs.data, date),
+    loading: eggs.inProgress || chickens.inProgress,
     chickens: chickens.data,
     dates: {
       now: now.format('YYYY-MM'),

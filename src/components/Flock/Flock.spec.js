@@ -9,6 +9,21 @@ describe('Flock component:', () => {
   const mockStore = configureStore(middlewares);
   const store = mockStore(sampleData);
 
+  test('Should render loading indicator when in progress', () => {
+    const navigation = {};
+    const thisStore = mockStore({
+      ...sampleData,
+      chickens: {
+        ...sampleData.chickens,
+        inProgress: true,
+      },
+    });
+    const wrapper = shallow(
+      <Flock store={thisStore} navigation={navigation} />,
+    ).dive();
+    expect(wrapper).toMatchSnapshot();
+  });
+
   test('Should render connected component as flock owner', () => {
     const navigation = {};
     const wrapper = shallow(

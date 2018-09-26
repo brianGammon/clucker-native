@@ -1,4 +1,4 @@
-import { eventChannel, buffers } from 'redux-saga';
+import { eventChannel, buffers, delay } from 'redux-saga';
 import {
   put,
   take,
@@ -23,6 +23,7 @@ import {
   metaTypes,
   eventTypes as e,
   authTypes,
+  LISTENER_TIMEOUT,
 } from './constants';
 import * as actions from './actions';
 
@@ -274,10 +275,19 @@ export function* getDataAndListenToChannel(ref, metaType) {
   const chan = yield call(createEventChannel, ref);
   try {
     try {
-      const snap = yield call([ref, ref.once], 'value');
-      yield flush(chan);
-      const data = snap.val() || {};
-      yield put(actions.firebaseListenFulfilled(data, metaType));
+      const { snap } = yield race({
+        snap: call([ref, ref.once], 'value'),
+        timeout: delay(LISTENER_TIMEOUT),
+      });
+
+      if (snap) {
+        yield flush(chan);
+        const data = snap.val() || {};
+        yield put(actions.firebaseListenFulfilled(data, metaType));
+      } else {
+        chan.close();
+        throw new Error('Timeout fetching data from Firebase');
+      }
     } catch (error) {
       yield put(actions.firebaseListenRejected(error, metaType));
     }

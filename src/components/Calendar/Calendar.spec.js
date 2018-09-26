@@ -22,4 +22,24 @@ describe('Calender component:', () => {
     ).dive();
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('Should render loading indicator when in progress', () => {
+    const paramReturned = {
+      getParam: {
+        date: '2018-05',
+      },
+    };
+    const navigation = mockNavigation(paramReturned);
+    const thisStore = mockStore({
+      ...sampleData,
+      chickens: {
+        ...sampleData.chickens,
+        inProgress: true,
+      },
+    });
+    const wrapper = shallow(
+      <Calendar store={thisStore} navigation={navigation} />,
+    ).dive();
+    expect(wrapper).toMatchSnapshot();
+  });
 });

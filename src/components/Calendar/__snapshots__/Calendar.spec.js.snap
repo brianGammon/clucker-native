@@ -314,3 +314,9 @@ exports[`Calender component: Should render 1`] = `
   }
 />
 `;
+
+exports[`Calender component: Should render loading indicator when in progress 1`] = `
+<Loading
+  message="Loading Calendar..."
+/>
+`;
