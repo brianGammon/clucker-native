@@ -6,6 +6,7 @@ import { Root } from 'native-base';
 import Loading from '../Loading';
 import RootNavigator from '../../navigation/RootNavigator';
 import NavigationService from '../../navigation/NavigationService';
+import ErrorHandler from '../ErrorHandler';
 import * as actions from '../../redux/actions';
 import { appStates } from '../../redux/constants';
 
@@ -46,6 +47,7 @@ class App extends React.Component<Props> {
     }
     return (
       <Root>
+        <ErrorHandler />
         <RootNavigator
           ref={nav => NavigationService.setTopLevelNavigator(nav)}
         />

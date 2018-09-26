@@ -2,6 +2,7 @@
 
 exports[`App component: Should render Root Navigator when initialized 1`] = `
 <Styled(Root)>
+  <Connect(ErrorHandler) />
   <NavigationContainer />
 </Styled(Root)>
 `;
