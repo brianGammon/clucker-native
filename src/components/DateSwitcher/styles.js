@@ -21,7 +21,7 @@ export default StyleSheet.create({
   },
   eggStats: {
     alignItems: 'center',
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });

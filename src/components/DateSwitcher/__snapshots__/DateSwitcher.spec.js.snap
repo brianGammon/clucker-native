@@ -62,8 +62,8 @@ exports[`DateSwitcher renders in day mode 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "paddingLeft": 20,
-        "paddingRight": 20,
+        "paddingLeft": 10,
+        "paddingRight": 10,
       }
     }
   >

@@ -38,7 +38,7 @@ const ChickenPhotoPicker = ({
     <View style={styles.container}>
       <CommonLabel text="Profile Photo:" />
       <View style={{ flexDirection: 'row' }}>
-        <Image style={{ width: 200, height: 200 }} source={imageSource} />
+        <Image style={{ width: 180, height: 180 }} source={imageSource} />
         <View style={styles.photoControls}>
           {photoUrl !== ''
             && !newImage && (

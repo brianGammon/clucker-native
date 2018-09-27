@@ -207,39 +207,35 @@ const ChickenRenderer = ({
           </View>
         </ListItem>
         <Separator text="PAST 7 DAYS" />
-        <ListItem last style={styles.pastWeek}>
-          <View style={styles.pastWeekContainer}>
-            {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
-              <View
-                key={key}
-                style={[
-                  styles.dateCell,
-                  stats.lastSevenDays[key] > 0 ? styles.dateCellSuccess : null,
-                  index === Object.keys(stats.lastSevenDays).length - 1
-                    ? styles.lastCell
-                    : null,
-                ]}
-              >
-                <Text style={styles.dateCellLabel}>
-                  {moment(key).format('MMM')}
-                </Text>
-                <Text style={styles.dateCellLabel}>
-                  {moment(key).format('D')}
-                </Text>
-                <View>
-                  <Icon
-                    style={styles.dateCellIcon}
-                    name={
-                      stats.lastSevenDays[key] > 0
-                        ? 'checkmark-circle'
-                        : 'close'
-                    }
-                  />
-                </View>
+        <View style={styles.pastWeekContainer}>
+          {Object.keys(stats.lastSevenDays || {}).map((key, index) => (
+            <View
+              key={key}
+              style={[
+                styles.dateCell,
+                stats.lastSevenDays[key] > 0 ? styles.dateCellSuccess : null,
+                index === Object.keys(stats.lastSevenDays).length - 1
+                  ? styles.lastCell
+                  : null,
+              ]}
+            >
+              <Text style={styles.dateCellLabel}>
+                {moment(key).format('MMM')}
+              </Text>
+              <Text style={styles.dateCellLabel}>
+                {moment(key).format('D')}
+              </Text>
+              <View>
+                <Icon
+                  style={styles.dateCellIcon}
+                  name={
+                    stats.lastSevenDays[key] > 0 ? 'checkmark-circle' : 'close'
+                  }
+                />
               </View>
-            ))}
-          </View>
-        </ListItem>
+            </View>
+          ))}
+        </View>
       </View>
     </Content>
   </Container>

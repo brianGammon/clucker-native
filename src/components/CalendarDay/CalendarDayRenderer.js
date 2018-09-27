@@ -37,7 +37,7 @@ const CalendarDayRenderer = ({
 }: Props) => (
   <Container>
     <Header title="Daily Log" eggButton goBackButton="Month" />
-    <Content padder>
+    <Content>
       <DateSwitcher
         mode="day"
         navigation={navigation}

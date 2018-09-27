@@ -28,7 +28,7 @@ export default StyleSheet.create({
     marginLeft: 8,
   },
   chickenInfo: {
-    marginLeft: 10,
+    marginLeft: 8,
   },
   chickenInfoText: {
     height: 20,
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     color: variables.cluckerGrey,
   },
   fieldGroup: {
-    marginBottom: 10,
+    marginBottom: 8,
   },
   row: {
     flexDirection: 'row',
@@ -45,8 +45,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 180,
   },
   label: {
     fontWeight: 'bold',
@@ -80,10 +80,6 @@ export default StyleSheet.create({
   },
   dateCellIcon: {
     fontSize: 20,
-  },
-  pastWeek: {
-    paddingTop: 5,
-    paddingBottom: 5,
   },
   pastWeekContainer: {
     width: '100%',

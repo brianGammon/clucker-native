@@ -109,8 +109,8 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 200,
-              "width": 200,
+              "height": 180,
+              "width": 180,
             }
           }
         />
@@ -118,14 +118,15 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Styled(ViewNB)
         style={
           Object {
-            "marginLeft": 10,
+            "flex": 1,
+            "marginLeft": 8,
           }
         }
       >
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -152,7 +153,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -179,7 +180,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -206,7 +207,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -312,24 +313,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Separator
         text="PAST 7 DAYS"
       />
-      <Styled(ListItem)
-        last={true}
+      <Styled(ViewNB)
         style={
           Object {
-            "paddingBottom": 5,
-            "paddingTop": 5,
+            "flexDirection": "row",
+            "width": "100%",
           }
         }
-      >
-        <Styled(ViewNB)
-          style={
-            Object {
-              "flexDirection": "row",
-              "width": "100%",
-            }
-          }
-        />
-      </Styled(ListItem)>
+      />
     </Styled(ViewNB)>
   </Styled(Content)>
 </Styled(Container)>
@@ -444,8 +435,8 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 200,
-              "width": 200,
+              "height": 180,
+              "width": 180,
             }
           }
         />
@@ -453,14 +444,15 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Styled(ViewNB)
         style={
           Object {
-            "marginLeft": 10,
+            "flex": 1,
+            "marginLeft": 8,
           }
         }
       >
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -487,7 +479,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -514,7 +506,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -541,7 +533,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -647,81 +639,71 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Separator
         text="PAST 7 DAYS"
       />
-      <Styled(ListItem)
-        last={true}
+      <Styled(ViewNB)
         style={
           Object {
-            "paddingBottom": 5,
-            "paddingTop": 5,
+            "flexDirection": "row",
+            "width": "100%",
           }
         }
       >
         <Styled(ViewNB)
+          key="2018-10-06"
           style={
-            Object {
-              "flexDirection": "row",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "borderLeftWidth": 1,
+                "borderTopWidth": 1,
+                "padding": 5,
+                "width": "14.2857%",
+              },
+              Object {
+                "backgroundColor": "#c9f5d6",
+              },
+              Object {
+                "borderColor": "#ddd",
+                "borderRightWidth": 1,
+              },
+            ]
           }
         >
-          <Styled(ViewNB)
-            key="2018-10-06"
+          <Styled(Text)
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "borderBottomWidth": 1,
-                  "borderColor": "#ddd",
-                  "borderLeftWidth": 1,
-                  "borderTopWidth": 1,
-                  "padding": 5,
-                  "width": "14.2857%",
-                },
-                Object {
-                  "backgroundColor": "#c9f5d6",
-                },
-                Object {
-                  "borderColor": "#ddd",
-                  "borderRightWidth": 1,
-                },
-              ]
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "fontWeight": "bold",
+              }
             }
           >
-            <Styled(Text)
+            Oct
+          </Styled(Text)>
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            6
+          </Styled(Text)>
+          <Styled(ViewNB)>
+            <Styled(Icon)
+              name="checkmark-circle"
               style={
                 Object {
-                  "color": "#575757",
-                  "fontSize": 16,
-                  "fontWeight": "bold",
+                  "fontSize": 20,
                 }
               }
-            >
-              Oct
-            </Styled(Text)>
-            <Styled(Text)
-              style={
-                Object {
-                  "color": "#575757",
-                  "fontSize": 16,
-                  "fontWeight": "bold",
-                }
-              }
-            >
-              6
-            </Styled(Text)>
-            <Styled(ViewNB)>
-              <Styled(Icon)
-                name="checkmark-circle"
-                style={
-                  Object {
-                    "fontSize": 20,
-                  }
-                }
-              />
-            </Styled(ViewNB)>
+            />
           </Styled(ViewNB)>
         </Styled(ViewNB)>
-      </Styled(ListItem)>
+      </Styled(ViewNB)>
     </Styled(ViewNB)>
   </Styled(Content)>
 </Styled(Container)>
@@ -836,8 +818,8 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           }
           style={
             Object {
-              "height": 200,
-              "width": 200,
+              "height": 180,
+              "width": 180,
             }
           }
         />
@@ -845,14 +827,15 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Styled(ViewNB)
         style={
           Object {
-            "marginLeft": 10,
+            "flex": 1,
+            "marginLeft": 8,
           }
         }
       >
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -879,7 +862,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -906,7 +889,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -933,7 +916,7 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
         <Styled(ViewNB)
           style={
             Object {
-              "marginBottom": 10,
+              "marginBottom": 8,
             }
           }
         >
@@ -1039,81 +1022,71 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Separator
         text="PAST 7 DAYS"
       />
-      <Styled(ListItem)
-        last={true}
+      <Styled(ViewNB)
         style={
           Object {
-            "paddingBottom": 5,
-            "paddingTop": 5,
+            "flexDirection": "row",
+            "width": "100%",
           }
         }
       >
         <Styled(ViewNB)
+          key="2018-10-06"
           style={
-            Object {
-              "flexDirection": "row",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "borderLeftWidth": 1,
+                "borderTopWidth": 1,
+                "padding": 5,
+                "width": "14.2857%",
+              },
+              Object {
+                "backgroundColor": "#c9f5d6",
+              },
+              Object {
+                "borderColor": "#ddd",
+                "borderRightWidth": 1,
+              },
+            ]
           }
         >
-          <Styled(ViewNB)
-            key="2018-10-06"
+          <Styled(Text)
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "borderBottomWidth": 1,
-                  "borderColor": "#ddd",
-                  "borderLeftWidth": 1,
-                  "borderTopWidth": 1,
-                  "padding": 5,
-                  "width": "14.2857%",
-                },
-                Object {
-                  "backgroundColor": "#c9f5d6",
-                },
-                Object {
-                  "borderColor": "#ddd",
-                  "borderRightWidth": 1,
-                },
-              ]
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "fontWeight": "bold",
+              }
             }
           >
-            <Styled(Text)
+            Oct
+          </Styled(Text)>
+          <Styled(Text)
+            style={
+              Object {
+                "color": "#575757",
+                "fontSize": 16,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            6
+          </Styled(Text)>
+          <Styled(ViewNB)>
+            <Styled(Icon)
+              name="checkmark-circle"
               style={
                 Object {
-                  "color": "#575757",
-                  "fontSize": 16,
-                  "fontWeight": "bold",
+                  "fontSize": 20,
                 }
               }
-            >
-              Oct
-            </Styled(Text)>
-            <Styled(Text)
-              style={
-                Object {
-                  "color": "#575757",
-                  "fontSize": 16,
-                  "fontWeight": "bold",
-                }
-              }
-            >
-              6
-            </Styled(Text)>
-            <Styled(ViewNB)>
-              <Styled(Icon)
-                name="checkmark-circle"
-                style={
-                  Object {
-                    "fontSize": 20,
-                  }
-                }
-              />
-            </Styled(ViewNB)>
+            />
           </Styled(ViewNB)>
         </Styled(ViewNB)>
-      </Styled(ListItem)>
+      </Styled(ViewNB)>
     </Styled(ViewNB)>
   </Styled(Content)>
 </Styled(Container)>
