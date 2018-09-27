@@ -2,7 +2,6 @@
 
 exports[`ChickenEditor component: Should render in add new mode 1`] = `
 <ChickenEditorRenderer
-  error=""
   focusNext={[Function]}
   form={
     FormGroup {
@@ -495,7 +494,6 @@ exports[`ChickenEditor component: Should render in add new mode 1`] = `
 
 exports[`ChickenEditor component: Should render in edit mode 1`] = `
 <ChickenEditorRenderer
-  error=""
   focusNext={[Function]}
   form={
     FormGroup {

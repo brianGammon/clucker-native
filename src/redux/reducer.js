@@ -254,8 +254,6 @@ const handlers = {
       ...state,
       [property]: {
         ...propertyState,
-        inProgress: false,
-        error: null,
         data,
       },
     };
@@ -273,8 +271,6 @@ const handlers = {
       ...state,
       [property]: {
         ...propertyState,
-        inProgress: false,
-        error: null,
         data,
       },
     };
@@ -290,8 +286,6 @@ const handlers = {
       ...state,
       [property]: {
         ...propertyState,
-        inProgress: false,
-        error: null,
         data,
       },
     };

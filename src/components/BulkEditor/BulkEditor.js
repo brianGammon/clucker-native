@@ -97,7 +97,7 @@ class BulkEditor extends React.Component<Props, State> {
   };
 
   render() {
-    const { navigation, error } = this.props;
+    const { navigation } = this.props;
     const { formReady } = this.state;
     if (!formReady) {
       return <Loading />;
@@ -107,7 +107,6 @@ class BulkEditor extends React.Component<Props, State> {
         navigation={navigation}
         form={this.form}
         onSaveForm={this.onSaveForm}
-        error={error}
         onDateChange={this.onDateChange}
       />
     );

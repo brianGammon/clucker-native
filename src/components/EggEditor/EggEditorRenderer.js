@@ -31,7 +31,6 @@ type Props = {
   toggleDamaged: (damaged: boolean) => void,
   onSaveForm: () => void,
   onDateChange: (dateString: string) => void,
-  error: string,
 };
 
 const EggEditorRenderer = ({
@@ -42,7 +41,6 @@ const EggEditorRenderer = ({
   onDateChange,
   toggleDamaged,
   onSaveForm,
-  error,
 }: Props) => (
   <FieldGroup
     control={form}
@@ -56,8 +54,6 @@ const EggEditorRenderer = ({
         />
         <Content>
           <View padder>
-            {error && <Text style={styles.error}>{error}</Text>}
-
             <Form>
               <Field
                 control={form.get('date')}

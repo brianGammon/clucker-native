@@ -149,7 +149,6 @@ class ChickenEditor extends React.Component<Props, State> {
   render() {
     const {
       navigation,
-      error,
       chickenId,
       chicken: { photoUrl },
       inProgress,
@@ -168,7 +167,6 @@ class ChickenEditor extends React.Component<Props, State> {
         onRemoveProfilePhoto={this.onRemoveProfilePhoto}
         onResetProfilePhoto={this.onResetProfilePhoto}
         handleSubmit={this.onSaveForm}
-        error={error}
         originalPhotoUrl={photoUrl || ''}
         onSelectPhoto={this.onSelectPhoto}
         onDateChange={this.onDateChange}

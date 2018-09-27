@@ -1,7 +1,8 @@
 /* @flow */
 import React from 'react';
+import { Modal } from 'react-native';
 import {
-  View, Text, Button, Icon, Accordion, Content, H3,
+  View, Text, Button, Icon, Accordion, H3,
 } from 'native-base';
 import styles from './styles';
 
@@ -18,34 +19,44 @@ const ErrorHandlerRenderer = ({
   startListening,
   clearErrors,
 }: Props) => (
-  <Content style={styles.container}>
-    <H3>Sorry, something went wrong</H3>
-    <View style={styles.helpTextContainer}>
-      <Text style={styles.helpTextItem}>Things you can try:</Text>
-      <Text style={styles.helpTextItem}>
-        {`${'\u2022'} Make sure you have an internet connection, then tap Reload.`}
-      </Text>
-      <Text style={styles.helpTextItem}>
-        {`${'\u2022'} Sign out in Settings, then sign in again.`}
-      </Text>
-      <View style={styles.buttonsContainer}>
-        <Button bordered dark small onPress={() => startListening(uid)}>
-          <Icon name="refresh" />
-          <Text style={styles.buttonText}>Reload</Text>
-        </Button>
-        <Button bordered dark small onPress={() => clearErrors()}>
-          <Icon name="close" />
-          <Text style={styles.buttonText}>Dismiss</Text>
-        </Button>
+  <Modal
+    animationType="fade"
+    transparent
+    visible={error !== null}
+    supportedOrientations={['portrait', 'landscape']}
+    onRequestClose={() => {}}
+  >
+    <View style={styles.modalContainer}>
+      <View style={styles.container}>
+        <H3>Sorry, something went wrong</H3>
+        <View style={styles.helpTextContainer}>
+          <Text style={styles.helpTextItem}>Things you can try:</Text>
+          <Text style={styles.helpTextItem}>
+            {`${'\u2022'} Make sure you have an internet connection, then tap Reload.`}
+          </Text>
+          <Text style={styles.helpTextItem}>
+            {`${'\u2022'} Sign out in Settings, then sign in again.`}
+          </Text>
+          <View style={styles.buttonsContainer}>
+            <Button bordered dark small onPress={() => startListening(uid)}>
+              <Icon name="refresh" />
+              <Text style={styles.buttonText}>Reload</Text>
+            </Button>
+            <Button bordered dark small onPress={() => clearErrors()}>
+              <Icon name="close" />
+              <Text style={styles.buttonText}>Dismiss</Text>
+            </Button>
+          </View>
+        </View>
+
+        <Accordion
+          dataArray={[{ title: 'Error Details', content: error }]}
+          headerStyle={styles.accordianHeader}
+          contentStyle={styles.accordianContent}
+          expanded={1}
+        />
       </View>
     </View>
-    <Accordion
-      dataArray={[{ title: 'Error Details', content: error }]}
-      headerStyle={styles.accordianHeader}
-      contentStyle={styles.accordianContent}
-      expanded={1}
-    />
-  </Content>
+  </Modal>
 );
-
 export default ErrorHandlerRenderer;

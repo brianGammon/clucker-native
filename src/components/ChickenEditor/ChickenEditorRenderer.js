@@ -1,13 +1,12 @@
 import React from 'react';
 import {
-  Container, Content, View, Text, Form,
+  Container, Content, View, Form,
 } from 'native-base';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import FormInput from '../FormInput';
 import ChickenPhotoPicker from '../ChickenPhotoPicker';
 import DatePicker from '../DatePicker';
 import Header from '../Header';
-import styles from './styles';
 import { nowAsMoment } from '../../utils/dateHelper';
 
 type Props = {
@@ -21,7 +20,6 @@ type Props = {
   onResetProfilePhoto: () => void,
   handleSubmit: () => void,
   onSelectPhoto: (withCamera: boolean) => void,
-  error: string,
   originalPhotoUrl: string,
   onDateChange: () => void,
   inProgress: boolean,
@@ -33,7 +31,6 @@ const ChickenEditorRenderer = ({
   onRemoveProfilePhoto,
   onResetProfilePhoto,
   handleSubmit,
-  error,
   originalPhotoUrl,
   onSelectPhoto,
   onDateChange,
@@ -57,8 +54,6 @@ const ChickenEditorRenderer = ({
           />
           <Content>
             <View padder>
-              {error && <Text style={styles.error}>{error}</Text>}
-
               <Form>
                 <FieldControl
                   name="name"

@@ -42,7 +42,6 @@ exports[`EggEditor component: Should render connected EggEditor with default chi
       },
     }
   }
-  error=""
   form={
     FormGroup {
       "_onDisabledChange": Array [],
@@ -429,7 +428,6 @@ exports[`EggEditor component: Should render connected EggEditor with no defaults
       },
     }
   }
-  error=""
   form={
     FormGroup {
       "_onDisabledChange": Array [],

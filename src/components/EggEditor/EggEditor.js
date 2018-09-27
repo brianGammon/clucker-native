@@ -51,9 +51,7 @@ class EggEditor extends React.Component<Props, State> {
   state = { formReady: false };
 
   componentDidMount() {
-    const {
-      chickenId, defaultDate, egg,
-    } = this.props;
+    const { chickenId, defaultDate, egg } = this.props;
     let defaultState = {
       ...this.form.value,
       chickenId: chickenId || '',
@@ -88,9 +86,7 @@ class EggEditor extends React.Component<Props, State> {
   }
 
   onSaveForm = () => {
-    const {
-      egg, eggId, saveForm,
-    } = this.props;
+    const { egg, eggId, saveForm } = this.props;
     const data = {
       ...egg,
       ...this.form.value,
@@ -113,12 +109,10 @@ class EggEditor extends React.Component<Props, State> {
 
   toggleDamaged = (damaged: boolean) => {
     this.form.controls.damaged.setValue(damaged);
-  }
+  };
 
   render() {
-    const {
-      navigation, chickens, error, eggId,
-    } = this.props;
+    const { navigation, chickens, eggId } = this.props;
     const { formReady } = this.state;
     if (!formReady) {
       return <Loading />;
@@ -132,19 +126,13 @@ class EggEditor extends React.Component<Props, State> {
         handlePickItem={this.handlePickItem}
         toggleDamaged={this.toggleDamaged}
         onSaveForm={this.onSaveForm}
-        error={error}
         onDateChange={this.onDateChange}
       />
     );
   }
 }
 
-const mapStateToProps = (
-  {
-    chickens, eggs,
-  },
-  { navigation },
-) => {
+const mapStateToProps = ({ chickens, eggs }, { navigation }) => {
   const chickenId = navigation.getParam('chickenId', null);
   const eggId = navigation.getParam('eggId', null);
   const defaultDate = navigation.getParam('date', null);

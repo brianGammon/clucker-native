@@ -2,7 +2,6 @@
 
 exports[`BulkEditor component: Should render connected BulkEditor with default chicken, egg, and date 1`] = `
 <BulkEditorRenderer
-  error=""
   form={
     FormGroup {
       "_onDisabledChange": Array [],
@@ -240,7 +239,6 @@ exports[`BulkEditor component: Should render connected BulkEditor with default c
 
 exports[`BulkEditor component: Should render connected BulkEditor with no defaults 1`] = `
 <BulkEditorRenderer
-  error=""
   form={
     FormGroup {
       "_onDisabledChange": Array [],

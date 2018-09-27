@@ -1,28 +1,21 @@
 /* @flow */
 import React from 'react';
 import {
-  Container, Content, View, Text, Form,
+  Container, Content, View, Form,
 } from 'native-base';
 import moment from 'moment';
 import { Field, FieldGroup, FieldControl } from 'react-reactive-form';
 import Header from '../Header';
 import DatePicker from '../DatePicker';
 import FormInput from '../FormInput';
-import styles from './styles';
 
 type Props = {
   form: any,
   onSaveForm: () => void,
   onDateChange: (dateString: string) => void,
-  error: string,
 };
 
-const BulkEditorRenderer = ({
-  form,
-  onDateChange,
-  onSaveForm,
-  error,
-}: Props) => (
+const BulkEditorRenderer = ({ form, onDateChange, onSaveForm }: Props) => (
   <FieldGroup
     control={form}
     render={({ invalid }) => (
@@ -35,8 +28,6 @@ const BulkEditorRenderer = ({
         />
         <Content>
           <View padder>
-            {error && <Text style={styles.error}>{error}</Text>}
-
             <Form>
               <Field
                 control={form.get('date')}

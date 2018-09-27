@@ -41,126 +41,146 @@ exports[`ErrorHandler Connected component renders with error message 1`] = `
 `;
 
 exports[`ErrorHandler Renderer component renders 1`] = `
-<Styled(Content)
-  style={
-    Object {
-      "alignSelf": "center",
-      "backgroundColor": "#d9534f",
-      "borderRadius": 10,
-      "padding": 15,
-      "position": "absolute",
-      "top": 60,
-      "width": 300,
-      "zIndex": 100,
-    }
+<Component
+  animationType="fade"
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
   }
+  transparent={true}
+  visible={true}
 >
-  <Styled(H3)>
-    Sorry, something went wrong
-  </Styled(H3)>
   <Styled(ViewNB)
     style={
       Object {
-        "marginVertical": 20,
+        "flex": 1,
+        "justifyContent": "center",
       }
     }
   >
-    <Styled(Text)
-      style={
-        Object {
-          "marginBottom": 4,
-        }
-      }
-    >
-      Things you can try:
-    </Styled(Text)>
-    <Styled(Text)
-      style={
-        Object {
-          "marginBottom": 4,
-        }
-      }
-    >
-      • Make sure you have an internet connection, then tap Reload.
-    </Styled(Text)>
-    <Styled(Text)
-      style={
-        Object {
-          "marginBottom": 4,
-        }
-      }
-    >
-      • Sign out in Settings, then sign in again.
-    </Styled(Text)>
     <Styled(ViewNB)
       style={
         Object {
-          "flexDirection": "row",
-          "justifyContent": "space-evenly",
-          "marginTop": 10,
+          "alignSelf": "center",
+          "backgroundColor": "#d9534f",
+          "borderRadius": 10,
+          "padding": 15,
+          "width": 300,
         }
       }
     >
-      <Styled(Button)
-        bordered={true}
-        dark={true}
-        onPress={[Function]}
-        small={true}
+      <Styled(H3)>
+        Sorry, something went wrong
+      </Styled(H3)>
+      <Styled(ViewNB)
+        style={
+          Object {
+            "marginVertical": 20,
+          }
+        }
       >
-        <Styled(Icon)
-          name="refresh"
-        />
         <Styled(Text)
           style={
             Object {
-              "paddingLeft": 0,
+              "marginBottom": 4,
             }
           }
         >
-          Reload
+          Things you can try:
         </Styled(Text)>
-      </Styled(Button)>
-      <Styled(Button)
-        bordered={true}
-        dark={true}
-        onPress={[Function]}
-        small={true}
-      >
-        <Styled(Icon)
-          name="close"
-        />
         <Styled(Text)
           style={
             Object {
-              "paddingLeft": 0,
+              "marginBottom": 4,
             }
           }
         >
-          Dismiss
+          • Make sure you have an internet connection, then tap Reload.
         </Styled(Text)>
-      </Styled(Button)>
+        <Styled(Text)
+          style={
+            Object {
+              "marginBottom": 4,
+            }
+          }
+        >
+          • Sign out in Settings, then sign in again.
+        </Styled(Text)>
+        <Styled(ViewNB)
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-evenly",
+              "marginTop": 10,
+            }
+          }
+        >
+          <Styled(Button)
+            bordered={true}
+            dark={true}
+            onPress={[Function]}
+            small={true}
+          >
+            <Styled(Icon)
+              name="refresh"
+            />
+            <Styled(Text)
+              style={
+                Object {
+                  "paddingLeft": 0,
+                }
+              }
+            >
+              Reload
+            </Styled(Text)>
+          </Styled(Button)>
+          <Styled(Button)
+            bordered={true}
+            dark={true}
+            onPress={[Function]}
+            small={true}
+          >
+            <Styled(Icon)
+              name="close"
+            />
+            <Styled(Text)
+              style={
+                Object {
+                  "paddingLeft": 0,
+                }
+              }
+            >
+              Dismiss
+            </Styled(Text)>
+          </Styled(Button)>
+        </Styled(ViewNB)>
+      </Styled(ViewNB)>
+      <Accordion
+        contentStyle={
+          Object {
+            "backgroundColor": "#ea7f7c",
+          }
+        }
+        dataArray={
+          Array [
+            Object {
+              "content": "Test Error Message",
+              "title": "Error Details",
+            },
+          ]
+        }
+        expanded={1}
+        headerStyle={
+          Object {
+            "backgroundColor": "#d9534f",
+          }
+        }
+      />
     </Styled(ViewNB)>
   </Styled(ViewNB)>
-  <Accordion
-    contentStyle={
-      Object {
-        "backgroundColor": "#ea7f7c",
-      }
-    }
-    dataArray={
-      Array [
-        Object {
-          "content": "Test Error Message",
-          "title": "Error Details",
-        },
-      ]
-    }
-    expanded={1}
-    headerStyle={
-      Object {
-        "backgroundColor": "#d9534f",
-      }
-    }
-  />
-</Styled(Content)>
+</Component>
 `;

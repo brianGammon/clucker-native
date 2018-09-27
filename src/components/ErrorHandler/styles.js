@@ -2,13 +2,14 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   container: {
     padding: 15,
-    position: 'absolute',
-    top: 60,
     alignSelf: 'center',
     width: 300,
-    zIndex: 100,
     backgroundColor: '#d9534f',
     borderRadius: 10,
   },
