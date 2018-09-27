@@ -85,4 +85,8 @@ export default StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
   },
+  li: {
+    paddingTop: 8,
+    paddingBottom: 8,
+  },
 });

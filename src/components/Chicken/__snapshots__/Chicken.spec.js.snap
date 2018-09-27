@@ -118,7 +118,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Styled(ViewNB)
         style={
           Object {
-            "flex": 1,
             "marginLeft": 8,
           }
         }
@@ -176,33 +175,27 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           >
             Oct 5, 2016
           </Styled(Text)>
-        </Styled(ViewNB)>
-        <Styled(ViewNB)
-          style={
-            Object {
-              "marginBottom": 8,
-            }
-          }
-        >
-          <CommonLabel
+          <Styled(ViewNB)
             style={
               Object {
-                "fontWeight": "bold",
-              }
-            }
-            text="Age"
-          />
-          <Styled(Text)
-            style={
-              Object {
-                "color": "#575757",
-                "fontSize": 16,
-                "height": 20,
+                "marginBottom": 8,
               }
             }
           >
-            1y 11m
-          </Styled(Text)>
+            <Styled(Text)
+              style={
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "height": 20,
+                }
+              }
+            >
+              (
+              1y 11m
+              )
+            </Styled(Text)>
+          </Styled(ViewNB)>
         </Styled(ViewNB)>
         <Styled(ViewNB)
           style={
@@ -237,7 +230,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Separator
         text="CHICKEN STATS"
       />
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -255,7 +255,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -273,7 +280,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -291,7 +305,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -444,7 +465,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Styled(ViewNB)
         style={
           Object {
-            "flex": 1,
             "marginLeft": 8,
           }
         }
@@ -502,33 +522,27 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           >
             Oct 5, 2016
           </Styled(Text)>
-        </Styled(ViewNB)>
-        <Styled(ViewNB)
-          style={
-            Object {
-              "marginBottom": 8,
-            }
-          }
-        >
-          <CommonLabel
+          <Styled(ViewNB)
             style={
               Object {
-                "fontWeight": "bold",
-              }
-            }
-            text="Age"
-          />
-          <Styled(Text)
-            style={
-              Object {
-                "color": "#575757",
-                "fontSize": 16,
-                "height": 20,
+                "marginBottom": 8,
               }
             }
           >
-            1y 11m
-          </Styled(Text)>
+            <Styled(Text)
+              style={
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "height": 20,
+                }
+              }
+            >
+              (
+              1y 11m
+              )
+            </Styled(Text)>
+          </Styled(ViewNB)>
         </Styled(ViewNB)>
         <Styled(ViewNB)
           style={
@@ -563,7 +577,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Separator
         text="CHICKEN STATS"
       />
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -581,7 +602,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -599,7 +627,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -617,7 +652,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -827,7 +869,6 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Styled(ViewNB)
         style={
           Object {
-            "flex": 1,
             "marginLeft": 8,
           }
         }
@@ -885,33 +926,27 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           >
             Oct 5, 2016
           </Styled(Text)>
-        </Styled(ViewNB)>
-        <Styled(ViewNB)
-          style={
-            Object {
-              "marginBottom": 8,
-            }
-          }
-        >
-          <CommonLabel
+          <Styled(ViewNB)
             style={
               Object {
-                "fontWeight": "bold",
-              }
-            }
-            text="Age"
-          />
-          <Styled(Text)
-            style={
-              Object {
-                "color": "#575757",
-                "fontSize": 16,
-                "height": 20,
+                "marginBottom": 8,
               }
             }
           >
-            1y 11m
-          </Styled(Text)>
+            <Styled(Text)
+              style={
+                Object {
+                  "color": "#575757",
+                  "fontSize": 16,
+                  "height": 20,
+                }
+              }
+            >
+              (
+              1y 11m
+              )
+            </Styled(Text)>
+          </Styled(ViewNB)>
         </Styled(ViewNB)>
         <Styled(ViewNB)
           style={
@@ -946,7 +981,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
       <Separator
         text="CHICKEN STATS"
       />
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -964,7 +1006,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -982,7 +1031,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {
@@ -1000,7 +1056,14 @@ exports[`Chicken component: ChickenRenderer test ChickenRenderer should render c
           </Styled(Text)>
         </Styled(ViewNB)>
       </Styled(ListItem)>
-      <Styled(ListItem)>
+      <Styled(ListItem)
+        style={
+          Object {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
+        }
+      >
         <Styled(ViewNB)
           style={
             Object {

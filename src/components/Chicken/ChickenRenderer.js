@@ -128,17 +128,15 @@ const ChickenRenderer = ({
                 && moment(chicken.hatched).format('MMM D, YYYY'))
                 || '--'}
             </Text>
+            {!!chicken.hatched
+              && chicken.hatched !== '' && (
+                <View style={styles.fieldGroup}>
+                  <Text style={styles.chickenInfoText}>
+                    ({calculateAge(chicken.hatched)})
+                  </Text>
+                </View>
+            )}
           </View>
-
-          {!!chicken.hatched
-            && chicken.hatched !== '' && (
-              <View style={styles.fieldGroup}>
-                <CommonLabel style={styles.label} text="Age" />
-                <Text style={styles.chickenInfoText}>
-                  {calculateAge(chicken.hatched)}
-                </Text>
-              </View>
-          )}
           <View style={styles.fieldGroup}>
             <CommonLabel style={styles.label} text="Gender" />
             <Text style={styles.chickenInfoText}>Female</Text>
@@ -150,13 +148,13 @@ const ChickenRenderer = ({
           <View>
             <Separator text="AWARDS" />
             {topProducer && (
-              <ListItem>
+              <ListItem style={styles.li}>
                 <Icon style={styles.trophyIcon} active name="trophy" />
                 <Text style={styles.awardText}>Top Producer</Text>
               </ListItem>
             )}
             {heaviest && (
-              <ListItem>
+              <ListItem style={styles.li}>
                 <Icon style={styles.trophyIcon} active name="trophy" />
                 <Text style={styles.awardText}>Heaviest Egg</Text>
               </ListItem>
@@ -164,7 +162,7 @@ const ChickenRenderer = ({
           </View>
         )}
         <Separator text="CHICKEN STATS" />
-        <ListItem>
+        <ListItem style={styles.li}>
           <View style={styles.flex}>
             <Text>Total Eggs Laid</Text>
           </View>
@@ -172,7 +170,7 @@ const ChickenRenderer = ({
             <Text>{stats.total || 0}</Text>
           </View>
         </ListItem>
-        <ListItem>
+        <ListItem style={styles.li}>
           <View style={styles.flex}>
             <Text>Last Egg</Text>
           </View>
@@ -184,7 +182,7 @@ const ChickenRenderer = ({
             </Text>
           </View>
         </ListItem>
-        <ListItem>
+        <ListItem style={styles.li}>
           <View style={styles.flex}>
             <Text>Longest Streak</Text>
           </View>
@@ -196,7 +194,7 @@ const ChickenRenderer = ({
             </Text>
           </View>
         </ListItem>
-        <ListItem>
+        <ListItem style={styles.li}>
           <View style={styles.flex}>
             <Text>Heaviest Egg</Text>
           </View>
